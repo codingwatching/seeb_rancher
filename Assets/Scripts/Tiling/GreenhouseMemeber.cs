@@ -1,8 +1,4 @@
-﻿using Assets.Scripts.Utilities.SaveObjects;
-using Assets.Tiling;
-using Assets.WorldObjects.SaveObjects;
-using System;
-using System.Linq;
+﻿using Assets.Tiling;
 using UnityEngine;
 
 namespace Assets.Scripts.Tiling
@@ -12,22 +8,24 @@ namespace Assets.Scripts.Tiling
     ///     stores information about the current location in the tileMap
     ///     
     /// </summary>
-    public class TileMapMember : MonoBehaviour
+    public class GreenhouseMemeber : MonoBehaviour
     {
         [SerializeField]
+        [HideInInspector]
         protected UniversalCoordinate coordinatePosition;
         public UniversalCoordinate CoordinatePosition => coordinatePosition;
+        public AllRanges allRanges;
 
-        public void SetPosition(TileMapMember otherMember)
+        public void SetPosition(GreenhouseMemeber otherMember)
         {
             SetPosition(otherMember.coordinatePosition);
         }
 
         public void SetPosition(UniversalCoordinate position)
         {
-            coordinatePosition = position;
-            var newPosition = coordinatePosition.ToPositionInPlane();
+            var newPosition = allRanges.TransformCoordinate(position);
             transform.position = new Vector3(newPosition.x, 0, newPosition.y);
+            coordinatePosition = position;
         }
     }
 }
