@@ -30,7 +30,7 @@ namespace Assets.Scripts.Tiling.TileSets
         QuadCorner,
         SingleEdge
     }
-    enum EdgeRotation
+    public enum EdgeRotation
     {
         RIGHT = 0,
         UP = 1,
@@ -160,9 +160,9 @@ namespace Assets.Scripts.Tiling.TileSets
             }
         }
 
-        private void RotateInstanceByRotatedMatch(EdgeMatch edgingData, GameObject instance)
+        public static void RotateInstanceByRotatedMatch(EdgeRotation rotation, Transform transform)
         {
-            instance.transform.localRotation *= Quaternion.Euler(0, 0, 90 * ((int)edgingData.rotation));
+            transform.localRotation *= Quaternion.Euler(0, 0, 90 * ((int)rotation));
         }
 
 
@@ -190,7 +190,7 @@ namespace Assets.Scripts.Tiling.TileSets
             var edgeTile = GetEdgePrefabFromEdgeState(edgeMatch);
 
             var newTile = base.BasicCreateTile(offsetOnFloor, edgeTile, parentTransform);
-            RotateInstanceByRotatedMatch(edgeMatch, newTile);
+            RotateInstanceByRotatedMatch(edgeMatch.rotation, newTile.transform);
             return newTile;
         }
     }

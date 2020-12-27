@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.UI.Manipulators.Scripts
+namespace Assets.Scripts.UI.Manipulators.Scripts
 {
     public abstract class MapManipulator : ScriptableObject
     {

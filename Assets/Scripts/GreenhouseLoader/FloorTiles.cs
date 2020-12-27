@@ -12,6 +12,7 @@ namespace Assets.Scripts.GreenhouseLoader
         public RectCoordinateRange floorSize;
         public TileType floorTile;
         public TileType wallTile;
+        public TileType doorTile;
 
         public TileMembersSaveObject GenerateFloorPlan()
         {
@@ -22,9 +23,13 @@ namespace Assets.Scripts.GreenhouseLoader
                 tiles[UniversalCoordinate.From(coordinate)] = floorTile;
             }
 
+            var doorCoordinate = new SquareCoordinate(floorSize.rows, floorSize.cols / 2) + floorSize.coord0;
+            tiles[UniversalCoordinate.From(doorCoordinate)] = doorTile;
             foreach (var coordinate in GetBorders(floorSize))
             {
-                tiles[UniversalCoordinate.From(coordinate)] = wallTile;
+                var coord = UniversalCoordinate.From(coordinate);
+                if (!tiles.ContainsKey(coord))
+                    tiles[coord] = wallTile;
             }
 
             return TileMembersSaveObject.FromTileTypeDictionary(tiles);

@@ -3,15 +3,18 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Assets.UI.Manipulators.Scripts
+namespace Assets.Scripts.UI.Manipulators.Scripts
 {
     public class ManipulatorController : MonoBehaviour
     {
         public ScriptableObjectVariable manipulatorVariable;
         public MapManipulator activeManipulator;
 
+        public MapManipulator defaultManipulator;
+
         private void Awake()
         {
+            manipulatorVariable.SetValue(defaultManipulator);
             manipulatorVariable.Value
                 .TakeUntilDestroy(this)
                 .Subscribe((nextValue) =>
@@ -27,7 +30,7 @@ namespace Assets.UI.Manipulators.Scripts
         {
             if (Input.GetMouseButtonDown((int)MouseButton.RightMouse))
             {
-                manipulatorVariable.SetValue(null);
+                manipulatorVariable.SetValue(defaultManipulator);
             }
             activeManipulator?.OnUpdate();
         }

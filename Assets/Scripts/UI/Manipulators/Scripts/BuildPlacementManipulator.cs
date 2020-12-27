@@ -3,7 +3,7 @@ using Assets.Scripts.Tiling;
 using Assets.Tiling;
 using UnityEngine;
 
-namespace Assets.UI.Manipulators.Scripts
+namespace Assets.Scripts.UI.Manipulators.Scripts
 {
     [CreateAssetMenu(fileName = "BuildPlacementManipulator", menuName = "Tiling/Manipulators/BuildPlacementManipulator", order = 1)]
     public class BuildPlacementManipulator : MapManipulator

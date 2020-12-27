@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Utilities\Core\Editor\GenericReferenceDrawer.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\Editor\VariableInstantiatorInspector.cs" />
     <Compile Include="Assets\Scripts\Plants\Editor\PlantContainerEditor.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\Editor\IntReferenceDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

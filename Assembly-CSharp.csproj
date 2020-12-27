@@ -118,6 +118,19 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantContainer.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickProjectorManipulator.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
+    <Compile Include="Assets\Scripts\UI\Billboard.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\EventGroup.cs" />
+    <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
+    <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
+    <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\IntState.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\IntVariable.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
