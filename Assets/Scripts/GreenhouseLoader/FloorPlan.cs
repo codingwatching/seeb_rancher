@@ -29,6 +29,26 @@ namespace Assets.Scripts.GreenhouseLoader
             return coord.ToPositionInPlane() * tilingDistance;
         }
 
+        public UniversalCoordinate? GetHoveredCoordinate()
+        {
+            var plane = new Plane(
+                transform.TransformDirection(Vector3.up), 
+                transform.TransformPoint(new Vector3(0, 0.25f, 0)));
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (plane.Raycast(ray, out var enter))
+            {
+                //Get the point that is clicked
+                Vector3 hitPoint = ray.GetPoint(enter);
+
+                var localPoint = transform.InverseTransformPoint(hitPoint);
+                var localOnPlane = new float2(localPoint.x, localPoint.z) / tilingDistance;
+
+                return UniversalCoordinate.From(SquareCoordinate.FromPositionInPlane(localOnPlane));
+            }
+            return null;
+        }
+
         // Start is called before the first frame update
         void Start()
         {

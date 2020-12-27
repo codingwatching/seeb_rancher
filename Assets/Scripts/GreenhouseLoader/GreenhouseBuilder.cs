@@ -26,7 +26,7 @@ namespace Assets.Scripts.GreenhouseLoader
         {
             foreach (Transform child in transform)
             {
-                Destroy(child);
+                DestroyImmediate(child.gameObject);
             }
             foreach (var floorCoordinate in floorPlan.floorPlanSize)
             {

@@ -86,8 +86,56 @@
     <Compile Include="Assets\Scripts\CoordinatePositioner.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\LinqExtensions.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\GenericSelector.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\GenericVariable.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\GameObjectVariable.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableInstantiator.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\GenericState.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\BooleanState.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\FloatState.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\GenericReference.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\FloatVariable.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\BooleanReference.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\BooleanVariable.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\ScriptableObjectVariable.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileMapMember.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\WorldSaveManager.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SaveSystemHooks.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveObjects\ISaveable.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SaveContext.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SerializationManager.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\BooleanToggle.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ScriptableObjectAssigner.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\AssignSelfOnClick.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ObjectAssigner.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -747,6 +795,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{5988649F-FBC6-47E9-36C4-242604FC6420}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
