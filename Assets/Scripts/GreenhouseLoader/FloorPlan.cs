@@ -12,6 +12,7 @@ namespace Assets.Scripts.GreenhouseLoader
     public class FloorPlan : MonoBehaviour
     {
         public RangePositioner coordinatePositioner;
+        public MemberSpawner[] memberSpawners;
         public RectCoordinateRange floorPlanSize;
         public FloorTiles floorTiles;
         private UniversalCoordinateSystemMembers tiles => GetComponent<UniversalCoordinateSystemMembers>();
@@ -21,6 +22,14 @@ namespace Assets.Scripts.GreenhouseLoader
         {
             var generatedMembers = floorTiles.GenerateFloorPlan();
             tiles.SetupFromSaveObject(generatedMembers);
+        }
+
+        public void SpawnMembers()
+        {
+            foreach (var memberSpawner in memberSpawners)
+            {
+                memberSpawner.SpawnMembers(transform);
+            }
         }
 
         public float2 GetLocalPoint(UniversalCoordinate coord)
