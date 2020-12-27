@@ -47,7 +47,7 @@ namespace Assets.Scripts.Tiling.TileSets
     {
         public TileTypeRegistry tileDefinitions;
 
-        private NativeHashMap<UniversalCoordinate, int> tileTypes;
+        private Dictionary<UniversalCoordinate, int> tileTypes;
         private Dictionary<int, TileType> _tileTypesById;
         private Dictionary<int, TileType> TileTypesById {
             get
@@ -66,7 +66,6 @@ namespace Assets.Scripts.Tiling.TileSets
 
         private void OnDestroy()
         {
-            tileTypes.Dispose();
         }
 
         public TileType GetTileType(UniversalCoordinate coordinate)
@@ -80,19 +79,14 @@ namespace Assets.Scripts.Tiling.TileSets
 
         public TileMembersSaveObject GetSaveObject()
         {
-            return TileMembersSaveObject.FromHashMap(tileTypes);
-        }
-
-        public NativeHashMap<UniversalCoordinate, int> GetTileTypesByCoordinateReadonlyCollection()
-        {
-            return tileTypes;
+            return TileMembersSaveObject.FromDictionary(tileTypes);
         }
 
         public ReadWriteJobHandleProtector readWriteLock = new ReadWriteJobHandleProtector();
 
         public void SetupFromSaveObject(TileMembersSaveObject save)
         {
-            tileTypes = new NativeHashMap<UniversalCoordinate, int>(save.tileKeys.Length, Allocator.Persistent);
+            tileTypes = new Dictionary<UniversalCoordinate, int>(save.tileKeys.Length);
             for (int i = 0; i < save.tileKeys.Length; i++)
             {
                 tileTypes[save.tileKeys[i]] = save.tileValues[i];

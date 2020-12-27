@@ -9,6 +9,7 @@ using UnityEngine;
 namespace Assets.Scripts.GreenhouseLoader
 {
     [RequireComponent(typeof(UniversalCoordinateSystemMembers))]
+    [ExecuteInEditMode]
     public class FloorPlan : MonoBehaviour
     {
         public float tilingDistance;

@@ -13,18 +13,26 @@ namespace Assets.Scripts.GreenhouseLoader
 
         private void Awake()
         {
-            floorPlan.GenerateFloorPlan();
+            //floorPlan.GenerateFloorPlan();
         }
 
         // Start is called before the first frame update
         void Start()
         {
+            //RebuildTiles();
+        }
+
+        public void RebuildTiles()
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child);
+            }
             foreach (var floorCoordinate in floorPlan.floorPlanSize)
             {
                 CreateTileAt(UniversalCoordinate.From(floorCoordinate));
             }
         }
-
 
         public GameObject CreateTileAt(UniversalCoordinate coord)
         {

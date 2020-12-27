@@ -56,35 +56,36 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
-    <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleTriangleCoordinateRange.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleRhomboidCoordinateRange.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\CubeCoordinate.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\OffsetCoordinate.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
-    <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\HexCoordinateSystem.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\AxialCoordinate.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\Tiling\SquareCoords\RectCoordinateRange.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\UniversalCoordinateSystemMembers.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\TileMapRegionRenderer.cs" />
+    <Compile Include="Assets\Scripts\Utilities\MyUtilities.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\RotationallySymmetricTileType.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleTriangleCoordinateRange.cs" />
+    <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
+    <Compile Include="Assets\Scripts\Tiling\HexCoords\CubeCoordinate.cs" />
+    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleRhomboidCoordinateRange.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
+    <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
+    <Compile Include="Assets\Scripts\Tiling\HexCoords\AxialCoordinate.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SerializableMatrix4x4.cs" />
+    <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\Utilities\UniqueObjectRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
     <Compile Include="Assets\Scripts\Tiling\SquareCoords\SquareCoordinate.cs" />
-    <Compile Include="Assets\Scripts\Utilities\UniqueObjectRegistry.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\TileType.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\TileMapRegionRenderer.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\UniversalCoordinateSystemMembers.cs" />
-    <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
-    <Compile Include="Assets\Scripts\Utilities\SerializableMatrix4x4.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
-    <Compile Include="Assets\Scripts\Utilities\MyUtilities.cs" />
+    <Compile Include="Assets\Scripts\Tiling\HexCoords\OffsetCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\EnumerableExtensions.cs" />
+    <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
+    <Compile Include="Assets\Scripts\Tiling\HexCoords\HexCoordinateSystem.cs" />
+    <Compile Include="Assets\Scripts\CoordinatePositioner.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\TileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\LinqExtensions.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\RotationallySymmetricTileType.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -309,17 +310,17 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.5\net35\unity-custom\nunit.framework.dll</HintPath>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections@0.14.0-preview.16\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
       <HintPath>Library\PackageCache\com.unity.burst@1.3.7\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>Library\PackageCache\com.unity.collections@0.14.0-preview.16\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.5\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -666,17 +667,11 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
@@ -687,23 +682,14 @@
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    <Reference Include="Unity.Burst.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
@@ -720,29 +706,44 @@
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Jobs.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Jobs.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Collections">
-      <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Jobs">
       <HintPath>Library\ScriptAssemblies\Unity.Jobs.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Jobs.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Jobs.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Burst.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
