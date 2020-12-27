@@ -23,4 +23,14 @@ namespace Assets
             return new Vector2(source.x / scale.x, source.y / scale.y);
         }
     }
+    public static class ComponentExtensions
+    {
+        public static void DestroyAllChildren(this GameObject gameObject)
+        {
+            for (int i = gameObject.transform.childCount; i > 0; --i)
+            {
+                Object.DestroyImmediate(gameObject.transform.GetChild(0).gameObject);
+            }
+        }
+    }
 }

@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5791403945663099545}
   - component: {fileID: 5842091619692918615}
+  - component: {fileID: 6349859039548495293}
   m_Layer: 0
   m_Name: Plants
   m_TagString: Untagged
@@ -126,12 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b9d0145b0bcbc4da11e5ce82acb0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthStagePrefabs:
-  - {fileID: 919132149155446097, guid: 34417552cd524ab48b9bd654d1a0960d, type: 3}
-  - {fileID: 919132149155446097, guid: 1665b1a7eac4c5a45bea95dd3ded7d46, type: 3}
-  - {fileID: 919132149155446097, guid: 7ab0e14981190124e86fe6c237a07dd0, type: 3}
-  - {fileID: 919132149155446097, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
-  harvestedPrefab: {fileID: 919132149155446097, guid: 6dec73a3d5626ab4f98ad0a4129e34eb, type: 3}
+  plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
   growth: 0.721
   levelPhase:
     DataSource: 1
@@ -139,8 +135,20 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  growthPerPhase: 0.3
-  triggerAdvancePhase: {fileID: 11400000, guid: 43cb6864a94c4fd4c88fb58db5cccd06, type: 2}
+--- !u!136 &6349859039548495293
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2918393041374939107}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1 &7126020408499974555
 GameObject:
   m_ObjectHideFlags: 0

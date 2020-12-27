@@ -58,17 +58,24 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
+    <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
+    <Compile Include="Assets\Scripts\Plants\PlantContainer.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
+    <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\AssignSelfOnClick.cs" />
+    <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SaveContext.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GameObjectVariable.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericReference.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickProjectorManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanReference.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\AxialCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableMatrix4x4.cs" />
@@ -76,12 +83,17 @@
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\ISaveable.cs" />
     <Compile Include="Assets\Scripts\Utilities\UniqueObjectRegistry.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanVariable.cs" />
     <Compile Include="Assets\Scripts\Tiling\SquareCoords\SquareCoordinate.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatVariable.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\OffsetCoordinate.cs" />
+    <Compile Include="Assets\Scripts\UI\Billboard.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\HexCoordinateSystem.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericSelector.cs" />
+    <Compile Include="Assets\Scripts\Plants\PlantType.cs" />
     <Compile Include="Assets\Scripts\CoordinatePositioner.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\WorldSaveManager.cs" />
@@ -89,50 +101,44 @@
     <Compile Include="Assets\Scripts\Tiling\SquareCoords\RectCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\UniversalCoordinateSystemMembers.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileMapRegionRenderer.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\IntVariable.cs" />
     <Compile Include="Assets\Scripts\Utilities\MyUtilities.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\IntVariableChangedToUnityEvent.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\RotationallySymmetricTileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\ScriptableObjectVariable.cs" />
     <Compile Include="Assets\Scripts\Tiling\RangePositioner.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleTriangleCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\CubeCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableInstantiator.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleRhomboidCoordinateRange.cs" />
+    <Compile Include="Assets\Scripts\Plants\PlantTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatState.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\EventGroup.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SaveSystemHooks.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\BooleanToggle.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ObjectAssigner.cs" />
     <Compile Include="Assets\Scripts\Tiling\GreenhouseMember.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\Seed.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ScriptableObjectAssigner.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\IntState.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Scripts\Utilities\EnumerableExtensions.cs" />
     <Compile Include="Assets\Scripts\Tiling\AllRanges.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SerializationManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantContainer.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickProjectorManipulator.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
-    <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
-    <Compile Include="Assets\Scripts\UI\Billboard.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Core\EventGroup.cs" />
-    <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
-    <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
-    <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Core\IntState.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Core\IntVariable.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\IntVariableChangedToUnityEvent.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketSlot.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -150,6 +156,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\Scripts\UI\Icons34x34byAilsEnglish2013\Readme.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -812,6 +819,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

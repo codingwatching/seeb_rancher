@@ -24,10 +24,7 @@ namespace Assets.Scripts.GreenhouseLoader
 
         public void RebuildTiles()
         {
-            for (int i = transform.childCount; i > 0; --i)
-            {
-                DestroyImmediate(transform.GetChild(0).gameObject);
-            }
+            gameObject.DestroyAllChildren();
             foreach (var floorCoordinate in floorPlan.floorPlanSize)
             {
                 CreateTileAt(UniversalCoordinate.From(floorCoordinate));
