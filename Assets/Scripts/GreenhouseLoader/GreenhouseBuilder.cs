@@ -24,9 +24,9 @@ namespace Assets.Scripts.GreenhouseLoader
 
         public void RebuildTiles()
         {
-            foreach (Transform child in transform)
+            for (int i = transform.childCount; i > 0; --i)
             {
-                DestroyImmediate(child.gameObject);
+                DestroyImmediate(transform.GetChild(0).gameObject);
             }
             foreach (var floorCoordinate in floorPlan.floorPlanSize)
             {

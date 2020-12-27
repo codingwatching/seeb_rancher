@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.UI.Manipulators.Scripts
 {
-    [CreateAssetMenu(fileName = "BuildPlacementManipulator", menuName = "TileMap/Manipulators/BuildPlacementManipulator", order = 1)]
+    [CreateAssetMenu(fileName = "BuildPlacementManipulator", menuName = "Tiling/Manipulators/BuildPlacementManipulator", order = 1)]
     public class BuildPlacementManipulator : MapManipulator
     {
         private ManipulatorController controller;

@@ -58,11 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GreenhouseLoader\Editor\FloorPlanEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\Editor\UniqueObjectRegistryEditor.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Core\Editor\VariableInstantiatorInspector.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\Editor\FloatReferenceDrawer.cs" />
+    <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\Editor\BooleanReferenceDrawer.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\Editor\GenericReferenceDrawer.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\Editor\VariableInstantiatorInspector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

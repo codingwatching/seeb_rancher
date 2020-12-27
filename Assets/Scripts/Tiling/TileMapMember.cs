@@ -14,6 +14,7 @@ namespace Assets.Scripts.Tiling
     /// </summary>
     public class TileMapMember : MonoBehaviour
     {
+        [SerializeField]
         protected UniversalCoordinate coordinatePosition;
         public UniversalCoordinate CoordinatePosition => coordinatePosition;
 
