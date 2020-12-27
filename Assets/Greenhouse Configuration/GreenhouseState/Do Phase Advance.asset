@@ -10,5 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26c6aa64cc45e154c894a5f218a8c0c2, type: 3}
-  m_Name: On Phase Advanced
+  m_Name: Do Phase Advance
   m_EditorClassIdentifier: 
+  DeveloperDescription: 'the screen has faded out, all other pre-phase-advance actions
+    have happened.
+
+    Now actually advance the phase'

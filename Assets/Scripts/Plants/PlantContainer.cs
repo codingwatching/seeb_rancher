@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.GreenhouseLoader;
+using Assets.Scripts.Utilities.Core;
+using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.Plants
@@ -12,6 +14,25 @@ namespace Assets.Scripts.Plants
         [HideInInspector]
         private float growth;
         public float Growth => growth;
+
+        public IntReference levelPhase;
+        public float growthPerPhase;
+        private void Start()
+        {
+            levelPhase.ValueChanges
+                .TakeUntilDisable(this)
+                .Pairwise()
+                .Subscribe(pair =>
+                {
+                    AdvanceGrowPhase(pair.Current - pair.Previous);
+                }).AddTo(this);
+        }
+
+        private void AdvanceGrowPhase(int phaseDiff)
+        {
+            var extraGrowth = growthPerPhase * phaseDiff;
+            UpdateGrowth(Mathf.Clamp(growth + extraGrowth, 0, 1));
+        }
 
         public void SetupAfterSpawn()
         {

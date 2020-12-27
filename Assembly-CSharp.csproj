@@ -131,6 +131,8 @@
     <Compile Include="Assets\Scripts\Utilities\Core\IntVariable.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\IntVariableChangedToUnityEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

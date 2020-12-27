@@ -10,5 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26c6aa64cc45e154c894a5f218a8c0c2, type: 3}
-  m_Name: Trigger Phase Advance
+  m_Name: User Trigger Phase Transition
   m_EditorClassIdentifier: 
+  DeveloperDescription: The user has triggered a phase advance to happen

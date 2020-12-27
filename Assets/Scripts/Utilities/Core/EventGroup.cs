@@ -8,6 +8,11 @@ namespace Assets.Scripts.Utilities.Core
     public class EventGroup: ScriptableObject
     {
         public event Action OnEvent;
+#if UNITY_EDITOR
+        [Multiline]
+        public string DeveloperDescription = "";
+#endif
+
 
         public void TriggerEvent()
         {

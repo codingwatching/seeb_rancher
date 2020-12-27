@@ -133,6 +133,14 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
   harvestedPrefab: {fileID: 919132149155446097, guid: 6dec73a3d5626ab4f98ad0a4129e34eb, type: 3}
   growth: 0.721
+  levelPhase:
+    DataSource: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
+    Instancer: {fileID: 0}
+    NamePath: 
+  growthPerPhase: 0.3
+  triggerAdvancePhase: {fileID: 11400000, guid: 43cb6864a94c4fd4c88fb58db5cccd06, type: 2}
 --- !u!1 &7126020408499974555
 GameObject:
   m_ObjectHideFlags: 0
