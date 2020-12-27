@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Utilities;
-using Assets.Tiling;
+﻿using Assets.Tiling;
 using Assets.Tiling.SquareCoords;
 using System.Linq;
 using Unity.Mathematics;
@@ -50,7 +49,7 @@ namespace Assets.Scripts.Tiling.TileSets
 
         public EdgingStateChecker(EdgingState targetState, NR[] matchingNeighbors)
         {
-            this.TargetState = targetState;
+            TargetState = targetState;
             this.matchingNeighbors = matchingNeighbors;
         }
 
@@ -58,7 +57,7 @@ namespace Assets.Scripts.Tiling.TileSets
         {
             for (int offset = 0; offset < 4; offset++)
             {
-                if(MatchAtOffset(neighbors, offset * 2))
+                if (MatchAtOffset(neighbors, offset * 2))
                 {
                     return new EdgeMatch
                     {
@@ -134,7 +133,7 @@ namespace Assets.Scripts.Tiling.TileSets
             for (int i = 0; i < StateChecks.Length; i++)
             {
                 var match = StateChecks[i].Matches(neighbors);
-                if(match != null)
+                if (match != null)
                 {
                     return match;
                 }
@@ -169,7 +168,7 @@ namespace Assets.Scripts.Tiling.TileSets
 
         public override GameObject CreateTile(
             UniversalCoordinate coordinate,
-            float2 offsetOnFloor, 
+            float2 offsetOnFloor,
             Transform parentTransform,
             UniversalCoordinateSystemMembers members)
         {
@@ -180,7 +179,7 @@ namespace Assets.Scripts.Tiling.TileSets
                 .ToArray();
 
             var edgeMatch = GetEdgeMatchFromNeighbors(neighbors);
-            if(edgeMatch == null)
+            if (edgeMatch == null)
             {
                 edgeMatch = new EdgeMatch
                 {

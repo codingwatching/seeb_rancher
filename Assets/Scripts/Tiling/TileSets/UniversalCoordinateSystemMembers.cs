@@ -49,10 +49,11 @@ namespace Assets.Scripts.Tiling.TileSets
 
         private Dictionary<UniversalCoordinate, int> tileTypes;
         private Dictionary<int, TileType> _tileTypesById;
-        private Dictionary<int, TileType> TileTypesById {
+        private Dictionary<int, TileType> TileTypesById
+        {
             get
             {
-                if(_tileTypesById == null)
+                if (_tileTypesById == null)
                 {
                     _tileTypesById = new Dictionary<int, TileType>();
                     foreach (var tileType in tileDefinitions.allObjects)

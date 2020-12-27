@@ -1,9 +1,6 @@
 ﻿using Assets.Scripts.GreenhouseLoader;
 using Assets.Scripts.Tiling;
 using Assets.Tiling;
-using Assets.Tiling.Tilemapping;
-using Assets.WorldObjects;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.UI.Manipulators.Scripts
@@ -29,7 +26,7 @@ namespace Assets.UI.Manipulators.Scripts
 
         public override void OnClose()
         {
-            if(activeBuildPreview != null)
+            if (activeBuildPreview != null)
                 Destroy(activeBuildPreview.gameObject);
         }
 

@@ -14,7 +14,7 @@ namespace Assets.Scripts.Tiling.TileSets
         }
 
         protected GameObject BasicCreateTile(
-            float2 offsetOnFloor, 
+            float2 offsetOnFloor,
             GameObject tilePrefab,
             Transform parentTransform)
         {

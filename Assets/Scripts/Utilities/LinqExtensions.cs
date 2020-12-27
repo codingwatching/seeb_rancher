@@ -9,7 +9,7 @@ namespace Assets.Scripts.Utilities
     {
         public static IEnumerable<T[]> Buffer<T>(this IEnumerable<T> source, int bufferSize)
         {
-            if(bufferSize <= 0)
+            if (bufferSize <= 0)
             {
                 while (true)
                 {
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Utilities
             var iterator = source.GetEnumerator();
 
             int position;
-            while(true)
+            while (true)
             {
                 var workingList = new T[bufferSize];
                 for (position = 0; position < bufferSize && iterator.MoveNext(); position++)
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Utilities
                     var value = iterator.Current;
                     workingList[position] = value;
                 }
-                if(position < bufferSize)
+                if (position < bufferSize)
                 {
                     yield break;
                 }
