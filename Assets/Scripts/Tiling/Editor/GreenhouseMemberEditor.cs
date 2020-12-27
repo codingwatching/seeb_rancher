@@ -1,14 +1,16 @@
 ﻿using System;
 using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Tiling
 {
-    [CustomEditor(typeof(GreenhouseMemeber), true)]
+    [CustomEditor(typeof(GreenhouseMember), true)]
     public class GreenhouseMemberEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
-            var self = serializedObject.targetObject as GreenhouseMemeber;
+            var self = target as GreenhouseMember;
             var newPosition = self.CoordinatePosition;
             newPosition.type = (Assets.Tiling.CoordinateType)EditorGUILayout.EnumPopup(newPosition.type);
             newPosition.CoordinatePlaneID = (short)EditorGUILayout.IntField("Coordinate Plane", newPosition.CoordinatePlaneID);
@@ -37,6 +39,7 @@ namespace Assets.Scripts.Tiling
                 try
                 {
                     self.SetPosition(newPosition);
+                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
                 }
                 catch (IndexOutOfRangeException)
                 {

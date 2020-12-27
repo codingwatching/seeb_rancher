@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Utilities\MyUtilities.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\RotationallySymmetricTileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\ScriptableObjectVariable.cs" />
+    <Compile Include="Assets\Scripts\Tiling\RangePositioner.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleTriangleCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\CubeCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableInstantiator.cs" />
@@ -105,16 +106,15 @@
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\BooleanToggle.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ObjectAssigner.cs" />
-    <Compile Include="Assets\Scripts\Tiling\GreenhouseMemeber.cs" />
+    <Compile Include="Assets\Scripts\Tiling\GreenhouseMember.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ScriptableObjectAssigner.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\EnumerableExtensions.cs" />
+    <Compile Include="Assets\Scripts\Tiling\AllRanges.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SerializationManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
-    <Compile Include="Assets\Scripts\Tiling\RangePositioner.cs" />
-    <Compile Include="Assets\Scripts\Tiling\AllRanges.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

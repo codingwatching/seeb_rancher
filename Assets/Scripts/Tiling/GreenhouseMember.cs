@@ -8,7 +8,7 @@ namespace Assets.Scripts.Tiling
     ///     stores information about the current location in the tileMap
     ///     
     /// </summary>
-    public class GreenhouseMemeber : MonoBehaviour
+    public class GreenhouseMember : MonoBehaviour
     {
         [SerializeField]
         [HideInInspector]
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Tiling
         public UniversalCoordinate CoordinatePosition => coordinatePosition;
         public AllRanges allRanges;
 
-        public void SetPosition(GreenhouseMemeber otherMember)
+        public void SetPosition(GreenhouseMember otherMember)
         {
             SetPosition(otherMember.coordinatePosition);
         }

@@ -44,6 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3733438b7d2214599139d393e0ee67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordinatePosition:
+    triangleDataView:
+      u: 0
+      v: 0
+      R: 0
+    squareDataView:
+      row: 0
+      column: 0
+    CoordinateMembershipData: 2
+    type: 2
+    CoordinatePlaneID: 0
+  allRanges: {fileID: 11400000, guid: abee16292c79bf3499f46e123fd36e37, type: 2}
 --- !u!1 &8024072480012692271
 GameObject:
   m_ObjectHideFlags: 0

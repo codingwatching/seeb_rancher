@@ -8767,26 +8767,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6703808689825917318, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
-      propertyPath: allRanges
-      value: 
-      objectReference: {fileID: 11400000, guid: abee16292c79bf3499f46e123fd36e37, type: 2}
-    - target: {fileID: 6703808689825917318, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
-      propertyPath: coordinatePosition.type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6703808689825917318, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
-      propertyPath: coordinatePosition.squareDataView.row
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6703808689825917318, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
-      propertyPath: coordinatePosition.triangleDataView.u
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6703808689825917318, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
-      propertyPath: coordinatePosition.CoordinateMembershipData
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7126020408499974555, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
       propertyPath: m_Name
       value: Planter
@@ -8797,15 +8777,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8402508463745975846, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.2403965
+      value: 3.3000002
       objectReference: {fileID: 0}
     - target: {fileID: 8402508463745975846, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.22000122
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8402508463745975846, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.08381653
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8402508463745975846, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23078,7 +23058,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.09e-42, y: 1.01e-43, z: 2.818327e+20, w: 0}
+  m_BoundingSphereOverride: {x: 4.5904e-41, y: -6.33126e+12, z: 4.5904e-41, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
