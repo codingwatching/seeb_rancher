@@ -169,10 +169,10 @@ MonoBehaviour:
   tilingDistance: 1.02
   floorPlanSize:
     coord0:
-      row: -5
-      column: -10
-    rows: 10
-    cols: 20
+      row: -10
+      column: -20
+    rows: 20
+    cols: 40
   floorTiles: {fileID: 11400000, guid: b6bb0535adc0dec4da2ddeaf2e8e0f34, type: 2}
 --- !u!4 &1308818735
 Transform:
@@ -432,7 +432,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -2.4099047e-22, z: 4.5904e-41, w: 0}
+  m_BoundingSphereOverride: {x: 2.09e-42, y: 1.01e-43, z: 2.818327e+20, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

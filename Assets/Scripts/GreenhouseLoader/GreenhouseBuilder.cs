@@ -34,7 +34,7 @@ namespace Assets.Scripts.GreenhouseLoader
                 return null;
             }
             var position = floorPlan.GetLocalPoint(coord);
-            return type.CreateTile(position, transform, tiles);
+            return type.CreateTile(coord, position, transform, tiles);
         }
 
         // Update is called once per frame

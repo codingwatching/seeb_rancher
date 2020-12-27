@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Utilities;
+using Assets.Tiling;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Tiling.TileSets
         public GameObject tileModelPrefab;
 
         public override GameObject CreateTile(
+            UniversalCoordinate coordinate,
             float2 offsetOnFloor, 
             Transform parentTransform,
             UniversalCoordinateSystemMembers members)

@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Utilities\EnumerableExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\LinqExtensions.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\RotationallySymmetricTileType.cs" />
+    <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

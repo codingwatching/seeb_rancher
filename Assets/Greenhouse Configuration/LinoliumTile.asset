@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LinoliumTile
   m_EditorClassIdentifier: 
   uniqueID: 0
-  tileModelPrefab: {fileID: 919132149155446097, guid: e11f56ded33d1824184805cda64c333f, type: 3}
+  tileModelPrefab: {fileID: 7530086663021603285, guid: b5ac3db221173534c94cfe56dd01cd30, type: 3}
