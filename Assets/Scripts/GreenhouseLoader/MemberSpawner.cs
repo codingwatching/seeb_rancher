@@ -18,6 +18,10 @@ namespace Assets.Scripts.GreenhouseLoader
             {
                 var newThing = Instantiate(thingToSpawn, parent);
                 newThing.SetPosition(UniversalCoordinate.From(coordinate, inRange.rangeIndex));
+                foreach (var spawnable in newThing.GetComponentsInChildren<ISpawnable>())
+                {
+                    spawnable.SetupAfterSpawn();
+                }
             }
         }
     }

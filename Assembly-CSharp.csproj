@@ -116,6 +116,8 @@
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SerializationManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
+    <Compile Include="Assets\Scripts\Plants\PlantContainer.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
