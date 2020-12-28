@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4511430735103498977}
   - component: {fileID: 4511430735103498976}
+  - component: {fileID: 1207769059597994401}
   m_Layer: 5
   m_Name: Draggin seed prefab
   m_TagString: Untagged
@@ -125,7 +126,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1c26522962b8e4a9a0208f9d66a7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedsInSet: []
+  myBucket:
+    AllSeeds: []
+--- !u!114 &1207769059597994401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4511430735103498990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43231cf7c8825cc4f899d5ade496585b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   seedSpriteDisplay: {fileID: 4511430734738053294}
   seedCountDisplay: {fileID: 4511430735205906511}

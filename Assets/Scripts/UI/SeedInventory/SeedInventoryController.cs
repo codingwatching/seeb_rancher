@@ -8,7 +8,7 @@ namespace Assets.Scripts.UI.SeedInventory
         public int defaultSeedBuckets;
 
         public GameObject seedGridLayoutParent;
-        public GameObject seedSlotUIElementPrefab;
+        public SeedInventoryDropSlot seedSlotUIElementPrefab;
 
         private SeedInventoryDataModel dataModel;
         private void Awake()
@@ -24,6 +24,7 @@ namespace Assets.Scripts.UI.SeedInventory
             foreach (var bucket in dataModel.seedBuckets)
             {
                 var newBucket = Instantiate(seedSlotUIElementPrefab, seedGridLayoutParent.transform);
+                newBucket.SetDataModelLink(bucket);
             }
         }
     }

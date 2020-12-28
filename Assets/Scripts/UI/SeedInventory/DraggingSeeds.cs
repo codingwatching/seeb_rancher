@@ -1,23 +1,18 @@
 ﻿using Assets.Scripts.Plants;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
+    [RequireComponent(typeof(SeedBucketDisplay))]
     public class DraggingSeeds : MonoBehaviour
     {
-        public Seed[] seedsInSet;
-        public PlantTypeRegistry plantTypes;
-
-        public Image seedSpriteDisplay;
-        public TextMeshProUGUI seedCountDisplay;
-
+        public SeedBucket myBucket;
 
         private void Awake()
         {
-            seedsInSet = new Seed[0];
+            myBucket = new SeedBucket();
         }
 
         private void Update()
@@ -25,43 +20,13 @@ namespace Assets.Scripts.UI.SeedInventory
             var mousePos = Input.mousePosition;
             transform.position = mousePos;
         }
-
-        private void SetSeedSprite()
-        {
-            if (seedsInSet.Length <= 0)
-            {
-                seedSpriteDisplay.enabled = false;
-            }
-            else
-            {
-                var plantId = seedsInSet[0].plantType;
-                var plantType = plantTypes.GetUniqueObjectFromID(plantId);
-                seedSpriteDisplay.sprite = plantType.seedIcon;
-            }
-        }
-
-        private void SetSeedCount()
-        {
-            seedCountDisplay.text = seedsInSet.Length.ToString();
-        }
-
         public bool TryAddSeedsToSet(Seed[] seeds)
         {
-            if (seedsInSet.Length <= 0)
+            if (!myBucket.TryAddSeedsToSet(seeds))
             {
-                seedsInSet = seeds;
-                SetSeedSprite();
+                return false;
             }
-            else
-            {
-                var seedType = seedsInSet[0].plantType;
-                if (seeds.Any(s => s.plantType != seedType))
-                {
-                    return false;
-                }
-                seedsInSet = seedsInSet.Concat(seeds).ToArray();
-            }
-            SetSeedCount();
+            GetComponent<SeedBucketDisplay>().DisplaySeedBucket(myBucket);
             return true;
         }
     }

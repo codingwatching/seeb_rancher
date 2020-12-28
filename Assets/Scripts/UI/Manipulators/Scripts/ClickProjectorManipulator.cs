@@ -31,7 +31,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 if (Physics.Raycast(ray, out var hit, 100, layersToHit))
                 {
                     Debug.DrawLine(ray.origin, hit.point);
-                    Debug.Log($"Clicked {hit.collider.gameObject.name}");
                     hit.collider.gameObject.GetComponentInChildren<IManipulatorClickReciever>()?.SelfHit(hit);
                 }
             }
