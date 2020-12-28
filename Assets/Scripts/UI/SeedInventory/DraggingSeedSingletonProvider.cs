@@ -8,16 +8,16 @@ namespace Assets.Scripts.UI.SeedInventory
         public GameObjectVariable currentDraggingSeeds;
         public DraggingSeeds draggingSeedPrefab;
 
-        public bool TryAddToSeed(Seed[] newSeeds)
+        public DraggingSeeds SpawnNewDraggingSeedsOrGetCurrent()
         {
             if (currentDraggingSeeds.CurrentValue == null)
             {
                 var newDragger = Instantiate(draggingSeedPrefab, transform);
                 currentDraggingSeeds.SetValue(newDragger.gameObject);
+                return newDragger;
             }
-
             var dragger = currentDraggingSeeds.CurrentValue.GetComponent<DraggingSeeds>();
-            return dragger.TryAddSeedsToSet(newSeeds);
+            return dragger;
         }
     }
 }

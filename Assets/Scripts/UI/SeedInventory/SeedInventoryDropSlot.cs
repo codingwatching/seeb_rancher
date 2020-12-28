@@ -21,12 +21,12 @@ namespace Assets.Scripts.UI.SeedInventory
         // Use this for initialization
         void Start()
         {
-            draggingSeedSet.Value
-                .TakeUntilDestroy(this)
-                .Subscribe(newDraggingThing =>
-                {
-                    DropSlotButton.enabled = newDraggingThing != null;
-                }).AddTo(this);
+            //draggingSeedSet.Value
+            //    .TakeUntilDestroy(this)
+            //    .Subscribe(newDraggingThing =>
+            //    {
+            //        DropSlotButton.enabled = newDraggingThing != null;
+            //    }).AddTo(this);
         }
 
         // Update is called once per frame
@@ -35,11 +35,30 @@ namespace Assets.Scripts.UI.SeedInventory
 
         }
 
-        public void TryAddHoveringSeedToSelf()
+        public void SeedSlotClicked()
         {
             var dragginSeeds = draggingSeedSet.CurrentValue?.GetComponent<DraggingSeeds>();
             if (dragginSeeds == null)
+            {
+                PopOutNewDragging();
                 return;
+            }
+            TryAddHoveringSeedToSelf(dragginSeeds);
+        }
+
+        public void PopOutNewDragging()
+        {
+            var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
+            var currentDragger = draggingProvider.SpawnNewDraggingSeedsOrGetCurrent();
+            if (currentDragger.myBucket.TryCombineSeedsInto(dataModel))
+            {
+                currentDragger.SeedBucketUpdated();
+                Displayer.DisplaySeedBucket(dataModel);
+            }
+        }
+
+        public void TryAddHoveringSeedToSelf(DraggingSeeds dragginSeeds)
+        {
             dataModel.TryCombineSeedsInto(dragginSeeds.myBucket);
             Displayer.DisplaySeedBucket(dataModel);
             if (dragginSeeds.myBucket.Empty)

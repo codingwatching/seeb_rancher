@@ -20,14 +20,9 @@ namespace Assets.Scripts.UI.SeedInventory
             var mousePos = Input.mousePosition;
             transform.position = mousePos;
         }
-        public bool TryAddSeedsToSet(Seed[] seeds)
+        public void SeedBucketUpdated()
         {
-            if (!myBucket.TryAddSeedsToSet(seeds))
-            {
-                return false;
-            }
             GetComponent<SeedBucketDisplay>().DisplaySeedBucket(myBucket);
-            return true;
         }
     }
 }

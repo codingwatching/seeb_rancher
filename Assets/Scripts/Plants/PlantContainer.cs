@@ -74,7 +74,12 @@ namespace Assets.Scripts.Plants
         private void HarvestPlant()
         {
             var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
-            draggingProvider.TryAddToSeed(plantType.HarvestSeeds());
+            var dragger = draggingProvider.SpawnNewDraggingSeedsOrGetCurrent();
+            if (!dragger.myBucket.TryAddSeedsToSet(plantType.HarvestSeeds()))
+            {
+                return;
+            }
+            dragger.SeedBucketUpdated();
 
             growth = 0;
             plantType = null;
