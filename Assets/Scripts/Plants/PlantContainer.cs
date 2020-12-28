@@ -45,7 +45,7 @@ namespace Assets.Scripts.Plants
 
         public void UpdateGrowth(float newGrowth)
         {
-            if(plantType == null)
+            if (plantType == null)
             {
                 return;
             }

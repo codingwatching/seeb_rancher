@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Utilities.Core;
-using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.DisplayControllers

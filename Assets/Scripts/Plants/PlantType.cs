@@ -43,7 +43,7 @@ namespace Assets.Scripts.Plants
             {
                 seedResult[i] = new Seed
                 {
-                    plantType = this.plantID
+                    plantType = plantID
                 };
             }
             return seedResult;

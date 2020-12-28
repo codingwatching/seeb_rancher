@@ -1,16 +1,12 @@
 ﻿using Assets.Scripts.Plants;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
-    public class DraggingSeeds: MonoBehaviour
+    public class DraggingSeeds : MonoBehaviour
     {
         public Seed[] seedsInSet;
         public PlantTypeRegistry plantTypes;
@@ -27,15 +23,16 @@ namespace Assets.Scripts.UI.SeedInventory
         private void Update()
         {
             var mousePos = Input.mousePosition;
-            this.transform.position = mousePos;
+            transform.position = mousePos;
         }
 
         private void SetSeedSprite()
         {
-            if(seedsInSet.Length <= 0)
+            if (seedsInSet.Length <= 0)
             {
                 seedSpriteDisplay.enabled = false;
-            }else
+            }
+            else
             {
                 var plantId = seedsInSet[0].plantType;
                 var plantType = plantTypes.GetUniqueObjectFromID(plantId);
@@ -62,9 +59,9 @@ namespace Assets.Scripts.UI.SeedInventory
                 {
                     return false;
                 }
-                this.seedsInSet = seedsInSet.Concat(seeds).ToArray();
+                seedsInSet = seedsInSet.Concat(seeds).ToArray();
             }
-            this.SetSeedCount();
+            SetSeedCount();
             return true;
         }
     }

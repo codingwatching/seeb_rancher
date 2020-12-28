@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.SeedInventory
@@ -17,7 +15,7 @@ namespace Assets.Scripts.UI.SeedInventory
         {
             //TODO: load from save. currently generating on load
             dataModel = new SeedInventoryDataModel(defaultSeedBuckets);
-            this.RenderDataModel();
+            RenderDataModel();
         }
 
         private void RenderDataModel()
