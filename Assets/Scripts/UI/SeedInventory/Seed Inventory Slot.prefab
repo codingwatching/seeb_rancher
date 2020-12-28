@@ -416,6 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
+  DropSlotButton: {fileID: 298817955184868032}
 --- !u!114 &4022953965823276303
 MonoBehaviour:
   m_ObjectHideFlags: 0

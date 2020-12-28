@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Scripts.Utilities.Core;
+using UniRx;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
@@ -8,6 +10,8 @@ namespace Assets.Scripts.UI.SeedInventory
     public class SeedInventoryDropSlot : MonoBehaviour
     {
         public GameObjectVariable draggingSeedSet;
+
+        public Button DropSlotButton;
 
         private SeedBucket dataModel;
 
@@ -17,7 +21,12 @@ namespace Assets.Scripts.UI.SeedInventory
         // Use this for initialization
         void Start()
         {
-
+            draggingSeedSet.Value
+                .TakeUntilDestroy(this)
+                .Subscribe(newDraggingThing =>
+                {
+                    DropSlotButton.enabled = newDraggingThing != null;
+                }).AddTo(this);
         }
 
         // Update is called once per frame
