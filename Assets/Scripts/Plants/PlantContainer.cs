@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GreenhouseLoader;
 using Assets.Scripts.UI.Manipulators.Scripts;
+using Assets.Scripts.UI.SeedInventory;
 using Assets.Scripts.Utilities.Core;
 using UniRx;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace Assets.Scripts.Plants
         public float Growth => growth;
 
         public IntReference levelPhase;
+
+        private Collider harvestCollider => GetComponent<Collider>();
         private void Start()
         {
             levelPhase.ValueChanges
@@ -30,6 +33,8 @@ namespace Assets.Scripts.Plants
 
         private void AdvanceGrowPhase(int phaseDiff)
         {
+            if (plantType == null)
+                return;
             UpdateGrowth(plantType.AddGrowth(phaseDiff, growth));
         }
 
@@ -40,20 +45,20 @@ namespace Assets.Scripts.Plants
 
         public void UpdateGrowth(float newGrowth)
         {
-            var lastPrefab = plantType.getPrefabForGrowth(growth);
-            var newPrefab = plantType.getPrefabForGrowth(newGrowth);
+            if(plantType == null)
+            {
+                return;
+            }
+            var lastPrefab = plantType.GetPrefabForGrowth(growth);
+            var newPrefab = plantType.GetPrefabForGrowth(newGrowth);
             if (lastPrefab != newPrefab)
             {
-                for (int i = transform.childCount; i > 0; --i)
-                {
-                    DestroyImmediate(transform.GetChild(0).gameObject);
-                }
+                gameObject.DestroyAllChildren();
                 Instantiate(newPrefab, transform);
             }
             growth = newGrowth;
 
-            var collider = GetComponent<Collider>();
-            collider.enabled = growth >= 1 - 1e-5;
+            harvestCollider.enabled = growth >= 1 - 1e-5;
         }
 
         public void SelfHit(RaycastHit hit)
@@ -63,7 +68,18 @@ namespace Assets.Scripts.Plants
                 Debug.LogError("Non-grown plant clicked");
                 return;
             }
-            UpdateGrowth(0);
+            HarvestPlant();
+        }
+
+        private void HarvestPlant()
+        {
+            var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
+            draggingProvider.TryAddToSeed(plantType.HarvestSeeds());
+
+            growth = 0;
+            plantType = null;
+            harvestCollider.enabled = false;
+            gameObject.DestroyAllChildren();
         }
     }
 }

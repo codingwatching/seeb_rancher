@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5f00cb96d3c7f46beb96c0379cd947, type: 3}
-  m_Name: FloorPositioner
+  m_Script: {fileID: 11500000, guid: fafa53ef5c1eda343a377b939d18cb30, type: 3}
+  m_Name: Current Dragging Seed
   m_EditorClassIdentifier: 
-  coordinateScaling:
-    x: 1
-    y: 1
-  rangeIndex: 0
-  coordinateType: 2
+  DeveloperDescription: 
