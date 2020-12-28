@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Plants;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
