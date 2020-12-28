@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &80085152265272456
+--- !u!1 &2918393041374939107
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,69 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8370053324604279412}
-  - component: {fileID: 1822845553399482946}
-  - component: {fileID: 5611629632861171337}
+  - component: {fileID: 5791403945663099545}
+  - component: {fileID: 6349859039548495293}
   m_Layer: 0
-  m_Name: Tomato_4(Clone)
+  m_Name: Plants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8370053324604279412
+--- !u!4 &5791403945663099545
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80085152265272456}
+  m_GameObject: {fileID: 2918393041374939107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 902741574209062751}
+  m_Father: {fileID: 8402508463745975846}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6349859039548495293
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2918393041374939107}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.4
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!1 &6653644714274239758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 902741574209062751}
+  - component: {fileID: 3024285358471445366}
+  - component: {fileID: 3340928745689999829}
+  m_Layer: 0
+  m_Name: Tomato_2(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &902741574209062751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6653644714274239758}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,21 +78,21 @@ Transform:
   m_Father: {fileID: 5791403945663099545}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1822845553399482946
+--- !u!33 &3024285358471445366
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80085152265272456}
-  m_Mesh: {fileID: -7865970766409841208, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
---- !u!23 &5611629632861171337
+  m_GameObject: {fileID: 6653644714274239758}
+  m_Mesh: {fileID: 4924459882607634458, guid: 1665b1a7eac4c5a45bea95dd3ded7d46, type: 3}
+--- !u!23 &3340928745689999829
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80085152265272456}
+  m_GameObject: {fileID: 6653644714274239758}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,8 +105,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -382652638819485698, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
-  - {fileID: -2505642851634945670, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
+  - {fileID: -2505642851634945670, guid: 1665b1a7eac4c5a45bea95dd3ded7d46, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,73 +127,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &2918393041374939107
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5791403945663099545}
-  - component: {fileID: 5842091619692918615}
-  - component: {fileID: 6349859039548495293}
-  m_Layer: 0
-  m_Name: Plants
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5791403945663099545
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2918393041374939107}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8370053324604279412}
-  m_Father: {fileID: 8402508463745975846}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5842091619692918615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2918393041374939107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b9d0145b0bcbc4da11e5ce82acb0a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
-  growth: 0.721
-  levelPhase:
-    DataSource: 1
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
-    Instancer: {fileID: 0}
-    NamePath: 
---- !u!136 &6349859039548495293
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2918393041374939107}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 1.7
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1 &7126020408499974555
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8402508463745975846}
   - component: {fileID: 6703808689825917318}
+  - component: {fileID: 749226569605490313}
   m_Layer: 0
   m_Name: Planter
   m_TagString: Untagged
@@ -206,6 +185,30 @@ MonoBehaviour:
     type: 2
     CoordinatePlaneID: 0
   allRanges: {fileID: 11400000, guid: abee16292c79bf3499f46e123fd36e37, type: 2}
+--- !u!114 &749226569605490313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126020408499974555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b9d0145b0bcbc4da11e5ce82acb0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
+  plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
+  growth: 0.548
+  levelPhase:
+    DataSource: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
+    Instancer: {fileID: 0}
+    NamePath: 
+  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
+  planter: {fileID: 8024072480012692271}
+  plantsParent: {fileID: 2918393041374939107}
 --- !u!1 &8024072480012692271
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +220,7 @@ GameObject:
   - component: {fileID: 1883188368296604808}
   - component: {fileID: 1657526943894652466}
   - component: {fileID: 5638754092027759712}
+  - component: {fileID: 161570178638660260}
   m_Layer: 0
   m_Name: planter
   m_TagString: Untagged
@@ -287,3 +291,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &161570178638660260
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8024072480012692271}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8005534, y: 0.80055326, z: 0.8143822}
+  m_Center: {x: 0, y: 0, z: 0.68987197}

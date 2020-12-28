@@ -7,10 +7,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.Plants
 {
-    [RequireComponent(typeof(Collider))]
     public class PlantContainer : MonoBehaviour, ISpawnable, IManipulatorClickReciever
     {
         public PlantType plantType;
+        public PlantTypeRegistry plantTypes;
 
         [SerializeField]
         [HideInInspector]
@@ -18,8 +18,13 @@ namespace Assets.Scripts.Plants
         public float Growth => growth;
 
         public IntReference levelPhase;
+        public GameObjectVariable draggingSeedSet;
 
-        private Collider harvestCollider => GetComponent<Collider>();
+        public GameObject planter;
+        public GameObject plantsParent;
+
+        private Collider harvestCollider => plantsParent.GetComponent<Collider>();
+        private Collider planterCollider => planter.GetComponent<Collider>();
         private void Start()
         {
             levelPhase.ValueChanges
@@ -29,6 +34,17 @@ namespace Assets.Scripts.Plants
                 {
                     AdvanceGrowPhase(pair.Current - pair.Previous);
                 }).AddTo(this);
+            draggingSeedSet.Value
+                .TakeUntilDisable(this)
+                .Subscribe(dragger =>
+                {
+                    SetPlanterColliderEnabled();
+                }).AddTo(this);
+        }
+
+        private void SetPlanterColliderEnabled()
+        {
+            planterCollider.enabled = plantType == null && draggingSeedSet.CurrentValue != null;
         }
 
         private void AdvanceGrowPhase(int phaseDiff)
@@ -38,12 +54,24 @@ namespace Assets.Scripts.Plants
             UpdateGrowth(plantType.AddGrowth(phaseDiff, growth));
         }
 
+        public void OnPlanterClicked()
+        {
+            var draggingSeeds = draggingSeedSet.CurrentValue.GetComponent<DraggingSeeds>();
+            var nextSeed = draggingSeeds.myBucket.TakeOne();
+            draggingSeeds.SeedBucketUpdated();
+
+            this.plantType = plantTypes.GetUniqueObjectFromID(nextSeed.plantType);
+            UpdateGrowth(0, true);
+            SetPlanterColliderEnabled();
+            Debug.Log("plant something");
+        }
+
         public void SetupAfterSpawn()
         {
             UpdateGrowth(Mathf.Clamp(Random.Range(0, 1.2f), 0, 1));
         }
 
-        public void UpdateGrowth(float newGrowth)
+        public void UpdateGrowth(float newGrowth, bool forcePrefabInstantiate = false)
         {
             if (plantType == null)
             {
@@ -51,10 +79,10 @@ namespace Assets.Scripts.Plants
             }
             var lastPrefab = plantType.GetPrefabForGrowth(growth);
             var newPrefab = plantType.GetPrefabForGrowth(newGrowth);
-            if (lastPrefab != newPrefab)
+            if (lastPrefab != newPrefab || forcePrefabInstantiate)
             {
-                gameObject.DestroyAllChildren();
-                Instantiate(newPrefab, transform);
+                plantsParent.DestroyAllChildren();
+                Instantiate(newPrefab, plantsParent.transform);
             }
             growth = newGrowth;
 
@@ -62,6 +90,17 @@ namespace Assets.Scripts.Plants
         }
 
         public void SelfHit(RaycastHit hit)
+        {
+            if(hit.collider == harvestCollider)
+            {
+                TryHarvest();
+            }else if (hit.collider == planterCollider)
+            {
+                OnPlanterClicked();
+            }
+        }
+
+        private void TryHarvest()
         {
             if (growth < 1 - 1e-5)
             {
@@ -84,7 +123,8 @@ namespace Assets.Scripts.Plants
             growth = 0;
             plantType = null;
             harvestCollider.enabled = false;
-            gameObject.DestroyAllChildren();
+            SetPlanterColliderEnabled();
+            plantsParent.DestroyAllChildren();
         }
     }
 }

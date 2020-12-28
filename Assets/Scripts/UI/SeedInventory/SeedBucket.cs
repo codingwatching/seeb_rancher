@@ -37,5 +37,12 @@ namespace Assets.Scripts.UI.SeedInventory
             otherBucket.AllSeeds = new Seed[0];
             return true;
         }
+
+        public Seed TakeOne()
+        {
+            var oneSeed = AllSeeds[0];
+            AllSeeds = AllSeeds.Skip(1).ToArray();
+            return oneSeed;
+        }
     }
 }
