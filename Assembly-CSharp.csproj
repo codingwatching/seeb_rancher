@@ -64,9 +64,11 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucket.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericState.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\AssignSelfOnClick.cs" />
     <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SaveContext.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Assets\Scripts\Utilities\Core\GenericVariable.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\ISaveable.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\Utilities\UniqueObjectRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanVariable.cs" />
@@ -130,19 +133,16 @@
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ScriptableObjectAssigner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntState.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Scripts\Utilities\EnumerableExtensions.cs" />
     <Compile Include="Assets\Scripts\Tiling\AllRanges.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeeds.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SerializationManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucket.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeeds.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -773,6 +773,9 @@
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
@@ -823,9 +826,6 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -60,7 +60,7 @@ namespace Assets.Scripts.Plants
             var nextSeed = draggingSeeds.myBucket.TakeOne();
             draggingSeeds.SeedBucketUpdated();
 
-            this.plantType = plantTypes.GetUniqueObjectFromID(nextSeed.plantType);
+            plantType = plantTypes.GetUniqueObjectFromID(nextSeed.plantType);
             UpdateGrowth(0, true);
             SetPlanterColliderEnabled();
             Debug.Log("plant something");
@@ -91,10 +91,11 @@ namespace Assets.Scripts.Plants
 
         public void SelfHit(RaycastHit hit)
         {
-            if(hit.collider == harvestCollider)
+            if (hit.collider == harvestCollider)
             {
                 TryHarvest();
-            }else if (hit.collider == planterCollider)
+            }
+            else if (hit.collider == planterCollider)
             {
                 OnPlanterClicked();
             }

@@ -4,6 +4,13 @@ using System.Linq;
 namespace Assets.Scripts.UI.SeedInventory
 {
     [Serializable]
+    public class SeedBucketUI
+    {
+        public SeedBucket bucket = new SeedBucket();
+        public string description;
+    }
+
+    [Serializable]
     public class SeedBucket
     {
         public Seed[] AllSeeds = new Seed[0];

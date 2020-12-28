@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Utilities.Core;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,21 +12,20 @@ namespace Assets.Scripts.UI.SeedInventory
         public GameObjectVariable draggingSeedSet;
 
         public Button DropSlotButton;
+        public TMP_InputField labelInputField;
 
-        private SeedBucket dataModel;
+        private SeedBucketUI dataModel;
 
         private SeedBucketDisplay Displayer => GetComponent<SeedBucketDisplay>();
 
-
-        // Use this for initialization
-        void Start()
+        IEnumerator ResetTextField()
         {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            labelInputField.onFocusSelectAll = false;
+            labelInputField.ActivateInputField();
+            labelInputField.MoveToStartOfLine(false, false);
+            yield return new WaitForEndOfFrame();
+            labelInputField.DeactivateInputField();
+            labelInputField.onFocusSelectAll = true;
         }
 
         public void SeedSlotClicked()
@@ -42,17 +43,17 @@ namespace Assets.Scripts.UI.SeedInventory
         {
             var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
             var currentDragger = draggingProvider.SpawnNewDraggingSeedsOrGetCurrent();
-            if (currentDragger.myBucket.TryCombineSeedsInto(dataModel))
+            if (currentDragger.myBucket.TryCombineSeedsInto(dataModel.bucket))
             {
                 currentDragger.SeedBucketUpdated();
-                Displayer.DisplaySeedBucket(dataModel);
+                Displayer.DisplaySeedBucket(dataModel.bucket);
             }
         }
 
         public void TryAddHoveringSeedToSelf(DraggingSeeds dragginSeeds)
         {
-            dataModel.TryCombineSeedsInto(dragginSeeds.myBucket);
-            Displayer.DisplaySeedBucket(dataModel);
+            dataModel.bucket.TryCombineSeedsInto(dragginSeeds.myBucket);
+            Displayer.DisplaySeedBucket(dataModel.bucket);
             if (dragginSeeds.myBucket.Empty)
             {
                 Destroy(dragginSeeds.gameObject);
@@ -60,10 +61,18 @@ namespace Assets.Scripts.UI.SeedInventory
             }
         }
 
-        public void SetDataModelLink(SeedBucket dataModel)
+        public void SetDataModelLink(SeedBucketUI dataModel)
         {
             this.dataModel = dataModel;
-            Displayer.DisplaySeedBucket(dataModel);
+            Displayer.DisplaySeedBucket(dataModel.bucket);
+            labelInputField.text = dataModel.description;
+            labelInputField.onDeselect.AddListener(newValue =>
+            {
+                Debug.Log(newValue);
+                dataModel.description = newValue;
+                StartCoroutine(ResetTextField());
+                //resetText = true;
+            });
         }
     }
 }
