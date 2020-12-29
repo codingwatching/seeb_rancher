@@ -18,10 +18,21 @@ namespace Assets.Scripts.GreenhouseLoader
         private UniversalCoordinateSystemMembers tiles => GetComponent<UniversalCoordinateSystemMembers>();
 
 
-        public void GenerateFloorPlan()
+        public Object EditorTriggeredRebuildFloor()
+        {
+            var modifiedObject = GenerateFloorPlan();
+            gameObject.DestroyAllChildren();
+            GetComponent<GreenhouseBuilder>().RebuildTiles();
+            SpawnMembers();
+
+            return modifiedObject;
+        }
+
+        public Object GenerateFloorPlan()
         {
             var generatedMembers = floorTiles.GenerateFloorPlan();
-            tiles.SetupFromSaveObject(generatedMembers);
+            tiles.SetTileDataInEditMode(TileMembersSaveObject.FromTileTypeDictionary(generatedMembers));
+            return tiles;
         }
 
         public void SpawnMembers()

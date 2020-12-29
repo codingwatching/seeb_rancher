@@ -2,12 +2,17 @@
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Assets.Scripts.UI.SeedInventory;
 using Assets.Scripts.Utilities.Core;
+using Assets.Scripts.Utilities.SaveSystem.Components;
 using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.Plants
 {
-    public class PlantContainer : MonoBehaviour, ISpawnable, IManipulatorClickReciever
+
+    public class PlantContainer : MonoBehaviour,
+        ISpawnable,
+        IManipulatorClickReciever,
+        ISaveableData
     {
         public PlantType plantType;
         public PlantTypeRegistry plantTypes;
@@ -25,6 +30,8 @@ namespace Assets.Scripts.Plants
 
         private Collider harvestCollider => plantsParent.GetComponent<Collider>();
         private Collider planterCollider => planter.GetComponent<Collider>();
+
+
         private void Start()
         {
             levelPhase.ValueChanges
@@ -75,6 +82,11 @@ namespace Assets.Scripts.Plants
         {
             if (plantType == null)
             {
+                if (forcePrefabInstantiate)
+                {
+                    growth = 0;
+                    plantsParent.DestroyAllChildren();
+                }
                 return;
             }
             var lastPrefab = plantType.GetPrefabForGrowth(growth);
@@ -127,5 +139,44 @@ namespace Assets.Scripts.Plants
             SetPlanterColliderEnabled();
             plantsParent.DestroyAllChildren();
         }
+
+        #region Saveable
+        [System.Serializable]
+        class PlantSaveObject
+        {
+            int plantTypeId;
+            float growth;
+            public PlantSaveObject(PlantContainer source)
+            {
+                plantTypeId = source.plantType?.plantID ?? -1;
+                growth = source.growth;
+            }
+
+            public void Apply(PlantContainer target)
+            {
+                target.plantType = plantTypeId == -1 ? null : target.plantTypes.GetUniqueObjectFromID(plantTypeId);
+                target.UpdateGrowth(growth, true);
+            }
+        }
+
+        public string UniqueSaveIdentifier => "PlantContainer";
+        public object GetSaveObject()
+        {
+            return new PlantSaveObject(this);
+        }
+
+        public void SetupFromSaveObject(object save)
+        {
+            if (save is PlantSaveObject saveObj)
+            {
+                saveObj.Apply(this);
+            }
+        }
+
+        public ISaveableData[] GetDependencies()
+        {
+            return new ISaveableData[0];
+        }
+        #endregion
     }
 }

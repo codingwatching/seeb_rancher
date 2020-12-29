@@ -2,7 +2,7 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace Assets.WorldObjects.SaveObjects.SaveManager
+namespace Assets.Scripts.Utilities.SaveSystem
 {
     public static class SerializationManager
     {

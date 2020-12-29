@@ -137,7 +137,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8402508463745975846}
   - component: {fileID: 6703808689825917318}
+  - component: {fileID: 2796267810232950957}
   - component: {fileID: 749226569605490313}
+  - component: {fileID: 6971866808769589527}
   m_Layer: 0
   m_Name: Planter
   m_TagString: Untagged
@@ -185,6 +187,18 @@ MonoBehaviour:
     type: 2
     CoordinatePlaneID: 0
   allRanges: {fileID: 11400000, guid: abee16292c79bf3499f46e123fd36e37, type: 2}
+--- !u!114 &2796267810232950957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126020408499974555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5e94f71fda1a444a7dae3b62c18813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &749226569605490313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +223,19 @@ MonoBehaviour:
   draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 8024072480012692271}
   plantsParent: {fileID: 2918393041374939107}
+--- !u!114 &6971866808769589527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126020408499974555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba9ee01b76ab8746b37ec289fcde9c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPrefabType: {fileID: 11400000, guid: df84c19d49dc8ab4b99586160922cf38, type: 2}
 --- !u!1 &8024072480012692271
 GameObject:
   m_ObjectHideFlags: 0

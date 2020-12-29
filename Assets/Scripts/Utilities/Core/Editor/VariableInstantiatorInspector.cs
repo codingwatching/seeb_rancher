@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.Utilities.Core;
-using Assets.WorldObjects;
-using System;
 using UnityEditor;
 
 namespace Assets.Scripts.Core.Editor

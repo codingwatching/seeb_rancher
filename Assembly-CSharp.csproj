@@ -58,9 +58,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefab.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantContainer.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\SaveContext.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\SaveData.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
@@ -69,9 +72,9 @@
     <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericState.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\SaveSystemHooks.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\AssignSelfOnClick.cs" />
     <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
-    <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SaveContext.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GameObjectVariable.cs" />
     <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
@@ -83,7 +86,8 @@
     <Compile Include="Assets\Scripts\Utilities\SerializableMatrix4x4.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericVariable.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Scripts\Utilities\SaveObjects\ISaveable.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\ISaveableData.cs" />
+    <Compile Include="Assets\Scripts\Tiling\GreenhouseMemberSaver.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\Utilities\UniqueObjectRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
@@ -99,18 +103,21 @@
     <Compile Include="Assets\Scripts\Plants\PlantType.cs" />
     <Compile Include="Assets\Scripts\CoordinatePositioner.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileType.cs" />
-    <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\WorldSaveManager.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\WorldSaveManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\LinqExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\SerializationManager.cs" />
     <Compile Include="Assets\Scripts\Tiling\SquareCoords\RectCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\UniversalCoordinateSystemMembers.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileMapRegionRenderer.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntVariable.cs" />
     <Compile Include="Assets\Scripts\Utilities\MyUtilities.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefabParent.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\IntVariableChangedToUnityEvent.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\RotationallySymmetricTileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\ScriptableObjectVariable.cs" />
     <Compile Include="Assets\Scripts\Tiling\RangePositioner.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefabType.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleTriangleCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\CubeCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableInstantiator.cs" />
@@ -123,7 +130,7 @@
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\EventGroup.cs" />
-    <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SaveSystemHooks.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefabRegistry.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\BooleanToggle.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ObjectAssigner.cs" />
@@ -131,6 +138,7 @@
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Seed.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\SavedPrefab.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ScriptableObjectAssigner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntState.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
@@ -141,8 +149,8 @@
     <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeeds.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
-    <Compile Include="Assets\Scripts\Utilities\SaveObjects\SaveManager\SerializationManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

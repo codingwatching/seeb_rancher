@@ -14,7 +14,7 @@ namespace Assets.Scripts.GreenhouseLoader
         public TileType wallTile;
         public TileType doorTile;
 
-        public TileMembersSaveObject GenerateFloorPlan()
+        public Dictionary<UniversalCoordinate, TileType> GenerateFloorPlan()
         {
             var tiles = new Dictionary<UniversalCoordinate, TileType>();
 
@@ -32,7 +32,7 @@ namespace Assets.Scripts.GreenhouseLoader
                     tiles[coord] = wallTile;
             }
 
-            return TileMembersSaveObject.FromTileTypeDictionary(tiles);
+            return tiles;
         }
 
         private IEnumerable<SquareCoordinate> GetBorders(RectCoordinateRange rangeToBorder)

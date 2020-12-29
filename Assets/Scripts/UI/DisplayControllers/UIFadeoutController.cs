@@ -19,6 +19,11 @@ namespace Assets.Scripts.UI.DisplayControllers
             gameObject.SetActive(false);
         }
 
+        private void OnDestroy()
+        {
+            beginFadeEvent.OnEvent -= BeginFadeEvent_OnEvent;
+        }
+
         private void BeginFadeEvent_OnEvent()
         {
             var animator = GetComponent<Animator>();

@@ -1,4 +1,5 @@
 using Assets.Scripts.Tiling.TileSets;
+using Assets.Scripts.Utilities.SaveSystem;
 using Assets.Tiling;
 using UnityEngine;
 
@@ -11,9 +12,20 @@ namespace Assets.Scripts.GreenhouseLoader
         private FloorPlan floorPlan => GetComponent<FloorPlan>();
         private UniversalCoordinateSystemMembers tiles => GetComponent<UniversalCoordinateSystemMembers>();
 
+        public int layer;
+
         private void Awake()
         {
-            //floorPlan.GenerateFloorPlan();
+            SaveSystemHooks.Instance.PostLoad += DataLoaded;
+        }
+        private void OnDestroy()
+        {
+            SaveSystemHooks.Instance.PostLoad -= DataLoaded;
+        }
+
+        private void DataLoaded()
+        {
+            RebuildTiles();
         }
 
         // Start is called before the first frame update
@@ -24,7 +36,7 @@ namespace Assets.Scripts.GreenhouseLoader
 
         public void RebuildTiles()
         {
-            gameObject.DestroyAllChildren();
+            gameObject.DestroyAllChildren(x => x.layer == layer);
             foreach (var floorCoordinate in floorPlan.floorPlanSize)
             {
                 CreateTileAt(UniversalCoordinate.From(floorCoordinate));
@@ -39,7 +51,9 @@ namespace Assets.Scripts.GreenhouseLoader
                 return null;
             }
             var position = floorPlan.GetLocalPoint(coord);
-            return type.CreateTile(coord, position, transform, tiles);
+            var newtile = type.CreateTile(coord, position, transform, tiles);
+            newtile.layer = layer;
+            return newtile;
         }
 
         // Update is called once per frame

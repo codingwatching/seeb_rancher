@@ -13,9 +13,8 @@ namespace Assets.Scripts.GreenhouseLoader.Editor
             if (GUILayout.Button("RebuildTiles"))
             {
                 var self = serializedObject.targetObject as FloorPlan;
-                self.GenerateFloorPlan();
-                self.GetComponent<GreenhouseBuilder>().RebuildTiles();
-                self.SpawnMembers();
+
+                EditorUtility.SetDirty(self.EditorTriggeredRebuildFloor());
             }
         }
     }

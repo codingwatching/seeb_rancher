@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.SaveSystem.Components;
 using Assets.Tiling;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Tiling.TileSets
 {
+    [System.Serializable]
     public class TileMembersSaveObject
     {
         public UniversalCoordinate[] tileKeys;
@@ -43,11 +45,13 @@ namespace Assets.Scripts.Tiling.TileSets
         }
     }
 
-    public class UniversalCoordinateSystemMembers : MonoBehaviour
+    public class UniversalCoordinateSystemMembers : MonoBehaviour, ISaveableData
     {
         public TileTypeRegistry tileDefinitions;
 
-        private Dictionary<UniversalCoordinate, int> tileTypes;
+        private Dictionary<UniversalCoordinate, int> tileTypes = new Dictionary<UniversalCoordinate, int>();
+        [SerializeField]
+        private TileMembersSaveObject tileMembersToSaveInEditMode;
         private Dictionary<int, TileType> _tileTypesById;
         private Dictionary<int, TileType> TileTypesById
         {
@@ -65,8 +69,28 @@ namespace Assets.Scripts.Tiling.TileSets
             }
         }
 
+        public void SetTileDataInEditMode(TileMembersSaveObject tileData)
+        {
+            this.tileMembersToSaveInEditMode = tileData;
+            this.OverwriteTileTypes(tileData);
+        }
+
+        private void Awake()
+        {
+            OverwriteTileTypes(tileMembersToSaveInEditMode);
+        }
+
         private void OnDestroy()
         {
+        }
+
+        public void OverwriteTileTypes(TileMembersSaveObject saveObject)
+        {
+            tileTypes = new Dictionary<UniversalCoordinate, int>(saveObject.tileKeys.Length);
+            for (int i = 0; i < saveObject.tileKeys.Length; i++)
+            {
+                tileTypes[saveObject.tileKeys[i]] = saveObject.tileValues[i];
+            }
         }
 
         public TileType GetTileType(UniversalCoordinate coordinate)
@@ -78,20 +102,26 @@ namespace Assets.Scripts.Tiling.TileSets
             return null;
         }
 
-        public TileMembersSaveObject GetSaveObject()
+        public ReadWriteJobHandleProtector readWriteLock = new ReadWriteJobHandleProtector();
+
+        public string UniqueSaveIdentifier => "CoordinateTiles";
+
+        public object GetSaveObject()
         {
             return TileMembersSaveObject.FromDictionary(tileTypes);
         }
 
-        public ReadWriteJobHandleProtector readWriteLock = new ReadWriteJobHandleProtector();
-
-        public void SetupFromSaveObject(TileMembersSaveObject save)
+        public void SetupFromSaveObject(object save)
         {
-            tileTypes = new Dictionary<UniversalCoordinate, int>(save.tileKeys.Length);
-            for (int i = 0; i < save.tileKeys.Length; i++)
+            if(save is TileMembersSaveObject saveObject)
             {
-                tileTypes[save.tileKeys[i]] = save.tileValues[i];
+                this.OverwriteTileTypes(saveObject);
             }
+        }
+
+        public ISaveableData[] GetDependencies()
+        {
+            return new ISaveableData[0];
         }
     }
 }

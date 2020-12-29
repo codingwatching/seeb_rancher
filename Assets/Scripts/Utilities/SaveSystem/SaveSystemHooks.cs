@@ -1,4 +1,4 @@
-﻿namespace Assets.WorldObjects.SaveObjects.SaveManager
+﻿namespace Assets.Scripts.Utilities.SaveSystem
 {
     public class SaveSystemHooks
     {
