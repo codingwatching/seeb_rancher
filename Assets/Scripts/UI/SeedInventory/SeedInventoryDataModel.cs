@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.DataModels;
+using System;
 
 namespace Assets.Scripts.UI.SeedInventory
 {

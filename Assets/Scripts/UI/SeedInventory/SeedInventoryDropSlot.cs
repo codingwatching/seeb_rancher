@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utilities.Core;
+﻿using Assets.Scripts.DataModels;
+using Assets.Scripts.Utilities.Core;
 using System.Collections;
 using TMPro;
 using UnityEngine;

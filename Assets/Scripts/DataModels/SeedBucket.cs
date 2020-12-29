@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace Assets.Scripts.DataModels
 {
     [Serializable]
     public class SeedBucketUI

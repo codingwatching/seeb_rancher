@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Plants;
+﻿using Assets.Scripts.DataModels;
+using Assets.Scripts.Plants;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,8 +1,10 @@
-﻿using Assets.Scripts.GreenhouseLoader;
+﻿using Assets.Scripts.DataModels;
+using Assets.Scripts.GreenhouseLoader;
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Assets.Scripts.UI.SeedInventory;
 using Assets.Scripts.Utilities.Core;
 using Assets.Scripts.Utilities.SaveSystem.Components;
+using Genetics.GeneticDrivers;
 using UniRx;
 using UnityEngine;
 
@@ -21,6 +23,32 @@ namespace Assets.Scripts.Plants
         [HideInInspector]
         private float growth;
         public float Growth => growth;
+        public Seed sourceSeed;
+        private CompiledGeneticDrivers _drivers;
+        private CompiledGeneticDrivers GeneticDrivers
+        {
+            get
+            {
+                if (plantType == null || sourceSeed == default)
+                {
+                    return null;
+                }
+                if (_drivers == null)
+                {
+                    _drivers = plantType.genome.CompileGenome(sourceSeed.genes);
+                }
+                return _drivers;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    throw new System.Exception("can only clear");
+                }
+                _drivers = null;
+            }
+        }
+
 
         public IntReference levelPhase;
         public GameObjectVariable draggingSeedSet;
@@ -66,15 +94,24 @@ namespace Assets.Scripts.Plants
             var draggingSeeds = draggingSeedSet.CurrentValue.GetComponent<DraggingSeeds>();
             var nextSeed = draggingSeeds.myBucket.TakeOne();
             draggingSeeds.SeedBucketUpdated();
+            PlantSeed(nextSeed);
+        }
 
-            plantType = plantTypes.GetUniqueObjectFromID(nextSeed.plantType);
+        private void PlantSeed(Seed toBePlanted)
+        {
+            sourceSeed = toBePlanted;
+            plantType = plantTypes.GetUniqueObjectFromID(sourceSeed.plantType);
             UpdateGrowth(0, true);
             SetPlanterColliderEnabled();
-            Debug.Log("plant something");
         }
 
         public void SetupAfterSpawn()
         {
+            sourceSeed = new Seed
+            {
+                genes = plantType.genome.GenerateBaseGenomeData(),
+                plantType = plantType.plantID
+            };
             UpdateGrowth(Mathf.Clamp(Random.Range(0, 1.2f), 0, 1));
         }
 
@@ -85,20 +122,31 @@ namespace Assets.Scripts.Plants
                 if (forcePrefabInstantiate)
                 {
                     growth = 0;
-                    plantsParent.DestroyAllChildren();
+                    UpdatePlant();
                 }
                 return;
             }
-            var lastPrefab = plantType.GetPrefabForGrowth(growth);
-            var newPrefab = plantType.GetPrefabForGrowth(newGrowth);
-            if (lastPrefab != newPrefab || forcePrefabInstantiate)
-            {
-                plantsParent.DestroyAllChildren();
-                Instantiate(newPrefab, plantsParent.transform);
-            }
+            var oldGrowth = growth;
             growth = newGrowth;
+            if (forcePrefabInstantiate ||
+                plantType.GetPrefabForGrowth(oldGrowth) != plantType.GetPrefabForGrowth(growth))
+            {
+                UpdatePlant();
+            }
 
             harvestCollider.enabled = growth >= 1 - 1e-5;
+        }
+
+        public void UpdatePlant()
+        {
+            plantsParent.DestroyAllChildren();
+            if (plantType == null)
+            {
+                return;
+            }
+            var newPrefab = plantType.GetPrefabForGrowth(growth);
+            var newPlant = Instantiate(newPrefab, plantsParent.transform);
+            plantType.ApplyGeneticModifiers(newPlant, GeneticDrivers);
         }
 
         public void SelfHit(RaycastHit hit)
@@ -127,7 +175,7 @@ namespace Assets.Scripts.Plants
         {
             var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
             var dragger = draggingProvider.SpawnNewDraggingSeedsOrGetCurrent();
-            if (!dragger.myBucket.TryAddSeedsToSet(plantType.HarvestSeeds()))
+            if (!dragger.myBucket.TryAddSeedsToSet(plantType.HarvestSeeds(sourceSeed)))
             {
                 return;
             }
@@ -135,9 +183,11 @@ namespace Assets.Scripts.Plants
 
             growth = 0;
             plantType = null;
+            sourceSeed = default;
+            GeneticDrivers = null;
             harvestCollider.enabled = false;
             SetPlanterColliderEnabled();
-            plantsParent.DestroyAllChildren();
+            UpdatePlant();
         }
 
         #region Saveable
@@ -146,15 +196,18 @@ namespace Assets.Scripts.Plants
         {
             int plantTypeId;
             float growth;
+            Seed sourceSeed;
             public PlantSaveObject(PlantContainer source)
             {
                 plantTypeId = source.plantType?.plantID ?? -1;
                 growth = source.growth;
+                sourceSeed = source.sourceSeed;
             }
 
             public void Apply(PlantContainer target)
             {
                 target.plantType = plantTypeId == -1 ? null : target.plantTypes.GetUniqueObjectFromID(plantTypeId);
+                target.sourceSeed = sourceSeed;
                 target.UpdateGrowth(growth, true);
             }
         }

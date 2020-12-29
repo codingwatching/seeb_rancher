@@ -67,7 +67,6 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucket.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericState.cs" />
@@ -136,7 +135,6 @@
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ObjectAssigner.cs" />
     <Compile Include="Assets\Scripts\Tiling\GreenhouseMember.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Seed.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\SavedPrefab.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ScriptableObjectAssigner.cs" />
@@ -151,6 +149,17 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneEditor.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDriver.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\CompiledGeneticDrivers.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\FloatGeneticDriver.cs" />
+    <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
+    <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
+    <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\BooleanGeneticDriver.cs" />
+    <Compile Include="Assets\Scripts\Genetics\Genes\SwitchGene.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GenomeEditor.cs" />
+    <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
