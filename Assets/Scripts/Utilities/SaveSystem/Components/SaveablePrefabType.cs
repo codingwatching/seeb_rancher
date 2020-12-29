@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
 namespace Assets.Scripts.Utilities.SaveSystem.Components
 {
@@ -10,7 +9,7 @@ namespace Assets.Scripts.Utilities.SaveSystem.Components
         public int prefabID;
         public override void AssignId(int myNewID)
         {
-            this.prefabID = myNewID;
+            prefabID = myNewID;
         }
     }
 }

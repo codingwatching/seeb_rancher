@@ -71,8 +71,8 @@ namespace Assets.Scripts.Tiling.TileSets
 
         public void SetTileDataInEditMode(TileMembersSaveObject tileData)
         {
-            this.tileMembersToSaveInEditMode = tileData;
-            this.OverwriteTileTypes(tileData);
+            tileMembersToSaveInEditMode = tileData;
+            OverwriteTileTypes(tileData);
         }
 
         private void Awake()
@@ -113,9 +113,9 @@ namespace Assets.Scripts.Tiling.TileSets
 
         public void SetupFromSaveObject(object save)
         {
-            if(save is TileMembersSaveObject saveObject)
+            if (save is TileMembersSaveObject saveObject)
             {
-                this.OverwriteTileTypes(saveObject);
+                OverwriteTileTypes(saveObject);
             }
         }
 

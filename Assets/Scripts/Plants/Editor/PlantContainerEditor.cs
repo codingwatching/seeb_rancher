@@ -33,7 +33,7 @@ namespace Assets.Scripts.Plants.Editor
                 {
                     plantTarget.UpdateGrowth(newGrowth);
                 }
-                catch(System.Exception e)
+                catch (System.Exception e)
                 {
                     Debug.LogException(e);
                     return false;

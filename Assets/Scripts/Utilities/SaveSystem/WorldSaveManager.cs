@@ -11,8 +11,6 @@ namespace Assets.Scripts.Utilities.SaveSystem
     public class WorldSaveManager : MonoBehaviour
     {
         public static readonly string GAMEOBJECT_WORLD_ROOT = "objects.dat";
-        public static readonly string ENTITY_COMPONENTS_DATA = "save.dat";
-        public static readonly string SHARED_OBJECT_DATA = "data-objects.dat";
 
         public SaveablePrefabRegistry saveablePrefabRegistry;
 
@@ -21,6 +19,11 @@ namespace Assets.Scripts.Utilities.SaveSystem
             //Load();
         }
 
+        /// <summary>
+        /// Save all ISaveableData in the scene, but not a child of a SaveablePrefab.
+        /// then find all saveablePrefabs, and get their identifying information and all the information of the 
+        ///     components inside each prefab. save all of these as a list
+        /// </summary>
         public void Save()
         {
             var saveDataObject = GetMasterSaveObject(SceneManager.GetActiveScene());
@@ -29,6 +32,13 @@ namespace Assets.Scripts.Utilities.SaveSystem
             SaveSystemHooks.TriggerPostSave();
         }
 
+        /// <summary>
+        /// Reload the active scene, and wait for the next scene to be loaded. then destroy all objects flagged with SaveablePrefab
+        ///     in the newly loaded scene.
+        /// Then load all ISaveableData into the scene. Then loop through all SaveablePrefabs, and spawn each according to the
+        ///     parent identifyer in the save object. load all saveable data for each prefab into the prefab instance as each
+        ///     is instantiated.
+        /// </summary>
         public void Load()
         {
             StartCoroutine(LoadCoroutine());
@@ -113,7 +123,7 @@ namespace Assets.Scripts.Utilities.SaveSystem
             var transformIterationStack = new Stack<Transform>();
             transformIterationStack.Push(initialTransform);
 
-            while(transformIterationStack.Count > 0)
+            while (transformIterationStack.Count > 0)
             {
                 var currentTransform = transformIterationStack.Pop();
 

@@ -14,7 +14,7 @@ namespace Assets.Scripts.UI.SeedInventory
 
         private void Awake()
         {
-            if(dataModel == null)
+            if (dataModel == null)
                 dataModel = new SeedInventoryDataModel(defaultSeedBuckets);
             RenderDataModel();
         }
