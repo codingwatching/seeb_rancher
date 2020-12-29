@@ -13,14 +13,7 @@ MonoBehaviour:
   m_Name: Tomato
   m_EditorClassIdentifier: 
   genome: {fileID: 11400000, guid: e745416b618efca4f8a38e5fd50e0e74, type: 2}
-  geneticModifiers:
-  - {fileID: 11400000, guid: 54eb800eb736a704a92dd590a22c3097, type: 2}
-  growthStagePrefabs:
-  - {fileID: 919132149155446097, guid: 34417552cd524ab48b9bd654d1a0960d, type: 3}
-  - {fileID: 919132149155446097, guid: 1665b1a7eac4c5a45bea95dd3ded7d46, type: 3}
-  - {fileID: 919132149155446097, guid: 7ab0e14981190124e86fe6c237a07dd0, type: 3}
-  - {fileID: 919132149155446097, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
-  harvestedPrefab: {fileID: 919132149155446097, guid: 6dec73a3d5626ab4f98ad0a4129e34eb, type: 3}
+  plantBuilder: {fileID: 11400000, guid: 6b35e96ae8d60f142a983714297ed29b, type: 2}
   growthPerPhase: 0.3
   seedIcon: {fileID: 21300000, guid: b5e538bedcf448d418571287729015af, type: 3}
   minSeeds: 1

@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.DataModels;
 using Assets.Scripts.Utilities;
 using Genetics;
-using Genetics.GeneticDrivers;
 using UnityEngine;
 
 namespace Assets.Scripts.Plants
@@ -10,10 +9,8 @@ namespace Assets.Scripts.Plants
     public class PlantType : IDableObject
     {
         public GenomeEditor genome;
-        public GeneticDrivenModifier[] geneticModifiers;
         [Header("Growth")]
-        public GameObject[] growthStagePrefabs;
-        public GameObject harvestedPrefab;
+        public PlantBuilder plantBuilder;
         public float growthPerPhase;
 
         [Header("Seebs")]
@@ -32,21 +29,6 @@ namespace Assets.Scripts.Plants
         {
             var extraGrowth = growthPerPhase * phaseDiff;
             return Mathf.Clamp(currentGrowth + extraGrowth, 0, 1);
-        }
-
-        public GameObject GetPrefabForGrowth(float growth)
-        {
-            var prefabIndex = Mathf.FloorToInt(growth * (growthStagePrefabs.Length - 1));
-            return growthStagePrefabs[prefabIndex];
-        }
-
-        public void ApplyGeneticModifiers(GameObject plant, CompiledGeneticDrivers geneticDrivers)
-        {
-
-            foreach (var geneticModifier in geneticModifiers)
-            {
-                geneticModifier.ModifyObject(plant, geneticDrivers);
-            }
         }
 
         public Seed[] HarvestSeeds(Seed sourceSeed)

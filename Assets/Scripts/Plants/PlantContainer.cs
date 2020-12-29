@@ -126,13 +126,8 @@ namespace Assets.Scripts.Plants
                 }
                 return;
             }
-            var oldGrowth = growth;
             growth = newGrowth;
-            if (forcePrefabInstantiate ||
-                plantType.GetPrefabForGrowth(oldGrowth) != plantType.GetPrefabForGrowth(growth))
-            {
-                UpdatePlant();
-            }
+            UpdatePlant();
 
             harvestCollider.enabled = growth >= 1 - 1e-5;
         }
@@ -144,9 +139,13 @@ namespace Assets.Scripts.Plants
             {
                 return;
             }
-            var newPrefab = plantType.GetPrefabForGrowth(growth);
-            var newPlant = Instantiate(newPrefab, plantsParent.transform);
-            plantType.ApplyGeneticModifiers(newPlant, GeneticDrivers);
+            plantType.plantBuilder.BuildPlant(this, GeneticDrivers);
+        }
+
+        public GameObject SpawnPlant(GameObject plantPrefab)
+        {
+            //plantsParent.DestroyAllChildren();
+            return Instantiate(plantPrefab, plantsParent.transform);
         }
 
         public void SelfHit(RaycastHit hit)

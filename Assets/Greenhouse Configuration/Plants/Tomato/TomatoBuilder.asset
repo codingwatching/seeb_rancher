@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da3c1901e7f319428fe66ab3e4e6d2a, type: 3}
+  m_Name: TomatoBuilder
+  m_EditorClassIdentifier: 
+  growthStagePrefabs:
+  - {fileID: 919132149155446097, guid: 34417552cd524ab48b9bd654d1a0960d, type: 3}
+  - {fileID: 919132149155446097, guid: 1665b1a7eac4c5a45bea95dd3ded7d46, type: 3}
+  - {fileID: 919132149155446097, guid: 7ab0e14981190124e86fe6c237a07dd0, type: 3}
+  - {fileID: -2866372567569237725, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
+  harvestedPrefab: {fileID: 919132149155446097, guid: 6dec73a3d5626ab4f98ad0a4129e34eb, type: 3}
+  largeTomatos: {fileID: -7863213769864963141, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
+  smallTomatos: {fileID: 4160816776223201390, guid: 271405de17ea1e6459d6cec18d11b76d, type: 3}
+  geneticModifiers:
+  - {fileID: 11400000, guid: 54eb800eb736a704a92dd590a22c3097, type: 2}
+  largeOrSmallSwitch: {fileID: 11400000, guid: 1dfb1800b7900f6479fdfdd50bb4f073, type: 2}

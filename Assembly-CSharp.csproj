@@ -59,18 +59,22 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefab.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneEditor.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantContainer.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\SaveContext.cs" />
+    <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\SaveData.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
+    <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericState.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\FloatGeneticDriver.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\SaveSystemHooks.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\AssignSelfOnClick.cs" />
     <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
@@ -81,6 +85,7 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickProjectorManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanReference.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDriver.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\AxialCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableMatrix4x4.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericVariable.cs" />
@@ -128,6 +133,8 @@
     <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
+    <Compile Include="Assets\Scripts\Genetics\Genes\SwitchGene.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\CompiledGeneticDrivers.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\EventGroup.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefabRegistry.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\BooleanToggle.cs" />
@@ -138,7 +145,10 @@
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\SavedPrefab.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ScriptableObjectAssigner.cs" />
+    <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GenomeEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntState.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\BooleanGeneticDriver.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
@@ -147,19 +157,11 @@
     <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeeds.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
+    <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
-    <Compile Include="Assets\Scripts\Genetics\GeneEditor.cs" />
-    <Compile Include="Assets\Scripts\Genetics\GeneticDriver.cs" />
-    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\CompiledGeneticDrivers.cs" />
-    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\FloatGeneticDriver.cs" />
-    <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
-    <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
-    <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
-    <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\BooleanGeneticDriver.cs" />
-    <Compile Include="Assets\Scripts\Genetics\Genes\SwitchGene.cs" />
-    <Compile Include="Assets\Scripts\Genetics\GenomeEditor.cs" />
-    <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
+    <Compile Include="Assets\Scripts\Plants\PlantBuilder.cs" />
+    <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
