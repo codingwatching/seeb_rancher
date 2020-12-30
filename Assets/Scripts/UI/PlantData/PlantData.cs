@@ -10,17 +10,15 @@ namespace Assets.Scripts.UI.PlantData
     {
         public GameObjectVariable selectedPlant;
 
-        public GameObject plantDataUI;
-
         public TMP_Text plantName;
 
         private void Awake()
         {
             selectedPlant.Value
-                .TakeUntilDisable(this)
+                .TakeUntilDestroy(this)
                 .Subscribe(newObject =>
                 {
-                    var plantContainer = newObject.GetComponent<PlantContainer>();
+                    var plantContainer = newObject?.GetComponentInParent<PlantContainer>();
                     if (plantContainer == null)
                     {
                         ClearPlantDataUI();
@@ -34,13 +32,13 @@ namespace Assets.Scripts.UI.PlantData
 
         public void ClearPlantDataUI()
         {
-            plantDataUI.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         public void RebuildPlantDataViewUI(PlantContainer selectedPlant)
         {
-            plantDataUI.SetActive(true);
-            var isPlanted = selectedPlant.plantType == null;
+            gameObject.SetActive(true);
+            var isPlanted = selectedPlant.plantType != null;
             if (isPlanted)
             {
                 plantName.text = selectedPlant.plantType.plantName;

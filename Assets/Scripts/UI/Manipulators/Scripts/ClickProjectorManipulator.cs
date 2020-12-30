@@ -35,6 +35,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                     return;
                 }
             }
+
         }
     }
 }

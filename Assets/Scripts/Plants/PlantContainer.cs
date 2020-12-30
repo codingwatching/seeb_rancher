@@ -18,6 +18,7 @@ namespace Assets.Scripts.Plants
     {
         public PlantType plantType;
         public PlantTypeRegistry plantTypes;
+        public GameObjectVariable selectedPlant;
 
         [SerializeField]
         [HideInInspector]
@@ -158,6 +159,11 @@ namespace Assets.Scripts.Plants
             if (hit.collider == planterCollider)
             {
                 return OnPlanterClicked();
+            }
+            if(hit.collider == plantCollider)
+            {
+                this.selectedPlant.SetValue(gameObject);
+                return true;
             }
             return false;
         }

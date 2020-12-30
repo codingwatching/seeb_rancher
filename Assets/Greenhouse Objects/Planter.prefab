@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
+  selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
   growth: 0.548
   sourceSeed:
     plantType: 0
