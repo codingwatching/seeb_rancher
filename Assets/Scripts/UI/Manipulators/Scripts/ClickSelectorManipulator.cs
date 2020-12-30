@@ -15,12 +15,10 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public override void OnOpen(ManipulatorController controller)
         {
             this.controller = controller;
-            Debug.Log("click manipulator opened");
         }
 
         public override void OnClose()
         {
-            selectedGameObject.SetValue(null);
         }
 
         public override void OnUpdate()
@@ -30,15 +28,17 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return;
             }
             var hits = MyUtilities.RaycastAllToObject(layersToHit);
-            if (hits != null)
+            if (hits == null)
             {
-                foreach (var hit in hits)
+                // if hit the UI, do nothing
+                return;
+            }
+            foreach (var hit in hits)
+            {
+                var clicker = hit.collider.gameObject.GetComponentInParent<IManipulatorClickReciever>();
+                if (clicker != null && clicker.SelfHit(hit))
                 {
-                    var clicker = hit.collider.gameObject.GetComponentInParent<IManipulatorClickReciever>();
-                    if (clicker != null && clicker.SelfHit(hit))
-                    {
-                        return;
-                    }
+                    return;
                 }
             }
             selectedGameObject.SetValue(null);

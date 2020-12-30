@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Plants;
+using Assets.Scripts.Utilities.Core;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
@@ -8,6 +9,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     {
         private ManipulatorController controller;
 
+        public GameObjectVariable selectedGameObject;
         public LayerMask harvestLayers;
 
         public Sprite harvestCursor;
@@ -15,6 +17,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public override void OnOpen(ManipulatorController controller)
         {
             this.controller = controller;
+            selectedGameObject.SetValue(null);
             Debug.Log("harvest manipulator opened");
             CursorTracker.SetCursor(harvestCursor);
         }

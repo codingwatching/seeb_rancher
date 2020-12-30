@@ -17,6 +17,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             manipulatorVariable.SetValue(defaultManipulator);
             manipulatorVariable.Value
                 .TakeUntilDestroy(this)
+                .Select(x => x == null ? defaultManipulator : x)
                 .Subscribe((nextValue) =>
                 {
                     activeManipulator?.OnClose();
@@ -30,7 +31,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         {
             if (Input.GetMouseButtonDown((int)MouseButton.RightMouse))
             {
-                manipulatorVariable.SetValue(defaultManipulator);
+                manipulatorVariable.SetValue(null);
             }
             activeManipulator?.OnUpdate();
         }

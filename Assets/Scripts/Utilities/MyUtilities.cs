@@ -38,13 +38,12 @@ namespace Assets
 
         public static RaycastHit[] RaycastAllToObject(LayerMask mask)
         {
-                if (EventSystem.current.IsPointerOverGameObject())
-                {
-                    return null;
-                }
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                return Physics.RaycastAll(ray, 100, mask);
-            return null;
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return null;
+            }
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            return Physics.RaycastAll(ray, 100, mask);
         }
     }
     public static class VectorExt

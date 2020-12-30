@@ -3,17 +3,23 @@ using Assets.Scripts.Utilities.Core;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.PlantData
 {
     public class PlantData : MonoBehaviour
     {
         public GameObjectVariable selectedPlant;
+        public ScriptableObjectVariable manipulatorVariable;
+        public PollinatePlantManipulator pollinator;
 
         public TMP_Text plantName;
+        public Button pollinateButton;
+
 
         private void Awake()
         {
+            pollinateButton.onClick.AddListener(DoPollinate);
             selectedPlant.Value
                 .TakeUntilDestroy(this)
                 .Subscribe(newObject =>
@@ -30,6 +36,12 @@ namespace Assets.Scripts.UI.PlantData
                 }).AddTo(this);
         }
 
+        public void DoPollinate()
+        {
+            Debug.Log("Pollinate?");
+            manipulatorVariable.SetValue(pollinator);
+        }
+
         public void ClearPlantDataUI()
         {
             gameObject.SetActive(false);
@@ -39,13 +51,15 @@ namespace Assets.Scripts.UI.PlantData
         {
             gameObject.SetActive(true);
             var isPlanted = selectedPlant.plantType != null;
-            if (isPlanted)
-            {
-                plantName.text = selectedPlant.plantType.plantName;
-            }else
+            if (!isPlanted)
             {
                 plantName.text = "Empty";
+                return;
             }
+            plantName.text = selectedPlant.plantType.plantName;
+            var canPollinate = selectedPlant.CanPollinate();
+            Debug.Log(canPollinate);
+            pollinateButton.gameObject.SetActive(canPollinate);
         }
 
         // Start is called before the first frame update

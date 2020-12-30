@@ -13,6 +13,8 @@ namespace Assets.Scripts.Plants
         [Header("Growth")]
         public PlantBuilder plantBuilder;
         public float growthPerPhase;
+        public float minPollinationGrowthPhase;
+        public float maxPollinationGrowthPhase;
 
         [Header("Seebs")]
         public Sprite seedIcon;
@@ -32,7 +34,12 @@ namespace Assets.Scripts.Plants
             return Mathf.Clamp(currentGrowth + extraGrowth, 0, 1);
         }
 
-        public Seed[] HarvestSeeds(Seed sourceSeed)
+        public bool IsInPollinationRange(float growth)
+        {
+            return growth >= minPollinationGrowthPhase && growth <= maxPollinationGrowthPhase;
+        }
+
+        public Seed[] HarvestSeeds(PollinationState sourcePollination)
         {
             var generatedSeeds = Random.Range(minSeeds, maxSeeds);
             var seedResult = new Seed[generatedSeeds];
@@ -41,7 +48,7 @@ namespace Assets.Scripts.Plants
                 seedResult[i] = new Seed
                 {
                     plantType = plantID,
-                    genes = sourceSeed.genes
+                    genes = sourcePollination.GetChildSeed().genes
                 };
             }
             return seedResult;

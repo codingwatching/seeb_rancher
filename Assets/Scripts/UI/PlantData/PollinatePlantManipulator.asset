@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b99e4a1e7c18384d94ec5839a74a76e, type: 3}
-  m_Name: HarvestSeedsManipulator
+  m_Script: {fileID: 11500000, guid: 87ad7bdaf8248c74c925e45ad2a49744, type: 3}
+  m_Name: PollinatePlantManipulator
   m_EditorClassIdentifier: 
-  selectedGameObject: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  harvestLayers:
+  layersToHit:
     serializedVersion: 2
     m_Bits: 256
-  harvestCursor: {fileID: 21300000, guid: a2ee41433b5d8db4497a77b801206bb1, type: 3}
+  selectedThing: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
+  harvestCursor: {fileID: 21300000, guid: b17dfd9423e0a7d4f84d27f33794dbdc, type: 3}

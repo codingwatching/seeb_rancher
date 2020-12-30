@@ -69,6 +69,8 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
+    <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\SaveSystemHooks.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\AssignSelfOnClick.cs" />
     <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
+    <Compile Include="Assets\Scripts\Plants\PollinationState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GameObjectVariable.cs" />
     <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Assets\Scripts\Utilities\Core\FloatVariable.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\OffsetCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
+    <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\HexCoordinateSystem.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericSelector.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Assets\Scripts\CoordinatePositioner.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileType.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\WorldSaveManager.cs" />
+    <Compile Include="Assets\Scripts\UI\PlantData\PollinatePlantManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\LinqExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\SerializationManager.cs" />
     <Compile Include="Assets\Scripts\Tiling\SquareCoords\RectCoordinateRange.cs" />
@@ -140,6 +145,7 @@
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\BooleanToggle.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ObjectAssigner.cs" />
+    <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
     <Compile Include="Assets\Scripts\Tiling\GreenhouseMember.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
@@ -149,10 +155,13 @@
     <Compile Include="Assets\Scripts\Genetics\GenomeEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntState.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\BooleanGeneticDriver.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
+    <Compile Include="Assets\Scripts\Plants\PlantBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Scripts\Utilities\EnumerableExtensions.cs" />
+    <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
     <Compile Include="Assets\Scripts\Tiling\AllRanges.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeeds.cs" />
@@ -160,13 +169,6 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantBuilder.cs" />
-    <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
-    <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
-    <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
-    <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
-    <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

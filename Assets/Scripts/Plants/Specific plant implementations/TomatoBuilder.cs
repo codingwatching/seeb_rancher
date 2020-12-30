@@ -12,6 +12,9 @@ namespace Assets.Scripts.Plants
         public GameObject largeTomatos;
         public GameObject smallTomatos;
 
+        public GameObject flower;
+        public GameObject stamens;
+
         public GeneticDrivenModifier[] geneticModifiers;
 
         public BooleanGeneticDriver largeOrSmallSwitch;
@@ -35,6 +38,15 @@ namespace Assets.Scripts.Plants
                     }
                 }
             }
+            if (plantParent.plantType.IsInPollinationRange(plantParent.Growth))
+            {
+                Instantiate(flower, newPlant.transform.parent);
+                if (plantParent.polliationState.HasAnther)
+                {
+                    Instantiate(stamens, newPlant.transform.parent);
+                }
+            }
+            newPlant.transform.parent.Rotate(Vector3.up, Random.Range(0f, 360f));
             ApplyGeneticModifiers(newPlant.transform.parent.gameObject, geneticDrivers);
         }
         private int GetPrefabIndex(float growth)
