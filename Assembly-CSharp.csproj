@@ -83,7 +83,7 @@
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericReference.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickProjectorManipulator.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickSelectorManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanReference.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneticDriver.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\AxialCoordinate.cs" />

@@ -38,15 +38,12 @@ namespace Assets
 
         public static RaycastHit[] RaycastAllToObject(LayerMask mask)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
                 if (EventSystem.current.IsPointerOverGameObject())
                 {
                     return null;
                 }
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 return Physics.RaycastAll(ray, 100, mask);
-            }
             return null;
         }
     }

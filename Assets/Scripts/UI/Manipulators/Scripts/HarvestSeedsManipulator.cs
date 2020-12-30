@@ -26,6 +26,10 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public override void OnUpdate()
         {
+            if (!Input.GetMouseButtonDown(0))
+            {
+                return;
+            }
             var hits = MyUtilities.RaycastAllToObject(harvestLayers);
             if (hits == null)
             {
