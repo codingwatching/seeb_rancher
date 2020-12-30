@@ -9,6 +9,7 @@ namespace Assets.Scripts.Plants
     public class PlantType : IDableObject
     {
         public GenomeEditor genome;
+        public string plantName;
         [Header("Growth")]
         public PlantBuilder plantBuilder;
         public float growthPerPhase;

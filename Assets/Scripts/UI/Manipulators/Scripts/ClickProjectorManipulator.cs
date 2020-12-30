@@ -13,6 +13,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public override void OnOpen(ManipulatorController controller)
         {
             this.controller = controller;
+            Debug.Log("click manipulator opened");
         }
 
         public override void OnClose()
@@ -21,17 +22,17 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public override void OnUpdate()
         {
-            if (Input.GetMouseButtonDown(0))
+            var hits = MyUtilities.RaycastAllToObject(layersToHit);
+            if (hits == null)
             {
-                if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            }
+            foreach (var hit in hits)
+            {
+                var clicker = hit.collider.gameObject.GetComponentInParent<IManipulatorClickReciever>();
+                if(clicker != null && clicker.SelfHit(hit))
                 {
                     return;
-                }
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out var hit, 100, layersToHit))
-                {
-                    Debug.DrawLine(ray.origin, hit.point);
-                    hit.collider.gameObject.GetComponentInParent<IManipulatorClickReciever>()?.SelfHit(hit);
                 }
             }
         }

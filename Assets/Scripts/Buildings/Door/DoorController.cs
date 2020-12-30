@@ -16,8 +16,9 @@ public class DoorController : MonoBehaviour, IManipulatorClickReciever
     {
 
     }
-    public void SelfHit(RaycastHit hit)
+    public bool SelfHit(RaycastHit hit)
     {
         NextPhaseUI.SetActive(true);
+        return true;
     }
 }

@@ -56,7 +56,7 @@ namespace Assets.Scripts.Plants
         public GameObject planter;
         public GameObject plantsParent;
 
-        private Collider harvestCollider => plantsParent.GetComponent<Collider>();
+        private Collider plantCollider => plantsParent.GetComponent<Collider>();
         private Collider planterCollider => planter.GetComponent<Collider>();
 
 
@@ -89,12 +89,17 @@ namespace Assets.Scripts.Plants
             UpdateGrowth(plantType.AddGrowth(phaseDiff, growth));
         }
 
-        public void OnPlanterClicked()
+        public bool OnPlanterClicked()
         {
-            var draggingSeeds = draggingSeedSet.CurrentValue.GetComponent<DraggingSeeds>();
-            var nextSeed = draggingSeeds.myBucket.TakeOne();
+            var draggingSeeds = draggingSeedSet.CurrentValue?.GetComponent<DraggingSeeds>();
+            var nextSeed = draggingSeeds?.myBucket.TakeOne();
+            if(nextSeed == null)
+            {
+                return false;
+            }
             draggingSeeds.SeedBucketUpdated();
             PlantSeed(nextSeed);
+            return true;
         }
 
         private void PlantSeed(Seed toBePlanted)
@@ -129,7 +134,6 @@ namespace Assets.Scripts.Plants
             growth = newGrowth;
             UpdatePlant();
 
-            harvestCollider.enabled = growth >= 1 - 1e-5;
         }
 
         public void UpdatePlant()
@@ -137,37 +141,35 @@ namespace Assets.Scripts.Plants
             plantsParent.DestroyAllChildren();
             if (plantType == null)
             {
+                plantCollider.enabled = false;
                 return;
             }
+            plantCollider.enabled = true;
             plantType.plantBuilder.BuildPlant(this, GeneticDrivers);
         }
 
         public GameObject SpawnPlant(GameObject plantPrefab)
         {
-            //plantsParent.DestroyAllChildren();
             return Instantiate(plantPrefab, plantsParent.transform);
         }
 
-        public void SelfHit(RaycastHit hit)
+        public bool SelfHit(RaycastHit hit)
         {
-            if (hit.collider == harvestCollider)
+            if (hit.collider == planterCollider)
             {
-                TryHarvest();
+                return OnPlanterClicked();
             }
-            else if (hit.collider == planterCollider)
-            {
-                OnPlanterClicked();
-            }
+            return false;
         }
 
-        private void TryHarvest()
+        public bool TryHarvest()
         {
             if (growth < 1 - 1e-5)
             {
-                Debug.LogError("Non-grown plant clicked");
-                return;
+                return false;
             }
             HarvestPlant();
+            return true;
         }
 
         private void HarvestPlant()
@@ -184,7 +186,7 @@ namespace Assets.Scripts.Plants
             plantType = null;
             sourceSeed = default;
             GeneticDrivers = null;
-            harvestCollider.enabled = false;
+            plantCollider.enabled = false;
             SetPlanterColliderEnabled();
             UpdatePlant();
         }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5791403945663099545}
   - component: {fileID: 6349859039548495293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 902741574209062751}
   - component: {fileID: 3024285358471445366}
   - component: {fileID: 3340928745689999829}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tomato_2(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 2796267810232950957}
   - component: {fileID: 749226569605490313}
   - component: {fileID: 6971866808769589527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Planter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,6 +214,10 @@ MonoBehaviour:
   plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   growth: 0.548
+  sourceSeed:
+    plantType: 0
+    genes:
+      allGeneData: []
   levelPhase:
     DataSource: 1
     ConstantValue: 0

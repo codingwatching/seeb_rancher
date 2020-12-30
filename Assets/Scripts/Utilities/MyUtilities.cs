@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets
 {
@@ -14,6 +15,39 @@ namespace Assets
                 return ray.GetPoint(enter);
             }
             return default;
+        }
+
+        public static bool RaycastToObject(LayerMask mask, out RaycastHit hit)
+        {
+            hit = default;
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    return false;
+                }
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out var innerHit, 100, mask))
+                {
+                    hit = innerHit;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static RaycastHit[] RaycastAllToObject(LayerMask mask)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    return null;
+                }
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                return Physics.RaycastAll(ray, 100, mask);
+            }
+            return null;
         }
     }
     public static class VectorExt

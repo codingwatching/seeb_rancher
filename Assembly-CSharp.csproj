@@ -162,6 +162,9 @@
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantBuilder.cs" />
     <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
+    <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
+    <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
