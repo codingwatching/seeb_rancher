@@ -165,6 +165,8 @@
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
+    <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
+    <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
