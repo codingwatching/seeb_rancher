@@ -41,6 +41,10 @@ namespace Assets.Scripts.Plants
 
         public Seed[] HarvestSeeds(PollinationState sourcePollination)
         {
+            if (!sourcePollination.IsFertilized())
+            {
+                return new Seed[0];
+            }
             var generatedSeeds = Random.Range(minSeeds, maxSeeds);
             var seedResult = new Seed[generatedSeeds];
             for (int i = 0; i < seedResult.Length; i++)

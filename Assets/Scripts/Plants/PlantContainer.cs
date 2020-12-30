@@ -175,9 +175,16 @@ namespace Assets.Scripts.Plants
 
         public bool PollinateFrom(PlantContainer other)
         {
-            var result = polliationState.RecieveGenes(other.polliationState);
-            UpdatePlant();
-            return result;
+            if(!(plantType?.IsInPollinationRange(Growth) ?? false))
+            {
+                return false;
+            }
+            if (polliationState.RecieveGenes(other.polliationState))
+            {
+                UpdatePlant();
+                return true;
+            }
+            return false;
         }
 
         public bool TryHarvest()

@@ -47,6 +47,10 @@ namespace Assets.Scripts.DataModels
 
         public Seed TakeOne()
         {
+            if(AllSeeds.Length <= 0)
+            {
+                return null;
+            }
             var oneSeed = AllSeeds[0];
             AllSeeds = AllSeeds.Skip(1).ToArray();
             return oneSeed;

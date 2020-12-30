@@ -169,6 +169,8 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

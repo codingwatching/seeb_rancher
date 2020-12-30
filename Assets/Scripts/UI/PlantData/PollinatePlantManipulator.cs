@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Plants;
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Assets.Scripts.Utilities.Core;
+using Assets.UI.Buttery_Toast;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.PlantData
@@ -49,8 +50,11 @@ namespace Assets.Scripts.UI.PlantData
                 var planter = hit.collider.gameObject?.GetComponentInParent<PlantContainer>();
                 if(planter != null)
                 {
-                    planter.PollinateFrom(CurrentlySelectedPlant);
-                    controller.manipulatorVariable.SetValue(null);
+                    if (planter.PollinateFrom(CurrentlySelectedPlant))
+                    {
+                        ToastProvider.ShowToast("pollinated", planter.gameObject, 1);
+                        //controller.manipulatorVariable.SetValue(null);
+                    }
                     break;
                 }
             }

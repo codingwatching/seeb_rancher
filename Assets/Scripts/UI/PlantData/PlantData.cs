@@ -38,7 +38,6 @@ namespace Assets.Scripts.UI.PlantData
 
         public void DoPollinate()
         {
-            Debug.Log("Pollinate?");
             manipulatorVariable.SetValue(pollinator);
         }
 
@@ -58,7 +57,6 @@ namespace Assets.Scripts.UI.PlantData
             }
             plantName.text = selectedPlant.plantType.plantName;
             var canPollinate = selectedPlant.CanPollinate();
-            Debug.Log(canPollinate);
             pollinateButton.gameObject.SetActive(canPollinate);
         }
 

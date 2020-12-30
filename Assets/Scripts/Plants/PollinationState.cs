@@ -27,9 +27,14 @@ namespace Assets.Scripts.Plants
             SelfGenes = selfGenes;
         }
 
+        public bool IsFertilized()
+        {
+            return isPollinated;
+        }
+
         public Seed GetChildSeed()
         {
-            return SelfGenes;
+            return pollinatedGenes;
         }
 
         public bool CanPollinate()
@@ -39,7 +44,7 @@ namespace Assets.Scripts.Plants
 
         public bool RecieveGenes(PollinationState other)
         {
-            if (!other.HasAnther)
+            if (isPollinated || !other.HasAnther)
             {
                 return false;
             }
