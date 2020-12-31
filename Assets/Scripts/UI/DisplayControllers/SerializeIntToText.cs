@@ -9,6 +9,8 @@ namespace Assets.Scripts.UI.DisplayControllers
     {
         public IntReference variableToWrite;
         public TextMeshProUGUI textToEdit;
+        public string textFormat = "#";
+
         private void Awake()
         {
             variableToWrite.ValueChanges
@@ -16,7 +18,8 @@ namespace Assets.Scripts.UI.DisplayControllers
                 .TakeUntilDestroy(this)
                 .Subscribe((nextValue) =>
                 {
-                    textToEdit.text = nextValue.ToString();
+                    var numberText = nextValue.ToString();
+                    textToEdit.text = textFormat.Replace("#", numberText);
                 })
                 .AddTo(this);
         }

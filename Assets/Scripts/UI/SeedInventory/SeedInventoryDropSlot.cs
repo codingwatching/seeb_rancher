@@ -19,15 +19,6 @@ namespace Assets.Scripts.UI.SeedInventory
 
         private SeedBucketDisplay Displayer => GetComponent<SeedBucketDisplay>();
 
-        IEnumerator ResetTextField()
-        {
-            labelInputField.onFocusSelectAll = false;
-            labelInputField.ActivateInputField();
-            labelInputField.MoveToStartOfLine(false, false);
-            yield return new WaitForEndOfFrame();
-            labelInputField.DeactivateInputField();
-            labelInputField.onFocusSelectAll = true;
-        }
 
         public void SeedSlotClicked()
         {
@@ -69,11 +60,28 @@ namespace Assets.Scripts.UI.SeedInventory
             labelInputField.text = dataModel.description;
             labelInputField.onDeselect.AddListener(newValue =>
             {
+                if (isResetting)
+                {
+                    return;
+                }
                 Debug.Log(newValue);
                 dataModel.description = newValue;
                 StartCoroutine(ResetTextField());
                 //resetText = true;
             });
+        }
+        private bool isResetting = false;
+        IEnumerator ResetTextField()
+        {
+            isResetting = true;
+            labelInputField.onFocusSelectAll = false;
+            labelInputField.ActivateInputField();
+            labelInputField.MoveToStartOfLine(false, false);
+            yield return new WaitForEndOfFrame();
+            labelInputField.DeactivateInputField();
+            labelInputField.onFocusSelectAll = true;
+            yield return new WaitForEndOfFrame();
+            isResetting = false;
         }
     }
 }
