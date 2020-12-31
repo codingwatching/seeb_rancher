@@ -6,8 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.MarketContracts
 {
-
-    public class ContractController : MonoBehaviour, ISaveableData
+    public class ContractContainer : MonoBehaviour, ISaveableData
     {
         public BooleanGeneticTarget[] targets;
         public float rewardAmount;
@@ -38,12 +37,12 @@ namespace Assets.Scripts.UI.MarketContracts
         {
             BooleanGeneticTarget[] targets;
             float rewardAmount;
-            public ContractSaveObject(ContractController source)
+            public ContractSaveObject(ContractContainer source)
             {
                 targets = source.targets;
                 rewardAmount = source.rewardAmount;
             }
-            public void ApplyTo(ContractController target)
+            public void ApplyTo(ContractContainer target)
             {
                 target.targets = targets;
                 target.rewardAmount = rewardAmount;

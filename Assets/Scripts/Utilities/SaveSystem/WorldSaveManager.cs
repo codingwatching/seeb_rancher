@@ -78,7 +78,18 @@ namespace Assets.Scripts.Utilities.SaveSystem
             SortSavedDatasBasedOnInterdependencies(sceneSaveData);
 
             var savedPrefabData = prefabsToSave
-                .Select(x => x.GetPrefabSaveData());
+                .Select(x =>
+                {
+                    try
+                    {
+                        return x.GetPrefabSaveData();
+                    }
+                    catch (System.Exception)
+                    {
+                        Debug.LogError($"Error saving data inside {x}");
+                        throw;
+                    }
+                });
 
             return new MasterSaveObject
             {
@@ -91,14 +102,14 @@ namespace Assets.Scripts.Utilities.SaveSystem
             Debug.Log($"loading from save post-scene-reload");
             var rootObjects = sceneToLoadTo.GetRootGameObjects();
 
-            foreach (var prefabRootExistingInScene in rootObjects.SelectMany(x => x.GetComponentsInChildren<SaveablePrefab>()))
+            foreach (var prefabRootExistingInScene in rootObjects.SelectMany(x => x.GetComponentsInChildren<SaveablePrefab>(true)))
             {
                 DestroyImmediate(prefabRootExistingInScene.gameObject);
             }
             AssignSaveDataToChildren(rootObjects.Select(x => x.transform), saveObject.sceneSaveData);
 
             var prefabParentDictionary = rootObjects
-                .SelectMany(x => x.GetComponentsInChildren<SaveablePrefabParent>())
+                .SelectMany(x => x.GetComponentsInChildren<SaveablePrefabParent>(true))
                 .ToDictionary(x => x.prefabParentName);
             foreach (var savedPrefab in saveObject.sceneSavedPrefabInstances)
             {

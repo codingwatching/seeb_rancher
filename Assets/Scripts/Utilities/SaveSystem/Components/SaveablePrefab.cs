@@ -24,12 +24,17 @@ namespace Assets.Scripts.Utilities.SaveSystem.Components
                         saveDataIDDependencies = x.GetDependencies().Select(x => x.UniqueSaveIdentifier).ToArray()
                     }).ToList();
             WorldSaveManager.SortSavedDatasBasedOnInterdependencies(saveDataList);
-            return new SavedPrefab
+            var result = new SavedPrefab();
+
+            var parent = transform.parent.gameObject.GetComponent<SaveablePrefabParent>();
+            if(parent == null)
             {
-                prefabParentId = GetComponentInParent<SaveablePrefabParent>().prefabParentName,
-                prefabTypeId = myPrefabType.myId,
-                saveData = saveDataList.ToArray()
-            };
+                Debug.LogError($"prefab not directly underneath prefab parent, no parent found in {transform.parent.gameObject}");
+            }
+            result.prefabParentId = parent.prefabParentName;
+            result.prefabTypeId = myPrefabType.myId;
+            result.saveData = saveDataList.ToArray();
+            return result;
         }
     }
 }

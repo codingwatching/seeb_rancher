@@ -172,12 +172,13 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\ContractController.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\MarketController.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractContainer.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\ScriptableObjectRegistries\RegistryRegistry.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneticDriverRegistry.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\BooleanGeneticTarget.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\FloatGeneticTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\BooleanGeneticTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\FloatGeneticTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
