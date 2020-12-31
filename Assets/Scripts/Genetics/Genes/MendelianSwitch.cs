@@ -1,19 +1,32 @@
 ﻿using Genetics.GeneticDrivers;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Genetics.Genes
 {
-    [CreateAssetMenu(fileName = "SwitchGene", menuName = "Genetics/Genes/Switch", order = 2)]
-    public class SwitchGene : GeneEditor
+    [CreateAssetMenu(fileName = "MendelianSwitchGene", menuName = "Genetics/Genes/MendelianSwitch", order = 2)]
+    public class MendelianSwitch : GeneEditor
     {
         public BooleanGeneticDriver switchOutput;
 
-        public override void Evaluate(GeneData gene, CompiledGeneticDrivers editorHandle)
+        public override int GeneSize => 1;
+
+        public override void Evaluate(CompiledGeneticDrivers editorHandle, GeneCopies[] genes)
         {
-            var booleanOutput = HammingWeight(gene.Value) > 32;
+            if(editorHandle.TryGetGeneticData(switchOutput, out var _))
+            {
+                Debug.LogWarning($"Overwriting already set genetic driver {switchOutput} in gene {this}.");
+            }
+            var gene = genes[0];
+            var booleanOutput = gene.chromosomalCopies.Any(x => EvaluateSingleGene(x));
 
             editorHandle.SetGeneticDriverData(switchOutput, booleanOutput);
+        }
+
+        private bool EvaluateSingleGene(SingleGene gene)
+        {
+            return HammingWeight(gene.Value) > 32;
         }
 
         /// <summary>

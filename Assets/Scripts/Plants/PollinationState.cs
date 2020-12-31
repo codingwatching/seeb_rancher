@@ -34,7 +34,15 @@ namespace Assets.Scripts.Plants
 
         public Seed GetChildSeed()
         {
-            return pollinatedGenes;
+            if(pollinatedGenes.plantType != SelfGenes.plantType)
+            {
+                throw new System.Exception("breeding plants of different types is not supported");
+            }
+            return new Seed
+            {
+                plantType = pollinatedGenes.plantType,
+                genes = new Genetics.Genome(pollinatedGenes.genes, SelfGenes.genes)
+            };
         }
 
         public bool CanPollinate()

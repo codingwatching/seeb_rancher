@@ -96,8 +96,10 @@
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\ISaveableData.cs" />
     <Compile Include="Assets\Scripts\Tiling\GreenhouseMemberSaver.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
     <Compile Include="Assets\Scripts\Utilities\UniqueObjectRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanVariable.cs" />
     <Compile Include="Assets\Scripts\Tiling\SquareCoords\SquareCoordinate.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Assets\Scripts\Plants\PlantType.cs" />
     <Compile Include="Assets\Scripts\CoordinatePositioner.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileType.cs" />
+    <Compile Include="Assets\Scripts\Genetics\ChromosomeEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\WorldSaveManager.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PollinatePlantManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\LinqExtensions.cs" />
@@ -138,7 +141,7 @@
     <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
-    <Compile Include="Assets\Scripts\Genetics\Genes\SwitchGene.cs" />
+    <Compile Include="Assets\Scripts\Genetics\Genes\MendelianSwitch.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\CompiledGeneticDrivers.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\EventGroup.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefabRegistry.cs" />
@@ -169,8 +172,6 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
-    <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
-    <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

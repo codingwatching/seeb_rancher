@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2675d4da8192841ac0217f9e3aaaa2, type: 3}
-  m_Name: TomatoBiggGene
+  m_Script: {fileID: 11500000, guid: ff60f4c6066da79499ff69e904fe00cb, type: 3}
+  m_Name: ChromosomeA
   m_EditorClassIdentifier: 
-  switchOutput: {fileID: 11400000, guid: 1dfb1800b7900f6479fdfdd50bb4f073, type: 2}
+  genes:
+  - {fileID: 11400000, guid: 9eff8836c80e8bc4f817e6cc614fa085, type: 2}
+  - {fileID: 11400000, guid: 856ef91d56ce9444e9f35ea39e0a71f1, type: 2}
+  chromosomeCopies: 2

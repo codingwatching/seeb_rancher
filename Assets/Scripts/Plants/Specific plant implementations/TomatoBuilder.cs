@@ -37,6 +37,8 @@ namespace Assets.Scripts.Plants
                         Instantiate(smallTomatos, newPlant.transform.parent);
                     }
                 }
+                else
+                    Debug.LogError($"Genetic driver unset: {largeOrSmallSwitch}");
             }
             if (plantParent.plantType.IsInPollinationRange(plantParent.Growth))
             {

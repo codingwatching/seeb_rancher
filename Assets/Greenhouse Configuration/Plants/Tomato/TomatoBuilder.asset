@@ -24,4 +24,4 @@ MonoBehaviour:
   stamens: {fileID: -2576936928334706957, guid: 7ab0e14981190124e86fe6c237a07dd0, type: 3}
   geneticModifiers:
   - {fileID: 11400000, guid: 54eb800eb736a704a92dd590a22c3097, type: 2}
-  largeOrSmallSwitch: {fileID: 11400000, guid: 1dfb1800b7900f6479fdfdd50bb4f073, type: 2}
+  largeOrSmallSwitch: {fileID: 11400000, guid: 104f80777f26cd442af030c082cd640c, type: 2}
