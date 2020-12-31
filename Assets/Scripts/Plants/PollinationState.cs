@@ -32,6 +32,16 @@ namespace Assets.Scripts.Plants
             return isPollinated;
         }
 
+        public void SelfPollinateIfNotFertile()
+        {
+            if (IsFertilized())
+            {
+                return;
+            }
+            pollinatedGenes = SelfGenes;
+            isPollinated = true;
+        }
+
         public Seed GetChildSeed()
         {
             if(pollinatedGenes.plantType != SelfGenes.plantType)

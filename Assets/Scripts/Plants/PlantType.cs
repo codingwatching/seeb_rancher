@@ -9,6 +9,7 @@ namespace Assets.Scripts.Plants
     public class PlantType : IDableObject
     {
         public GenomeEditor genome;
+        public bool selfPollinating;
         public string plantName;
         [Header("Growth")]
         public PlantBuilder plantBuilder;
@@ -41,6 +42,10 @@ namespace Assets.Scripts.Plants
 
         public Seed[] HarvestSeeds(PollinationState sourcePollination)
         {
+            if (selfPollinating)
+            {
+                sourcePollination.SelfPollinateIfNotFertile();
+            }
             if (!sourcePollination.IsFertilized())
             {
                 return new Seed[0];

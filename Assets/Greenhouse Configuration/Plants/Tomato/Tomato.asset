@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tomato
   m_EditorClassIdentifier: 
   genome: {fileID: 11400000, guid: e745416b618efca4f8a38e5fd50e0e74, type: 2}
+  selfPollinating: 1
   plantName: Tomato
   plantBuilder: {fileID: 11400000, guid: 6b35e96ae8d60f142a983714297ed29b, type: 2}
   growthPerPhase: 0.33333334
