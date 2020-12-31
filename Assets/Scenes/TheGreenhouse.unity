@@ -58089,13 +58089,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Claimed Offer
       objectReference: {fileID: 0}
-    - target: {fileID: 6611463321268572300, guid: a23507a29a0d9e74b941ed7a8401dfe8, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6611463322345570787, guid: a23507a29a0d9e74b941ed7a8401dfe8, type: 3}
-      propertyPath: m_Name
-      value: Submit seeds
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a23507a29a0d9e74b941ed7a8401dfe8, type: 3}

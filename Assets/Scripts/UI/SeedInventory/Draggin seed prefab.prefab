@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1c26522962b8e4a9a0208f9d66a7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDraggingSeeds: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   myBucket:
     AllSeeds: []
 --- !u!114 &1207769059597994401

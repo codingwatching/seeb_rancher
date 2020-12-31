@@ -179,6 +179,7 @@
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\BooleanGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\FloatGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ClaimedContractDropSlot.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

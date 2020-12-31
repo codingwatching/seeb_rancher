@@ -46,11 +46,7 @@ namespace Assets.Scripts.UI.SeedInventory
         {
             dataModel.bucket.TryCombineSeedsInto(dragginSeeds.myBucket);
             Displayer.DisplaySeedBucket(dataModel.bucket);
-            if (dragginSeeds.myBucket.Empty)
-            {
-                Destroy(dragginSeeds.gameObject);
-                draggingSeedSet.SetValue(null);
-            }
+            dragginSeeds.SeedBucketUpdated();
         }
 
         public void SetDataModelLink(SeedBucketUI dataModel)
