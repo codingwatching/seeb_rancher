@@ -16,7 +16,6 @@ namespace Assets.Scripts.UI.PlantData
         public TMP_Text plantName;
         public Button pollinateButton;
 
-
         private void Awake()
         {
             pollinateButton.onClick.AddListener(DoPollinate);

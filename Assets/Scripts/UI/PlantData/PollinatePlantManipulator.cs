@@ -50,10 +50,19 @@ namespace Assets.Scripts.UI.PlantData
                 var planter = hit.collider.gameObject?.GetComponentInParent<PlantContainer>();
                 if(planter != null)
                 {
-                    if (planter.PollinateFrom(CurrentlySelectedPlant))
+                    var currentPlant = CurrentlySelectedPlant;
+                    if (planter.PollinateFrom(currentPlant))
                     {
                         ToastProvider.ShowToast("pollinated", planter.gameObject, 1);
-                        //controller.manipulatorVariable.SetValue(null);
+                        if(currentPlant == planter)
+                        {
+                            selectedThing.SetValue(selectedThing.CurrentValue);
+                            // could've done a self-pollinate, in which case we should close the pollination tool
+                            if (!currentPlant.CanPollinate())
+                            {
+                                controller.manipulatorVariable.SetValue(null);
+                            }
+                        }
                     }
                     break;
                 }
