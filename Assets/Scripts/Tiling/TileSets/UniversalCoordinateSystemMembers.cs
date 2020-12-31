@@ -40,7 +40,7 @@ namespace Assets.Scripts.Tiling.TileSets
             {
                 tileKeys = tileTypes.Keys.ToArray()
             };
-            newSaveObject.tileValues = newSaveObject.tileKeys.Select(x => tileTypes[x].uniqueID).ToArray();
+            newSaveObject.tileValues = newSaveObject.tileKeys.Select(x => tileTypes[x].myId).ToArray();
             return newSaveObject;
         }
     }
@@ -62,7 +62,7 @@ namespace Assets.Scripts.Tiling.TileSets
                     _tileTypesById = new Dictionary<int, TileType>();
                     foreach (var tileType in tileDefinitions.allObjects)
                     {
-                        _tileTypesById[tileType.uniqueID] = tileType;
+                        _tileTypesById[tileType.myId] = tileType;
                     }
                 }
                 return _tileTypesById;

@@ -8,8 +8,8 @@ namespace Assets.Scripts.Plants
     public class GeneticMaterialSwitch : GeneticDrivenModifier
     {
         public BooleanGeneticDriver switchDriver;
-        public Material materialA;
-        public Material materialB;
+        public Material materialWhenTrue;
+        public Material materialWhenFalse;
 
         public override void ModifyObject(GameObject target, CompiledGeneticDrivers geneticDrivers)
         {
@@ -18,8 +18,8 @@ namespace Assets.Scripts.Plants
                 Debug.LogError($"No data found for driver {switchDriver} when evaluating switch {this}");
                 return;
             }
-            var sourceMaterial = switchValue ? materialA : materialB;
-            var targetMaterial = switchValue ? materialB : materialA;
+            var sourceMaterial = switchValue ? materialWhenFalse : materialWhenTrue;
+            var targetMaterial = switchValue ? materialWhenTrue : materialWhenFalse;
             var sharedMaterialList = new List<Material>();
             foreach (var renderer in target.GetComponentsInChildren<MeshRenderer>())
             {

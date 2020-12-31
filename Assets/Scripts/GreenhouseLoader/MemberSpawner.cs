@@ -17,7 +17,7 @@ namespace Assets.Scripts.GreenhouseLoader
             foreach (var coordinate in spawningSize)
             {
                 var newThing = Instantiate(thingToSpawn, parent);
-                newThing.SetPosition(UniversalCoordinate.From(coordinate, inRange.rangeIndex));
+                newThing.SetPosition(UniversalCoordinate.From(coordinate, (short)inRange.myId));
                 foreach (var spawnable in newThing.GetComponentsInChildren<ISpawnable>())
                 {
                     spawnable.SetupAfterSpawn();

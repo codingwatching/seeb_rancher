@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.DataModels;
 using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.ScriptableObjectRegistries;
 using Genetics;
 using UnityEngine;
 
@@ -21,13 +22,6 @@ namespace Assets.Scripts.Plants
         public Sprite seedIcon;
         public int minSeeds;
         public int maxSeeds;
-
-        public int plantID;
-
-        public override void AssignId(int myNewID)
-        {
-            plantID = myNewID;
-        }
 
         public float AddGrowth(int phaseDiff, float currentGrowth)
         {
@@ -56,7 +50,7 @@ namespace Assets.Scripts.Plants
             {
                 seedResult[i] = new Seed
                 {
-                    plantType = plantID,
+                    plantType = myId,
                     genes = sourcePollination.GetChildSeed().genes
                 };
             }

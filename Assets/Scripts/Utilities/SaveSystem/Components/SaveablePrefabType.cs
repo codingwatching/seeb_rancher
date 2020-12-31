@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+using UnityEngine;
 
 namespace Assets.Scripts.Utilities.SaveSystem.Components
 {
@@ -6,10 +7,5 @@ namespace Assets.Scripts.Utilities.SaveSystem.Components
     public class SaveablePrefabType : IDableObject
     {
         public SaveablePrefab prefab;
-        public int prefabID;
-        public override void AssignId(int myNewID)
-        {
-            prefabID = myNewID;
-        }
     }
 }

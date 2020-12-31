@@ -116,7 +116,7 @@ namespace Assets.Scripts.Plants
             polliationState = new PollinationState(new Seed
             {
                 genes = plantType.genome.GenerateBaseGenomeData(),
-                plantType = plantType.plantID
+                plantType = plantType.myId
             });
             UpdateGrowth(Mathf.Clamp(Random.Range(0, 1.2f), 0, 1));
         }
@@ -226,7 +226,7 @@ namespace Assets.Scripts.Plants
             PollinationState pollination;
             public PlantSaveObject(PlantContainer source)
             {
-                plantTypeId = source.plantType?.plantID ?? -1;
+                plantTypeId = source.plantType?.myId ?? -1;
                 growth = source.growth;
                 pollination = source.polliationState;
             }

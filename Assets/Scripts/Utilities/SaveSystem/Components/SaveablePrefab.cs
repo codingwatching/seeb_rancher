@@ -27,7 +27,7 @@ namespace Assets.Scripts.Utilities.SaveSystem.Components
             return new SavedPrefab
             {
                 prefabParentId = GetComponentInParent<SaveablePrefabParent>().prefabParentName,
-                prefabTypeId = myPrefabType.prefabID,
+                prefabTypeId = myPrefabType.myId,
                 saveData = saveDataList.ToArray()
             };
         }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34f4d80da35f074c9f7365d2b467f4f, type: 3}
   m_Name: GreenhouseWallTileType
   m_EditorClassIdentifier: 
-  uniqueID: 1
+  myId: 1
   flatEdgeTileModel: {fileID: 2279584934260295930, guid: b5ac3db221173534c94cfe56dd01cd30, type: 3}
   cornerTileModel: {fileID: 4250761059488876228, guid: b5ac3db221173534c94cfe56dd01cd30, type: 3}
   doubleCorner: {fileID: 8813516751954803660, guid: b5ac3db221173534c94cfe56dd01cd30, type: 3}

@@ -2,12 +2,31 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts.Utilities
+namespace Assets.Scripts.Utilities.ScriptableObjectRegistries
 {
+    [Serializable]
+    public class IDableSavedReference
+    {
+        int referenceID;
+        public IDableSavedReference(IDableObject target)
+        {
+            referenceID = target.myId;
+        }
+
+        public T GetObject<T>() where T: IDableObject
+        {
+            var registry = RegistryRegistry.GetObjectRegistry<T>();
+            if(registry == null)
+            {
+                return null;
+            }
+            return registry.GetUniqueObjectFromID(referenceID);
+        }
+    }
     [Serializable]
     public abstract class IDableObject : ScriptableObject
     {
-        public abstract void AssignId(int myNewID);
+        public int myId;
     }
 
     public abstract class UniqueObjectRegistry : ScriptableObject
@@ -27,7 +46,7 @@ namespace Assets.Scripts.Utilities
             for (var i = 0; i < AllObjects.Length; i++)
             {
                 var uniqueObject = AllObjects[i];
-                uniqueObject.AssignId(i);
+                uniqueObject.myId = i;
                 EditorUtility.SetDirty(uniqueObject);
             }
             OnObjectSetChanged();

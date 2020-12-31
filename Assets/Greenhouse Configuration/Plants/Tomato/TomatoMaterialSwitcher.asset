@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TomatoMaterialSwitcher
   m_EditorClassIdentifier: 
   switchDriver: {fileID: 11400000, guid: 9f6c045497c8e824a83f0ca47b2020ce, type: 2}
-  materialA: {fileID: 2100000, guid: 973365ca736a5184d990dda7e8aece5c, type: 2}
-  materialB: {fileID: 2100000, guid: 24c07864cdd338542b6b19644882e7a6, type: 2}
+  materialWhenTrue: {fileID: 2100000, guid: 973365ca736a5184d990dda7e8aece5c, type: 2}
+  materialWhenFalse: {fileID: 2100000, guid: 24c07864cdd338542b6b19644882e7a6, type: 2}

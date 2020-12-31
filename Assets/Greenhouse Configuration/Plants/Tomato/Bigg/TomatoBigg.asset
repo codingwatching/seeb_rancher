@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08045ec0511dbdd49a9ad68ab25b9344, type: 3}
   m_Name: TomatoBigg
   m_EditorClassIdentifier: 
+  myId: 0
   DriverName: IsBigg
+  outcomeWhenTrue: Big
+  outcomeWhenFalse: Small

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae4b0066288fbe1439f95fc218dc1928, type: 3}
-  m_Name: Door Tile
+  m_Script: {fileID: 11500000, guid: cf08da7b4fc2e1f49bc56d8d9d67314e, type: 3}
+  m_Name: GeneticDriverRegistry
   m_EditorClassIdentifier: 
-  myId: 2
-  tileModelPrefab: {fileID: 7867089790948121644, guid: dc130f99de2a4c443af98388cbf63155, type: 3}
-  specificRotation: 0
+  allObjects:
+  - {fileID: 11400000, guid: 104f80777f26cd442af030c082cd640c, type: 2}
+  - {fileID: 11400000, guid: 9f6c045497c8e824a83f0ca47b2020ce, type: 2}

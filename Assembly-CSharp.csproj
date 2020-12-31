@@ -97,7 +97,7 @@
     <Compile Include="Assets\Scripts\Tiling\GreenhouseMemberSaver.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
-    <Compile Include="Assets\Scripts\Utilities\UniqueObjectRegistry.cs" />
+    <Compile Include="Assets\Scripts\Utilities\ScriptableObjectRegistries\UniqueObjectRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanVariable.cs" />
@@ -172,6 +172,12 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\ContractController.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\MarketController.cs" />
+    <Compile Include="Assets\Scripts\Utilities\ScriptableObjectRegistries\RegistryRegistry.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDriverRegistry.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\BooleanGeneticTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\FloatGeneticTarget.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

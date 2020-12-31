@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.ScriptableObjectRegistries;
 
 namespace Genetics
 {
-    public abstract class GeneticDriver : ScriptableObject
+    public abstract class GeneticDriver : IDableObject
     {
         public string DriverName;
     }

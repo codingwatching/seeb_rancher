@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.ScriptableObjectRegistries;
 using UnityEngine;
 
 namespace Assets.Scripts.Tiling.TileSets

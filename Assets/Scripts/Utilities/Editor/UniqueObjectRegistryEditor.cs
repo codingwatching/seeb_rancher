@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Utilities.Editor

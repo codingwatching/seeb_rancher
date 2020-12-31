@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08045ec0511dbdd49a9ad68ab25b9344, type: 3}
   m_Name: TomatoColor
   m_EditorClassIdentifier: 
+  myId: 1
   DriverName: Color
+  outcomeWhenTrue: Yellow
+  outcomeWhenFalse: Red
