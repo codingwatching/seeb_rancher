@@ -182,6 +182,7 @@
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ClaimedContractDropSlot.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractEvaluationController.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\EventGroupToUnityEvent.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -15,6 +15,7 @@ namespace Assets.Scripts.Utilities.Core
 
         public void TriggerEvent()
         {
+            Debug.Log($"${name} triggered");
             OnEvent?.Invoke();
         }
     }
