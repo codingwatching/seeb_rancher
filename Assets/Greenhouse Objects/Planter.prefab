@@ -139,9 +139,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   m_Radius: 0.4
-  m_Height: 1.7
+  m_Height: 1.4
   m_Direction: 1
-  m_Center: {x: 0, y: 0.42, z: 0}
+  m_Center: {x: 0, y: 0.17, z: 0}
 --- !u!1 &6653644714274239758
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,12 +312,16 @@ MonoBehaviour:
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
   growth: 0.548
   polliationState:
-    hasAnther: 0
+    _hasAnther: 0
     pollinatedGenes:
       plantType: 0
       genes:
-        allGeneData: []
+        allChromosomes: []
     isPollinated: 0
+    _selfGenes:
+      plantType: 0
+      genes:
+        allChromosomes: []
   levelPhase:
     DataSource: 1
     ConstantValue: 0
