@@ -1,3 +1,4 @@
+using Assets.Scripts.Plants;
 using Assets.Scripts.Utilities.Core;
 using Assets.Scripts.Utilities.SaveSystem.Components;
 using Genetics.GeneticDrivers;
@@ -14,6 +15,19 @@ namespace Assets.Scripts.UI.MarketContracts
     {
         public BooleanGeneticTarget[] targets;
         public float reward;
+        public PlantType plantType;
+        public int seedRequirement;
+
+        public bool Matches(CompiledGeneticDrivers drivers)
+        {
+            if (!targets.All(boolTarget => 
+                     drivers.TryGetGeneticData(boolTarget.targetDriver, out var boolValue)
+                     && boolValue == boolTarget.targetValue))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 
     public class MarketManager : MonoBehaviour
@@ -30,6 +44,8 @@ namespace Assets.Scripts.UI.MarketContracts
         public BooleanGeneticDriver[] targetBooleanDrivers;
         [Range(0, 1)]
         public float chanceForNewContractPerPhase;
+        public int defaultSeedCountRequirement = 5;
+        public PlantType defaultPlantType;
 
         public static MarketManager Instance;
 
@@ -41,7 +57,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 .Pairwise()
                 .Subscribe(pair =>
                 {
-                    if(pair.Current - pair.Previous != 1)
+                    if (pair.Current - pair.Previous != 1)
                     {
                         return;
                     }
@@ -73,10 +89,12 @@ namespace Assets.Scripts.UI.MarketContracts
             var newTargets = chosenDrivers
                 .Select(x => new BooleanGeneticTarget(x))
                 .ToArray();
-            this.CreateMarketContract(new ContractDescriptor
+            CreateMarketContract(new ContractDescriptor
             {
                 targets = newTargets,
-                reward = newPrice
+                reward = newPrice,
+                seedRequirement = defaultSeedCountRequirement,
+                plantType = defaultPlantType
             });
         }
 
@@ -85,38 +103,33 @@ namespace Assets.Scripts.UI.MarketContracts
             var newContract = Instantiate(contractOfferPrefab, marketModalContractsParent.transform);
             newContract.targets = contract.targets;
             newContract.rewardAmount = contract.reward;
+            newContract.seedRequirement = contract.seedRequirement;
+            newContract.plantType = contract.plantType;
         }
         public void CreateClaimedContract(ContractDescriptor contract)
         {
             var newContract = Instantiate(claimedContractPrefab, claimedContractsModalParent.transform);
             newContract.targets = contract.targets;
             newContract.rewardAmount = contract.reward;
+            newContract.seedRequirement = contract.seedRequirement;
+            newContract.plantType = contract.plantType;
         }
 
         public void ClaimContract(ContractContainer marketContract)
         {
-            if(marketContract.transform.parent != marketModalContractsParent.transform)
+            if (marketContract.transform.parent != marketModalContractsParent.transform)
             {
                 throw new System.Exception("contract must be in the market");
             }
             var contractDescriptor = new ContractDescriptor
             {
                 reward = marketContract.rewardAmount,
-                targets = marketContract.targets
+                targets = marketContract.targets,
+                seedRequirement = marketContract.seedRequirement,
+                plantType = marketContract.plantType
             };
             Destroy(marketContract.gameObject);
             CreateClaimedContract(contractDescriptor);
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
         }
     }
 }

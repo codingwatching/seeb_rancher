@@ -1,4 +1,6 @@
+using Assets.Scripts.Plants;
 using Assets.Scripts.Utilities.SaveSystem.Components;
+using Assets.Scripts.Utilities.ScriptableObjectRegistries;
 using Genetics;
 using System.Linq;
 using TMPro;
@@ -8,9 +10,14 @@ namespace Assets.Scripts.UI.MarketContracts
 {
     public class ContractContainer : MonoBehaviour, ISaveableData
     {
+        public PlantType plantType;
         public BooleanGeneticTarget[] targets;
         public float rewardAmount;
+        public int seedRequirement;
 
+        public TMP_Text plantNameText;
+        public string seedNumberFormat = "# seeds";
+        public TMP_Text seedNumberText;
         public TMP_Text rewardText;
         public TMP_Text targetGeneticsDescriptorText;
 
@@ -28,6 +35,8 @@ namespace Assets.Scripts.UI.MarketContracts
 
         private void ReRender()
         {
+            plantNameText.text = plantType.plantName;
+            seedNumberText.text = seedNumberFormat.Replace("#", seedRequirement.ToString());
             rewardText.text = $"${rewardAmount:F2}";
             targetGeneticsDescriptorText.text = string.Join(", ", targets.Select(target => target.GetDescriptionOfTarget()));
         }
@@ -37,15 +46,22 @@ namespace Assets.Scripts.UI.MarketContracts
         {
             BooleanGeneticTarget[] targets;
             float rewardAmount;
+            int seedRequirement;
+            int plantTypeID;
             public ContractSaveObject(ContractContainer source)
             {
                 targets = source.targets;
                 rewardAmount = source.rewardAmount;
+                seedRequirement = source.seedRequirement;
+                plantTypeID = source.plantType.myId;
             }
             public void ApplyTo(ContractContainer target)
             {
                 target.targets = targets;
                 target.rewardAmount = rewardAmount;
+                target.seedRequirement = seedRequirement;
+                var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<PlantType>();
+                target.plantType = plantTypeRegistry.GetUniqueObjectFromID(plantTypeID);
             }
         }
 

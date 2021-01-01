@@ -2,7 +2,6 @@ using Assets.Scripts.DataModels;
 using Assets.Scripts.UI.SeedInventory;
 using Assets.Scripts.Utilities.Core;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.MarketContracts
 {
@@ -10,7 +9,6 @@ namespace Assets.Scripts.UI.MarketContracts
     {
         public GameObjectVariable draggingSeedSet;
         public ContractContainer contract;
-
 
         public void SeedSlotClicked()
         {
@@ -20,16 +18,35 @@ namespace Assets.Scripts.UI.MarketContracts
                 return;
             }
             var seebs = dragginSeeds.myBucket;
-            EvaluateContract(seebs);
+            if (ContractEvaluationController.Instance.IsEvaluating)
+            {
+                return;
+            }
+            if (contract.plantType.myId != seebs.AllSeeds[0].plantType)
+            {
+                return;
+            }
+            if (seebs.AllSeeds.Length < contract.seedRequirement)
+            {
+                return;
+            }
+            var mySeeds = seebs.TakeN(contract.seedRequirement);
+            dragginSeeds.SeedBucketUpdated();
+            EvaluateContract(mySeeds);
         }
 
-        public void EvaluateContract(SeedBucket seebs)
+        private void EvaluateContract(Seed[] seebs)
         {
-        }
+            var descriptor = new ContractDescriptor
+            {
+                plantType = contract.plantType,
+                reward = contract.rewardAmount,
+                seedRequirement = contract.seedRequirement,
+                targets = contract.targets
+            };
+            Destroy(contract.gameObject);
 
-        public void ClaimThisContract()
-        {
-            MarketManager.Instance.ClaimContract(GetComponent<ContractContainer>());
-        }
+            ContractEvaluationController.Instance.InitiateEvaluation(seebs, descriptor);
+        }   
     }
 }

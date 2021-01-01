@@ -6,6 +6,7 @@ namespace Assets.Scripts.GreenhouseLoader
     public class LevelState
     {
         public IntReference currentPhase;
+        public FloatReference money;
 
         public void AdvancePhase()
         {

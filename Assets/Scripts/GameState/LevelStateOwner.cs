@@ -29,14 +29,17 @@ namespace Assets.Scripts.GreenhouseLoader
         class LevelStateSaved
         {
             int phase;
+            float money;
             public LevelStateSaved(LevelStateOwner source)
             {
                 phase = source.levelState.currentPhase.CurrentValue;
+                money = source.levelState.money.CurrentValue;
             }
 
             public void Apply(LevelStateOwner target)
             {
                 target.levelState.currentPhase.SetValue(phase);
+                target.levelState.money.SetValue(money);
             }
         }
 

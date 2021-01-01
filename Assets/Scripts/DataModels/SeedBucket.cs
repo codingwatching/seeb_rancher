@@ -45,6 +45,17 @@ namespace Assets.Scripts.DataModels
             return true;
         }
 
+        public Seed[] TakeN(int n)
+        {
+            if(AllSeeds.Length < n)
+            {
+                return null;
+            }
+            var seedSample = AllSeeds.Take(n).ToArray();
+            AllSeeds = AllSeeds.Skip(n).ToArray();
+            return seedSample;
+        }
+
         public Seed TakeOne()
         {
             if(AllSeeds.Length <= 0)

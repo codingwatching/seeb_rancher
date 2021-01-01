@@ -180,6 +180,8 @@
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\FloatGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ClaimedContractDropSlot.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractEvaluationController.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
