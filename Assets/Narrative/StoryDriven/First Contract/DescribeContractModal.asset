@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: DescribeContractModal
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: Here's the contracts you currently have. Once you have some seeds,
-    drop them into the drop slot. Don't try to give me bad seeds! Before I pay you
-    I'll be breeding them through a few generations to make sure they're up to snuff!
+  promptText: 'These are the contracts you''ve got to fulfill. Obviously, there''s
+    none here let. Let me fix that.
+
+'
   onOpened:
     m_PersistentCalls:
       m_Calls:

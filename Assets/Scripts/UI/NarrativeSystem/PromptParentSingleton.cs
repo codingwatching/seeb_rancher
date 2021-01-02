@@ -12,7 +12,6 @@ namespace Assets.Scripts.UI.NarrativeSystem
 
         public static PromptParentSingleton Instance;
 
-
         private void Awake()
         {
             narrative.Init();
