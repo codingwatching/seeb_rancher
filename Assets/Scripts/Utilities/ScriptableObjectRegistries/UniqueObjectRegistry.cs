@@ -47,7 +47,6 @@ namespace Assets.Scripts.Utilities.ScriptableObjectRegistries
             {
                 var uniqueObject = AllObjects[i];
                 uniqueObject.myId = i;
-                EditorUtility.SetDirty(uniqueObject);
             }
             OnObjectSetChanged();
         }

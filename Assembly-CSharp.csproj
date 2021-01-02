@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractContainer.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
     <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Utilities\Core\GenericState.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\FloatGeneticDriver.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractEvaluationController.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\SaveSystemHooks.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\AssignSelfOnClick.cs" />
     <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
@@ -85,13 +87,16 @@
     <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericReference.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ClaimedContractDropSlot.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickSelectorManipulator.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanReference.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneticDriver.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\AxialCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableMatrix4x4.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericVariable.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\BooleanGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\ISaveableData.cs" />
     <Compile Include="Assets\Scripts\Tiling\GreenhouseMemberSaver.cs" />
@@ -99,6 +104,7 @@
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
     <Compile Include="Assets\Scripts\Utilities\ScriptableObjectRegistries\UniqueObjectRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
+    <Compile Include="Assets\Scripts\Utilities\ScriptableObjectRegistries\RegistryRegistry.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanVariable.cs" />
     <Compile Include="Assets\Scripts\Tiling\SquareCoords\SquareCoordinate.cs" />
@@ -123,6 +129,7 @@
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileMapRegionRenderer.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntVariable.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\MyUtilities.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefabParent.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\IntVariableChangedToUnityEvent.cs" />
@@ -139,6 +146,7 @@
     <Compile Include="Assets\Scripts\Plants\PlantTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatState.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Genetics\Genes\MendelianSwitch.cs" />
@@ -146,18 +154,22 @@
     <Compile Include="Assets\Scripts\Utilities\Core\EventGroup.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefabRegistry.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\BooleanToggle.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\FloatGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ObjectAssigner.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
     <Compile Include="Assets\Scripts\Tiling\GreenhouseMember.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\EventGroupToUnityEvent.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\SavedPrefab.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ScriptableObjectAssigner.cs" />
     <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
+    <Compile Include="Assets\Scripts\Genetics\GeneticDriverRegistry.cs" />
     <Compile Include="Assets\Scripts\Genetics\GenomeEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntState.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\BooleanGeneticDriver.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\GameNarrative.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
@@ -172,18 +184,11 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractContainer.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketManager.cs" />
-    <Compile Include="Assets\Scripts\Utilities\ScriptableObjectRegistries\RegistryRegistry.cs" />
-    <Compile Include="Assets\Scripts\Genetics\GeneticDriverRegistry.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\BooleanGeneticTarget.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\FloatGeneticTarget.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ClaimedContractDropSlot.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractEvaluationController.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\EventGroupToUnityEvent.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\GameNarrative.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Conversation.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompt.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\DebugPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\PromptController.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\PromptParentSingleton.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -53,10 +53,12 @@ namespace Assets.Scripts.UI.MarketContracts
         {
             var genome = contract.plantType.genome;
             var generationPhase = seeds.SelectMany(seed => SelfPollinateSeed(seed, contract.plantType.minSeeds, contract.plantType.maxSeeds)).ToList();
-            yield return new WaitForSeconds(.1f);
-            generationPhase = seeds.SelectMany(seed => SelfPollinateSeed(seed, contract.plantType.minSeeds, contract.plantType.maxSeeds)).ToList();
-            yield return new WaitForSeconds(.1f);
-            generationPhase = seeds.SelectMany(seed => SelfPollinateSeed(seed, contract.plantType.minSeeds, contract.plantType.maxSeeds)).ToList();
+            // keep pollinating until there's at least 100 seeds
+            while(generationPhase.Count < 100)
+            {
+                yield return new WaitForSeconds(.1f);
+                generationPhase = generationPhase.SelectMany(seed => SelfPollinateSeed(seed, contract.plantType.minSeeds, contract.plantType.maxSeeds)).ToList();
+            }
             yield return new WaitForSeconds(.1f);
 
             var seedsSatisfyingDescriptors = 0;

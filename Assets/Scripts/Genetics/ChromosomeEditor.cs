@@ -33,7 +33,13 @@ namespace Genetics
             var geneDataPivoted = parentSelections
                 .Select(parentIndex => parentalChromosomes[parentIndex].SampleSingleCopyFromChromosome())
                 .ToArray();
+
             allGeneData = GenePivot(geneDataPivoted);
+
+            if(allGeneData[0].chromosomalCopies[0].Value != allGeneData[0].chromosomalCopies[1].Value)
+            {
+                Debug.Log("it happened!");
+            }
         }
 
         /// <summary>

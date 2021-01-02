@@ -15,6 +15,10 @@ namespace Assets.Scripts.Utilities.Editor
             {
                 var registry = serializedObject.targetObject as UniqueObjectRegistry;
                 registry.AssignAllIDs();
+                foreach (var registryObject in registry.AllObjects)
+                {
+                    EditorUtility.SetDirty(registryObject);
+                }
                 Debug.Log("Successfully reset all object IDs. All save files may be invalid.");
             }
         }
