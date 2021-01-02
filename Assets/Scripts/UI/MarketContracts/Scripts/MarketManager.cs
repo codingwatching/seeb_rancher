@@ -11,6 +11,7 @@ namespace Assets.Scripts.UI.MarketContracts
     /// <summary>
     /// class used during runtime to describe a contract
     /// </summary>
+    [System.Serializable]
     public class ContractDescriptor
     {
         public BooleanGeneticTarget[] targets;
@@ -106,13 +107,15 @@ namespace Assets.Scripts.UI.MarketContracts
             newContract.seedRequirement = contract.seedRequirement;
             newContract.plantType = contract.plantType;
         }
-        public void CreateClaimedContract(ContractDescriptor contract)
+        public ContractContainer CreateClaimedContract(ContractDescriptor contract)
         {
             var newContract = Instantiate(claimedContractPrefab, claimedContractsModalParent.transform);
             newContract.targets = contract.targets;
             newContract.rewardAmount = contract.reward;
             newContract.seedRequirement = contract.seedRequirement;
             newContract.plantType = contract.plantType;
+
+            return newContract;
         }
 
         public void ClaimContract(ContractContainer marketContract)

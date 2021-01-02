@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8098d1e33b3ab6b4fb996655e29a17c4, type: 3}
-  m_Name: Conversation
+  m_Script: {fileID: 11500000, guid: 3221a572aa53ab74a9d482eec68e9083, type: 3}
+  m_Name: VariableOpenContracButtonHighlighted
   m_EditorClassIdentifier: 
-  myId: 0
-  prompts:
-  - {fileID: 11400000, guid: ad6a7b4df1b86d44f8a39d971214ffbd, type: 2}
-  - {fileID: 11400000, guid: 3fcb51e6e44408e4cbe8792c413ed473, type: 2}
-  currentPromptIndex: 0
+  DeveloperDescription: 
