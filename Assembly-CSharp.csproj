@@ -64,11 +64,11 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantContainer.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\SaveContext.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\BackdropUIGameObject.cs" />
     <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\SaveData.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\DebugPrompt.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\OnBooleanEdgeEvent.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractContainer.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\SaveSystemHooks.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\AssignSelfOnClick.cs" />
     <Compile Include="Assets\Scripts\Utilities\LiveObjectSet.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\WaitForBooleanChangePrompt.cs" />
     <Compile Include="Assets\Scripts\Plants\PollinationState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GameObjectVariable.cs" />
     <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
@@ -115,7 +116,6 @@
     <Compile Include="Assets\Scripts\Tiling\HexCoords\OffsetCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompt.cs" />
     <Compile Include="Assets\Scripts\Tiling\HexCoords\HexCoordinateSystem.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\GenericSelector.cs" />
@@ -156,8 +156,9 @@
     <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\CompiledGeneticDrivers.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\EventGroup.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefabRegistry.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\BooleanToggle.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\PromptController.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\PromptController.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\FloatGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\VariableOperators\ObjectAssigner.cs" />
@@ -183,17 +184,21 @@
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
     <Compile Include="Assets\Scripts\Tiling\AllRanges.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
     <Compile Include="Assets\Scripts\UI\NarrativeSystem\PromptParentSingleton.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeeds.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\CreateContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\BackdropUIGameObject.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\WaitForBooleanChangePrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ConversationTrigger.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ClaimedContractsClearedTrigger.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ConversationCompletedTrigger.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\DebugPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\Prompt.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\CreateContractPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\CreateSeebsPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\GenerateMarketContractPrompt.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

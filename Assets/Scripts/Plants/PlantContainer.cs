@@ -113,12 +113,11 @@ namespace Assets.Scripts.Plants
 
         public void SetupAfterSpawn()
         {
-            polliationState = new PollinationState(new Seed
-            {
-                genes = plantType.genome.GenerateBaseGenomeData(),
-                plantType = plantType.myId
-            });
-            UpdateGrowth(Mathf.Clamp(Random.Range(0, 1.2f), 0, 1));
+            plantType = null;
+            polliationState = null;
+            GeneticDrivers = null;
+            polliationState = null;
+            UpdateGrowth(0, true);
         }
 
         public void UpdateGrowth(float newGrowth, bool forcePrefabInstantiate = false)

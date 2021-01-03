@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.UI.NarrativeSystem
 {
-    [CreateAssetMenu(fileName = "DebugPrompt", menuName = "Narrative/DebugPrompt", order = 1)]
+    [CreateAssetMenu(fileName = "DebugPrompt", menuName = "Narrative/Prompts/DebugPrompt", order = 1)]
     public class DebugPrompt : Prompt
     {
         public PromptController promptPrefab;

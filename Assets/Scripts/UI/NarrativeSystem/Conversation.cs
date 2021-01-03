@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+﻿using Assets.Scripts.UI.NarrativeSystem.ConversationTriggers;
+using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.NarrativeSystem
@@ -8,12 +10,15 @@ namespace Assets.Scripts.UI.NarrativeSystem
     {
         public Prompt[] prompts;
         public int currentPromptIndex;
-
+        public ConversationTrigger[] triggerAll;
+        
         private GameNarrative narrative;
 
-        public bool ShouldStartConversation()
+
+
+        public bool ShouldStartConversation(GameNarrative narrative)
         {
-            return true;
+            return triggerAll.All(x => x.ShouldTrigger(narrative));
         }
 
         public void StartConversation(GameNarrative narrative)

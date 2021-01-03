@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Utilities.Core;
 using Assets.Scripts.Utilities.SaveSystem.Components;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.GreenhouseLoader
@@ -8,6 +9,8 @@ namespace Assets.Scripts.GreenhouseLoader
     {
         public LevelState levelState;
         public EventGroup phaseAdvanceTrigger;
+
+        public BooleanVariable[] savedBooleans;
 
         public string UniqueSaveIdentifier => "LevelState";
 
@@ -30,16 +33,28 @@ namespace Assets.Scripts.GreenhouseLoader
         {
             int phase;
             float money;
+            bool[] booleanSaved;
             public LevelStateSaved(LevelStateOwner source)
             {
                 phase = source.levelState.currentPhase.CurrentValue;
                 money = source.levelState.money.CurrentValue;
+                booleanSaved = source.savedBooleans.Select(x => x.CurrentValue).ToArray();
             }
 
             public void Apply(LevelStateOwner target)
             {
                 target.levelState.currentPhase.SetValue(phase);
                 target.levelState.money.SetValue(money);
+                if(target.savedBooleans.Length != booleanSaved.Length)
+                {
+                    Debug.LogWarning("saved booleans of different length than saved variables. all defaulting to previous value");
+                }else
+                {
+                    for (int i = 0; i < booleanSaved.Length; i++)
+                    {
+                        target.savedBooleans[i].SetValue(booleanSaved[i]);
+                    }
+                }
             }
         }
 

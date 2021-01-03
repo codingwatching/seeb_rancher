@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952654cf3b4a2114d8537bf456c2ca77, type: 3}
-  m_Name: Prompt 1
+  m_Script: {fileID: 11500000, guid: 02c442a6abf06dd4bbfbbeeafeebf389, type: 3}
+  m_Name: Prompt 3
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: 'Looks like you''ve got a solid seed breeding setup here.
-
-    I''m
-    in the business of growing big red and yellow tomatoes, but I keep getting small
-    tomatoes popping up in my crop.'
+  promptText: Good luck!
+  onOpened:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleted:
+    m_PersistentCalls:
+      m_Calls: []

@@ -21,7 +21,7 @@ namespace Assets.Scripts.UI.MarketContracts
 
         public bool Matches(CompiledGeneticDrivers drivers)
         {
-            if (!targets.All(boolTarget => 
+            if (!targets.All(boolTarget =>
                      drivers.TryGetGeneticData(boolTarget.targetDriver, out var boolValue)
                      && boolValue == boolTarget.targetValue))
             {
@@ -33,11 +33,18 @@ namespace Assets.Scripts.UI.MarketContracts
 
     public class MarketManager : MonoBehaviour
     {
+
+        [Header("Contract prefabs")]
         public ContractContainer contractOfferPrefab;
         public SaveablePrefabParent marketModalContractsParent;
+        public GameObject marketModal;
         public ContractContainer claimedContractPrefab;
         public SaveablePrefabParent claimedContractsModalParent;
+        public GameObject claimedContractModal;
+        public EventGroup onModalOpened;
 
+        [Header("Contract generation parameters")]
+        public BooleanReference contractGenerationEnabled;
         public IntReference levelPhase;
         public float defaultReward;
         [Tooltip("For every extra genetic driver over 1, multiply the reward by this amount. 3 genetic drivers will be defaultReward * multiplierPerAdditional^2")]
@@ -58,6 +65,10 @@ namespace Assets.Scripts.UI.MarketContracts
                 .Pairwise()
                 .Subscribe(pair =>
                 {
+                    if (!contractGenerationEnabled.CurrentValue)
+                    {
+                        return;
+                    }
                     if (pair.Current - pair.Previous != 1)
                     {
                         return;
@@ -76,7 +87,10 @@ namespace Assets.Scripts.UI.MarketContracts
                 Instance = null;
             }
         }
-
+        public void TriggerNewContractGeneration()
+        {
+            this.GenerateNewContract();
+        }
         private void GenerateNewContract()
         {
             var rangeSample = Random.Range(0f, 1f - 1e-5f);
@@ -116,6 +130,15 @@ namespace Assets.Scripts.UI.MarketContracts
             newContract.plantType = contract.plantType;
 
             return newContract;
+        }
+        public void ShowClaimedContractsModal()
+        {
+            onModalOpened.TriggerEvent();
+            claimedContractModal.SetActive(true);
+        }
+        public int ClaimedContractsCount()
+        {
+            return claimedContractsModalParent.transform.childCount;
         }
 
         public void ClaimContract(ContractContainer marketContract)

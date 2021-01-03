@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.UI.NarrativeSystem
 {
-    [CreateAssetMenu(fileName = "CreateContractPrompt", menuName = "Narrative/CreateContractPrompt", order = 1)]
+    [CreateAssetMenu(fileName = "CreateContractPrompt", menuName = "Narrative/Prompts/CreateContractPrompt", order = 1)]
     public class CreateContractPrompt : Prompt
     {
         public PromptController promptPrefab;
@@ -22,6 +22,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
         {
             onOpened?.Invoke();
             var createdContract = MarketManager.Instance.CreateClaimedContract(contractToCreate);
+            MarketManager.Instance.ShowClaimedContractsModal();
             createdContract.StartCoroutine(HighlightContract(createdContract.gameObject));
             //variableToPutContractIn.SetValue(createdContract.gameObject);
 

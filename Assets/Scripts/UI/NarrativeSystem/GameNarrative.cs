@@ -33,7 +33,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
             {
                 if (!completedConversations.Contains(convo.myId))
                 {
-                    if (convo.ShouldStartConversation())
+                    if (convo.ShouldStartConversation(this))
                     {
                         activatedConversations.Enqueue(convo);
                     }
