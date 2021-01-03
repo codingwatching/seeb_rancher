@@ -10,9 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26c6aa64cc45e154c894a5f218a8c0c2, type: 3}
-  m_Name: ModalOpened
+  m_Name: CloseModals
   m_EditorClassIdentifier: 
-  DeveloperDescription: 'triggered whenever a modal is opened
-
-    used to close
-    other modals'
+  DeveloperDescription: used to close other modals

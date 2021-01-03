@@ -15,6 +15,7 @@ MonoBehaviour:
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: I'll put orders for new seeds in here periodically, so keep an eye
     out!
+  speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
   onOpened:
     m_PersistentCalls:
       m_Calls: []

@@ -18,3 +18,10 @@ MonoBehaviour:
     I''m
     in the business of growing big red and yellow tomatoes, but I keep getting small
     tomatoes popping up in my crop.'
+  speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
+  onOpened:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleted:
+    m_PersistentCalls:
+      m_Calls: []

@@ -282,6 +282,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
+  onSeedFirstGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a6431eb11e46eca469270376add06ca4, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Utilities.Core.EventGroup, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   DropSlotButton: {fileID: 298817955184868032}
   labelInputField: {fileID: 5308498450268038710}
 --- !u!114 &4022953965823276303

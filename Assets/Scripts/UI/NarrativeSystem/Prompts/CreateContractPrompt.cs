@@ -9,9 +9,6 @@ namespace Assets.Scripts.UI.NarrativeSystem
     [CreateAssetMenu(fileName = "CreateContractPrompt", menuName = "Narrative/Prompts/CreateContractPrompt", order = 1)]
     public class CreateContractPrompt : Prompt
     {
-        public PromptController promptPrefab;
-        [Multiline]
-        public string promptText;
         public UnityEvent onOpened;
         public UnityEvent onCompleted;
 
@@ -26,13 +23,12 @@ namespace Assets.Scripts.UI.NarrativeSystem
             createdContract.StartCoroutine(HighlightContract(createdContract.gameObject));
             //variableToPutContractIn.SetValue(createdContract.gameObject);
 
-            var newPrompt = Instantiate(promptPrefab, PromptParentSingleton.Instance.transform);
-            newPrompt.Opened(promptText, () =>
+            this.OpenPromptWithSetup(() =>
             {
                 variableToPutContractIn.SetValue(null);
                 onCompleted?.Invoke();
                 conversation.PromptClosed();
-                Destroy(newPrompt.gameObject);
+                Destroy(currentPrompt.gameObject);
             });
         }
 

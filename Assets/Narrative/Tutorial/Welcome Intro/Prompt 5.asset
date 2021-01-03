@@ -16,6 +16,7 @@ MonoBehaviour:
   promptText: Notice the paper slips underneath each seed box. You'll need those
     to help keep track of what kind of seed is in each box, it can be hard to keep
     track!
+  speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
       m_Calls: []

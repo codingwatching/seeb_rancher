@@ -11,9 +11,6 @@ namespace Assets.Scripts.UI.NarrativeSystem
     [CreateAssetMenu(fileName = "ForceHighlightOpenSeedSlot", menuName = "Narrative/Prompts/ForceHighlightOpenSeedSlot", order = 1)]
     public class ForceHighlightFilledSeedSlot : Prompt
     {
-        public PromptController promptPrefab;
-        [Multiline]
-        public string promptText;
 
         public UnityEvent onOpened;
         public UnityEvent onCompleted;
@@ -21,7 +18,6 @@ namespace Assets.Scripts.UI.NarrativeSystem
         public GameObjectVariable highlightedGameObject;
 
         private Conversation sourceConversation;
-        private PromptController spawnedPrompt;
         private SeedInventoryDropSlot filledSlot;
 
         public override void OpenPrompt(Conversation conversation)
@@ -31,14 +27,13 @@ namespace Assets.Scripts.UI.NarrativeSystem
 
             var highlightedObj = this.TryHighlightDropSlot();
 
-            spawnedPrompt = Instantiate(promptPrefab, PromptParentSingleton.Instance.transform);
-            spawnedPrompt.Opened(promptText, () =>
+            this.OpenPromptWithSetup(() =>
             {
-                if(highlightedObj == null && sourceConversation != null)
+                if (highlightedObj == null && sourceConversation != null)
                 {
                     onCompleted?.Invoke();
                     sourceConversation.PromptClosed();
-                    Destroy(spawnedPrompt.gameObject);
+                    Destroy(currentPrompt.gameObject);
                 }
             });
         }
@@ -67,11 +62,11 @@ namespace Assets.Scripts.UI.NarrativeSystem
             filledSlot.DropSlotButton.onClick.RemoveListener(DropSlotClicked);
             onCompleted?.Invoke();
             sourceConversation.PromptClosed();
-            Destroy(spawnedPrompt.gameObject);
+            Destroy(currentPrompt.gameObject);
             highlightedGameObject.SetValue(null);
 
             sourceConversation = null;
-            spawnedPrompt = null;
+            currentPrompt = null;
             filledSlot = null;
         }
     }

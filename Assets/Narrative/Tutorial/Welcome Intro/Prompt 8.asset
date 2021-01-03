@@ -15,6 +15,7 @@ MonoBehaviour:
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: Nice! you'll have a nice crop in no time. To advance to the next month
     head out for a bit by clicking on the exit door. I'll talk to you later!
+  speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
       m_Calls: []

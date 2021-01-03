@@ -16,6 +16,7 @@ MonoBehaviour:
   promptText: As you plant more seeds you might find that certain seeds make plants
     with different characteristics than other seeds. Use the inventory slots here
     to keep them separate
+  speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
       m_Calls: []

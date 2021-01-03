@@ -16,6 +16,7 @@ MonoBehaviour:
   promptText: Here's my next offer! I need seeds that will always breed true to small
     and yellow. I'll pay double since my scientists have been having trouble isolating
     both small and yellow at the same time.
+  speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
   onOpened:
     m_PersistentCalls:
       m_Calls: []

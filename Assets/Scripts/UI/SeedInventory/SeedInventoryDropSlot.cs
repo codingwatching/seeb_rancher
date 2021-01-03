@@ -3,6 +3,7 @@ using Assets.Scripts.Utilities.Core;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
@@ -11,6 +12,7 @@ namespace Assets.Scripts.UI.SeedInventory
     public class SeedInventoryDropSlot : MonoBehaviour
     {
         public GameObjectVariable draggingSeedSet;
+        public UnityEvent onSeedFirstGrabbed;
 
         public Button DropSlotButton;
         public TMP_InputField labelInputField;
@@ -32,6 +34,7 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public void PopOutNewDragging()
         {
+            onSeedFirstGrabbed?.Invoke();
             var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
             var currentDragger = draggingProvider.SpawnNewDraggingSeedsOrGetCurrent();
             if (currentDragger.myBucket.TryCombineSeedsInto(dataModel.bucket))
