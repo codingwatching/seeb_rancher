@@ -15,10 +15,9 @@ namespace Assets.Scripts.UI.SeedInventory
         public Button DropSlotButton;
         public TMP_InputField labelInputField;
 
-        private SeedBucketUI dataModel;
+        public SeedBucketUI dataModel { get; private set; }
 
         private SeedBucketDisplay Displayer => GetComponent<SeedBucketDisplay>();
-
 
         public void SeedSlotClicked()
         {

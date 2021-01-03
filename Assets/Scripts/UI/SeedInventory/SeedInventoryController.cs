@@ -10,12 +10,32 @@ namespace Assets.Scripts.UI.SeedInventory
         public GameObject seedGridLayoutParent;
         public SeedInventoryDropSlot seedSlotUIElementPrefab;
 
-        private SeedInventoryDataModel dataModel;
+        public static SeedInventoryController Instance;
+
+        [HideInInspector]
+        public SeedInventoryDataModel dataModel { get; private set; }
 
         private void Awake()
         {
             if (dataModel == null)
-                dataModel = new SeedInventoryDataModel(defaultSeedBuckets);
+                SetupDefaultDataModel();
+            Instance = this;
+            RenderDataModel();
+        }
+
+        private void SetupDefaultDataModel()
+        {
+            dataModel = new SeedInventoryDataModel(defaultSeedBuckets);
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+                Instance = null;
+        }
+
+        public void DataModelUpdated()
+        {
             RenderDataModel();
         }
 
@@ -47,8 +67,12 @@ namespace Assets.Scripts.UI.SeedInventory
             if (save is SeedInventoryDataModel data)
             {
                 dataModel = data;
-                RenderDataModel();
             }
+            else
+            {
+                SetupDefaultDataModel();
+            }
+            RenderDataModel();
         }
         #endregion
     }

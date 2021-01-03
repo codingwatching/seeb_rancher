@@ -13,6 +13,7 @@ namespace Assets.Scripts.Utilities.SaveSystem
         public static readonly string GAMEOBJECT_WORLD_ROOT = "objects.dat";
 
         public SaveablePrefabRegistry saveablePrefabRegistry;
+        public SceneReference saveLoadScene;
 
         public void Start()
         {
@@ -54,7 +55,8 @@ namespace Assets.Scripts.Utilities.SaveSystem
 
             SaveSystemHooks.TriggerPreLoad();
             DontDestroyOnLoad(gameObject);
-            var loadingScene = SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, new LoadSceneParameters(LoadSceneMode.Single));
+            var sceneIndexToLoad = SceneUtility.GetBuildIndexByScenePath(saveLoadScene.scenePath);
+            var loadingScene = SceneManager.LoadScene(sceneIndexToLoad, new LoadSceneParameters(LoadSceneMode.Single));
             yield return new WaitUntil(() => loadingScene.isLoaded);
             LoadFromMasterSaveObjectIntoScene(worldSaveData, loadingScene, saveablePrefabRegistry);
             SaveSystemHooks.TriggerPostLoad();

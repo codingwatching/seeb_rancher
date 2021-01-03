@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Tiling\Editor\GreenhouseMemberEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\Editor\GenericReferenceDrawer.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\Editor\VariableInstantiatorInspector.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Editor\SceneReferenceDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

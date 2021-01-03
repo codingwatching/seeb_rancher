@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Components\SaveablePrefab.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ConversationCompletedTrigger.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneEditor.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractContainer.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
     <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\Prompt.cs" />
     <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
     <Compile Include="Assets\Scripts\Utilities\ReadWriteJobHandleProtector.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
@@ -107,6 +109,8 @@
     <Compile Include="Assets\Scripts\Utilities\ScriptableObjectRegistries\UniqueObjectRegistry.cs" />
     <Compile Include="Assets\Scripts\UI\NarrativeSystem\Conversation.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ClaimedContractsClearedTrigger.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\DebugPrompt.cs" />
     <Compile Include="Assets\Scripts\Utilities\ScriptableObjectRegistries\RegistryRegistry.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\BooleanVariable.cs" />
@@ -151,6 +155,7 @@
     <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
     <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\CreateSeebsPrompt.cs" />
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Genetics\Genes\MendelianSwitch.cs" />
     <Compile Include="Assets\Scripts\Genetics\GeneticDrivers\CompiledGeneticDrivers.cs" />
@@ -181,7 +186,9 @@
     <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Scripts\Utilities\EnumerableExtensions.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\CreateContractPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ConversationTrigger.cs" />
     <Compile Include="Assets\Scripts\Tiling\AllRanges.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\IntReference.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
@@ -189,16 +196,12 @@
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeeds.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\GenerateMarketContractPrompt.cs" />
     <Compile Include="Assets\Scripts\Utilities\Core\FloatReference.cs" />
     <Compile Include="Assets\Scripts\Utilities\SaveSystem\Objects\MasterSaveObject.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ConversationTrigger.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ClaimedContractsClearedTrigger.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\ConversationTriggers\ConversationCompletedTrigger.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\DebugPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\Prompt.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\CreateContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\CreateSeebsPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\GenerateMarketContractPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\NarrativeSystem\Prompts\ForceHighlightFilledSeedSlot.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
+    <Compile Include="Assets\Scripts\Utilities\SceneReference.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

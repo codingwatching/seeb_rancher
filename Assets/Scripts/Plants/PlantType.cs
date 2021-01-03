@@ -34,6 +34,15 @@ namespace Assets.Scripts.Plants
             return growth >= minPollinationGrowthPhase && growth <= maxPollinationGrowthPhase;
         }
 
+        public Seed GenerateRandomSeed()
+        {
+            return new Seed
+            {
+                genes = genome.GenerateBaseGenomeData(),
+                plantType = myId
+            };
+        }
+
         public Seed[] HarvestSeeds(PollinationState sourcePollination)
         {
             if (selfPollinating)

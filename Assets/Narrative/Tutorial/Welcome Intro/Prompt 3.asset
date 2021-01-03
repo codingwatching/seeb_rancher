@@ -9,10 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b70aafaaac2006b4582ad0dd86e3ab21, type: 3}
-  m_Name: Prompt 2
+  m_Script: {fileID: 11500000, guid: 02c442a6abf06dd4bbfbbeeafeebf389, type: 3}
+  m_Name: Prompt 3
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  highlightObjectVariable: {fileID: 11400000, guid: 0e8b854264f527f4db58ed1aacc6d72c, type: 2}
-  promptText: This is a pretty nice greenhouse you've got here. not much use without
-    any seebs, though. Lets see what you've got.
+  promptText: Wow, this looks pretty empty. I guess I can spare some seeds from these
+    packets I found in the back of my seed drawer....
+  onOpened:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleted:
+    m_PersistentCalls:
+      m_Calls: []

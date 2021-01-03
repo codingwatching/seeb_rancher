@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8098d1e33b3ab6b4fb996655e29a17c4, type: 3}
   m_Name: EnableMarketGenerationConversation
   m_EditorClassIdentifier: 
-  myId: 2
+  myId: 3
   prompts:
   - {fileID: 11400000, guid: fcde608c4c350e440b0dbf46ca978650, type: 2}
   - {fileID: 11400000, guid: 2900bf5fbad1cf24296cfd47d65cd037, type: 2}
   - {fileID: 11400000, guid: 4e309d40dd64ba3449024a3d570eec5c, type: 2}
   - {fileID: 11400000, guid: 38275ee402a701e4586ada095d4ff97d, type: 2}
-  - {fileID: 11400000, guid: 6e9a8c92920e2b04c85730d4b3e3a990, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 2e8776cf4841ecb4eb7e489fc0cbd5fb, type: 2}
   - {fileID: 11400000, guid: a485f92d6779f9846ab805dd4258da04, type: 2}
   currentPromptIndex: 6

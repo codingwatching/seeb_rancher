@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8098d1e33b3ab6b4fb996655e29a17c4, type: 3}
   m_Name: SecondContractConversation
   m_EditorClassIdentifier: 
-  myId: 1
+  myId: 2
   prompts:
   - {fileID: 11400000, guid: 6af27ad95e2d6fc459ad30e7570898b9, type: 2}
   - {fileID: 11400000, guid: df184b0d22e175e4587c0ce0095f8a20, type: 2}
-  - {fileID: 11400000, guid: 62dc7ddd11b588a4588841981929a580, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 2f8cd3562447431479b7f4a73d6bcf46, type: 2}
   currentPromptIndex: 4
   triggerAll:
