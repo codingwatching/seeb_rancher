@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 43231cf7c8825cc4f899d5ade496585b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
+  - seedSpriteDisplay: {instanceID: 0}
+  - seedCountDisplay: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
