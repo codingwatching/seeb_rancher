@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Utilities.Core;
+﻿using Dman.ReactiveVariables;
 using UniRx;
 using UnityEngine;
 
@@ -25,7 +25,7 @@ namespace Assets.Scripts.UI.DisplayControllers
                     if (pair.Current)
                     {
                         highlightObjectVariable.SetValue(gameObject);
-                        
+
                         //SetBackdrop(GetComponent<RectTransform>());
                     }
                     else if (!pair.Current)

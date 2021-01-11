@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+﻿using Dman.ObjectSets;
 using Genetics;
 using System.Runtime.Serialization;
 
 namespace Assets.Scripts.UI.MarketContracts
 {
     [System.Serializable]
-    public class FloatGeneticTarget: ISerializable
+    public class FloatGeneticTarget : ISerializable
     {
         public GeneticDriver<float> targetDriver;
         public float minValue;

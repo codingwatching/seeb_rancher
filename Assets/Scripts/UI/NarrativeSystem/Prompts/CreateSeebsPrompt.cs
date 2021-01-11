@@ -34,7 +34,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
             var inventoryDataModel = SeedInventoryController.Instance.dataModel;
             for (int i = 0; i < inventoryDataModel.seedBuckets.Length; i++)
             {
-                if(string.IsNullOrWhiteSpace(inventoryDataModel.seedBuckets[i].description) && inventoryDataModel.seedBuckets[i].bucket.Empty)
+                if (string.IsNullOrWhiteSpace(inventoryDataModel.seedBuckets[i].description) && inventoryDataModel.seedBuckets[i].bucket.Empty)
                 {
                     inventoryDataModel.seedBuckets[i] = new SeedBucketUI
                     {
@@ -47,7 +47,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
 
             SeedInventoryController.Instance.DataModelUpdated();
 
-            this.OpenPromptWithSetup(() =>
+            OpenPromptWithSetup(() =>
             {
                 onCompleted?.Invoke();
                 conversation.PromptClosed();

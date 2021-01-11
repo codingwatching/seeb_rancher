@@ -1,6 +1,6 @@
 using Assets.Scripts.DataModels;
 using Assets.Scripts.UI.SeedInventory;
-using Assets.Scripts.Utilities.Core;
+using Dman.ReactiveVariables;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.MarketContracts
@@ -47,6 +47,6 @@ namespace Assets.Scripts.UI.MarketContracts
             Destroy(contract.gameObject);
 
             ContractEvaluationController.Instance.InitiateEvaluation(seebs, descriptor);
-        }   
+        }
     }
 }

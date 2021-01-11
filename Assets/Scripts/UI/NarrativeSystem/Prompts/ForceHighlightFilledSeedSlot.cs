@@ -1,7 +1,5 @@
-﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Plants;
-using Assets.Scripts.UI.SeedInventory;
-using Assets.Scripts.Utilities.Core;
+﻿using Assets.Scripts.UI.SeedInventory;
+using Dman.ReactiveVariables;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,12 +20,12 @@ namespace Assets.Scripts.UI.NarrativeSystem
 
         public override void OpenPrompt(Conversation conversation)
         {
-            this.sourceConversation = conversation;
+            sourceConversation = conversation;
             onOpened?.Invoke();
 
-            var highlightedObj = this.TryHighlightDropSlot();
+            var highlightedObj = TryHighlightDropSlot();
 
-            this.OpenPromptWithSetup(() =>
+            OpenPromptWithSetup(() =>
             {
                 if (highlightedObj == null && sourceConversation != null)
                 {
@@ -55,7 +53,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
 
         private void DropSlotClicked()
         {
-            if(sourceConversation == null)
+            if (sourceConversation == null)
             {
                 return;
             }

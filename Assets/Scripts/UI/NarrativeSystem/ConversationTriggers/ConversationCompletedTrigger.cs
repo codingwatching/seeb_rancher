@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.UI.MarketContracts;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.NarrativeSystem.ConversationTriggers

@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Utilities.Core;
+using Dman.ReactiveVariables;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.SeedInventory
@@ -27,7 +27,8 @@ namespace Assets.Scripts.UI.SeedInventory
             {
                 currentDraggingSeeds.SetValue(null);
                 Destroy(gameObject);
-            }else
+            }
+            else
             {
                 GetComponent<SeedBucketDisplay>().DisplaySeedBucket(myBucket);
             }

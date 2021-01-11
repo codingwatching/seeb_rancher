@@ -1,6 +1,5 @@
-﻿using Assets.Scripts.Utilities.Core;
-using Assets.Scripts.Utilities.SaveSystem.Components;
-using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+﻿using Dman.ObjectSets;
+using Dman.SceneSaveSystem;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -29,7 +28,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
 
         public void CheckAllConversationTriggers()
         {
-            foreach (var convo in this.allObjects)
+            foreach (var convo in allObjects)
             {
                 if (!completedConversations.Contains(convo.myId))
                 {
@@ -44,12 +43,12 @@ namespace Assets.Scripts.UI.NarrativeSystem
 
         private void StartNextConvoIfExists()
         {
-            if(activatedConversations.Count <= 0)
+            if (activatedConversations.Count <= 0)
             {
                 return;
             }
             var nextConvo = activatedConversations.Dequeue();
-            if(nextConvo != null)
+            if (nextConvo != null)
             {
                 nextConvo.StartConversation(this);
             }
@@ -58,7 +57,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
         public void ConversationEnded(Conversation endedConversation)
         {
             completedConversations.Add(endedConversation.myId);
-            this.StartNextConvoIfExists();
+            StartNextConvoIfExists();
         }
 
         #region Saving

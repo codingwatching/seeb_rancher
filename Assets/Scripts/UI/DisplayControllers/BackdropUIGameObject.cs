@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Utilities.Core;
+﻿using Dman.ReactiveVariables;
 using UniRx;
 using UnityEngine;
 
@@ -59,7 +59,7 @@ namespace Assets.Scripts.UI.DisplayControllers
         }
         private void ClearBackdrop()
         {
-            if(placeholderObject != null && movedTargetObj != null)
+            if (placeholderObject != null && movedTargetObj != null)
             {
                 var targetIndex = placeholderObject.GetSiblingIndex();
                 movedTargetObj.SetParent(placeholderObject.parent, true);

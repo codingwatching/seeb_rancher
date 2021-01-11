@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Utilities.Core;
+using Dman.ReactiveVariables;
 using System.Collections;
 using TMPro;
 using UnityEngine;

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Utilities.Core;
+﻿using Dman.ReactiveVariables;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.DisplayControllers

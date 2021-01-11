@@ -12,7 +12,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
         public override void OpenPrompt(Conversation conversation)
         {
             onOpened?.Invoke();
-            this.OpenPromptWithSetup(() =>
+            OpenPromptWithSetup(() =>
             {
                 onCompleted?.Invoke();
                 conversation.PromptClosed();

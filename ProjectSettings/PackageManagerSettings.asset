@@ -28,7 +28,13 @@ MonoBehaviour:
     m_Name: package.openupm.com
     m_Url: https://package.openupm.com
     m_Scopes:
+    - com.dman.genetics
+    - com.dman.object-sets
     - com.dman.plantbuilder
+    - com.dman.reactive-variables
+    - com.dman.scene-save-system
+    - com.dman.utilities
+    - com.neuecc.unirx
     - com.openupm
     - com.syomus.proceduraltoolkit
     m_IsDefault: 0
@@ -42,7 +48,13 @@ MonoBehaviour:
       m_Name: package.openupm.com
       m_Url: https://package.openupm.com
       m_Scopes:
+      - com.dman.genetics
+      - com.dman.object-sets
       - com.dman.plantbuilder
+      - com.dman.reactive-variables
+      - com.dman.scene-save-system
+      - com.dman.utilities
+      - com.neuecc.unirx
       - com.openupm
       - com.syomus.proceduraltoolkit
       m_IsDefault: 0
@@ -51,7 +63,13 @@ MonoBehaviour:
     m_Name: package.openupm.com
     m_Url: https://package.openupm.com
     m_Scopes:
+    - com.dman.genetics
+    - com.dman.object-sets
     - com.dman.plantbuilder
+    - com.dman.reactive-variables
+    - com.dman.scene-save-system
+    - com.dman.utilities
+    - com.neuecc.unirx
     - com.openupm
     - com.syomus.proceduraltoolkit
     m_SelectedScopeIndex: 0

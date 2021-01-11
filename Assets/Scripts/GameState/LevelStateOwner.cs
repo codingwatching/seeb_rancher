@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Utilities.Core;
-using Assets.Scripts.Utilities.SaveSystem.Components;
+﻿using Dman.ReactiveVariables;
+using Dman.SceneSaveSystem;
 using System.Linq;
 using UnityEngine;
 
@@ -45,10 +45,11 @@ namespace Assets.Scripts.GreenhouseLoader
             {
                 target.levelState.currentPhase.SetValue(phase);
                 target.levelState.money.SetValue(money);
-                if(target.savedBooleans.Length != booleanSaved.Length)
+                if (target.savedBooleans.Length != booleanSaved.Length)
                 {
                     Debug.LogWarning("saved booleans of different length than saved variables. all defaulting to previous value");
-                }else
+                }
+                else
                 {
                     for (int i = 0; i < booleanSaved.Length; i++)
                     {

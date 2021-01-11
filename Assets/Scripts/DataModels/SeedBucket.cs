@@ -47,7 +47,7 @@ namespace Assets.Scripts.DataModels
 
         public Seed[] TakeN(int n)
         {
-            if(AllSeeds.Length < n)
+            if (AllSeeds.Length < n)
             {
                 return null;
             }
@@ -58,7 +58,7 @@ namespace Assets.Scripts.DataModels
 
         public Seed TakeOne()
         {
-            if(AllSeeds.Length <= 0)
+            if (AllSeeds.Length <= 0)
             {
                 return null;
             }

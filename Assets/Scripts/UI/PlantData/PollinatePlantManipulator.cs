@@ -1,7 +1,8 @@
 ﻿using Assets.Scripts.Plants;
 using Assets.Scripts.UI.Manipulators.Scripts;
-using Assets.Scripts.Utilities.Core;
 using Assets.UI.Buttery_Toast;
+using Dman.ReactiveVariables;
+using Dman.Utilities;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.PlantData
@@ -19,7 +20,7 @@ namespace Assets.Scripts.UI.PlantData
 
         public override void OnOpen(ManipulatorController controller)
         {
-            this.controller = controller;   
+            this.controller = controller;
             var selectedPlantContainer = CurrentlySelectedPlant;
             if (!selectedPlantContainer.polliationState.CanPollinate())
             {
@@ -40,7 +41,7 @@ namespace Assets.Scripts.UI.PlantData
             {
                 return;
             }
-            var hits = MyUtilities.RaycastAllToObject(layersToHit);
+            var hits = MouseOverHelpers.RaycastAllToObject(layersToHit);
             if (hits == null)
             {
                 return;
@@ -48,13 +49,13 @@ namespace Assets.Scripts.UI.PlantData
             foreach (var hit in hits)
             {
                 var planter = hit.collider.gameObject?.GetComponentInParent<PlantContainer>();
-                if(planter != null)
+                if (planter != null)
                 {
                     var currentPlant = CurrentlySelectedPlant;
                     if (planter.PollinateFrom(currentPlant))
                     {
                         ToastProvider.ShowToast("pollinated", planter.gameObject, 1);
-                        if(currentPlant == planter)
+                        if (currentPlant == planter)
                         {
                             selectedThing.SetValue(selectedThing.CurrentValue);
                             // could've done a self-pollinate, in which case we should close the pollination tool

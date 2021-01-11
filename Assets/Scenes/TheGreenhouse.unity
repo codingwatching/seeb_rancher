@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28502667, g: 0.37139323, b: 0.49600998, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14020,6 +14020,7 @@ MonoBehaviour:
   saveablePrefabRegistry: {fileID: 11400000, guid: 2cfe819c9f00be04ba5184a211e5c613, type: 2}
   saveLoadScene:
     scenePath: 
+  gameobjectSaveRootFileName: objects.dat
 --- !u!1 &634299594
 GameObject:
   m_ObjectHideFlags: 0
@@ -19664,10 +19665,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 633408588}
-        m_TargetAssemblyTypeName: Assets.Scripts.Utilities.SaveSystem.WorldSaveManager,
-          Assembly-CSharp
+        m_TargetAssemblyTypeName: Dman.SceneSaveSystem.WorldSaveManager, SceneSaveSystem
         m_MethodName: Load
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25870,8 +25870,6 @@ MonoBehaviour:
   defaultSeedBuckets: 16
   seedGridLayoutParent: {fileID: 1772962952}
   seedSlotUIElementPrefab: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
-  dataModel:
-    seedBuckets: []
 --- !u!114 &1147921017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35317,8 +35315,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 633408588}
-        m_TargetAssemblyTypeName: Assets.Scripts.Utilities.SaveSystem.WorldSaveManager,
-          Assembly-CSharp
+        m_TargetAssemblyTypeName: Dman.SceneSaveSystem.WorldSaveManager, SceneSaveSystem
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:

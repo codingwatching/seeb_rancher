@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.UI.MarketContracts;
-using Assets.Scripts.Utilities.Core;
+﻿using Dman.ReactiveVariables;
 using UniRx;
 using UnityEngine;
 
@@ -21,7 +20,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
                     conversation.PromptClosed();
                     Destroy(currentPrompt.gameObject);
                 });
-            this.OpenPromptWithSetup(() =>
+            OpenPromptWithSetup(() =>
             {
             });
         }

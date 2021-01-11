@@ -1,6 +1,7 @@
 using Assets.Scripts.Plants;
-using Assets.Scripts.Utilities.Core;
-using Assets.Scripts.Utilities.SaveSystem.Components;
+using Dman.ReactiveVariables;
+using Dman.SceneSaveSystem;
+using Dman.Utilities;
 using Genetics.GeneticDrivers;
 using System.Linq;
 using UniRx;
@@ -89,7 +90,7 @@ namespace Assets.Scripts.UI.MarketContracts
         }
         public void TriggerNewContractGeneration()
         {
-            this.GenerateNewContract();
+            GenerateNewContract();
         }
         private void GenerateNewContract()
         {
@@ -97,7 +98,7 @@ namespace Assets.Scripts.UI.MarketContracts
             // varies from 1 to targetSetLength, weighted towards lower numbers
             var numberOfTargets = Mathf.FloorToInt(Mathf.Pow(rangeSample, 2) * targetBooleanDrivers.Length) + 1;
 
-            var targetIndexes = ArrayExt.SelectIndexSources(numberOfTargets, targetBooleanDrivers.Length);
+            var targetIndexes = ArrayExtensions.SelectIndexSources(numberOfTargets, targetBooleanDrivers.Length);
             var chosenDrivers = targetIndexes.Select(index => targetBooleanDrivers[index]);
             var newPrice = defaultReward * (Mathf.Pow(multiplierPerAdditional, numberOfTargets));
 

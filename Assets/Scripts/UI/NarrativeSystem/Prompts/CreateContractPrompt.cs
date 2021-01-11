@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.UI.MarketContracts;
-using Assets.Scripts.Utilities.Core;
+using Dman.ReactiveVariables;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,7 +23,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
             createdContract.StartCoroutine(HighlightContract(createdContract.gameObject));
             //variableToPutContractIn.SetValue(createdContract.gameObject);
 
-            this.OpenPromptWithSetup(() =>
+            OpenPromptWithSetup(() =>
             {
                 variableToPutContractIn.SetValue(null);
                 onCompleted?.Invoke();

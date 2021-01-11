@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.UI.MarketContracts;
-using Assets.Scripts.Utilities.Core;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,8 +14,8 @@ namespace Assets.Scripts.UI.NarrativeSystem
         {
             onOpened?.Invoke();
             MarketManager.Instance.TriggerNewContractGeneration();
-            
-            this.OpenPromptWithSetup(() =>
+
+            OpenPromptWithSetup(() =>
             {
                 onCompleted?.Invoke();
                 conversation.PromptClosed();

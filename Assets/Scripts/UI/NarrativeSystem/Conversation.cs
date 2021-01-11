@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.UI.NarrativeSystem.ConversationTriggers;
-using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+using Dman.ObjectSets;
 using System.Linq;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ namespace Assets.Scripts.UI.NarrativeSystem
         public Prompt[] prompts;
         public int currentPromptIndex;
         public ConversationTrigger[] triggerAll;
-        
+
         private GameNarrative narrative;
 
 

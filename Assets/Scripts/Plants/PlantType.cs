@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Utilities;
-using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+using Dman.ObjectSets;
 using Genetics;
 using UnityEngine;
 

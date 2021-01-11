@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+﻿using Dman.ObjectSets;
 using Genetics;
 using Genetics.GeneticDrivers;
 using System.Runtime.Serialization;

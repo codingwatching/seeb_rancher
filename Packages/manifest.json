@@ -42,14 +42,23 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.dman.plantbuilder": "0.1.4"
+    "com.dman.plantbuilder": "0.1.4",
+    "com.dman.genetics": "0.1.0",
+    "com.dman.scene-save-system": "0.1.0",
+    "com.dman.reactive-variables": "0.1.0"
   },
   "scopedRegistries": [
     {
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
+        "com.dman.genetics",
+        "com.dman.object-sets",
         "com.dman.plantbuilder",
+        "com.dman.reactive-variables",
+        "com.dman.scene-save-system",
+        "com.dman.utilities",
+        "com.neuecc.unirx",
         "com.openupm",
         "com.syomus.proceduraltoolkit"
       ]

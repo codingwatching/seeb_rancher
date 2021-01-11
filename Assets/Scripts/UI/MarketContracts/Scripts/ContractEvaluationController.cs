@@ -1,7 +1,5 @@
 using Assets.Scripts.DataModels;
-using Assets.Scripts.Plants;
-using Assets.Scripts.Utilities.Core;
-using Assets.Scripts.Utilities.ScriptableObjectRegistries;
+using Dman.ReactiveVariables;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +11,7 @@ namespace Assets.Scripts.UI.MarketContracts
     public class ContractEvaluationController : MonoBehaviour
     {
         public FloatReference money;
-        
+
         public GameObject loadingSection;
         public GameObject evaluationResultsSection;
         public GameObject evaluationModal;
@@ -54,7 +52,7 @@ namespace Assets.Scripts.UI.MarketContracts
             var genome = contract.plantType.genome;
             var generationPhase = seeds.SelectMany(seed => SelfPollinateSeed(seed, contract.plantType.minSeeds, contract.plantType.maxSeeds)).ToList();
             // keep pollinating until there's at least 100 seeds
-            while(generationPhase.Count < 100)
+            while (generationPhase.Count < 100)
             {
                 yield return new WaitForSeconds(.1f);
                 generationPhase = generationPhase.SelectMany(seed => SelfPollinateSeed(seed, contract.plantType.minSeeds, contract.plantType.maxSeeds)).ToList();

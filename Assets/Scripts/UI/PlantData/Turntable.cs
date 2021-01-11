@@ -1,16 +1,8 @@
-﻿using Assets.Scripts.Plants;
-using Assets.Scripts.Utilities.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UniRx;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.UI.PlantData
 {
-    public class Turntable: MonoBehaviour
+    public class Turntable : MonoBehaviour
     {
         public float rotationSpeed;
 

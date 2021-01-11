@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Utilities.Core;
+﻿using Dman.ReactiveVariables;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UIElements;

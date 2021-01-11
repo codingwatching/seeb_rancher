@@ -1,5 +1,5 @@
 using Assets.Scripts.Plants;
-using Assets.Scripts.Utilities.Core;
+using Dman.ReactiveVariables;
 using TMPro;
 using UniRx;
 using UnityEngine;

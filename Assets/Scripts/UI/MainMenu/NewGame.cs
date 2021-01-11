@@ -1,7 +1,6 @@
-using Assets.Scripts.Utilities;
-using Assets.Scripts.Utilities.Core;
+using Dman.ReactiveVariables;
+using Dman.Utilities;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
