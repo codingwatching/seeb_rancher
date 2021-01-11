@@ -68,7 +68,6 @@
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractContainer.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
     <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleCoordinate.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractEvaluationController.cs" />
@@ -79,60 +78,37 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickSelectorManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\AxialCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\BooleanGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Scripts\Tiling\GreenhouseMemberSaver.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\ClaimedContractsClearedTrigger.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\ForceHighlightFilledSeedSlot.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
-    <Compile Include="Assets\Scripts\Tiling\SquareCoords\SquareCoordinate.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\OffsetCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\HexCoordinateSystem.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantType.cs" />
-    <Compile Include="Assets\Scripts\CoordinatePositioner.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\TileType.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PollinatePlantManipulator.cs" />
-    <Compile Include="Assets\Scripts\Tiling\SquareCoords\RectCoordinateRange.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\UniversalCoordinateSystemMembers.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\TileMapRegionRenderer.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketManager.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\RotationallySymmetricTileType.cs" />
-    <Compile Include="Assets\Scripts\Tiling\RangePositioner.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleTriangleCoordinateRange.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\CubeCoordinate.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TriangleCoords\TriangleRhomboidCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypeRegistry.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\SquareEdgeTileType.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
-    <Compile Include="Assets\Scripts\Tiling\TileSets\TileTypeRegistry.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
-    <Compile Include="Assets\Scripts\Tiling\UniversalCoordinateRange.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\FloatGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
-    <Compile Include="Assets\Scripts\Tiling\GreenhouseMember.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
-    <Compile Include="Assets\Scripts\Tiling\HexCoords\VoroniTilingMapper.cs" />
     <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
-    <Compile Include="Assets\Scripts\Tiling\UniversalCoordinate.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateContractPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
-    <Compile Include="Assets\Scripts\Tiling\AllRanges.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeeds.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
@@ -878,6 +854,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Tiling.csproj">
+      <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
+      <Name>Tiling</Name>
+    </ProjectReference>
     <ProjectReference Include="Narrative.csproj">
       <Project>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</Project>
       <Name>Narrative</Name>

@@ -1,6 +1,5 @@
-﻿using Assets.Scripts.Tiling;
-using Assets.Tiling;
-using Assets.Tiling.SquareCoords;
+﻿using Dman.Tiling;
+using Dman.Tiling.SquareCoords;
 using UnityEngine;
 
 namespace Assets.Scripts.GreenhouseLoader

@@ -8,11 +8,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</ProjectGuid>
+    <RootNamespace>Dman.Tiling</RootNamespace>
+    <ProjectGuid>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Narrative</AssemblyName>
+    <AssemblyName>Tiling</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -56,18 +56,33 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MyPackages\NarrativeSystem\ConversationTriggers\ConversationCompletedTrigger.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\Prompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\WaitForBooleanChangePrompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Conversation.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\DebugPrompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\PromptController.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\GameNarrative.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\ConversationTriggers\ConversationTrigger.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\PromptParentSingleton.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TriangleCoords\TriangleCoordinate.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\HexCoords\AxialCoordinate.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\GreenhouseMemberSaver.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\SquareCoords\SquareCoordinate.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\HexCoords\OffsetCoordinate.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\HexCoords\HexCoordinateSystem.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileSets\TileType.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\SquareCoords\RectCoordinateRange.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileSets\UniversalCoordinateSystemMembers.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileSets\TileMapRegionRenderer.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\Editor\GreenhouseMemberEditor.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileSets\RotationallySymmetricTileType.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\RangePositioner.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TriangleCoords\TriangleTriangleCoordinateRange.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\HexCoords\CubeCoordinate.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TriangleCoords\TriangleRhomboidCoordinateRange.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileSets\SquareEdgeTileType.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileSets\TileTypeRegistry.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\UniversalCoordinateRange.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\GreenhouseMember.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\HexCoords\VoroniTilingMapper.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\UniversalCoordinate.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\AllRanges.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\MyPackages\NarrativeSystem\NarrativeSystem.asmdef" />
+     <None Include="Assets\MyPackages\Tiling\Tiling.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -662,17 +677,17 @@
     <Reference Include="ObjectSets">
       <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="ReactiveVariables">
-      <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
-    </Reference>
-    <Reference Include="UniRx">
-      <HintPath>Library\ScriptAssemblies\UniRx.dll</HintPath>
-    </Reference>
     <Reference Include="SceneSaveSystem">
       <HintPath>Library\ScriptAssemblies\SceneSaveSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Utilities">
+      <HintPath>Library\ScriptAssemblies\Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>

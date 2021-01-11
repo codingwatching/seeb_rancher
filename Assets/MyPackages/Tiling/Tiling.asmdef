@@ -1,0 +1,20 @@
+{
+    "name": "Tiling",
+    "rootNamespace": "Dman.Tiling",
+    "references": [
+        "GUID:c89e1c2639f65d549a075aac1877b9a1",
+        "GUID:4a1d88944df5d5647af4143f0eae8620",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:59e83f50c45b3c04faa860925fdf2547",
+        "GUID:e0cd26848372d4e5c891c569017e11f1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

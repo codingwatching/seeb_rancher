@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Tiling.TileSets;
-using Assets.Tiling;
-using Assets.Tiling.SquareCoords;
+﻿using Dman.Tiling;
+using Dman.Tiling.SquareCoords;
+using Dman.Tiling.TileSets;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,0 +1,20 @@
+{
+    "name": "Narrative",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c89e1c2639f65d549a075aac1877b9a1",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:231dcea1322ac47488adf40ff102ddba",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:4a1d88944df5d5647af4143f0eae8620"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
