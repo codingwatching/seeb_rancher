@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.UI.NarrativeSystem
+namespace Dman.NarrativeSystem
 {
     [CreateAssetMenu(fileName = "GenerateMarketContractPrompt", menuName = "Narrative/Prompts/GenerateMarketContractPrompt", order = 1)]
     public class GenerateMarketContractPrompt : Prompt

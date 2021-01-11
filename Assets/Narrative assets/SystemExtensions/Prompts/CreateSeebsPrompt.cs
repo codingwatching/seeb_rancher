@@ -4,7 +4,7 @@ using Assets.Scripts.UI.SeedInventory;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.UI.NarrativeSystem
+namespace Dman.NarrativeSystem
 {
     [CreateAssetMenu(fileName = "CreateSeebsPrompt", menuName = "Narrative/Prompts/CreateSeebsPrompt", order = 1)]
     public class CreateSeebsPrompt : Prompt

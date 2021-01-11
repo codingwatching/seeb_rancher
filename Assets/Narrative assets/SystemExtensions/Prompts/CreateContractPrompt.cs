@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.UI.NarrativeSystem
+namespace Dman.NarrativeSystem
 {
     [CreateAssetMenu(fileName = "CreateContractPrompt", menuName = "Narrative/Prompts/CreateContractPrompt", order = 1)]
     public class CreateContractPrompt : Prompt

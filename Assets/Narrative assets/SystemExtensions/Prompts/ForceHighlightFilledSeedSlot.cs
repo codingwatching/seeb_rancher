@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.UI.NarrativeSystem
+namespace Dman.NarrativeSystem
 {
     [CreateAssetMenu(fileName = "ForceHighlightOpenSeedSlot", menuName = "Narrative/Prompts/ForceHighlightOpenSeedSlot", order = 1)]
     public class ForceHighlightFilledSeedSlot : Prompt

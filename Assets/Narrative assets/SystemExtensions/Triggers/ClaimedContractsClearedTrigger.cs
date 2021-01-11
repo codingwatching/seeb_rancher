@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.UI.MarketContracts;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.NarrativeSystem.ConversationTriggers
+namespace Dman.NarrativeSystem.ConversationTriggers
 {
     [CreateAssetMenu(fileName = "ClaimedContractsClearedTrigger", menuName = "Narrative/Triggers/ClaimedContractsClearedTrigger", order = 1)]
     public class ClaimedContractsClearedTrigger : ConversationTrigger
