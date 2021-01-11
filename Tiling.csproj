@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\MyPackages\Tiling\TriangleCoords\TriangleCoordinate.cs" />
     <Compile Include="Assets\MyPackages\Tiling\HexCoords\AxialCoordinate.cs" />
-    <Compile Include="Assets\MyPackages\Tiling\GreenhouseMemberSaver.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileMemberSaver.cs" />
     <Compile Include="Assets\MyPackages\Tiling\TileSets\SpecificRotationTileMemberTileType.cs" />
     <Compile Include="Assets\MyPackages\Tiling\SquareCoords\SquareCoordinate.cs" />
     <Compile Include="Assets\MyPackages\Tiling\HexCoords\OffsetCoordinate.cs" />
@@ -76,7 +76,7 @@
     <Compile Include="Assets\MyPackages\Tiling\TileSets\SquareEdgeTileType.cs" />
     <Compile Include="Assets\MyPackages\Tiling\TileSets\TileTypeRegistry.cs" />
     <Compile Include="Assets\MyPackages\Tiling\UniversalCoordinateRange.cs" />
-    <Compile Include="Assets\MyPackages\Tiling\GreenhouseMember.cs" />
+    <Compile Include="Assets\MyPackages\Tiling\TileMember.cs" />
     <Compile Include="Assets\MyPackages\Tiling\HexCoords\VoroniTilingMapper.cs" />
     <Compile Include="Assets\MyPackages\Tiling\UniversalCoordinate.cs" />
     <Compile Include="Assets\MyPackages\Tiling\AllRanges.cs" />

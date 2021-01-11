@@ -9,11 +9,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     {
         private ManipulatorController controller;
 
-        public GreenhouseMember buildPreviewPrefab;
-        public GreenhouseMember buildMemeberPrefab;
+        public TileMember buildPreviewPrefab;
+        public TileMember buildMemeberPrefab;
         public LayerMask blockingLayers;
 
-        private GreenhouseMember activeBuildPreview;
+        private TileMember activeBuildPreview;
 
         public override void OnOpen(ManipulatorController controller)
         {

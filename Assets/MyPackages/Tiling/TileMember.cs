@@ -7,7 +7,7 @@ namespace Dman.Tiling
     ///     stores information about the current location in the tileMap
     ///     
     /// </summary>
-    public class GreenhouseMember : MonoBehaviour
+    public class TileMember : MonoBehaviour
     {
         [SerializeField]
         [HideInInspector]
@@ -15,7 +15,7 @@ namespace Dman.Tiling
         public UniversalCoordinate CoordinatePosition => coordinatePosition;
         public AllRanges allRanges;
 
-        public void SetPosition(GreenhouseMember otherMember)
+        public void SetPosition(TileMember otherMember)
         {
             SetPosition(otherMember.coordinatePosition);
         }

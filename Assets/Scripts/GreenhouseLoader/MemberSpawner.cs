@@ -8,7 +8,7 @@ namespace Assets.Scripts.GreenhouseLoader
     public class MemberSpawner : ScriptableObject
     {
         public RectCoordinateRange spawningSize;
-        public GreenhouseMember thingToSpawn;
+        public TileMember thingToSpawn;
         public RangePositioner inRange;
 
         public void SpawnMembers(Transform parent)

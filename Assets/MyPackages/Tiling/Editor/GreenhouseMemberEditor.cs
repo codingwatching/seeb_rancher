@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 namespace Dman.Tiling
 {
-    [CustomEditor(typeof(GreenhouseMember), true)]
+    [CustomEditor(typeof(TileMember), true)]
     public class GreenhouseMemberEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
-            var self = target as GreenhouseMember;
+            var self = target as TileMember;
             var newPosition = self.CoordinatePosition;
             newPosition.type = (CoordinateType)EditorGUILayout.EnumPopup(newPosition.type);
             newPosition.CoordinatePlaneID = (short)EditorGUILayout.IntField("Coordinate Plane", newPosition.CoordinatePlaneID);

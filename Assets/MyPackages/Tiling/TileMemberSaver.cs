@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Dman.Tiling
 {
-    [RequireComponent(typeof(GreenhouseMember))]
-    public class GreenhouseMemberSaver : MonoBehaviour, ISaveableData
+    [RequireComponent(typeof(TileMember))]
+    public class TileMemberSaver : MonoBehaviour, ISaveableData
     {
         public string UniqueSaveIdentifier => "GreenhouseMember";
 
@@ -15,7 +15,7 @@ namespace Dman.Tiling
 
         public object GetSaveObject()
         {
-            var member = GetComponent<GreenhouseMember>();
+            var member = GetComponent<TileMember>();
             return member.CoordinatePosition;
         }
 
@@ -23,7 +23,7 @@ namespace Dman.Tiling
         {
             if (save is UniversalCoordinate coordinate)
             {
-                var member = GetComponent<GreenhouseMember>();
+                var member = GetComponent<TileMember>();
                 member.SetPosition(coordinate);
             }
         }

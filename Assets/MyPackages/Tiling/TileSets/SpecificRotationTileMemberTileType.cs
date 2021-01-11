@@ -6,7 +6,7 @@ namespace Dman.Tiling.TileSets
     [CreateAssetMenu(fileName = "SpecificRotationTileType", menuName = "Greenhouse/SpecificRotationTileType", order = 2)]
     public class SpecificRotationTileMemberTileType : TileType
     {
-        public GreenhouseMember tileModelPrefab;
+        public TileMember tileModelPrefab;
         public EdgeRotation specificRotation;
 
         public override GameObject CreateTile(
