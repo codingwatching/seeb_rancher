@@ -25,7 +25,8 @@ namespace Assets.Scripts.Plants
         [HideInInspector]
         private float growth;
         public float Growth => growth;
-        //public Seed plantGenes;
+        public int RandomSeed { get; private set; }
+
         private CompiledGeneticDrivers _drivers;
         private CompiledGeneticDrivers GeneticDrivers
         {
@@ -107,6 +108,7 @@ namespace Assets.Scripts.Plants
         private void PlantSeed(Seed toBePlanted)
         {
             polliationState = new PollinationState(toBePlanted);
+            RandomSeed = Random.Range(int.MinValue, int.MaxValue);
             plantType = plantTypes.GetUniqueObjectFromID(polliationState.SelfGenes.plantType);
             UpdateGrowth(0, true);
             SetPlanterColliderEnabled();

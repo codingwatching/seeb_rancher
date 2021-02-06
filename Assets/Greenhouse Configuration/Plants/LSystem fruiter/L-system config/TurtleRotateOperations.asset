@@ -9,9 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e607076e3bac845aa508300e9dff30, type: 3}
-  m_Name: PlantTypeRegistry
+  m_Script: {fileID: 11500000, guid: 5bb4a0d6bfbd9e0469ba6fba46e67111, type: 3}
+  m_Name: TurtleRotateOperations
   m_EditorClassIdentifier: 
-  allObjects:
-  - {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
-  - {fileID: 11400000, guid: ed98f7c98f9966b4ba8a0b3602be5aa3, type: 2}
+  rollLeft: 47
+  rollRight: 92
+  defaultRollTheta: 18
+  turnLeft: 45
+  turnRight: 43
+  defaultTurnTheta: 18
+  tiltUp: 94
+  tiltDown: 38
+  defaultTiltTheta: 18
