@@ -28,7 +28,10 @@ MonoBehaviour:
     m_Name: package.openupm.com
     m_Url: https://package.openupm.com
     m_Scopes:
+    - com.alelievr.node-graph-processor
     - com.dman.genetics
+    - com.dman.l-system
+    - com.dman.mesh-draft-extensions
     - com.dman.object-sets
     - com.dman.plantbuilder
     - com.dman.reactive-variables
@@ -48,7 +51,10 @@ MonoBehaviour:
       m_Name: package.openupm.com
       m_Url: https://package.openupm.com
       m_Scopes:
+      - com.alelievr.node-graph-processor
       - com.dman.genetics
+      - com.dman.l-system
+      - com.dman.mesh-draft-extensions
       - com.dman.object-sets
       - com.dman.plantbuilder
       - com.dman.reactive-variables
@@ -63,7 +69,10 @@ MonoBehaviour:
     m_Name: package.openupm.com
     m_Url: https://package.openupm.com
     m_Scopes:
+    - com.alelievr.node-graph-processor
     - com.dman.genetics
+    - com.dman.l-system
+    - com.dman.mesh-draft-extensions
     - com.dman.object-sets
     - com.dman.plantbuilder
     - com.dman.reactive-variables

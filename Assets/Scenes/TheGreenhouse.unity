@@ -15959,7 +15959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveablePrefabRegistry: {fileID: 11400000, guid: 2cfe819c9f00be04ba5184a211e5c613, type: 2}
   saveLoadScene:
-    scenePath: 
+    scenePath: Assets/Scenes/TheGreenhouse.unity
   gameobjectSaveRootFileName: objects.dat
 --- !u!1 &635183127
 GameObject:
@@ -21640,11 +21640,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   registries:
-  - {fileID: 11400000, guid: abee16292c79bf3499f46e123fd36e37, type: 2}
-  - {fileID: 11400000, guid: 32b18ae6fde6bb341863e1a92047dab2, type: 2}
   - {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
+  - {fileID: 11400000, guid: 32b18ae6fde6bb341863e1a92047dab2, type: 2}
+  - {fileID: 11400000, guid: 63e6be7c519769240b8afe5a492f974c, type: 2}
   - {fileID: 11400000, guid: 2cfe819c9f00be04ba5184a211e5c613, type: 2}
   - {fileID: 11400000, guid: 038d73269cc43e949a0982eaa0df788d, type: 2}
+  - {fileID: 11400000, guid: abee16292c79bf3499f46e123fd36e37, type: 2}
 --- !u!4 &896183262
 Transform:
   m_ObjectHideFlags: 0

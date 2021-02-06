@@ -1,5 +1,6 @@
 ﻿using Dman.Tiling;
 using Dman.Utilities;
+using Dman.Utilities.SerializableUnityObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,7 +118,7 @@ namespace Assets.Tiling.Tilemapping
 
         private static Matrix4x4 GetSerializedTransform(TileRegionSaveObject regionPlane)
         {
-            return regionPlane?.matrixSerialized?.GetMatrix() ?? Matrix4x4.identity;
+            return regionPlane?.matrixSerialized?.GetDeserialized() ?? Matrix4x4.identity;
         }
     }
     [Serializable]

@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\UI\PlantData\PollinatePlantManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketManager.cs" />
+    <Compile Include="Assets\Scripts\Plants\Specific plant implementations\LSystemBuilder.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
@@ -798,11 +799,14 @@
     <Reference Include="UniRx">
       <HintPath>Library\ScriptAssemblies\UniRx.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    <Reference Include="com.alelievr.NodeGraphProcessor.Runtime">
+      <HintPath>Library\ScriptAssemblies\com.alelievr.NodeGraphProcessor.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="ProceduralToolkit.Editor">
       <HintPath>Library\ScriptAssemblies\ProceduralToolkit.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.alelievr.NodeGraphProcessor.Editor">
+      <HintPath>Library\ScriptAssemblies\com.alelievr.NodeGraphProcessor.Editor.dll</HintPath>
     </Reference>
     <Reference Include="ObjectSets">
       <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
@@ -815,6 +819,12 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.dman.l-system.editor">
+      <HintPath>Library\ScriptAssemblies\com.dman.l-system.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.dman.MeshDraftExtensions">
+      <HintPath>Library\ScriptAssemblies\com.dman.MeshDraftExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Jobs">
       <HintPath>Library\ScriptAssemblies\Unity.Jobs.dll</HintPath>
@@ -837,6 +847,9 @@
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Collections">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
@@ -846,6 +859,9 @@
     <Reference Include="ReactiveVariablesEditor">
       <HintPath>Library\ScriptAssemblies\ReactiveVariablesEditor.dll</HintPath>
     </Reference>
+    <Reference Include="com.dman.LSystem">
+      <HintPath>Library\ScriptAssemblies\com.dman.LSystem.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
@@ -854,13 +870,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Tiling.csproj">
-      <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
-      <Name>Tiling</Name>
-    </ProjectReference>
     <ProjectReference Include="Narrative.csproj">
       <Project>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</Project>
       <Name>Narrative</Name>
+    </ProjectReference>
+    <ProjectReference Include="Tiling.csproj">
+      <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
+      <Name>Tiling</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
