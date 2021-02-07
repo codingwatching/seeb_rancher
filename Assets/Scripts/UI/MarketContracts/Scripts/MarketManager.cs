@@ -17,7 +17,7 @@ namespace Assets.Scripts.UI.MarketContracts
     {
         public BooleanGeneticTarget[] targets;
         public float reward;
-        public PlantType plantType;
+        public RandomResultPlantType plantType;
         public int seedRequirement;
 
         public bool Matches(CompiledGeneticDrivers drivers)
@@ -54,7 +54,7 @@ namespace Assets.Scripts.UI.MarketContracts
         [Range(0, 1)]
         public float chanceForNewContractPerPhase;
         public int defaultSeedCountRequirement = 5;
-        public PlantType defaultPlantType;
+        public RandomResultPlantType defaultPlantType;
 
         public static MarketManager Instance;
 

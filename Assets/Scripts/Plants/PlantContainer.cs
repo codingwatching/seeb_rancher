@@ -17,15 +17,17 @@ namespace Assets.Scripts.Plants
         IManipulatorClickReciever,
         ISaveableData
     {
-        public PlantType plantType;
+        public BasePlantType plantType;
         public PlantTypeRegistry plantTypes;
         public GameObjectVariable selectedPlant;
 
         [SerializeField]
         [HideInInspector]
-        private float growth;
-        public float Growth => growth;
-        public int RandomSeed { get; private set; }
+        //private float growth;
+        //public float Growth => growth;
+        //public int RandomSeed { get; private set; }
+
+        public PlantState currentState;
 
         private CompiledGeneticDrivers _drivers;
         private CompiledGeneticDrivers GeneticDrivers
@@ -89,7 +91,11 @@ namespace Assets.Scripts.Plants
         {
             if (plantType == null)
                 return;
-            UpdateGrowth(plantType.AddGrowth(phaseDiff, growth));
+            if(currentState != null && this.plantType != null)
+            {
+                plantType.AddGrowth(phaseDiff, currentState);
+            }
+            GrowthUpdated();
         }
 
         public bool OnPlanterClicked()
@@ -108,53 +114,72 @@ namespace Assets.Scripts.Plants
         private void PlantSeed(Seed toBePlanted)
         {
             polliationState = new PollinationState(toBePlanted);
-            RandomSeed = Random.Range(int.MinValue, int.MaxValue);
             plantType = plantTypes.GetUniqueObjectFromID(polliationState.SelfGenes.plantType);
-            UpdateGrowth(0, true);
+            this.currentState = plantType.GenerateBaseSate();
+            GrowthUpdated(true);
             SetPlanterColliderEnabled();
         }
 
+        /// <summary>
+        /// Called whenever the object is spawned through spawning code
+        /// </summary>
         public void SetupAfterSpawn()
         {
             plantType = null;
+            currentState = null;
             polliationState = null;
             GeneticDrivers = null;
             polliationState = null;
-            UpdateGrowth(0, true);
+            GrowthUpdated(true);
         }
 
-        public void UpdateGrowth(float newGrowth, bool forcePrefabInstantiate = false)
+        /// <summary>
+        /// called whenever growth is changed, to conditionally trigger updating the plant.
+        /// </summary>
+        /// <param name="forcePrefabInstantiate"></param>
+        public void GrowthUpdated(bool forcePrefabInstantiate = false)
         {
-            if (plantType == null)
+            if (plantType == null || currentState == null)
             {
                 if (forcePrefabInstantiate)
                 {
-                    growth = 0;
                     UpdatePlant();
                 }
                 return;
             }
-            growth = newGrowth;
             UpdatePlant();
         }
 
+        /// <summary>
+        /// update the redndered plant view based on current state
+        /// </summary>
         public void UpdatePlant()
         {
             plantsParent.DestroyAllChildren();
-            if (plantType == null)
+            if (plantType == null || currentState == null)
             {
                 plantCollider.enabled = false;
                 return;
             }
             plantCollider.enabled = true;
-            plantType.plantBuilder.BuildPlant(this, GeneticDrivers);
+            plantType.BuildPlantInto(this, GeneticDrivers, currentState, polliationState);
         }
 
-        public GameObject SpawnPlant(GameObject plantPrefab)
+        /// <summary>
+        /// utility callback used by the PlantBuilders to inject a plant into this container
+        /// </summary>
+        /// <param name="plantPrefab"></param>
+        /// <returns></returns>
+        public GameObject SpawnPlantModelObject(GameObject plantPrefab)
         {
             return Instantiate(plantPrefab, plantsParent.transform);
         }
 
+        /// <summary>
+        /// Handles clicks from the Click Manipulator
+        /// </summary>
+        /// <param name="hit"></param>
+        /// <returns></returns>
         public bool SelfHit(RaycastHit hit)
         {
             if (hit.collider == planterCollider)
@@ -169,15 +194,24 @@ namespace Assets.Scripts.Plants
             return false;
         }
 
+
         public bool CanPollinate()
         {
-            return (plantType?.IsInPollinationRange(Growth) ?? false)
+            if (plantType == null || currentState == null)
+            {
+                return false;
+            }
+            return (plantType.IsInPollinationRange(this.currentState))
                 && (polliationState?.CanPollinate() ?? false);
         }
 
         public bool PollinateFrom(PlantContainer other)
         {
-            if (!(plantType?.IsInPollinationRange(Growth) ?? false))
+            if(plantType == null || currentState == null)
+            {
+                return false;
+            }
+            if (!plantType.IsInPollinationRange(this.currentState))
             {
                 return false;
             }
@@ -191,7 +225,7 @@ namespace Assets.Scripts.Plants
 
         public bool TryHarvest()
         {
-            if (growth < 1 - 1e-5)
+            if (currentState  == null|| currentState.growth < 1 - 1e-5)
             {
                 return false;
             }
@@ -203,15 +237,17 @@ namespace Assets.Scripts.Plants
         {
             var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
             var dragger = draggingProvider.SpawnNewDraggingSeedsOrGetCurrent();
-            var harvestedSeeds = plantType.HarvestSeeds(polliationState);
+            var harvestedSeeds = plantType.HarvestSeeds(polliationState, currentState);
             if (!dragger.myBucket.TryAddSeedsToSet(harvestedSeeds))
             {
+                // TODO: what happens to the seeds if they can't be added? 
+                //  we should probably not harvest the plant if the seeds will just dissapear into the void
                 return;
             }
             dragger.SeedBucketUpdated();
 
-            growth = 0;
             plantType = null;
+            currentState = null;
             polliationState = null;
             GeneticDrivers = null;
             plantCollider.enabled = false;
@@ -224,12 +260,12 @@ namespace Assets.Scripts.Plants
         class PlantSaveObject
         {
             int plantTypeId;
-            float growth;
+            PlantState plantState;
             PollinationState pollination;
             public PlantSaveObject(PlantContainer source)
             {
                 plantTypeId = source.plantType?.myId ?? -1;
-                growth = source.growth;
+                plantState = source.currentState;
                 pollination = source.polliationState;
             }
 
@@ -237,7 +273,9 @@ namespace Assets.Scripts.Plants
             {
                 target.plantType = plantTypeId == -1 ? null : target.plantTypes.GetUniqueObjectFromID(plantTypeId);
                 target.polliationState = pollination;
-                target.UpdateGrowth(growth, true);
+                target.currentState = plantState;
+                target.currentState.AfterDeserialized();
+                target.GrowthUpdated(true);
             }
         }
 

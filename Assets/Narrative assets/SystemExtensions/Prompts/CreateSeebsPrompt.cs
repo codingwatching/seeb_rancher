@@ -13,7 +13,7 @@ namespace Dman.NarrativeSystem
         public UnityEvent onCompleted;
 
         [Header("seed gen params")]
-        public PlantType plantType;
+        public BasePlantType plantType;
         public int seedNum;
         public string seedBucketDescription;
 

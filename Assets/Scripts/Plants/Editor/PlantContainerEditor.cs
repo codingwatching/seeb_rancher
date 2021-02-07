@@ -25,13 +25,17 @@ namespace Assets.Scripts.Plants.Editor
 
         private bool ChangeGrowth()
         {
-            var newGrowth = plantTarget.Growth;
+            if(plantTarget.currentState == null)
+            {
+                return false;
+            }
+            var newGrowth = plantTarget.currentState.growth;
             newGrowth = EditorGUILayout.Slider("Growth", newGrowth, 0, 1);
-            if (newGrowth != plantTarget.Growth)
+            if (newGrowth != plantTarget.currentState.growth)
             {
                 try
                 {
-                    plantTarget.UpdateGrowth(newGrowth);
+                    plantTarget.GrowthUpdated();
                 }
                 catch (System.Exception e)
                 {

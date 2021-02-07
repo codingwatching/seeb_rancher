@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.Plants
 {
     [CreateAssetMenu(fileName = "TomatoBuilder", menuName = "Greenhouse/PlantBuilders/TomatoBuilder", order = 1)]
-    public class TomatoBuilder : PlantBuilder
+    public class TomatoBuilder : PlantFormDefinition
     {
         public GameObject[] growthStagePrefabs;
         public GameObject harvestedPrefab;
@@ -19,10 +19,14 @@ namespace Assets.Scripts.Plants
 
         public BooleanGeneticDriver largeOrSmallSwitch;
 
-        public override void BuildPlant(PlantContainer plantParent, CompiledGeneticDrivers geneticDrivers)
+        public override void BuildPlant(
+            PlantContainer plantParent,
+            CompiledGeneticDrivers geneticDrivers,
+            PlantState plantState,
+            PollinationState pollination)
         {
-            var prefabIndex = GetPrefabIndex(plantParent.Growth);
-            var newPlant = plantParent.SpawnPlant(growthStagePrefabs[prefabIndex]);
+            var prefabIndex = GetPrefabIndex(plantState.growth);
+            var newPlant = plantParent.SpawnPlantModelObject(growthStagePrefabs[prefabIndex]);
 
             if (prefabIndex == growthStagePrefabs.Length - 1)
             {
@@ -40,10 +44,10 @@ namespace Assets.Scripts.Plants
                 else
                     Debug.LogError($"Genetic driver unset: {largeOrSmallSwitch}");
             }
-            if (plantParent.plantType.IsInPollinationRange(plantParent.Growth))
+            if (plantParent.plantType.IsInPollinationRange(plantState))
             {
                 Instantiate(flower, newPlant.transform.parent);
-                if (plantParent.polliationState.HasAnther)
+                if (pollination.HasAnther)
                 {
                     Instantiate(stamens, newPlant.transform.parent);
                 }

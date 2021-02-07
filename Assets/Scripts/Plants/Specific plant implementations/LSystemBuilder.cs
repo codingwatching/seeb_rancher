@@ -12,7 +12,7 @@ namespace Assets.Scripts.Plants
     }
 
     [CreateAssetMenu(fileName = "LSystemBuilder", menuName = "Greenhouse/PlantBuilders/LSystemBuilder", order = 2)]
-    public class LSystemBuilder : PlantBuilder
+    public class LSystemBuilder : PlantFormDefinition
     {
         public TurtleInterpreterBehavior turtleInterpretorPrefab;
 
@@ -21,14 +21,18 @@ namespace Assets.Scripts.Plants
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
-        public override void BuildPlant(PlantContainer plantParent, CompiledGeneticDrivers geneticDrivers)
+        public override void BuildPlant(
+            PlantContainer plantParent,
+            CompiledGeneticDrivers geneticDrivers,
+            PlantState plantState,
+            PollinationState pollination)
         {
-            var newPlantTarget = plantParent.SpawnPlant(turtleInterpretorPrefab.gameObject).GetComponent<TurtleInterpreterBehavior>();
-            var steps = Mathf.FloorToInt(plantParent.Growth / growthPerStep);
+            var newPlantTarget = plantParent.SpawnPlantModelObject(turtleInterpretorPrefab.gameObject).GetComponent<TurtleInterpreterBehavior>();
+            var steps = Mathf.FloorToInt(plantState.growth / growthPerStep);
 
             lSystem.Compile();
             var compiledSystem = lSystem.compiledSystem;
-            var systemState = new DefaultLSystemState(lSystem.axiom, plantParent.RandomSeed);
+            var systemState = new DefaultLSystemState(lSystem.axiom, plantState.randomSeed);
             for (int i = 0; i < steps; i++)
             {
                 compiledSystem.StepSystem(systemState);
@@ -36,10 +40,6 @@ namespace Assets.Scripts.Plants
 
             newPlantTarget.InterpretSymbols(systemState.currentSymbols);
 
-        }
-        private int GetPrefabIndex(float growth)
-        {
-            return -1;
         }
     }
 }

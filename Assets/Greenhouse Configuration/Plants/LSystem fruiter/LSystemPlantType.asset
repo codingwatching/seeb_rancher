@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b90d0bf63518854a894a85930aa56d2, type: 3}
-  m_Name: L System Plant
+  m_Script: {fileID: 11500000, guid: 71da9d4550b647549b7f3bc1f543d3fd, type: 3}
+  m_Name: LSystemPlantType
   m_EditorClassIdentifier: 
   myId: 1
   genome: {fileID: 11400000, guid: cf41996e76a29cc4ea853bae80556938, type: 2}
   selfPollinating: 1
-  plantName: crazy
-  plantBuilder: {fileID: 11400000, guid: efe545fca16c907409003fc866a743dd, type: 2}
-  growthPerPhase: 0.33333334
-  minPollinationGrowthPhase: 0.666666
-  maxPollinationGrowthPhase: 0.9999
+  plantName: CRA zy
   seedIcon: {fileID: 21300000, guid: b5e538bedcf448d418571287729015af, type: 3}
-  minSeeds: 2
-  maxSeeds: 5
+  turtleInterpretorPrefab: {fileID: 1029797208518164953, guid: 4e51044ad14e04d4d8123fd31561c8bc, type: 3}
+  lSystem: {fileID: 378491273550888993, guid: 50ec329eca2ebda45af2187f82130448, type: 3}
+  growthPerStep: 0.02
+  growthPerPhase: 0.3
+  flowerCharacter: 67
+  seedBearingCharacter: 68

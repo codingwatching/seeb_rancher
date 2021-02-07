@@ -23,6 +23,6 @@ MonoBehaviour:
   onCompleted:
     m_PersistentCalls:
       m_Calls: []
-  plantType: {fileID: 11400000, guid: ed98f7c98f9966b4ba8a0b3602be5aa3, type: 2}
+  plantType: {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}
   seedNum: 10
   seedBucketDescription: Trash seeds
