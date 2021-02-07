@@ -34,13 +34,15 @@ namespace Assets.Scripts.Plants
 
         public abstract void AddGrowth(int phaseDiff, PlantState currentState);
 
-        public abstract bool IsInPollinationRange(PlantState currentState);
+        public abstract bool CanPollinate(PlantState currentState);
 
         public abstract void BuildPlantInto(
             PlantContainer targetContainer,
             CompiledGeneticDrivers geneticDrivers,
             PlantState currentState,
             PollinationState pollination);
+
+        public abstract bool CanHarvest(PlantState state);
 
         public Seed GenerateRandomSeed()
         {

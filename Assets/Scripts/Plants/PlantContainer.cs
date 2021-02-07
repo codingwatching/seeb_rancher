@@ -201,7 +201,7 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            return (plantType.IsInPollinationRange(this.currentState))
+            return (plantType.CanPollinate(this.currentState))
                 && (polliationState?.CanPollinate() ?? false);
         }
 
@@ -211,7 +211,7 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            if (!plantType.IsInPollinationRange(this.currentState))
+            if (!plantType.CanPollinate(this.currentState))
             {
                 return false;
             }
@@ -225,7 +225,7 @@ namespace Assets.Scripts.Plants
 
         public bool TryHarvest()
         {
-            if (currentState  == null|| currentState.growth < 1 - 1e-5)
+            if (currentState == null || plantType == null || !plantType.CanHarvest(currentState))
             {
                 return false;
             }

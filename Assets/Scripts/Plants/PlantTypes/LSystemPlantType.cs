@@ -1,8 +1,5 @@
-﻿using Assets.Scripts.DataModels;
-using Dman.LSystem;
+﻿using Dman.LSystem;
 using Dman.LSystem.UnityObjects;
-using Dman.ObjectSets;
-using Genetics;
 using Genetics.GeneticDrivers;
 using System.Linq;
 using UnityEngine;
@@ -16,9 +13,9 @@ namespace Assets.Scripts.Plants
         public DefaultLSystemState lSystemState;
         [System.NonSerialized()]
         public int totalSystemSteps;
-        public LSystemPlantState(string axiom, float growth): base(growth)
+        public LSystemPlantState(string axiom, float growth) : base(growth)
         {
-            lSystemState = new DefaultLSystemState(axiom, this.randomSeed);
+            lSystemState = new DefaultLSystemState(axiom, randomSeed);
             totalSystemSteps = 0;
         }
 
@@ -40,8 +37,8 @@ namespace Assets.Scripts.Plants
     {
         public TurtleInterpreterBehavior turtleInterpretorPrefab;
         public LSystemObject lSystem;
-        public float growthPerStep = 0.02f;
-        public float growthPerPhase = 0.3f;
+
+        public float stepsPerPhase = 3f;
 
         public char flowerCharacter = 'C';
         public char seedBearingCharacter = 'D';
@@ -51,34 +48,38 @@ namespace Assets.Scripts.Plants
             return new LSystemPlantState(lSystem.axiom, 0);
         }
 
+        /// <summary>
+        /// In this implemntation, the growth property is used to directly reflect how many phases the plant has aged through.
+        ///     during rendering this is converted into L-system steps
+        /// This is done because there is no known end-time for the L-system plant, the harvestability and pollination state
+        ///     is derived only from the state of the L-system instead of a special value of the growth variable
+        /// </summary>
+        /// <param name="phaseDiff"></param>
+        /// <param name="currentState"></param>
         public override void AddGrowth(int phaseDiff, PlantState currentState)
         {
-            var extraGrowth = growthPerPhase * phaseDiff;
-            currentState.growth = Mathf.Clamp(currentState.growth + extraGrowth, 0, 1);
-        }
-
-        public override bool IsInPollinationRange(PlantState currentState)
-        {
-            if(!(currentState is LSystemPlantState systemState))
-            {
-                return false;
-            }
-            return systemState.lSystemState.currentSymbols.symbols.Contains((int)flowerCharacter);
-        }
-        public override void BuildPlantInto(
-            PlantContainer targetContainer,
-            CompiledGeneticDrivers geneticDrivers,
-            PlantState currentState,
-            PollinationState pollination) {
-
             if (!(currentState is LSystemPlantState systemState))
             {
                 Debug.LogError("invalid plant state type");
                 return;
             }
-            var targetSteps = Mathf.FloorToInt(systemState.growth / growthPerStep);
-            this.lSystem.Compile();
-            var compiledSystem = this.lSystem.compiledSystem;
+            systemState.growth += phaseDiff;
+        }
+
+        public override void BuildPlantInto(
+            PlantContainer targetContainer,
+            CompiledGeneticDrivers geneticDrivers,
+            PlantState currentState,
+            PollinationState pollination)
+        {
+            if (!(currentState is LSystemPlantState systemState))
+            {
+                Debug.LogError("invalid plant state type");
+                return;
+            }
+            var targetSteps = Mathf.FloorToInt(systemState.growth * stepsPerPhase);
+            lSystem.Compile();
+            var compiledSystem = lSystem.compiledSystem;
             systemState.StepStateUpToSteps(targetSteps, compiledSystem);
 
 
@@ -87,6 +88,22 @@ namespace Assets.Scripts.Plants
             newPlantTarget.InterpretSymbols(systemState.lSystemState.currentSymbols);
         }
 
+        public override bool CanPollinate(PlantState currentState)
+        {
+            if (!(currentState is LSystemPlantState systemState))
+            {
+                return false;
+            }
+            return systemState.lSystemState.currentSymbols.symbols.Contains((int)flowerCharacter);
+        }
+        public override bool CanHarvest(PlantState currentState)
+        {
+            if (!(currentState is LSystemPlantState systemState))
+            {
+                return false;
+            }
+            return systemState.lSystemState.currentSymbols.symbols.Contains((int)seedBearingCharacter);
+        }
         protected override int GetHarvestedSeedNumber(PlantState currentState)
         {
             if (!(currentState is LSystemPlantState systemState))

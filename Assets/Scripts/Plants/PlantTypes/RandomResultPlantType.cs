@@ -31,10 +31,15 @@ namespace Assets.Scripts.Plants
             currentState.growth = Mathf.Clamp(currentState.growth + extraGrowth, 0, 1);
         }
 
-        public override bool IsInPollinationRange(PlantState currentState)
+        public override bool CanPollinate(PlantState currentState)
         {
             return currentState.growth >= minPollinationGrowthPhase && currentState.growth <= maxPollinationGrowthPhase;
         }
+        public override bool CanHarvest(PlantState currentState)
+        {
+            return currentState.growth >= 1 - 1e-5;
+        }
+
         public override void BuildPlantInto(
             PlantContainer targetContainer,
             CompiledGeneticDrivers geneticDrivers,
