@@ -274,7 +274,7 @@ namespace Assets.Scripts.Plants
                 target.plantType = plantTypeId == -1 ? null : target.plantTypes.GetUniqueObjectFromID(plantTypeId);
                 target.polliationState = pollination;
                 target.currentState = plantState;
-                target.currentState.AfterDeserialized();
+                target.currentState?.AfterDeserialized();
                 target.GrowthUpdated(true);
             }
         }

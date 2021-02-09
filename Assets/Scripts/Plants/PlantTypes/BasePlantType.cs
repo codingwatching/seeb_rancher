@@ -2,6 +2,7 @@
 using Dman.ObjectSets;
 using Genetics;
 using Genetics.GeneticDrivers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Plants
@@ -52,6 +53,8 @@ namespace Assets.Scripts.Plants
                 plantType = myId
             };
         }
+
+        public abstract IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed);
 
         protected abstract int GetHarvestedSeedNumber(PlantState currentState);
 

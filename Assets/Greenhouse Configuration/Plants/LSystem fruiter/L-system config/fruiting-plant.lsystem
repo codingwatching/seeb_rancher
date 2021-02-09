@@ -1,7 +1,7 @@
 #axiom S(0)
 #iterations 40
 
-#define terminalBudGrowth 6
+#define primaryBranchInternodes 6
 #define shootHeight 5
 #define internodeHeight 6
 #define branchInternodes 3
@@ -23,8 +23,8 @@ S(x) : x == shootHeight -> []
 
 ## T is the terminal bud
 T(x) : x < 0 -> T(x + 1)
-T(x) : x < terminalBudGrowth && x >= 0 -> I(internodeHeight)[&(60)B(x + 1)][\(180)&(60)B(x + 1)]\(137)T(x + 1)
-T(x) : x == terminalBudGrowth -> []
+T(x) : x < primaryBranchInternodes && x >= 0 -> I(internodeHeight)[&(60)B(x + 1)][\(180)&(60)B(x + 1)]\(137)T(x + 1)
+T(x) : x == primaryBranchInternodes -> []
 
 
 #define flowerStalkLength 6

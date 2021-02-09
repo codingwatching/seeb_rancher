@@ -19,6 +19,9 @@ MonoBehaviour:
   seedIcon: {fileID: 21300000, guid: b5e538bedcf448d418571287729015af, type: 3}
   turtleInterpretorPrefab: {fileID: 1029797208518164953, guid: 4e51044ad14e04d4d8123fd31561c8bc, type: 3}
   lSystem: {fileID: 378491273550888993, guid: 50ec329eca2ebda45af2187f82130448, type: 3}
-  stepsPerPhase: 10
+  stepsPerPhase: 7
   flowerCharacter: 75
   seedBearingCharacter: 68
+  geneticModifiers:
+  - geneticDriver: {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
+    lSystemDefineDirectiveName: primaryBranchInternodes

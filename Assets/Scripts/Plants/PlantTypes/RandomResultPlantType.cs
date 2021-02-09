@@ -2,6 +2,7 @@
 using Dman.ObjectSets;
 using Genetics;
 using Genetics.GeneticDrivers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Plants
@@ -9,7 +10,6 @@ namespace Assets.Scripts.Plants
     [CreateAssetMenu(fileName = "RandomResultPlantType", menuName = "Greenhouse/RandomResultPlantType", order = 1)]
     public class RandomResultPlantType : BasePlantType
     {
-
         [Header("Growth")]
         public PlantFormDefinition plantBuilder;
         public float growthPerPhase;
@@ -52,5 +52,23 @@ namespace Assets.Scripts.Plants
         {
             return Random.Range(minSeeds, maxSeeds);
         }
+
+        public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
+        {
+            return SelfPollinateSeed(seed, minSeeds, maxSeeds); 
+        }
+        IEnumerable<Seed> SelfPollinateSeed(Seed seed, int minSeedCopies, int maxSeedCopies)
+        {
+            var copies = Random.Range(minSeedCopies, maxSeedCopies);
+            for (int i = 0; i < copies; i++)
+            {
+                yield return new Seed
+                {
+                    plantType = seed.plantType,
+                    genes = new Genetics.Genome(seed.genes, seed.genes)
+                };
+            }
+        }
+
     }
 }

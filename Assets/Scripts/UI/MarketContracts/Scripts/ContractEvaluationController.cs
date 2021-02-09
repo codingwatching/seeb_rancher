@@ -1,4 +1,6 @@
 using Assets.Scripts.DataModels;
+using Assets.Scripts.Plants;
+using Dman.ObjectSets;
 using Dman.ReactiveVariables;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,15 +49,27 @@ namespace Assets.Scripts.UI.MarketContracts
             StartCoroutine(EvaluateSeebs(seeds, contract));
         }
 
+        /// <summary>
+        /// Coroutine to evaluate the fitness of a set of seeds, and write the results into this object
+        /// </summary>
+        /// <param name="seeds"></param>
+        /// <param name="contract"></param>
+        /// <returns></returns>
         IEnumerator EvaluateSeebs(Seed[] seeds, ContractDescriptor contract)
         {
+            var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
+            var plantType = plantTypeRegistry.GetUniqueObjectFromID(seeds[0].plantType);
+            if(seeds.Any(seed => seed.plantType != seeds[0].plantType))
+            {
+                throw new System.Exception("Cannot evaluate fitness of seeds of different species");
+            }
             var genome = contract.plantType.genome;
-            var generationPhase = seeds.SelectMany(seed => SelfPollinateSeed(seed, contract.plantType.minSeeds, contract.plantType.maxSeeds)).ToList();
+            var generationPhase = seeds.SelectMany(seed => plantType.SimulateGrowthToHarvest(seed)).ToList();
             // keep pollinating until there's at least 100 seeds
             while (generationPhase.Count < 100)
             {
                 yield return new WaitForSeconds(.1f);
-                generationPhase = generationPhase.SelectMany(seed => SelfPollinateSeed(seed, contract.plantType.minSeeds, contract.plantType.maxSeeds)).ToList();
+                generationPhase = generationPhase.SelectMany(seed => plantType.SimulateGrowthToHarvest(seed)).ToList();
             }
             yield return new WaitForSeconds(.1f);
 

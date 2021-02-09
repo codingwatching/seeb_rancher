@@ -1,6 +1,8 @@
-﻿using Dman.LSystem;
+﻿using Assets.Scripts.DataModels;
+using Dman.LSystem;
 using Dman.LSystem.UnityObjects;
 using Genetics.GeneticDrivers;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -13,9 +15,25 @@ namespace Assets.Scripts.Plants
         public DefaultLSystemState lSystemState;
         [System.NonSerialized()]
         public int totalSystemSteps;
+        [System.NonSerialized()]
+        public bool lastStepChanged;
+
+        public float randomRotationAmount;
+        private string axiom;
+
         public LSystemPlantState(string axiom, float growth) : base(growth)
         {
-            lSystemState = new DefaultLSystemState(axiom, randomSeed);
+            totalSystemSteps = 0;
+            randomRotationAmount = Random.Range(0f, 360f);
+
+            this.axiom = axiom;
+            lSystemState = new DefaultLSystemState(this.axiom, randomSeed);
+        }
+
+        public override void AfterDeserialized()
+        {
+            base.AfterDeserialized();
+            lSystemState = new DefaultLSystemState(this.axiom, randomSeed);
             totalSystemSteps = 0;
         }
 
@@ -26,10 +44,18 @@ namespace Assets.Scripts.Plants
         {
             while (totalSystemSteps < targetSteps)
             {
+                var lastSymbols = lSystemState.currentSymbols;
                 system.StepSystem(lSystemState, globalParameters);
+                lastStepChanged = !lastSymbols.Equals(lSystemState.currentSymbols);
                 totalSystemSteps++;
             }
         }
+    }
+    [System.Serializable]
+    public struct FloatGeneticDriverToLSystemParameter
+    {
+        public FloatGeneticDriver geneticDriver;
+        public string lSystemDefineDirectiveName;
     }
 
     [CreateAssetMenu(fileName = "LSystemPlantType", menuName = "Greenhouse/LSystemPlantType", order = 1)]
@@ -42,6 +68,8 @@ namespace Assets.Scripts.Plants
 
         public char flowerCharacter = 'C';
         public char seedBearingCharacter = 'D';
+
+        public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
         public override PlantState GenerateBaseSate()
         {
@@ -78,14 +106,31 @@ namespace Assets.Scripts.Plants
                 return;
             }
             var targetSteps = Mathf.FloorToInt(systemState.growth * stepsPerPhase);
-            lSystem.Compile();
-            var compiledSystem = lSystem.compiledSystem;
+            // TODO: do this only once, not every render step
+            var compiledSystem = this.CompileSystemBasedOnGenetics(geneticDrivers);
             systemState.StepStateUpToSteps(targetSteps, compiledSystem);
 
 
             var newPlantTarget = targetContainer.SpawnPlantModelObject(turtleInterpretorPrefab.gameObject).GetComponent<TurtleInterpreterBehavior>();
 
             newPlantTarget.InterpretSymbols(systemState.lSystemState.currentSymbols);
+            newPlantTarget.transform.parent.Rotate(Vector3.up, systemState.randomRotationAmount);
+        }
+
+        private LSystem<double> CompileSystemBasedOnGenetics(CompiledGeneticDrivers geneticDrivers)
+        {
+            var geneticModifiedParameters = geneticModifiers
+                .Select(x =>
+                {
+                    if (geneticDrivers.TryGetGeneticData(x.geneticDriver, out var driverValue))
+                    {
+                        return new { x.lSystemDefineDirectiveName, driverValue };
+                    }
+                    return null;
+                })
+                .Where(x => x != null)
+                .ToDictionary(x => x.lSystemDefineDirectiveName, x => x.driverValue.ToString());
+            return lSystem.CompileWithParameters(geneticModifiedParameters);
         }
 
         public override bool CanPollinate(PlantState currentState)
@@ -102,7 +147,8 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            return systemState.lSystemState.currentSymbols.symbols.Contains((int)seedBearingCharacter);
+            // if the plant is done growing always allow harvesting to avoid letting plants with no fruit hang around
+            return !systemState.lastStepChanged || systemState.lSystemState.currentSymbols.symbols.Contains((int)seedBearingCharacter);
         }
         protected override int GetHarvestedSeedNumber(PlantState currentState)
         {
@@ -111,6 +157,26 @@ namespace Assets.Scripts.Plants
                 return 0;
             }
             return systemState.lSystemState.currentSymbols.symbols.Sum(symbol => symbol == seedBearingCharacter ? 1 : 0);
+        }
+        public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
+        {
+
+            // TODO: these seed counts are picked out of the blue. Consider running the l-system to get the seed counts
+            //  for a more accurate simulation.
+            //  more relevent if there are certain trait combinations that can sterilize a seed
+            return SelfPollinateSeed(seed, 1, 5);
+        }
+        IEnumerable<Seed> SelfPollinateSeed(Seed seed, int minSeedCopies, int maxSeedCopies)
+        {
+            var copies = Random.Range(minSeedCopies, maxSeedCopies);
+            for (int i = 0; i < copies; i++)
+            {
+                yield return new Seed
+                {
+                    plantType = seed.plantType,
+                    genes = new Genetics.Genome(seed.genes, seed.genes)
+                };
+            }
         }
     }
 }

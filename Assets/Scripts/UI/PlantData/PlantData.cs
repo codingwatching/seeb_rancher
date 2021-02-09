@@ -21,6 +21,7 @@ namespace Assets.Scripts.UI.PlantData
             pollinateButton.onClick.AddListener(DoPollinate);
             selectedPlant.Value
                 .TakeUntilDestroy(this)
+                .Select(x => x == null ? null : x)
                 .Subscribe(newObject =>
                 {
                     var plantContainer = newObject?.GetComponentInParent<PlantContainer>();

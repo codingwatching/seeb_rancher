@@ -15,6 +15,7 @@ namespace Assets.Scripts.UI.PlantData
         {
             selectedPlant.Value
                 .TakeUntilDestroy(this)
+                .Select(x => x == null ? null : x)
                 .Subscribe(newObject =>
                 {
                     ClearPlantViewer();

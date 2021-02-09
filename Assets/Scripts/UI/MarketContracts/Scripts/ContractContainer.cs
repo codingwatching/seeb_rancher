@@ -9,7 +9,7 @@ namespace Assets.Scripts.UI.MarketContracts
 {
     public class ContractContainer : MonoBehaviour, ISaveableData
     {
-        public RandomResultPlantType plantType;
+        public BasePlantType plantType;
         public BooleanGeneticTarget[] targets;
         public float rewardAmount;
         public int seedRequirement;
@@ -59,7 +59,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 target.targets = targets;
                 target.rewardAmount = rewardAmount;
                 target.seedRequirement = seedRequirement;
-                var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<RandomResultPlantType>();
+                var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
                 target.plantType = plantTypeRegistry.GetUniqueObjectFromID(plantTypeID);
             }
         }
