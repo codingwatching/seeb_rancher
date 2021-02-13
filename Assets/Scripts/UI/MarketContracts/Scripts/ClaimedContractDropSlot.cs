@@ -1,6 +1,5 @@
 using Assets.Scripts.DataModels;
 using Assets.Scripts.UI.Manipulators.Scripts;
-using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using UnityEngine;
 
@@ -20,7 +19,7 @@ namespace Assets.Scripts.UI.MarketContracts
             if (activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
             {
                 var seeds = seedHolder.AttemptTakeSeeds(contract.seedRequirement);
-                if(seeds == null || contract.plantType.myId != seeds[0].plantType)
+                if (seeds == null || contract.plantType.myId != seeds[0].plantType)
                 {
                     return;
                 }

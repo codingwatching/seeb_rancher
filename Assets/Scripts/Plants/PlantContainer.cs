@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.DataModels;
 using Assets.Scripts.GreenhouseLoader;
 using Assets.Scripts.UI.Manipulators.Scripts;
-using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
 using Dman.Utilities;
@@ -78,7 +77,7 @@ namespace Assets.Scripts.Plants
         {
             if (plantType == null)
                 return;
-            if(currentState != null && this.plantType != null)
+            if (currentState != null && plantType != null)
             {
                 plantType.AddGrowth(phaseDiff, currentState);
             }
@@ -92,7 +91,7 @@ namespace Assets.Scripts.Plants
         /// <returns></returns>
         public bool SelfHit(RaycastHit hit)
         {
-            if (this.plantType == null)
+            if (plantType == null)
             {
                 return false;
             }
@@ -100,13 +99,13 @@ namespace Assets.Scripts.Plants
             return true;
         }
 
-        public bool CanPlantSeed { get => plantType == null; }
+        public bool CanPlantSeed => plantType == null;
 
         public void PlantSeed(Seed toBePlanted)
         {
             polliationState = new PollinationState(toBePlanted);
             plantType = plantTypes.GetUniqueObjectFromID(polliationState.SelfGenes.plantType);
-            this.currentState = plantType.GenerateBaseSate();
+            currentState = plantType.GenerateBaseSate();
             GrowthUpdated(true);
         }
 
@@ -169,17 +168,17 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            return (plantType.CanPollinate(this.currentState))
+            return (plantType.CanPollinate(currentState))
                 && (polliationState?.CanPollinate() ?? false);
         }
 
         public bool PollinateFrom(PlantContainer other)
         {
-            if(plantType == null || currentState == null)
+            if (plantType == null || currentState == null)
             {
                 return false;
             }
-            if (!plantType.CanPollinate(this.currentState))
+            if (!plantType.CanPollinate(currentState))
             {
                 return false;
             }

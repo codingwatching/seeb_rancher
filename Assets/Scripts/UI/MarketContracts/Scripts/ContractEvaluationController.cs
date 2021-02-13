@@ -59,7 +59,7 @@ namespace Assets.Scripts.UI.MarketContracts
         {
             var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
             var plantType = plantTypeRegistry.GetUniqueObjectFromID(seeds[0].plantType);
-            if(seeds.Any(seed => seed.plantType != seeds[0].plantType))
+            if (seeds.Any(seed => seed.plantType != seeds[0].plantType))
             {
                 throw new System.Exception("Cannot evaluate fitness of seeds of different species");
             }

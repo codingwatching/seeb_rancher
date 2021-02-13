@@ -24,7 +24,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public void AttemptTransferAllSeedsInto(SeedBucket target)
         {
             target.TryTransferSeedsIntoSelf(seeds);
-            this.OnSeedsUpdated();
+            OnSeedsUpdated();
         }
         public Seed[] AttemptTakeSeeds(int seedCount)
         {
@@ -41,7 +41,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 Debug.LogError("Overwriting existing seed bucket!");
             }
-            this.seeds = new SeedBucket();
+            seeds = new SeedBucket();
         }
 
         public override void OnClose()
@@ -65,23 +65,23 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             var planter = singleHit.collider.gameObject?.GetComponentInParent<PlantContainer>();
             var harvested = planter.TryHarvest();
-            if(harvested.Length <= 0)
+            if (harvested.Length <= 0)
             {
                 return true;
             }
-            if(draggingSeedsInstance == null)
+            if (draggingSeedsInstance == null)
             {
                 var draggingParentProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
-                this.draggingSeedsInstance = draggingParentProvider.SpawnNewDraggingSeeds();
+                draggingSeedsInstance = draggingParentProvider.SpawnNewDraggingSeeds();
             }
-            if (!this.seeds.TryAddSeedsToSet(harvested))
+            if (!seeds.TryAddSeedsToSet(harvested))
             {
                 // TODO: what happens to the seeds if they can't be added? 
                 //  we should probably not harvest the plant if the seeds will just dissapear into the void
                 Debug.LogError("Incompatible seeds, they have been lost!");
                 return true;
             }
-            this.OnSeedsUpdated();
+            OnSeedsUpdated();
             return true;
         }
 
@@ -90,7 +90,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             if (seeds.Empty)
             {
                 // close the manipulator if the bucket is empty
-                this.controller.manipulatorVariable.SetValue(null);
+                controller.manipulatorVariable.SetValue(null);
                 return;
             }
             draggingSeedsInstance.DisplaySeedBucket(seeds);

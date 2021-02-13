@@ -1,7 +1,6 @@
 using Genetics;
 using Genetics.Genes;
 using Genetics.GeneticDrivers;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,7 +29,8 @@ namespace Assets.Scripts.Plants
             if (higherValueDominant)
             {
                 outputValue = gene.chromosomalCopies.Max(x => EvaluateSingleGene(x));
-            }else
+            }
+            else
             {
                 outputValue = gene.chromosomalCopies.Min(x => EvaluateSingleGene(x));
             }

@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.DataModels;
-using Dman.ObjectSets;
-using Genetics;
 using Genetics.GeneticDrivers;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,7 +42,8 @@ namespace Assets.Scripts.Plants
             PlantContainer targetContainer,
             CompiledGeneticDrivers geneticDrivers,
             PlantState currentState,
-            PollinationState pollination) {
+            PollinationState pollination)
+        {
             plantBuilder.BuildPlant(targetContainer, geneticDrivers, currentState, pollination);
         }
 
@@ -55,7 +54,7 @@ namespace Assets.Scripts.Plants
 
         public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
         {
-            return SelfPollinateSeed(seed, minSeeds, maxSeeds); 
+            return SelfPollinateSeed(seed, minSeeds, maxSeeds);
         }
         IEnumerable<Seed> SelfPollinateSeed(Seed seed, int minSeedCopies, int maxSeedCopies)
         {

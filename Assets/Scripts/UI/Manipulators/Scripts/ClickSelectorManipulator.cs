@@ -1,6 +1,5 @@
 ﻿using Dman.ReactiveVariables;
 using Dman.Utilities;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts

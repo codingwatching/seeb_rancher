@@ -30,10 +30,11 @@ namespace Assets.Scripts.UI.SeedInventory
         /// </summary>
         public void SeedSlotClicked()
         {
-            if(activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
+            if (activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
             {
                 seedHolder.AttemptTransferAllSeedsInto(dataModel.bucket);
-            }else
+            }
+            else
             {
                 if (dataModel.bucket.Empty)
                 {

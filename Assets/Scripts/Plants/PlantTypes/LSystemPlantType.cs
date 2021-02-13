@@ -33,7 +33,7 @@ namespace Assets.Scripts.Plants
         public override void AfterDeserialized()
         {
             base.AfterDeserialized();
-            lSystemState = new DefaultLSystemState(this.axiom, randomSeed);
+            lSystemState = new DefaultLSystemState(axiom, randomSeed);
             totalSystemSteps = 0;
         }
 
@@ -107,7 +107,7 @@ namespace Assets.Scripts.Plants
             }
             var targetSteps = Mathf.FloorToInt(systemState.growth * stepsPerPhase);
             // TODO: do this only once, not every render step
-            var compiledSystem = this.CompileSystemBasedOnGenetics(geneticDrivers);
+            var compiledSystem = CompileSystemBasedOnGenetics(geneticDrivers);
             systemState.StepStateUpToSteps(targetSteps, compiledSystem);
 
 

@@ -81,7 +81,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 return true;
             }
-            if(!MouseOverHelpers.RaycastToObject(layersToHit, out var singleHit))
+            if (!MouseOverHelpers.RaycastToObject(layersToHit, out var singleHit))
             {
                 // if hit the UI or nothing, do nothing
                 return true;

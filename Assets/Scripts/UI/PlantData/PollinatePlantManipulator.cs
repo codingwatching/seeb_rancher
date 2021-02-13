@@ -47,7 +47,7 @@ namespace Assets.Scripts.UI.PlantData
                 return true;
             }
             var planter = singleHit.collider.gameObject?.GetComponentInParent<PlantContainer>();
-            if(planter == null)
+            if (planter == null)
             {
                 return true;
             }
