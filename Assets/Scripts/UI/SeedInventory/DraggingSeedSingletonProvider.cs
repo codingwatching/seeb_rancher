@@ -1,35 +1,22 @@
-﻿using Dman.ReactiveVariables;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
     public class DraggingSeedSingletonProvider : MonoBehaviour
     {
-        // TODO: get rid of this
-        public GameObjectVariable currentDraggingSeeds;
-        public DraggingSeeds draggingSeedPrefab;
-
-        public DraggingSeeds SpawnNewDraggingSeedsOrGetCurrent()
+        private GameObject currentDraggingSeedsInstance;
+        public SeedBucketDisplay draggingSeedPrefab;
+        public SeedBucketDisplay SpawnNewDraggingSeeds()
         {
-            if (currentDraggingSeeds.CurrentValue == null)
-            {
-                var newDragger = Instantiate(draggingSeedPrefab, transform);
-                currentDraggingSeeds.SetValue(newDragger.gameObject);
-                return newDragger;
-            }
-            var dragger = currentDraggingSeeds.CurrentValue.GetComponent<DraggingSeeds>();
-            return dragger;
-        }
-        public DraggingSeeds SpawnNewDraggingSeeds()
-        {
-            if (currentDraggingSeeds.CurrentValue != null)
+            if (currentDraggingSeedsInstance != null)
             {
                 Debug.LogError("Overwriting existing dragging seeds object instance");
-                Destroy(currentDraggingSeeds.CurrentValue.gameObject);
+                Destroy(currentDraggingSeedsInstance);
+                currentDraggingSeedsInstance = null;
             }
 
             var newDragger = Instantiate(draggingSeedPrefab, transform);
-            currentDraggingSeeds.SetValue(newDragger.gameObject);
+            currentDraggingSeedsInstance = newDragger.gameObject;
             return newDragger;
         }
     }

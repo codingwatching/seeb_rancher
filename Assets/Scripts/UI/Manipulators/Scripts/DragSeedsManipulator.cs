@@ -15,7 +15,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         [SerializeField] private LayerMask layersToHit;
         [SerializeField] private Sprite plantCursor;
 
-        private DraggingSeeds draggingSeedsInstance;
+        private SeedBucketDisplay draggingSeedsInstance;
         private SeedBucket seeds = null;
 
         [SerializeField] private GameObjectVariable selectedGameObject;
@@ -113,7 +113,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 controller.manipulatorVariable.SetValue(null);
                 return;
             }
-            draggingSeedsInstance.GetComponent<SeedBucketDisplay>().DisplaySeedBucket(seeds);
+            draggingSeedsInstance.DisplaySeedBucket(seeds);
         }
     }
 }

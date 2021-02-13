@@ -17,7 +17,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public Sprite harvestCursor;
 
-        private DraggingSeeds draggingSeedsInstance;
+        private SeedBucketDisplay draggingSeedsInstance;
         private SeedBucket seeds = null;
 
 
@@ -93,7 +93,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 this.controller.manipulatorVariable.SetValue(null);
                 return;
             }
-            draggingSeedsInstance.GetComponent<SeedBucketDisplay>().DisplaySeedBucket(seeds);
+            draggingSeedsInstance.DisplaySeedBucket(seeds);
         }
     }
 }

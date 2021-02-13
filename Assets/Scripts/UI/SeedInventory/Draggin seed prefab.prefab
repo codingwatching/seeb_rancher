@@ -84,7 +84,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4511430735103498977}
-  - component: {fileID: 4511430735103498976}
   - component: {fileID: 1207769059597994401}
   m_Layer: 5
   m_Name: Draggin seed prefab
@@ -114,21 +113,6 @@ RectTransform:
   m_AnchoredPosition: {x: -20.3, y: 23.4}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.25, y: 0.75}
---- !u!114 &4511430735103498976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4511430735103498990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd1c26522962b8e4a9a0208f9d66a7a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentDraggingSeeds: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
-  myBucket:
-    AllSeeds: []
 --- !u!114 &1207769059597994401
 MonoBehaviour:
   m_ObjectHideFlags: 0

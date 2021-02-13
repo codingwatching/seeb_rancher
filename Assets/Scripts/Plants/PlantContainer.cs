@@ -56,7 +56,6 @@ namespace Assets.Scripts.Plants
         public PollinationState polliationState;
 
         public IntReference levelPhase;
-        public GameObjectVariable draggingSeedSet;
 
         public GameObject planter;
         public GameObject plantsParent;

@@ -1680,7 +1680,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -1698,7 +1700,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1974123253}
   plantsParent: {fileID: 1971365545}
 --- !u!114 &86591684
@@ -1884,7 +1885,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -1902,7 +1905,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 553998352}
   plantsParent: {fileID: 681900684}
 --- !u!114 &93121437
@@ -2088,7 +2090,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -2106,7 +2110,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 438677496}
   plantsParent: {fileID: 1519505604}
 --- !u!114 &99595595
@@ -2974,7 +2977,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -2992,7 +2997,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1642630610}
   plantsParent: {fileID: 1935802854}
 --- !u!114 &128257975
@@ -3262,7 +3266,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -3280,7 +3286,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1274374629}
   plantsParent: {fileID: 1755530536}
 --- !u!114 &149566015
@@ -3870,7 +3875,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -3888,7 +3895,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1901168771}
   plantsParent: {fileID: 25433260}
 --- !u!114 &176176592
@@ -5799,7 +5805,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -5817,7 +5825,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1993983110}
   plantsParent: {fileID: 1599790420}
 --- !u!114 &252761769
@@ -8251,7 +8258,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -8269,7 +8278,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 564029713}
   plantsParent: {fileID: 399734763}
 --- !u!114 &374981617
@@ -10072,7 +10080,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -10090,7 +10100,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 556125172}
   plantsParent: {fileID: 817365179}
 --- !u!114 &418693974
@@ -10701,7 +10710,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -10719,7 +10730,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1917969845}
   plantsParent: {fileID: 1669663470}
 --- !u!114 &442488088
@@ -11609,7 +11619,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -11627,7 +11639,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 82144030}
   plantsParent: {fileID: 176401235}
 --- !u!114 &472959510
@@ -12520,7 +12531,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -12538,7 +12551,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 2061766918}
   plantsParent: {fileID: 384525216}
 --- !u!114 &496774643
@@ -13379,7 +13391,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -13397,7 +13411,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 28190777}
   plantsParent: {fileID: 1052879863}
 --- !u!114 &530714596
@@ -13500,7 +13513,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -13518,7 +13533,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 445232769}
   plantsParent: {fileID: 1710302737}
 --- !u!114 &534828797
@@ -14849,7 +14863,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -14867,7 +14883,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 2009818724}
   plantsParent: {fileID: 108417481}
 --- !u!114 &588215518
@@ -14970,7 +14985,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -14988,7 +15005,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 506051209}
   plantsParent: {fileID: 664030500}
 --- !u!114 &595948548
@@ -15519,7 +15535,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -15537,7 +15555,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 710523670}
   plantsParent: {fileID: 1165778817}
 --- !u!114 &613090058
@@ -15857,7 +15874,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -15875,7 +15894,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 421851138}
   plantsParent: {fileID: 1240461174}
 --- !u!114 &633185747
@@ -16702,7 +16720,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -16720,7 +16740,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1428819043}
   plantsParent: {fileID: 1530931942}
 --- !u!114 &652987760
@@ -18548,7 +18567,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -18566,7 +18587,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 111404718}
   plantsParent: {fileID: 44000893}
 --- !u!114 &751393690
@@ -19708,7 +19728,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -19726,7 +19748,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 385137754}
   plantsParent: {fileID: 224489166}
 --- !u!114 &833137243
@@ -19925,7 +19946,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -19943,7 +19966,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1393392683}
   plantsParent: {fileID: 1736889670}
 --- !u!114 &837282598
@@ -20462,7 +20484,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -20480,7 +20504,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1031072112}
   plantsParent: {fileID: 1156040698}
 --- !u!114 &865604777
@@ -20583,7 +20606,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -20601,7 +20626,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 2136181045}
   plantsParent: {fileID: 1736760231}
 --- !u!114 &867867401
@@ -20920,7 +20944,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -20938,7 +20964,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1041902630}
   plantsParent: {fileID: 493704429}
 --- !u!114 &869146711
@@ -21041,7 +21066,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -21059,7 +21086,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 923364532}
   plantsParent: {fileID: 816651630}
 --- !u!114 &874431657
@@ -22086,7 +22112,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -22104,7 +22132,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1701103720}
   plantsParent: {fileID: 1506696778}
 --- !u!114 &914474262
@@ -22290,7 +22317,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -22308,7 +22337,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 2133528277}
   plantsParent: {fileID: 2012250528}
 --- !u!114 &918830946
@@ -23302,7 +23330,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -23320,7 +23350,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 608664745}
   plantsParent: {fileID: 1978178617}
 --- !u!114 &967047420
@@ -23507,7 +23536,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -23525,7 +23556,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1907858663}
   plantsParent: {fileID: 1066375341}
 --- !u!114 &970534454
@@ -23818,7 +23848,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -23836,7 +23868,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1424818016}
   plantsParent: {fileID: 1421433517}
 --- !u!114 &980209784
@@ -24532,7 +24563,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -24550,7 +24583,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 385386316}
   plantsParent: {fileID: 301824497}
 --- !u!114 &1016822033
@@ -24653,7 +24685,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -24671,7 +24705,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 535343373}
   plantsParent: {fileID: 298255049}
 --- !u!114 &1026161809
@@ -26140,7 +26173,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -26158,7 +26193,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 750262843}
   plantsParent: {fileID: 217118314}
 --- !u!114 &1079714767
@@ -26586,7 +26620,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -26604,7 +26640,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 940342189}
   plantsParent: {fileID: 1851854326}
 --- !u!114 &1085246416
@@ -26803,7 +26838,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -26821,7 +26858,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 2147077924}
   plantsParent: {fileID: 521098729}
 --- !u!114 &1104269923
@@ -27880,7 +27916,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -27898,7 +27936,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1687233233}
   plantsParent: {fileID: 1483673123}
 --- !u!114 &1150468586
@@ -28217,7 +28254,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -28235,7 +28274,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1424782635}
   plantsParent: {fileID: 34137736}
 --- !u!114 &1157706394
@@ -28505,7 +28543,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -28523,7 +28563,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 384792009}
   plantsParent: {fileID: 258780312}
 --- !u!114 &1164069795
@@ -28838,7 +28877,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -28856,7 +28897,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1336576988}
   plantsParent: {fileID: 472710329}
 --- !u!114 &1186353256
@@ -29254,7 +29294,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -29272,7 +29314,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1555826820}
   plantsParent: {fileID: 1343392289}
 --- !u!114 &1210826071
@@ -30603,7 +30644,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -30621,7 +30664,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 126261297}
   plantsParent: {fileID: 1572238828}
 --- !u!114 &1276277627
@@ -30772,6 +30814,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963798017}
+  - {fileID: 1548450716}
   m_Father: {fileID: 2070755269}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30940,7 +30983,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -30958,7 +31003,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1864995574}
   plantsParent: {fileID: 775222258}
 --- !u!114 &1285713711
@@ -36535,7 +36579,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -36553,7 +36599,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 892230754}
   plantsParent: {fileID: 1701410268}
 --- !u!114 &1413285914
@@ -36656,7 +36701,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -36674,7 +36721,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1157262528}
   plantsParent: {fileID: 57351750}
 --- !u!114 &1415571105
@@ -37281,7 +37327,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -37299,7 +37347,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1097851333}
   plantsParent: {fileID: 1192769604}
 --- !u!114 &1427290053
@@ -37581,7 +37628,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -37599,7 +37648,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 385714039}
   plantsParent: {fileID: 1988165296}
 --- !u!114 &1433001903
@@ -38537,7 +38585,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -38555,7 +38605,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1232230226}
   plantsParent: {fileID: 756516880}
 --- !u!114 &1518914192
@@ -38832,7 +38881,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -38850,7 +38901,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 692162528}
   plantsParent: {fileID: 1525244431}
 --- !u!114 &1526659519
@@ -39265,7 +39315,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -39283,7 +39335,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1003608155}
   plantsParent: {fileID: 163433763}
 --- !u!114 &1545434941
@@ -39346,18 +39397,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548450715}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2070755269}
+  m_Father: {fileID: 1282970108}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1820, y: 980}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1548450717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39370,8 +39421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997ffda90ca936a45a4fa360c7e98c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDraggingSeeds: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
-  draggingSeedPrefab: {fileID: 4511430735103498976, guid: b749bfc7ddc9d294aaa746e31bae29db, type: 3}
+  draggingSeedPrefab: {fileID: 1207769059597994401, guid: b749bfc7ddc9d294aaa746e31bae29db, type: 3}
 --- !u!1 &1548669453
 GameObject:
   m_ObjectHideFlags: 0
@@ -40235,7 +40285,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -40253,7 +40305,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 510130873}
   plantsParent: {fileID: 1376145852}
 --- !u!114 &1606581969
@@ -41131,7 +41182,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -41149,7 +41202,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1893554872}
   plantsParent: {fileID: 1615071295}
 --- !u!114 &1635162007
@@ -42503,7 +42555,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -42521,7 +42575,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1559187951}
   plantsParent: {fileID: 2143895903}
 --- !u!114 &1704242952
@@ -43604,7 +43657,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -43622,7 +43677,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1918645707}
   plantsParent: {fileID: 136367848}
 --- !u!114 &1756599487
@@ -43987,7 +44041,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -44005,7 +44061,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 501257201}
   plantsParent: {fileID: 459952460}
 --- !u!114 &1769794043
@@ -46042,7 +46097,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -46060,7 +46117,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1623677769}
   plantsParent: {fileID: 219818349}
 --- !u!114 &1869300018
@@ -47753,7 +47809,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -47771,7 +47829,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1141999410}
   plantsParent: {fileID: 686396936}
 --- !u!114 &1954970171
@@ -48444,7 +48501,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -48462,7 +48521,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 674366434}
   plantsParent: {fileID: 1674726397}
 --- !u!114 &1987656895
@@ -49425,7 +49483,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -49443,7 +49503,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 1108439425}
   plantsParent: {fileID: 173499911}
 --- !u!114 &2027934857
@@ -50225,7 +50284,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1282970108}
-  - {fileID: 1548450716}
   m_Father: {fileID: 1516459754}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50802,7 +50860,9 @@ MonoBehaviour:
   plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:
@@ -50820,7 +50880,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 834517019}
   plantsParent: {fileID: 771840997}
 --- !u!114 &2122642981
