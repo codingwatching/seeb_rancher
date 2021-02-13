@@ -31,7 +31,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         private UniversalCoordinate currentHoverCoordinate;
 
-        public override void OnUpdate()
+        public override bool OnUpdate()
         {
             UpdatePreviewPositionAndBlocking();
             if (currentHoverCoordinate.IsValid() && Input.GetMouseButtonDown(0))
@@ -42,6 +42,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
                 activeBuildPreview.gameObject.SetActive(false);
             }
+            return true;
         }
 
         private void UpdatePreviewPositionAndBlocking()

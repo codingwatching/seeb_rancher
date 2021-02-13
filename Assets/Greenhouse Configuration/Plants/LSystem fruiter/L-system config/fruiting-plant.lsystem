@@ -3,7 +3,7 @@
 
 #define primaryBranchInternodes 6
 #define shootHeight 5
-#define internodeHeight 6
+#define internodeHeight 10
 #define branchInternodes 3
 #define leafAge 3
 #define leavesPerPetiole 3

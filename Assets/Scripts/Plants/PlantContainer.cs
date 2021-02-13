@@ -61,7 +61,6 @@ namespace Assets.Scripts.Plants
         public GameObject planter;
         public GameObject plantsParent;
 
-        private Collider plantCollider => plantsParent.GetComponent<Collider>();
         private Collider planterCollider => planter.GetComponent<Collider>();
 
 
@@ -74,17 +73,6 @@ namespace Assets.Scripts.Plants
                 {
                     AdvanceGrowPhase(pair.Current - pair.Previous);
                 }).AddTo(this);
-            draggingSeedSet.Value
-                .TakeUntilDisable(this)
-                .Subscribe(dragger =>
-                {
-                    SetPlanterColliderEnabled();
-                }).AddTo(this);
-        }
-
-        private void SetPlanterColliderEnabled()
-        {
-            planterCollider.enabled = plantType == null && draggingSeedSet.CurrentValue != null;
         }
 
         private void AdvanceGrowPhase(int phaseDiff)
@@ -98,26 +86,29 @@ namespace Assets.Scripts.Plants
             GrowthUpdated();
         }
 
-        public bool OnPlanterClicked()
+        /// <summary>
+        /// Handles clicks from the Click Manipulator
+        /// </summary>
+        /// <param name="hit"></param>
+        /// <returns></returns>
+        public bool SelfHit(RaycastHit hit)
         {
-            var draggingSeeds = draggingSeedSet.CurrentValue?.GetComponent<DraggingSeeds>();
-            var nextSeed = draggingSeeds?.myBucket.TakeOne();
-            if (nextSeed == null)
+            if (this.plantType == null)
             {
                 return false;
             }
-            draggingSeeds.SeedBucketUpdated();
-            PlantSeed(nextSeed);
+            selectedPlant.SetValue(gameObject);
             return true;
         }
 
-        private void PlantSeed(Seed toBePlanted)
+        public bool CanPlantSeed { get => plantType == null; }
+
+        public void PlantSeed(Seed toBePlanted)
         {
             polliationState = new PollinationState(toBePlanted);
             plantType = plantTypes.GetUniqueObjectFromID(polliationState.SelfGenes.plantType);
             this.currentState = plantType.GenerateBaseSate();
             GrowthUpdated(true);
-            SetPlanterColliderEnabled();
         }
 
         /// <summary>
@@ -158,10 +149,8 @@ namespace Assets.Scripts.Plants
             plantsParent.DestroyAllChildren();
             if (plantType == null || currentState == null)
             {
-                plantCollider.enabled = false;
                 return;
             }
-            plantCollider.enabled = true;
             plantType.BuildPlantInto(this, GeneticDrivers, currentState, polliationState);
         }
 
@@ -174,26 +163,6 @@ namespace Assets.Scripts.Plants
         {
             return Instantiate(plantPrefab, plantsParent.transform);
         }
-
-        /// <summary>
-        /// Handles clicks from the Click Manipulator
-        /// </summary>
-        /// <param name="hit"></param>
-        /// <returns></returns>
-        public bool SelfHit(RaycastHit hit)
-        {
-            if (hit.collider == planterCollider)
-            {
-                return OnPlanterClicked();
-            }
-            if (hit.collider == plantCollider)
-            {
-                selectedPlant.SetValue(gameObject);
-                return true;
-            }
-            return false;
-        }
-
 
         public bool CanPollinate()
         {
@@ -223,36 +192,26 @@ namespace Assets.Scripts.Plants
             return false;
         }
 
-        public bool TryHarvest()
+        public Seed[] TryHarvest()
         {
             if (currentState == null || plantType == null || !plantType.CanHarvest(currentState))
             {
-                return false;
+                return new Seed[0];
             }
-            HarvestPlant();
-            return true;
+            return HarvestPlant();
         }
 
-        private void HarvestPlant()
+        private Seed[] HarvestPlant()
         {
-            var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
-            var dragger = draggingProvider.SpawnNewDraggingSeedsOrGetCurrent();
             var harvestedSeeds = plantType.HarvestSeeds(polliationState, currentState);
-            if (!dragger.myBucket.TryAddSeedsToSet(harvestedSeeds))
-            {
-                // TODO: what happens to the seeds if they can't be added? 
-                //  we should probably not harvest the plant if the seeds will just dissapear into the void
-                return;
-            }
-            dragger.SeedBucketUpdated();
 
             plantType = null;
             currentState = null;
             polliationState = null;
             GeneticDrivers = null;
-            plantCollider.enabled = false;
-            SetPlanterColliderEnabled();
             UpdatePlant();
+
+            return harvestedSeeds;
         }
 
         #region Saveable

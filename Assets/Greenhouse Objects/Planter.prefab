@@ -105,7 +105,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5791403945663099545}
-  - component: {fileID: 6349859039548495293}
   m_Layer: 8
   m_Name: Plants
   m_TagString: Untagged
@@ -128,20 +127,6 @@ Transform:
   m_Father: {fileID: 8402508463745975846}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &6349859039548495293
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2918393041374939107}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.4
-  m_Height: 1.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.17, z: 0}
 --- !u!1 &6653644714274239758
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +295,9 @@ MonoBehaviour:
   plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
-  growth: 0.548
+  currentState:
+    growth: 0
+    randomSeed: 0
   polliationState:
     _hasAnther: 0
     pollinatedGenes:

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layersToHit:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4294967295
   selectedThing: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
   harvestCursor: {fileID: 21300000, guid: b17dfd9423e0a7d4f84d27f33794dbdc, type: 3}

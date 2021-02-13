@@ -35,39 +35,37 @@ namespace Assets.Scripts.UI.PlantData
             CursorTracker.ClearCursor();
         }
 
-        public override void OnUpdate()
+        public override bool OnUpdate()
         {
             if (!Input.GetMouseButtonDown(0))
             {
-                return;
+                return true;
             }
-            var hits = MouseOverHelpers.RaycastAllToObject(layersToHit);
-            if (hits == null)
+            if (!MouseOverHelpers.RaycastToObject(layersToHit, out var singleHit))
             {
-                return;
+                // if hit the UI or nothing, do nothing
+                return true;
             }
-            foreach (var hit in hits)
+            var planter = singleHit.collider.gameObject?.GetComponentInParent<PlantContainer>();
+            if(planter == null)
             {
-                var planter = hit.collider.gameObject?.GetComponentInParent<PlantContainer>();
-                if (planter != null)
+                return true;
+            }
+            var currentPlant = CurrentlySelectedPlant;
+            if (planter.PollinateFrom(currentPlant))
+            {
+                ToastProvider.ShowToast("pollinated", planter.gameObject, 1);
+                if (currentPlant == planter)
                 {
-                    var currentPlant = CurrentlySelectedPlant;
-                    if (planter.PollinateFrom(currentPlant))
+                    selectedThing.SetValue(selectedThing.CurrentValue);
+                    // could've done a self-pollinate, in which case we should close the pollination tool
+                    if (!currentPlant.CanPollinate())
                     {
-                        ToastProvider.ShowToast("pollinated", planter.gameObject, 1);
-                        if (currentPlant == planter)
-                        {
-                            selectedThing.SetValue(selectedThing.CurrentValue);
-                            // could've done a self-pollinate, in which case we should close the pollination tool
-                            if (!currentPlant.CanPollinate())
-                            {
-                                controller.manipulatorVariable.SetValue(null);
-                            }
-                        }
+                        controller.manipulatorVariable.SetValue(null);
                     }
-                    break;
                 }
             }
+            return true;
         }
     }
 }

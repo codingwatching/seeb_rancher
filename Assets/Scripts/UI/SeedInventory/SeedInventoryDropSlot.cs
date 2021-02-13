@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.DataModels;
+using Assets.Scripts.UI.Manipulators.Scripts;
 using Dman.ReactiveVariables;
 using System.Collections;
 using TMPro;
@@ -11,44 +12,39 @@ namespace Assets.Scripts.UI.SeedInventory
     [RequireComponent(typeof(SeedBucketDisplay))]
     public class SeedInventoryDropSlot : MonoBehaviour
     {
-        public GameObjectVariable draggingSeedSet;
+        [Tooltip("Called when seeds are pulled out of a slot to be moved around")]
         public UnityEvent onSeedFirstGrabbed;
 
         public Button DropSlotButton;
         public TMP_InputField labelInputField;
 
+        public DragSeedsManipulator draggingSeedsManipulator;
+        public ScriptableObjectVariable activeManipulator;
+
         public SeedBucketUI dataModel { get; private set; }
 
         private SeedBucketDisplay Displayer => GetComponent<SeedBucketDisplay>();
 
+        /// <summary>
+        /// This method will be kind of messy because it keys off of a button instead of the <see cref="Manipulators.Scripts.ManipulatorController"/> system
+        /// </summary>
         public void SeedSlotClicked()
         {
-            var dragginSeeds = draggingSeedSet.CurrentValue?.GetComponent<DraggingSeeds>();
-            if (dragginSeeds == null)
+            if(activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
             {
-                PopOutNewDragging();
-                return;
-            }
-            TryAddHoveringSeedToSelf(dragginSeeds);
-        }
-
-        public void PopOutNewDragging()
-        {
-            onSeedFirstGrabbed?.Invoke();
-            var draggingProvider = GameObject.FindObjectOfType<DraggingSeedSingletonProvider>();
-            var currentDragger = draggingProvider.SpawnNewDraggingSeedsOrGetCurrent();
-            if (currentDragger.myBucket.TryCombineSeedsInto(dataModel.bucket))
+                seedHolder.AttemptTransferAllSeedsInto(dataModel.bucket);
+            }else
             {
-                currentDragger.SeedBucketUpdated();
-                Displayer.DisplaySeedBucket(dataModel.bucket);
+                if (dataModel.bucket.Empty)
+                {
+                    return;
+                }
+                // if there are no dragging seeds, pull out of the slot and start dragging seeds
+                activeManipulator.SetValue(draggingSeedsManipulator);
+                draggingSeedsManipulator.InitializeSeedBucketFrom(dataModel.bucket);
+                onSeedFirstGrabbed?.Invoke();
             }
-        }
-
-        public void TryAddHoveringSeedToSelf(DraggingSeeds dragginSeeds)
-        {
-            dataModel.bucket.TryCombineSeedsInto(dragginSeeds.myBucket);
             Displayer.DisplaySeedBucket(dataModel.bucket);
-            dragginSeeds.SeedBucketUpdated();
         }
 
         public void SetDataModelLink(SeedBucketUI dataModel)
@@ -69,6 +65,11 @@ namespace Assets.Scripts.UI.SeedInventory
             });
         }
         private bool isResetting = false;
+        /// <summary>
+        /// hack used to force the text label to display the first section of the text, in case
+        ///     the text has scrolled horizontally due to editing
+        /// </summary>
+        /// <returns></returns>
         IEnumerator ResetTextField()
         {
             isResetting = true;

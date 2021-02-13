@@ -9,7 +9,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         /// </summary>
         /// <param name="controler"></param>
         public abstract void OnOpen(ManipulatorController controler);
-        public abstract void OnUpdate();
+        /// <summary>
+        /// return true to keep the manipulator open. return false to close the manipulator
+        /// </summary>
+        /// <returns>whether or not to keep the manipulator alive</returns>
+        public abstract bool OnUpdate();
         public abstract void OnClose();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Dman.ReactiveVariables;
 using Dman.Utilities;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
@@ -22,27 +23,24 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         {
         }
 
-        public override void OnUpdate()
+        public override bool OnUpdate()
         {
             if (!Input.GetMouseButtonDown(0))
             {
-                return;
+                return true;
             }
-            var hits = MouseOverHelpers.RaycastAllToObject(layersToHit);
-            if (hits == null)
+            if (!MouseOverHelpers.RaycastToObject(layersToHit, out var singleHit))
             {
-                // if hit the UI, do nothing
-                return;
+                // if hit the UI or nothing, do nothing
+                return true;
             }
-            foreach (var hit in hits)
+            var clicker = singleHit.collider.gameObject.GetComponentInParent<IManipulatorClickReciever>();
+            if (clicker != null && clicker.SelfHit(singleHit))
             {
-                var clicker = hit.collider.gameObject.GetComponentInParent<IManipulatorClickReciever>();
-                if (clicker != null && clicker.SelfHit(hit))
-                {
-                    return;
-                }
+                return true;
             }
             selectedGameObject.SetValue(null);
+            return true;
         }
     }
 }

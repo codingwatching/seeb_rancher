@@ -318,8 +318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7981c2c3ff71d364389635efa3a59554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   contract: {fileID: 6611463320935539539}
+  activeManipulator: {fileID: 11400000, guid: 1bab0bbceb6e9174a97b61869f921917, type: 2}
 --- !u!1 &6611463320935539560
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using Assets.Scripts.DataModels;
+using Assets.Scripts.UI.Manipulators.Scripts;
 using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using UnityEngine;
@@ -7,32 +8,24 @@ namespace Assets.Scripts.UI.MarketContracts
 {
     public class ClaimedContractDropSlot : MonoBehaviour
     {
-        public GameObjectVariable draggingSeedSet;
         public ContractContainer contract;
+        public ScriptableObjectVariable activeManipulator;
 
         public void SeedSlotClicked()
         {
-            var dragginSeeds = draggingSeedSet.CurrentValue?.GetComponent<DraggingSeeds>();
-            if (dragginSeeds == null)
+            if (ContractEvaluationController.Instance.IsEvaluating || contract.seedRequirement <= 0)
             {
                 return;
             }
-            var seebs = dragginSeeds.myBucket;
-            if (ContractEvaluationController.Instance.IsEvaluating)
+            if (activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
             {
-                return;
+                var seeds = seedHolder.AttemptTakeSeeds(contract.seedRequirement);
+                if(seeds == null || contract.plantType.myId != seeds[0].plantType)
+                {
+                    return;
+                }
+                EvaluateContract(seeds);
             }
-            if (contract.plantType.myId != seebs.AllSeeds[0].plantType)
-            {
-                return;
-            }
-            if (seebs.AllSeeds.Length < contract.seedRequirement)
-            {
-                return;
-            }
-            var mySeeds = seebs.TakeN(contract.seedRequirement);
-            dragginSeeds.SeedBucketUpdated();
-            EvaluateContract(mySeeds);
         }
 
         private void EvaluateContract(Seed[] seebs)

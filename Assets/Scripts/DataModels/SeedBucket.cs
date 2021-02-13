@@ -35,13 +35,18 @@ namespace Assets.Scripts.DataModels
             return true;
         }
 
-        public bool TryCombineSeedsInto(SeedBucket otherBucket)
+        /// <summary>
+        /// try to move the seeds from <paramref name="sourceBucket"/> into this bucket
+        /// </summary>
+        /// <param name="sourceBucket"></param>
+        /// <returns>false if no seeds were transferred. true if all seeds were transferred</returns>
+        public bool TryTransferSeedsIntoSelf(SeedBucket sourceBucket)
         {
-            if (!TryAddSeedsToSet(otherBucket.AllSeeds))
+            if (!TryAddSeedsToSet(sourceBucket.AllSeeds))
             {
                 return false;
             }
-            otherBucket.AllSeeds = new Seed[0];
+            sourceBucket.AllSeeds = new Seed[0];
             return true;
         }
 

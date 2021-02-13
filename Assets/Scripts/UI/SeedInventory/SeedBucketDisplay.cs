@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
+    /// <summary>
+    /// used to display a seed sprite and count, based on the data inside a <see cref="SeedBucket"/>
+    /// </summary>
     public class SeedBucketDisplay : MonoBehaviour
     {
         public PlantTypeRegistry plantTypes;

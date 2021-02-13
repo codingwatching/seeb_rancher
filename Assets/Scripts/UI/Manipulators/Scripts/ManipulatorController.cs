@@ -12,6 +12,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public MapManipulator defaultManipulator;
 
+
         private void Awake()
         {
             manipulatorVariable.SetValue(defaultManipulator);
@@ -33,7 +34,10 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 manipulatorVariable.SetValue(null);
             }
-            activeManipulator?.OnUpdate();
+            if (activeManipulator != null && !activeManipulator.OnUpdate())
+            {
+                manipulatorVariable.SetValue(null);
+            }
         }
     }
 }
