@@ -59,8 +59,6 @@ namespace Assets.Scripts.Plants
         public GameObject planter;
         public GameObject plantsParent;
 
-        private Collider planterCollider => planter.GetComponent<Collider>();
-
 
         private void Start()
         {

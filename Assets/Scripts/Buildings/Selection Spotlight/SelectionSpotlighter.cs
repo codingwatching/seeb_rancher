@@ -18,16 +18,16 @@ namespace Assets.Scripts.Buildings
                     SpotlightObject(newObject)).AddTo(this);
         }
 
-        private void SpotlightObject(GameObject gameObject)
+        private void SpotlightObject(GameObject spotlightedObject)
         {
-            if (gameObject == null)
+            if (spotlightedObject == null)
             {
                 highlighterObject.SetActive(false);
             }
             else
             {
                 highlighterObject.SetActive(true);
-                highlighterObject.transform.position = gameObject.transform.position + Vector3.up * spotlightHeightFromSelection;
+                highlighterObject.transform.position = spotlightedObject.transform.position + Vector3.up * spotlightHeightFromSelection;
             }
         }
     }

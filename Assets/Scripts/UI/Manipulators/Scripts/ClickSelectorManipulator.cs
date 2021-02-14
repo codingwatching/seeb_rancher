@@ -9,7 +9,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     {
         private ManipulatorController controller;
 
-        public LayerMask layersToHit;
+        public RaycastGroup harvestCaster;
 
         public GameObjectVariable selectedGameObject;
 
@@ -28,13 +28,15 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 return true;
             }
-            if (!MouseOverHelpers.RaycastToObject(layersToHit, out var singleHit))
+
+            var mouseOvered = harvestCaster.CurrentlyHitObject;
+            if (!mouseOvered.HasValue)
             {
                 // if hit the UI or nothing, do nothing
                 return true;
             }
-            var clicker = singleHit.collider.gameObject.GetComponentInParent<IManipulatorClickReciever>();
-            if (clicker != null && clicker.SelfHit(singleHit))
+            var clicker = mouseOvered.Value.collider.gameObject.GetComponentInParent<IManipulatorClickReciever>();
+            if (clicker != null && clicker.SelfHit(mouseOvered.Value))
             {
                 return true;
             }

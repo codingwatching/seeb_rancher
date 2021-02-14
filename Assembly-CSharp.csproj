@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\RandomResultPlantType.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\SelectionSpotlighter.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PollinatePlantManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketManager.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Assets\Scripts\Plants\PlantFormDefinition.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\OutlineHoveredObject.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateContractPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
@@ -118,7 +120,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\SelectionSpotlighter.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\HoverOutlineReciever.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -728,6 +730,9 @@
     <Reference Include="ProceduralToolkit">
       <HintPath>Library\ScriptAssemblies\ProceduralToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="UnityFx.Outline">
+      <HintPath>Library\ScriptAssemblies\UnityFx.Outline.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -752,6 +757,9 @@
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityFx.Outline.URP">
+      <HintPath>Library\ScriptAssemblies\UnityFx.Outline.URP.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -763,6 +771,9 @@
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityFx.Outline.Editor">
+      <HintPath>Library\ScriptAssemblies\UnityFx.Outline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>

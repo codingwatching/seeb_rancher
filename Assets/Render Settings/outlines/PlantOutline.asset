@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b255690f6e190f0429159f52e2c7ecdf, type: 3}
-  m_Name: Click select manipulator
+  m_Script: {fileID: 11500000, guid: b579424fd3338724cba3155ee4d53475, type: 3}
+  m_Name: PlantOutline
   m_EditorClassIdentifier: 
-  harvestCaster: {fileID: 11400000, guid: 1cd52b24a01fd6f459b9eb48e25b07c4, type: 2}
-  selectedGameObject: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
+  _outlineColor: {r: 0, g: 1, b: 0.9893317, a: 0.39607844}
+  _outlineWidth: 4
+  _outlineIntensity: 5
+  _outlineAlphaCutoff: 0.9
+  _outlineMode: 3

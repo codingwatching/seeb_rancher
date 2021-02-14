@@ -12,7 +12,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     {
         public bool IsActive { get; private set; }
 
-        [SerializeField] private LayerMask layersToHit;
+        [SerializeField]  public RaycastGroup harvestCaster;
         [SerializeField] private Sprite plantCursor;
 
         private SeedBucketDisplay draggingSeedsInstance;
@@ -81,12 +81,13 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 return true;
             }
-            if (!MouseOverHelpers.RaycastToObject(layersToHit, out var singleHit))
+            var mouseOvered = harvestCaster.CurrentlyHitObject;
+            if (!mouseOvered.HasValue)
             {
                 // if hit the UI or nothing, do nothing
                 return true;
             }
-            var planter = singleHit.collider.gameObject?.GetComponentInParent<PlantContainer>();
+            var planter = mouseOvered.Value.collider.gameObject?.GetComponentInParent<PlantContainer>();
             if (planter == null || !planter.CanPlantSeed)
             {
                 // must be able to plant seed, in a planter

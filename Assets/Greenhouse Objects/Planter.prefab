@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 6703808689825917318}
   - component: {fileID: 749226569605490313}
   - component: {fileID: 6971866808769589527}
+  - component: {fileID: 1134106737130531199}
   m_Layer: 7
   m_Name: Planter
   m_TagString: Untagged
@@ -315,7 +316,6 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   planter: {fileID: 2699758837692072731}
   plantsParent: {fileID: 2918393041374939107}
 --- !u!114 &6971866808769589527
@@ -331,3 +331,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPrefabType: {fileID: 11400000, guid: df84c19d49dc8ab4b99586160922cf38, type: 2}
+--- !u!114 &1134106737130531199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126020408499974555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19c914d5a68d584e8bb7298d759a626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoesOutline: 1

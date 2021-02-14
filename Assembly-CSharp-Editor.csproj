@@ -663,6 +663,9 @@
     <Reference Include="ProceduralToolkit">
       <HintPath>Library\ScriptAssemblies\ProceduralToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="UnityFx.Outline">
+      <HintPath>Library\ScriptAssemblies\UnityFx.Outline.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -687,6 +690,9 @@
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityFx.Outline.URP">
+      <HintPath>Library\ScriptAssemblies\UnityFx.Outline.URP.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -698,6 +704,9 @@
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityFx.Outline.Editor">
+      <HintPath>Library\ScriptAssemblies\UnityFx.Outline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>

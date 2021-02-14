@@ -43,9 +43,12 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
     "com.dman.genetics": "0.1.1",
-    "com.dman.scene-save-system": "0.1.0",
-    "com.dman.reactive-variables": "0.1.0",
-    "com.dman.l-system": "0.1.7"
+    "com.dman.scene-save-system": "0.1.1",
+    "com.dman.reactive-variables": "0.1.1",
+    "com.dman.l-system": "0.1.7",
+    "com.unityfx.outline": "0.8.3",
+    "com.unityfx.outline.urp": "0.3.0",
+    "com.dman.utilities": "0.3.2"
   },
   "scopedRegistries": [
     {
@@ -63,6 +66,13 @@
         "com.neuecc.unirx",
         "com.openupm",
         "com.syomus.proceduraltoolkit"
+      ]
+    },
+    {
+      "name": "Arvtesh",
+      "url": "https://registry.npmjs.org/",
+      "scopes": [
+        "com.unityfx"
       ]
     }
   ]

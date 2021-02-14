@@ -13,7 +13,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private ManipulatorController controller;
 
         public GameObjectVariable selectedGameObject;
-        public LayerMask harvestLayers;
+        public RaycastGroup harvestCaster;
 
         public Sprite harvestCursor;
 
@@ -58,12 +58,13 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 return true;
             }
-            if (!MouseOverHelpers.RaycastToObject(harvestLayers, out var singleHit))
+            var mouseOvered = harvestCaster.CurrentlyHitObject;
+            if (!mouseOvered.HasValue)
             {
                 // if hit the UI or nothing, do nothing
                 return true;
             }
-            var planter = singleHit.collider.gameObject?.GetComponentInParent<PlantContainer>();
+            var planter = mouseOvered.Value.collider.gameObject?.GetComponentInParent<PlantContainer>();
             var harvested = planter.TryHarvest();
             if (harvested.Length <= 0)
             {
