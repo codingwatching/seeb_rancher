@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Plants;
-using Assets.Scripts.UI.Manipulators.Scripts;
 using Assets.UI.Buttery_Toast;
 using Dman.ReactiveVariables;
 using Dman.Utilities;
@@ -32,13 +31,13 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return;
             }
             CursorTracker.SetCursor(harvestCursor);
-            this.singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
+            singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()
         {
             CursorTracker.ClearCursor();
-            this.singleOutlineHelper.ClearOutlinedObject();
+            singleOutlineHelper.ClearOutlinedObject();
         }
 
         public override bool OnUpdate()
@@ -48,7 +47,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var currentPlant = CurrentlySelectedPlant;
             // must be able to pollinate. check for genetic compatability, anthers, etc
             var planterValid = targetPlant?.CanPollinateFrom(currentPlant) ?? false;
-            this.singleOutlineHelper.UpdateOutlineObject(planterValid ? targetPlant.GetOutlineObject() : null);
+            singleOutlineHelper.UpdateOutlineObject(planterValid ? targetPlant.GetOutlineObject() : null);
 
             if (!planterValid || !Input.GetMouseButtonDown(0) || !targetPlant.PollinateFrom(currentPlant))
             {

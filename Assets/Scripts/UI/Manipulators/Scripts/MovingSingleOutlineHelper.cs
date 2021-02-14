@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityFx.Outline;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
@@ -17,7 +12,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public MovingSingleOutlineHelper(OutlineLayerCollection layerCollection, int targetOutlineLayer = 0)
         {
             this.layerCollection = layerCollection;
-            this.layerIndex = targetOutlineLayer;
+            layerIndex = targetOutlineLayer;
         }
         public void UpdateOutlineObject(GameObject nextOutlined)
         {

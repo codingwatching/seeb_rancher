@@ -41,19 +41,19 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             Debug.Log("harvest manipulator opened");
             CursorTracker.SetCursor(harvestCursor);
             seeds = new SeedBucket();
-            this.singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
+            singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()
         {
-            if(draggingSeedsInstance != null)
+            if (draggingSeedsInstance != null)
             {
                 GameObject.Destroy(draggingSeedsInstance.gameObject);
             }
             draggingSeedsInstance = null;
 
             CursorTracker.ClearCursor();
-            this.singleOutlineHelper.ClearOutlinedObject();
+            singleOutlineHelper.ClearOutlinedObject();
         }
 
         public override bool OnUpdate()
@@ -61,7 +61,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var planter = GetHoveredPlantContainer();
             var validTarget = planter?.CanHarvest() ?? false;
 
-            this.singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);
+            singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);
 
             if (!validTarget || !Input.GetMouseButtonDown(0))
             {

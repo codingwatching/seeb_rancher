@@ -13,7 +13,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     {
         public bool IsActive { get; private set; }
 
-        [SerializeField]  public RaycastGroup harvestCaster;
+        [SerializeField] public RaycastGroup harvestCaster;
         [SerializeField] private Sprite plantCursor;
 
         private SeedBucketDisplay draggingSeedsInstance;
@@ -62,7 +62,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             draggingSeedsInstance = draggingParentProvider.SpawnNewDraggingSeeds();
 
             IsActive = true;
-            this.singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
+            singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()
@@ -77,7 +77,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             seeds = null;
             IsActive = false;
-            this.singleOutlineHelper.ClearOutlinedObject();
+            singleOutlineHelper.ClearOutlinedObject();
         }
 
         public override bool OnUpdate()
@@ -86,7 +86,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             // must be able to plant seed, in a planter
             var planterValid = planter?.CanPlantSeed ?? false;
 
-            this.singleOutlineHelper.UpdateOutlineObject(planterValid ? planter.GetOutlineObject() : null);
+            singleOutlineHelper.UpdateOutlineObject(planterValid ? planter.GetOutlineObject() : null);
 
             if (!planterValid || !Input.GetMouseButtonDown(0))
             {
