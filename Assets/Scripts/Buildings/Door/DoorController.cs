@@ -23,5 +23,14 @@ namespace Assets.Scripts.Buildings
             NextPhaseUI.SetActive(true);
             return true;
         }
+        public GameObject GetOutlineObject()
+        {
+            return gameObject;
+        }
+
+        public bool IsSelectable()
+        {
+            return true;
+        }
     }
 }

@@ -403,6 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4953544981632152460}
   - component: {fileID: 7867089790948121644}
+  - component: {fileID: 5008016777195344094}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -450,6 +451,19 @@ MonoBehaviour:
     type: 2
     CoordinatePlaneID: 0
   allRanges: {fileID: 11400000, guid: abee16292c79bf3499f46e123fd36e37, type: 2}
+--- !u!114 &5008016777195344094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5963196683201512497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d225aec2d9403b43be8edcff3991cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextPhaseUI: {fileID: 3886664853353144032}
 --- !u!1 &6788664048198741192
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +474,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4113067998693488526}
   - component: {fileID: 4543202820360394785}
-  - component: {fileID: 8274689213589760621}
   m_Layer: 0
   m_Name: ExitUIController
   m_TagString: Untagged
@@ -496,19 +509,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.96, z: 0.47}
   m_Center: {x: 0, y: 1.14, z: 0}
---- !u!114 &8274689213589760621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6788664048198741192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d225aec2d9403b43be8edcff3991cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NextPhaseUI: {fileID: 3886664853353144032}
 --- !u!1 &9042428250803029785
 GameObject:
   m_ObjectHideFlags: 0

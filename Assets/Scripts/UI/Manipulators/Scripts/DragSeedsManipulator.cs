@@ -4,6 +4,7 @@ using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using Dman.Utilities;
 using UnityEngine;
+using UnityFx.Outline;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
 {
@@ -21,6 +22,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         [SerializeField] private GameObjectVariable selectedGameObject;
 
         private ManipulatorController controller;
+        private MovingSingleOutlineHelper singleOutlineHelper;
+        public OutlineLayerCollection outlineCollection;
 
         public void AttemptTransferAllSeedsInto(SeedBucket target)
         {
@@ -59,6 +62,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             draggingSeedsInstance = draggingParentProvider.SpawnNewDraggingSeeds();
 
             IsActive = true;
+            this.singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()
@@ -73,24 +77,19 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             seeds = null;
             IsActive = false;
+            this.singleOutlineHelper.ClearOutlinedObject();
         }
 
         public override bool OnUpdate()
         {
-            if (!Input.GetMouseButtonDown(0))
+            var planter = GetHoveredPlantContainer();
+            // must be able to plant seed, in a planter
+            var planterValid = planter?.CanPlantSeed ?? false;
+
+            this.singleOutlineHelper.UpdateOutlineObject(planterValid ? planter.GetOutlineObject() : null);
+
+            if (!planterValid || !Input.GetMouseButtonDown(0))
             {
-                return true;
-            }
-            var mouseOvered = harvestCaster.CurrentlyHitObject;
-            if (!mouseOvered.HasValue)
-            {
-                // if hit the UI or nothing, do nothing
-                return true;
-            }
-            var planter = mouseOvered.Value.collider.gameObject?.GetComponentInParent<PlantContainer>();
-            if (planter == null || !planter.CanPlantSeed)
-            {
-                // must be able to plant seed, in a planter
                 return true;
             }
 
@@ -104,6 +103,12 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
             OnSeedsUpdated();
             return true;
+        }
+        private PlantContainer GetHoveredPlantContainer()
+        {
+            var mouseOvered = harvestCaster.CurrentlyHitObject;
+            var hoveredGameObject = mouseOvered.HasValue ? mouseOvered.Value.collider.gameObject : null;
+            return hoveredGameObject?.GetComponentInParent<PlantContainer>();
         }
 
         private void OnSeedsUpdated()

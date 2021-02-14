@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.DataModels;
+﻿using Assets.Scripts.Buildings;
+using Assets.Scripts.DataModels;
 using Assets.Scripts.GreenhouseLoader;
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Dman.ReactiveVariables;
@@ -82,21 +83,6 @@ namespace Assets.Scripts.Plants
             GrowthUpdated();
         }
 
-        /// <summary>
-        /// Handles clicks from the Click Manipulator
-        /// </summary>
-        /// <param name="hit"></param>
-        /// <returns></returns>
-        public bool SelfHit(RaycastHit hit)
-        {
-            if (plantType == null)
-            {
-                return false;
-            }
-            selectedPlant.SetValue(gameObject);
-            return true;
-        }
-
         public bool CanPlantSeed => plantType == null;
 
         public void PlantSeed(Seed toBePlanted)
@@ -160,23 +146,48 @@ namespace Assets.Scripts.Plants
             return Instantiate(plantPrefab, plantsParent.transform);
         }
 
+        /// <summary>
+        /// Whether this plant can pollinate other plants
+        /// </summary>
+        /// <returns></returns>
         public bool CanPollinate()
         {
             if (plantType == null || currentState == null)
             {
                 return false;
             }
-            return (plantType.CanPollinate(currentState))
+            return (plantType.HasFlowers(currentState))
                 && (polliationState?.CanPollinate() ?? false);
         }
 
-        public bool PollinateFrom(PlantContainer other)
+        /// <summary>
+        /// Whether this plant can be pollinated from other plants
+        /// </summary>
+        /// <returns></returns>
+        public bool CanPollinateFrom(PlantContainer other)
         {
+            if (!other.CanPollinate())
+            {
+                return false;
+            }
+            if (polliationState == null || polliationState.IsFertilized())
+            {
+                return false;
+            }
             if (plantType == null || currentState == null)
             {
                 return false;
             }
-            if (!plantType.CanPollinate(currentState))
+            if (!plantType.HasFlowers(currentState))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool PollinateFrom(PlantContainer other)
+        {
+            if (!CanPollinateFrom(other))
             {
                 return false;
             }
@@ -188,13 +199,17 @@ namespace Assets.Scripts.Plants
             return false;
         }
 
+        public bool CanHarvest()
+        {
+            return currentState != null && plantType != null && plantType.CanHarvest(currentState);
+        }
         public Seed[] TryHarvest()
         {
-            if (currentState == null || plantType == null || !plantType.CanHarvest(currentState))
+            if (CanHarvest())
             {
-                return new Seed[0];
+                return HarvestPlant();
             }
-            return HarvestPlant();
+            return new Seed[0];
         }
 
         private Seed[] HarvestPlant()
@@ -208,6 +223,29 @@ namespace Assets.Scripts.Plants
             UpdatePlant();
 
             return harvestedSeeds;
+        }
+
+        /// <summary>
+        /// Handles clicks from the Click Manipulator
+        /// </summary>
+        /// <param name="hit"></param>
+        /// <returns></returns>
+        public bool SelfHit(RaycastHit hit)
+        {
+            if (plantType == null)
+            {
+                return false;
+            }
+            selectedPlant.SetValue(gameObject);
+            return true;
+        }
+        public GameObject GetOutlineObject()
+        {
+            return gameObject;
+        }
+        public bool IsSelectable()
+        {
+            return plantType != null;
         }
 
         #region Saveable

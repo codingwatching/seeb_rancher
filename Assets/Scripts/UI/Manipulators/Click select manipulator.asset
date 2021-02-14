@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Click select manipulator
   m_EditorClassIdentifier: 
   harvestCaster: {fileID: 11400000, guid: 1cd52b24a01fd6f459b9eb48e25b07c4, type: 2}
+  selectableOutline: {fileID: 11400000, guid: 24f77318f5af7c8458aa58e7fc0eb63a, type: 2}
   selectedGameObject: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}

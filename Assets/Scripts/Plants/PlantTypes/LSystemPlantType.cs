@@ -133,7 +133,7 @@ namespace Assets.Scripts.Plants
             return lSystem.CompileWithParameters(geneticModifiedParameters);
         }
 
-        public override bool CanPollinate(PlantState currentState)
+        public override bool HasFlowers(PlantState currentState)
         {
             if (!(currentState is LSystemPlantState systemState))
             {

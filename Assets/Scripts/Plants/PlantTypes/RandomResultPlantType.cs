@@ -29,7 +29,7 @@ namespace Assets.Scripts.Plants
             currentState.growth = Mathf.Clamp(currentState.growth + extraGrowth, 0, 1);
         }
 
-        public override bool CanPollinate(PlantState currentState)
+        public override bool HasFlowers(PlantState currentState)
         {
             return currentState.growth >= minPollinationGrowthPhase && currentState.growth <= maxPollinationGrowthPhase;
         }

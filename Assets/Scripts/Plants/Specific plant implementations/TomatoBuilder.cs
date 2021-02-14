@@ -44,7 +44,7 @@ namespace Assets.Scripts.Plants
                 else
                     Debug.LogError($"Genetic driver unset: {largeOrSmallSwitch}");
             }
-            if (plantParent.plantType.CanPollinate(plantState))
+            if (plantParent.plantType.HasFlowers(plantState))
             {
                 Instantiate(flower, newPlant.transform.parent);
                 if (pollination.HasAnther)

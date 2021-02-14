@@ -35,7 +35,7 @@ namespace Assets.Scripts.Plants
 
         public abstract void AddGrowth(int phaseDiff, PlantState currentState);
 
-        public abstract bool CanPollinate(PlantState currentState);
+        public abstract bool HasFlowers(PlantState currentState);
 
         public abstract void BuildPlantInto(
             PlantContainer targetContainer,

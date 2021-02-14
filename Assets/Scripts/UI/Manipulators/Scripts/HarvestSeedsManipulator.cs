@@ -4,13 +4,13 @@ using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using Dman.Utilities;
 using UnityEngine;
+using UnityFx.Outline;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
 {
     [CreateAssetMenu(fileName = "HarvestSeedsManipulator", menuName = "Tiling/Manipulators/HarvestSeedsManipulator", order = 2)]
     public class HarvestSeedsManipulator : MapManipulator, ISeedHoldingManipulator
     {
-        private ManipulatorController controller;
 
         public GameObjectVariable selectedGameObject;
         public RaycastGroup harvestCaster;
@@ -20,6 +20,9 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private SeedBucketDisplay draggingSeedsInstance;
         private SeedBucket seeds = null;
 
+        private ManipulatorController controller;
+        private MovingSingleOutlineHelper singleOutlineHelper;
+        public OutlineLayerCollection outlineCollection;
 
         public void AttemptTransferAllSeedsInto(SeedBucket target)
         {
@@ -37,34 +40,33 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             selectedGameObject.SetValue(null);
             Debug.Log("harvest manipulator opened");
             CursorTracker.SetCursor(harvestCursor);
-            if (seeds != default)
-            {
-                Debug.LogError("Overwriting existing seed bucket!");
-            }
             seeds = new SeedBucket();
+            this.singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()
         {
-            GameObject.Destroy(draggingSeedsInstance.gameObject);
+            if(draggingSeedsInstance != null)
+            {
+                GameObject.Destroy(draggingSeedsInstance.gameObject);
+            }
             draggingSeedsInstance = null;
 
             CursorTracker.ClearCursor();
+            this.singleOutlineHelper.ClearOutlinedObject();
         }
 
         public override bool OnUpdate()
         {
-            if (!Input.GetMouseButtonDown(0))
+            var planter = GetHoveredPlantContainer();
+            var validTarget = planter?.CanHarvest() ?? false;
+
+            this.singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);
+
+            if (!validTarget || !Input.GetMouseButtonDown(0))
             {
                 return true;
             }
-            var mouseOvered = harvestCaster.CurrentlyHitObject;
-            if (!mouseOvered.HasValue)
-            {
-                // if hit the UI or nothing, do nothing
-                return true;
-            }
-            var planter = mouseOvered.Value.collider.gameObject?.GetComponentInParent<PlantContainer>();
             var harvested = planter.TryHarvest();
             if (harvested.Length <= 0)
             {
@@ -84,6 +86,12 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             OnSeedsUpdated();
             return true;
+        }
+        private PlantContainer GetHoveredPlantContainer()
+        {
+            var mouseOvered = harvestCaster.CurrentlyHitObject;
+            var hoveredGameObject = mouseOvered.HasValue ? mouseOvered.Value.collider.gameObject : null;
+            return hoveredGameObject?.GetComponentInParent<PlantContainer>();
         }
 
         private void OnSeedsUpdated()
