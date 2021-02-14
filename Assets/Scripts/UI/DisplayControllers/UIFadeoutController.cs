@@ -3,20 +3,23 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.DisplayControllers
 {
-    [RequireComponent(typeof(Animator))]
     public class UIFadeoutController : MonoBehaviour
     {
         public EventGroup beginFadeEvent;
         public string fadeoutTrigger;
 
+
+        public GameObject fadingGameObject;
         private float lastAnimatorTrigger;
         private bool reachedHalfway;
         public EventGroup CompleteFadeoutReached;
         public float totalFadeoutAnimationLength;
-        private void Start()
+
+
+        private void Awake()
         {
             beginFadeEvent.OnEvent += BeginFadeEvent_OnEvent;
-            gameObject.SetActive(false);
+            fadingGameObject.SetActive(false);
         }
 
         private void OnDestroy()
@@ -26,19 +29,23 @@ namespace Assets.Scripts.UI.DisplayControllers
 
         private void BeginFadeEvent_OnEvent()
         {
-            var animator = GetComponent<Animator>();
-            gameObject.SetActive(true);
+            var animator = fadingGameObject.GetComponent<Animator>();
+            fadingGameObject.SetActive(true);
             lastAnimatorTrigger = Time.time;
             animator.SetTrigger(fadeoutTrigger);
         }
 
         private void Update()
         {
+            if (!fadingGameObject.activeSelf)
+            {
+                return;
+            }
             var timeSinceTrigger = Time.time - lastAnimatorTrigger;
             if (timeSinceTrigger >= totalFadeoutAnimationLength)
             {
                 reachedHalfway = false;
-                gameObject.SetActive(false);
+                fadingGameObject.SetActive(false);
             }
             else if (!reachedHalfway && timeSinceTrigger >= totalFadeoutAnimationLength / 2)
             {

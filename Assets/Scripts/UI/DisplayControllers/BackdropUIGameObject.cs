@@ -49,11 +49,6 @@ namespace Assets.Scripts.UI.DisplayControllers
             var center = (realCorners[0] + realCorners[2]) / 2;
             highlightObject.transform.position = new Vector3(center.x, center.y, center.z);
 
-            //highlightObject.anchorMin = movedTargetObj.anchorMin;
-            //highlightObject.anchorMax = movedTargetObj.anchorMax;
-            //highlightObject.position = movedTargetObj.position;
-            //highlightObject.sizeDelta = movedTargetObj.sizeDelta;
-
             movedTargetObj.SetParent(highlightObject, true);
             placeholderObject.transform.SetSiblingIndex(originalIndex);
         }

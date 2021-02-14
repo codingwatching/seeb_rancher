@@ -37,19 +37,6 @@ namespace Assets.Scripts.UI.DisplayControllers
                 .AddTo(this);
         }
 
-        //private void SetBackdrop(RectTransform target)
-        //{
-        //    currentBackdrop = Instantiate(backdropPrefab, transform.parent);
-
-        //    currentBackdrop.anchorMax = target.anchorMax;
-        //}
-        //private void ClearBackdrop()
-        //{
-        //    if (currentBackdrop)
-        //        Destroy(currentBackdrop);
-        //}
-
-
         // Use this for initialization
         void Start()
         {
