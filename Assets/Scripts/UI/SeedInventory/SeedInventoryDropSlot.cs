@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.DataModels;
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Dman.ReactiveVariables;
+using Dman.SceneSaveSystem;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -10,7 +11,7 @@ using UnityEngine.UI;
 namespace Assets.Scripts.UI.SeedInventory
 {
     [RequireComponent(typeof(SeedBucketDisplay))]
-    public class SeedInventoryDropSlot : MonoBehaviour
+    public class SeedInventoryDropSlot : MonoBehaviour, ISaveableData
     {
         [Tooltip("Called when seeds are pulled out of a slot to be moved around")]
         public UnityEvent onSeedFirstGrabbed;
@@ -24,6 +25,11 @@ namespace Assets.Scripts.UI.SeedInventory
         public SeedBucketUI dataModel { get; private set; }
 
         private SeedBucketDisplay Displayer => GetComponent<SeedBucketDisplay>();
+
+        private void Awake()
+        {
+            this.SetDataModelLink(new SeedBucketUI());
+        }
 
         /// <summary>
         /// This method will be kind of messy because it keys off of a button instead of the <see cref="Manipulators.Scripts.ManipulatorController"/> system
@@ -83,5 +89,31 @@ namespace Assets.Scripts.UI.SeedInventory
             yield return new WaitForEndOfFrame();
             isResetting = false;
         }
+
+        #region save data
+        public string UniqueSaveIdentifier => "SeedSlot";
+
+        public ISaveableData[] GetDependencies()
+        {
+            return new ISaveableData[0];
+        }
+
+        public object GetSaveObject()
+        {
+            return dataModel;
+        }
+
+        public void SetupFromSaveObject(object save)
+        {
+            if (save is SeedBucketUI data)
+            {
+                this.SetDataModelLink(data);
+            }
+            else
+            {
+                this.SetDataModelLink(new SeedBucketUI());
+            }
+        }
+        #endregion
     }
 }

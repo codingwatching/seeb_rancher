@@ -31,21 +31,21 @@ namespace Dman.NarrativeSystem
                 seedBucket.AllSeeds[i] = plantType.GenerateRandomSeed();
             }
 
-            var inventoryDataModel = SeedInventoryController.Instance.dataModel;
-            for (int i = 0; i < inventoryDataModel.seedBuckets.Length; i++)
+            var seedInventoryParent = SeedInventoryController.Instance.seedGridLayoutParent;
+            foreach (Transform bucketInstance in seedInventoryParent.transform)
             {
-                if (string.IsNullOrWhiteSpace(inventoryDataModel.seedBuckets[i].description) && inventoryDataModel.seedBuckets[i].bucket.Empty)
+                var dropSlot = bucketInstance.GetComponent<SeedInventoryDropSlot>();
+                var seedModel = dropSlot.dataModel;
+                if (string.IsNullOrWhiteSpace(seedModel.description) && seedModel.bucket.Empty)
                 {
-                    inventoryDataModel.seedBuckets[i] = new SeedBucketUI
+                    dropSlot.SetDataModelLink(new SeedBucketUI
                     {
                         bucket = seedBucket,
                         description = seedBucketDescription
-                    };
+                    });
                     break;
                 }
             }
-
-            SeedInventoryController.Instance.DataModelUpdated();
 
             OpenPromptWithSetup(() =>
             {

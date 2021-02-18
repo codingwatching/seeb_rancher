@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 6755793976280763332}
   - component: {fileID: 1412321333317631675}
   - component: {fileID: 4022953965823276303}
+  - component: {fileID: 1114982477722433483}
   m_Layer: 5
   m_Name: Seed Inventory Slot
   m_TagString: Untagged
@@ -281,7 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8b3e585e5d562488ae44d69840a7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draggingSeedSet: {fileID: 11400000, guid: 5e91e36cf97c04044969196cf470c402, type: 2}
   onSeedFirstGrabbed:
     m_PersistentCalls:
       m_Calls:
@@ -316,6 +316,19 @@ MonoBehaviour:
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   seedSpriteDisplay: {fileID: 2715534571742316643}
   seedCountDisplay: {fileID: 6321715105305999453}
+--- !u!114 &1114982477722433483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665867077323561222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba9ee01b76ab8746b37ec289fcde9c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPrefabType: {fileID: 11400000, guid: 9f7b755860941584d99253f038a468f6, type: 2}
 --- !u!1 &8193326344644418645
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,10 +41,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         /// <param name="sourceBucket"></param>
         public void InitializeSeedBucketFrom(SeedBucket sourceBucket)
         {
-            if (seeds != default)
-            {
-                Debug.LogError("Overwriting existing seed bucket!");
-            }
             seeds = new SeedBucket();
             seeds.TryTransferSeedsIntoSelf(sourceBucket);
             OnSeedsUpdated();
