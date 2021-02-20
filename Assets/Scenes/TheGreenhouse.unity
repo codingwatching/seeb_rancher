@@ -23685,6 +23685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994733985}
   - component: {fileID: 994733986}
+  - component: {fileID: 994733987}
   m_Layer: 5
   m_Name: Modals
   m_TagString: Untagged
@@ -23729,6 +23730,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderLayer: 2
+--- !u!114 &994733987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994733984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0532abf7c4b167b4392283c0f933ff72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedGridLayoutParent: {fileID: 1772962952}
 --- !u!1 &998252297
 GameObject:
   m_ObjectHideFlags: 0
@@ -26549,7 +26563,6 @@ GameObject:
   - component: {fileID: 1147921013}
   - component: {fileID: 1147921015}
   - component: {fileID: 1147921014}
-  - component: {fileID: 1147921016}
   - component: {fileID: 1147921017}
   m_Layer: 5
   m_Name: Seed Inventory
@@ -26617,20 +26630,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147921012}
   m_CullTransparentMesh: 1
---- !u!114 &1147921016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147921012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0532abf7c4b167b4392283c0f933ff72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultSeedBuckets: 16
-  seedGridLayoutParent: {fileID: 1772962952}
 --- !u!114 &1147921017
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,7 +8,9 @@
 #define leafAge 3
 #define leavesPerPetiole 3
 #define petioleLeafAngularDist 110
-#define flowerAge 3
+
+#define flowerAge 7
+#define timeToFruit 10
 
 #define leafExpression [&&L][/(180)&&L]
 #define budBranchChanceFactor 0.4
@@ -39,7 +41,6 @@ P(1 - flowerFailureChance) V -> V(flowerStalkLength)
 V(x) : x > 0 -> $(0.1)FV(x - 1)
 V(x) : x <= 0 -> [``C(x)K(1)]
 
-#define timeToFruit 4
  
 ## C is a flower controller
 C(x) : x < timeToFruit -> C(x + 1)

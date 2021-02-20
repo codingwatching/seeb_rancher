@@ -53,5 +53,21 @@ namespace Assets.Scripts.Plants
         {
             yield return floatOutput;
         }
+
+        public override SingleGene[] GenerateGeneData()
+        {
+            ulong newGene = 0;
+            var randomGen = new System.Random(Random.Range(int.MinValue, int.MaxValue));
+            var binaryProportionalChance = randomGen.NextDouble();
+            for (int i = 0; i < sizeof(ulong) * 8; i++)
+            {
+                var nextBit = randomGen.NextDouble() > binaryProportionalChance;
+                if (nextBit)
+                {
+                    newGene |= ((ulong)1) << i;
+                }
+            }
+            return new SingleGene[] { new SingleGene { Value = newGene } };
+        }
     }
 }
