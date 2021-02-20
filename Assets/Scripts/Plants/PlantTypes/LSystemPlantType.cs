@@ -23,8 +23,11 @@ namespace Assets.Scripts.Plants
 
         public LSystemPlantState(string axiom, float growth) : base(growth)
         {
+            // used to generate properties for the plant not related to the L-system. such as random rotation
+            // Is a duplicate, parallel, random generator to the one used by the l-system
+            var ephimeralRandoms = new System.Random(randomSeed);
             totalSystemSteps = 0;
-            randomRotationAmount = Random.Range(0f, 360f);
+            randomRotationAmount = (float)(ephimeralRandoms.NextDouble() * 360);
 
             this.axiom = axiom;
             lSystemState = new DefaultLSystemState(this.axiom, randomSeed);
@@ -114,7 +117,9 @@ namespace Assets.Scripts.Plants
             var newPlantTarget = targetContainer.SpawnPlantModelObject(turtleInterpretorPrefab.gameObject).GetComponent<TurtleInterpreterBehavior>();
 
             newPlantTarget.InterpretSymbols(systemState.lSystemState.currentSymbols);
-            newPlantTarget.transform.parent.Rotate(Vector3.up, systemState.randomRotationAmount);
+            var lastAngles = newPlantTarget.transform.parent.localEulerAngles;
+            lastAngles.y = systemState.randomRotationAmount;
+            newPlantTarget.transform.parent.localEulerAngles = lastAngles;
         }
 
         private LSystem<double> CompileSystemBasedOnGenetics(CompiledGeneticDrivers geneticDrivers)

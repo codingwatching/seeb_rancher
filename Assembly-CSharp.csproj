@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractContainer.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
     <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MovingSingleOutlineHelper.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\BasePlantType.cs" />
@@ -119,7 +120,6 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MovingSingleOutlineHelper.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
