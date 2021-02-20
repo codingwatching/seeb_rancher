@@ -4,7 +4,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 {
     public interface ISeedHoldingManipulator
     {
-        void AttemptTransferAllSeedsInto(SeedBucket target);
+        bool AttemptTransferAllSeedsInto(SeedBucket target);
+        string SeedGroupName { get; }
         /// <summary>
         /// will either take exactly <paramref name="seedCount"/> seeds, or take zero seeds.
         /// </summary>

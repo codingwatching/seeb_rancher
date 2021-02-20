@@ -8,6 +8,10 @@ using UnityFx.Outline;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
 {
+
+    /// <summary>
+    /// used to control seeds being moved by the cursor, when not harvesting.
+    /// </summary>
     [CreateAssetMenu(fileName = "DragSeedsManipulator", menuName = "Tiling/Manipulators/DragSeedsManipulator", order = 3)]
     public class DragSeedsManipulator : MapManipulator, ISeedHoldingManipulator
     {
@@ -17,7 +21,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         [SerializeField] private Sprite plantCursor;
 
         private SeedBucketDisplay draggingSeedsInstance;
-        private SeedBucket seeds = null;
+        private SeedInventoryDropSlot sourceSlot = null;
 
         [SerializeField] private GameObjectVariable selectedGameObject;
 
@@ -25,24 +29,35 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private MovingSingleOutlineHelper singleOutlineHelper;
         public OutlineLayerCollection outlineCollection;
 
-        public void AttemptTransferAllSeedsInto(SeedBucket target)
+        public string SeedGroupName => sourceSlot?.dataModel.description;
+
+        public bool AttemptTransferAllSeedsInto(SeedBucket target)
         {
-            target.TryTransferSeedsIntoSelf(seeds);
-            OnSeedsUpdated();
+            if (target.TryTransferSeedsIntoSelf(sourceSlot.dataModel.bucket))
+            {
+                OnSeedsUpdated();
+                return true;
+            }
+            return false;
         }
         public Seed[] AttemptTakeSeeds(int seedCount)
         {
-            return seeds?.TakeN(seedCount);
+            return sourceSlot?.dataModel.bucket.TakeN(seedCount);
         }
 
         /// <summary>
         /// Take all seeds from <paramref name="sourceBucket"/> and place them into a new bucket for this manipulator
         /// </summary>
         /// <param name="sourceBucket"></param>
-        public void InitializeSeedBucketFrom(SeedBucket sourceBucket)
+        public void InitializeSeedBucketFrom(SeedInventoryDropSlot sourceSlot)
         {
-            seeds = new SeedBucket();
-            seeds.TryTransferSeedsIntoSelf(sourceBucket);
+            if (sourceSlot.dataModel.bucket.Empty)
+            {
+                Debug.LogError("cannot initialize source slot to an empty slot. Closing drag seeds manipulator immediately.");
+                controller.manipulatorVariable.SetValue(null);
+                return;
+            }
+            this.sourceSlot = sourceSlot;
             OnSeedsUpdated();
         }
 
@@ -66,18 +81,22 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             CursorTracker.ClearCursor();
             GameObject.Destroy(draggingSeedsInstance.gameObject);
             draggingSeedsInstance = null;
-            if (!seeds.Empty)
-            {
-                //TODO: handle the case where seeds is not empty here. Remember where the seeds came from in the inventory
-                Debug.LogError("Seeds lost!!");
-            }
-            seeds = null;
+            sourceSlot = null;
             IsActive = false;
             singleOutlineHelper.ClearOutlinedObject();
         }
 
         public override bool OnUpdate()
         {
+            if(sourceSlot?.dataModel.bucket.Empty ?? true)
+            {
+                // clear the description out. the description moves with the seeds, not owned by the slot.
+                sourceSlot.dataModel.description = "";
+                sourceSlot.MySeedsUpdated();
+                // close the manipulator if the bucket is empty
+                return false;
+            }
+
             var planter = GetHoveredPlantContainer();
             // must be able to plant seed, in a planter
             var planterValid = planter?.CanPlantSeed ?? false;
@@ -89,7 +108,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return true;
             }
 
-            var nextSeed = seeds.TakeOne();
+            var nextSeed = sourceSlot.dataModel.bucket.TakeOne();
             if (nextSeed == null)
             {
                 // close the manipulator if we can't get any more seeds
@@ -109,13 +128,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         private void OnSeedsUpdated()
         {
-            if (seeds.Empty)
-            {
-                // close the manipulator if the bucket is empty
-                controller.manipulatorVariable.SetValue(null);
-                return;
-            }
-            draggingSeedsInstance.DisplaySeedBucket(seeds);
+            draggingSeedsInstance.DisplaySeedBucket(sourceSlot.dataModel.bucket);
+            sourceSlot.MySeedsUpdated();
         }
     }
 }

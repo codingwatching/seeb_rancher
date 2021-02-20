@@ -28,7 +28,11 @@ namespace Assets.Scripts.UI.SeedInventory
 
         private void Awake()
         {
-            this.SetDataModelLink(new SeedBucketUI());
+            if(dataModel == null)
+            {
+                UpdateDataModel(new SeedBucketUI());
+            }
+            InitializeListeners();
         }
 
         /// <summary>
@@ -38,7 +42,13 @@ namespace Assets.Scripts.UI.SeedInventory
         {
             if (activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
             {
-                seedHolder.AttemptTransferAllSeedsInto(dataModel.bucket);
+                var emptyPreTransfer = dataModel?.bucket.Empty ?? true;
+                var seedsTransferred = seedHolder.AttemptTransferAllSeedsInto(dataModel.bucket);
+                if (emptyPreTransfer && seedsTransferred)
+                {
+                    Debug.Log($"setting description to {seedHolder.SeedGroupName}");
+                    dataModel.description = seedHolder.SeedGroupName;
+                }
             }
             else
             {
@@ -48,27 +58,37 @@ namespace Assets.Scripts.UI.SeedInventory
                 }
                 // if there are no dragging seeds, pull out of the slot and start dragging seeds
                 activeManipulator.SetValue(draggingSeedsManipulator);
-                draggingSeedsManipulator.InitializeSeedBucketFrom(dataModel.bucket);
+                draggingSeedsManipulator.InitializeSeedBucketFrom(this);
                 onSeedFirstGrabbed?.Invoke();
             }
-            Displayer.DisplaySeedBucket(dataModel.bucket);
+            MySeedsUpdated();
         }
 
-        public void SetDataModelLink(SeedBucketUI dataModel)
+        public void MySeedsUpdated()
         {
-            this.dataModel = dataModel;
             Displayer.DisplaySeedBucket(dataModel.bucket);
             labelInputField.text = dataModel.description;
+        }
+
+        public void UpdateDataModel(SeedBucketUI model)
+        {
+            this.dataModel = model;
+            this.MySeedsUpdated();
+        }
+
+        public void InitializeListeners()
+        {
             labelInputField.onDeselect.AddListener(newValue =>
             {
                 if (isResetting)
                 {
                     return;
                 }
-                Debug.Log(newValue);
-                dataModel.description = newValue;
+                if(this.dataModel != null)
+                {
+                    dataModel.description = newValue;
+                }
                 StartCoroutine(ResetTextField());
-                //resetText = true;
             });
         }
         private bool isResetting = false;
@@ -107,11 +127,11 @@ namespace Assets.Scripts.UI.SeedInventory
         {
             if (save is SeedBucketUI data)
             {
-                this.SetDataModelLink(data);
+                UpdateDataModel(data);
             }
             else
             {
-                this.SetDataModelLink(new SeedBucketUI());
+                UpdateDataModel(new SeedBucketUI());
             }
         }
         #endregion

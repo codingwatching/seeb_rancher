@@ -24,10 +24,16 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private MovingSingleOutlineHelper singleOutlineHelper;
         public OutlineLayerCollection outlineCollection;
 
-        public void AttemptTransferAllSeedsInto(SeedBucket target)
+        public string SeedGroupName => "harvested";
+
+        public bool AttemptTransferAllSeedsInto(SeedBucket target)
         {
-            target.TryTransferSeedsIntoSelf(seeds);
-            OnSeedsUpdated();
+            if (target.TryTransferSeedsIntoSelf(seeds))
+            {
+                OnSeedsUpdated();
+                return true;
+            }
+            return false;
         }
         public Seed[] AttemptTakeSeeds(int seedCount)
         {
@@ -54,6 +60,20 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
             CursorTracker.ClearCursor();
             singleOutlineHelper.ClearOutlinedObject();
+
+            if (!seeds.Empty)
+            {
+                var seedReceiver = SeedInventoryController.Instance.CreateSeedStack(new SeedBucketUI
+                {
+                    bucket = seeds,
+                    description = "Harvested"
+                });
+                if (seedReceiver == null)
+                {
+                    Debug.LogError($"No open seed slots, {seeds.AllSeeds.Length} seeds lost");
+                }
+            }
+            seeds = null;
         }
 
         public override bool OnUpdate()

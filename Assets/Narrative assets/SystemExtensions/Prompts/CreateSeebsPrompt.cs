@@ -31,20 +31,14 @@ namespace Dman.NarrativeSystem
                 seedBucket.AllSeeds[i] = plantType.GenerateRandomSeed();
             }
 
-            var seedInventoryParent = SeedInventoryController.Instance.seedGridLayoutParent;
-            foreach (Transform bucketInstance in seedInventoryParent.transform)
+            var seedReceiver = SeedInventoryController.Instance.CreateSeedStack(new SeedBucketUI
             {
-                var dropSlot = bucketInstance.GetComponent<SeedInventoryDropSlot>();
-                var seedModel = dropSlot.dataModel;
-                if (string.IsNullOrWhiteSpace(seedModel.description) && seedModel.bucket.Empty)
-                {
-                    dropSlot.SetDataModelLink(new SeedBucketUI
-                    {
-                        bucket = seedBucket,
-                        description = seedBucketDescription
-                    });
-                    break;
-                }
+                bucket = seedBucket,
+                description = seedBucketDescription
+            });
+            if(seedReceiver == null)
+            {
+                throw new System.Exception("No available bucket to put seeds in, unhandled problem");
             }
 
             OpenPromptWithSetup(() =>

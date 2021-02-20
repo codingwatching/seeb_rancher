@@ -24,7 +24,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             ClearOutlinedObject();
             if (nextOutlined != null)
             {
-                Debug.Log((object)("outlining " + nextOutlined.name));
                 outlineLayer.Add((GameObject)nextOutlined);
                 lastOutlined = nextOutlined;
             }
@@ -37,7 +36,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 var outlineLayer = layerCollection[layerIndex];
                 if (outlineLayer.Contains(lastOutlined))
                 {
-                    Debug.Log("removing " + lastOutlined.name);
                     outlineLayer.Remove(lastOutlined);
                 }
             }
