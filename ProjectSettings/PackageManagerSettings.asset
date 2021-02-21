@@ -33,6 +33,7 @@ MonoBehaviour:
     - com.dman.l-system
     - com.dman.mesh-draft-extensions
     - com.dman.object-sets
+    - com.dman.plantbuilder
     - com.dman.reactive-variables
     - com.dman.scene-save-system
     - com.dman.utilities
@@ -62,6 +63,7 @@ MonoBehaviour:
       - com.dman.l-system
       - com.dman.mesh-draft-extensions
       - com.dman.object-sets
+      - com.dman.plantbuilder
       - com.dman.reactive-variables
       - com.dman.scene-save-system
       - com.dman.utilities
@@ -79,6 +81,7 @@ MonoBehaviour:
     - com.dman.l-system
     - com.dman.mesh-draft-extensions
     - com.dman.object-sets
+    - com.dman.plantbuilder
     - com.dman.reactive-variables
     - com.dman.scene-save-system
     - com.dman.utilities

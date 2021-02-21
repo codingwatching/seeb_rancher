@@ -15,7 +15,7 @@ MonoBehaviour:
   meshKeys:
   - Character: 70
     MeshRef: {fileID: 3557837105413461654, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
-    IndividualScale: {x: 1.5, y: 0.3, z: 0.3}
+    IndividualScale: {x: 1.5, y: 1, z: 1}
     ParameterScale: 0
     ScalePerParameter: {x: 0, y: 0, z: 0}
     AlsoMove: 1

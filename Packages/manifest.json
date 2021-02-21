@@ -48,7 +48,8 @@
     "com.dman.l-system": "0.1.7",
     "com.unityfx.outline": "0.8.3",
     "com.unityfx.outline.urp": "0.3.0",
-    "com.dman.utilities": "0.3.2"
+    "com.dman.utilities": "0.3.2",
+    "com.dman.plantbuilder": "0.2.1"
   },
   "scopedRegistries": [
     {
@@ -60,6 +61,7 @@
         "com.dman.l-system",
         "com.dman.mesh-draft-extensions",
         "com.dman.object-sets",
+        "com.dman.plantbuilder",
         "com.dman.reactive-variables",
         "com.dman.scene-save-system",
         "com.dman.utilities",
