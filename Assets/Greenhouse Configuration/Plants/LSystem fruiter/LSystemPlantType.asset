@@ -25,3 +25,5 @@ MonoBehaviour:
   geneticModifiers:
   - geneticDriver: {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
     lSystemDefineDirectiveName: primaryBranchInternodes
+  - geneticDriver: {fileID: 11400000, guid: a7f0462c3a55194428127395b95bc427, type: 2}
+    lSystemDefineDirectiveName: flowerFailureChance

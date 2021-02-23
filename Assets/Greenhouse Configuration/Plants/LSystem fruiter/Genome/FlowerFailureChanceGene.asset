@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff60f4c6066da79499ff69e904fe00cb, type: 3}
-  m_Name: DimensionsChromosome
+  m_Script: {fileID: 11500000, guid: 36da55203e1d2304d8dc8be959c92390, type: 3}
+  m_Name: FlowerFailureChanceGene
   m_EditorClassIdentifier: 
-  genes:
-  - {fileID: 11400000, guid: 87532beccbcbd7b49a8e1e08900bb04a, type: 2}
-  - {fileID: 11400000, guid: f84391c8f44632b47b744ad14299cf81, type: 2}
-  chromosomeCopies: 2
+  floatOutput: {fileID: 11400000, guid: a7f0462c3a55194428127395b95bc427, type: 2}
+  higherValueDominant: 1
+  rangeMin: 0
+  rangeMax: 1

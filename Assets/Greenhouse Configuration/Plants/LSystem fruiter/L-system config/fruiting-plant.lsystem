@@ -12,7 +12,7 @@
 #define timeToFruit 10
 
 #define leafExpression [&&L][/(180)&&L]
-#define flowerFailureChance 0.7
+#define flowerFailureChance 0
 
 
 ## S is the Shoot symbol
