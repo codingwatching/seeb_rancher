@@ -20,13 +20,14 @@ namespace Assets.Scripts.Plants
         public BooleanGeneticDriver largeOrSmallSwitch;
 
         public override void BuildPlant(
-            PlantContainer plantParent,
+            Transform plantParent,
+            BasePlantType plantType,
             CompiledGeneticDrivers geneticDrivers,
             PlantState plantState,
             PollinationState pollination)
         {
             var prefabIndex = GetPrefabIndex(plantState.growth);
-            var newPlant = plantParent.SpawnPlantModelObject(growthStagePrefabs[prefabIndex]);
+            var newPlant = Instantiate(growthStagePrefabs[prefabIndex], plantParent);
 
             if (prefabIndex == growthStagePrefabs.Length - 1)
             {
@@ -44,7 +45,7 @@ namespace Assets.Scripts.Plants
                 else
                     Debug.LogError($"Genetic driver unset: {largeOrSmallSwitch}");
             }
-            if (plantParent.plantType.HasFlowers(plantState))
+            if (plantType.HasFlowers(plantState))
             {
                 Instantiate(flower, newPlant.transform.parent);
                 if (pollination.HasAnther)

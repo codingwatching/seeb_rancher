@@ -55,8 +55,6 @@ namespace Assets.Scripts.Plants
         public PollinationState polliationState;
 
         public IntReference levelPhase;
-
-        public GameObject planter;
         public GameObject plantsParent;
 
 
@@ -132,17 +130,7 @@ namespace Assets.Scripts.Plants
             {
                 return;
             }
-            plantType.BuildPlantInto(this, GeneticDrivers, currentState, polliationState);
-        }
-
-        /// <summary>
-        /// utility callback used by the PlantBuilders to inject a plant into this container
-        /// </summary>
-        /// <param name="plantPrefab"></param>
-        /// <returns></returns>
-        public GameObject SpawnPlantModelObject(GameObject plantPrefab)
-        {
-            return Instantiate(plantPrefab, plantsParent.transform);
+            plantType.BuildPlantInto(plantsParent.transform, GeneticDrivers, currentState, polliationState);
         }
 
         /// <summary>

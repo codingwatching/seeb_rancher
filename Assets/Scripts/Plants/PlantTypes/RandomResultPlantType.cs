@@ -39,12 +39,12 @@ namespace Assets.Scripts.Plants
         }
 
         public override void BuildPlantInto(
-            PlantContainer targetContainer,
+            Transform targetContainer,
             CompiledGeneticDrivers geneticDrivers,
             PlantState currentState,
             PollinationState pollination)
         {
-            plantBuilder.BuildPlant(targetContainer, geneticDrivers, currentState, pollination);
+            plantBuilder.BuildPlant(targetContainer, this, geneticDrivers, currentState, pollination);
         }
 
         protected override int GetHarvestedSeedNumber(PlantState currentState)

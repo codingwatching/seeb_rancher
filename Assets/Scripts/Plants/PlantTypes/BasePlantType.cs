@@ -38,7 +38,7 @@ namespace Assets.Scripts.Plants
         public abstract bool HasFlowers(PlantState currentState);
 
         public abstract void BuildPlantInto(
-            PlantContainer targetContainer,
+            Transform parent,
             CompiledGeneticDrivers geneticDrivers,
             PlantState currentState,
             PollinationState pollination);

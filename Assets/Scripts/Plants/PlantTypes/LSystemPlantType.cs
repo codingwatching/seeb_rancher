@@ -98,7 +98,7 @@ namespace Assets.Scripts.Plants
         }
 
         public override void BuildPlantInto(
-            PlantContainer targetContainer,
+            Transform targetContainer,
             CompiledGeneticDrivers geneticDrivers,
             PlantState currentState,
             PollinationState pollination)
@@ -114,7 +114,7 @@ namespace Assets.Scripts.Plants
             systemState.StepStateUpToSteps(targetSteps, compiledSystem);
 
 
-            var newPlantTarget = targetContainer.SpawnPlantModelObject(turtleInterpretorPrefab.gameObject).GetComponent<TurtleInterpreterBehavior>();
+            var newPlantTarget = Instantiate(turtleInterpretorPrefab, targetContainer);
 
             newPlantTarget.InterpretSymbols(systemState.lSystemState.currentSymbols);
             var lastAngles = newPlantTarget.transform.parent.localEulerAngles;
