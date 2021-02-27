@@ -13,7 +13,8 @@ namespace Assets.Scripts.Plants
         [SerializeField]
         private Seed pollinatedGenes;
         [SerializeField]
-        private bool isPollinated;
+        private bool _isPollinated;
+        public bool IsPollinated { get => _isPollinated; private set => _isPollinated = value; }
 
         [SerializeField]
         private Seed _selfGenes;
@@ -23,23 +24,18 @@ namespace Assets.Scripts.Plants
         {
             HasAnther = true;
             pollinatedGenes = null;
-            isPollinated = false;
+            _isPollinated = false;
             SelfGenes = selfGenes;
-        }
-
-        public bool IsFertilized()
-        {
-            return isPollinated;
         }
 
         public void SelfPollinateIfNotFertile()
         {
-            if (IsFertilized())
+            if (IsPollinated)
             {
                 return;
             }
             pollinatedGenes = SelfGenes;
-            isPollinated = true;
+            IsPollinated = true;
         }
 
         public Seed GetChildSeed()
@@ -62,12 +58,12 @@ namespace Assets.Scripts.Plants
 
         public bool RecieveGenes(PollinationState other)
         {
-            if (isPollinated || !other.HasAnther)
+            if (IsPollinated || !other.HasAnther)
             {
                 return false;
             }
             pollinatedGenes = other.SelfGenes;
-            isPollinated = true;
+            IsPollinated = true;
             HasAnther = false;
             return true;
         }

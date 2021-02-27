@@ -18,6 +18,12 @@ namespace Assets.Scripts.Plants
         [System.NonSerialized()]
         public bool lastStepChanged;
 
+        //cached stuff
+        [System.NonSerialized()]
+        private LSystem<double> compiledSystem;
+        [System.NonSerialized()]
+        public ArrayParameterRepresenation<double> runtimeParameters;
+
         public float randomRotationAmount;
         private string axiom;
 
@@ -40,20 +46,45 @@ namespace Assets.Scripts.Plants
             totalSystemSteps = 0;
         }
 
-        public void StepStateUpToSteps(
-            int targetSteps,
-            LSystem<double> system,
-            double[] globalParameters = null)
+        public void CompileSystemIfNotCached(
+            FloatGeneticDriverToLSystemParameter[] geneticModifiers,
+            CompiledGeneticDrivers geneticDrivers,
+            LSystemObject system)
         {
+            if(this.compiledSystem != null)
+            {
+                return;
+            }
+            Debug.Log("compiling System");
+            var geneticModifiedParameters = geneticModifiers
+                .Select(x =>
+                {
+                    if (geneticDrivers.TryGetGeneticData(x.geneticDriver, out var driverValue))
+                    {
+                        return new { x.lSystemDefineDirectiveName, driverValue };
+                    }
+                    return null;
+                })
+                .Where(x => x != null)
+                .ToDictionary(x => x.lSystemDefineDirectiveName, x => x.driverValue.ToString());
+            this.compiledSystem = system.CompileWithParameters(geneticModifiedParameters);
+
+            this.runtimeParameters = system.GetRuntimeParameters();
+        }
+
+        public void StepStateUpToSteps(int targetSteps)
+        {
+            var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
             while (totalSystemSteps < targetSteps)
             {
                 var lastSymbols = lSystemState.currentSymbols;
-                system.StepSystem(lSystemState, globalParameters);
+                compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
                 lastStepChanged = !lastSymbols.Equals(lSystemState.currentSymbols);
                 totalSystemSteps++;
             }
         }
     }
+
     [System.Serializable]
     public struct FloatGeneticDriverToLSystemParameter
     {
@@ -108,10 +139,13 @@ namespace Assets.Scripts.Plants
                 Debug.LogError("invalid plant state type");
                 return;
             }
+
+            systemState.CompileSystemIfNotCached(geneticModifiers, geneticDrivers, lSystem);
+            systemState.runtimeParameters.SetParameter("hasAnther", pollination.HasAnther ? 1 : 0);
+            systemState.runtimeParameters.SetParameter("isPollinated", pollination.HasAnther ? 1 : 0);
+
             var targetSteps = Mathf.FloorToInt(systemState.growth * stepsPerPhase);
-            // TODO: do this only once, not every render step
-            var compiledSystem = CompileSystemBasedOnGenetics(geneticDrivers);
-            systemState.StepStateUpToSteps(targetSteps, compiledSystem);
+            systemState.StepStateUpToSteps(targetSteps);
 
 
             var newPlantTarget = Instantiate(turtleInterpretorPrefab, targetContainer);
@@ -120,22 +154,6 @@ namespace Assets.Scripts.Plants
             var lastAngles = newPlantTarget.transform.parent.localEulerAngles;
             lastAngles.y = systemState.randomRotationAmount;
             newPlantTarget.transform.parent.localEulerAngles = lastAngles;
-        }
-
-        private LSystem<double> CompileSystemBasedOnGenetics(CompiledGeneticDrivers geneticDrivers)
-        {
-            var geneticModifiedParameters = geneticModifiers
-                .Select(x =>
-                {
-                    if (geneticDrivers.TryGetGeneticData(x.geneticDriver, out var driverValue))
-                    {
-                        return new { x.lSystemDefineDirectiveName, driverValue };
-                    }
-                    return null;
-                })
-                .Where(x => x != null)
-                .ToDictionary(x => x.lSystemDefineDirectiveName, x => x.driverValue.ToString());
-            return lSystem.CompileWithParameters(geneticModifiedParameters);
         }
 
         public override bool HasFlowers(PlantState currentState)
@@ -165,7 +183,6 @@ namespace Assets.Scripts.Plants
         }
         public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
         {
-
             // TODO: these seed counts are picked out of the blue. Consider running the l-system to get the seed counts
             //  for a more accurate simulation.
             //  more relevent if there are certain trait combinations that can sterilize a seed

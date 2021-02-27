@@ -50,6 +50,7 @@ namespace Assets.Scripts.UI.MarketContracts
         public float defaultReward;
         [Tooltip("For every extra genetic driver over 1, multiply the reward by this amount. 3 genetic drivers will be defaultReward * multiplierPerAdditional^2")]
         public float multiplierPerAdditional;
+
         public BooleanGeneticDriver[] targetBooleanDrivers;
         [Range(0, 1)]
         public float chanceForNewContractPerPhase;

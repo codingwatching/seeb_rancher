@@ -57,6 +57,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             ToastProvider.ShowToast("pollinated", targetPlant.gameObject, 1);
             if (currentPlant == targetPlant)
             {
+                // force update of selected plant views
                 selectedThing.SetValue(selectedThing.CurrentValue);
                 // could've done a self-pollinate, in which case we should close the pollination tool
                 if (!currentPlant.CanPollinate())

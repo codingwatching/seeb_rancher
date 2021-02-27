@@ -157,7 +157,7 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            if (polliationState == null || polliationState.IsFertilized())
+            if (polliationState == null || polliationState.IsPollinated)
             {
                 return false;
             }

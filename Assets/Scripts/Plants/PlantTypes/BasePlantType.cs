@@ -64,7 +64,7 @@ namespace Assets.Scripts.Plants
             {
                 sourcePollination.SelfPollinateIfNotFertile();
             }
-            if (!sourcePollination.IsFertilized())
+            if (!sourcePollination.IsPollinated)
             {
                 return new Seed[0];
             }
