@@ -12,7 +12,7 @@ namespace Dman.NarrativeSystem
         public UnityEvent onOpened;
         public UnityEvent onCompleted;
 
-        public ContractDescriptor contractToCreate;
+        public TargetContractDescriptor contractToCreate;
         public GameObjectVariable variableToPutContractIn;
 
         public override void OpenPrompt(Conversation conversation)

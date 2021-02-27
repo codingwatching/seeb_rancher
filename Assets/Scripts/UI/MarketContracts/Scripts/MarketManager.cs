@@ -9,28 +9,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.MarketContracts
 {
-    /// <summary>
-    /// class used during runtime to describe a contract
-    /// </summary>
-    [System.Serializable]
-    public class ContractDescriptor
-    {
-        public BooleanGeneticTarget[] targets;
-        public float reward;
-        public BasePlantType plantType;
-        public int seedRequirement;
-
-        public bool Matches(CompiledGeneticDrivers drivers)
-        {
-            if (!targets.All(boolTarget =>
-                     drivers.TryGetGeneticData(boolTarget.targetDriver, out var boolValue)
-                     && boolValue == boolTarget.targetValue))
-            {
-                return false;
-            }
-            return true;
-        }
-    }
 
     public class MarketManager : MonoBehaviour
     {
@@ -106,7 +84,7 @@ namespace Assets.Scripts.UI.MarketContracts
             var newTargets = chosenDrivers
                 .Select(x => new BooleanGeneticTarget(x))
                 .ToArray();
-            CreateMarketContract(new ContractDescriptor
+            CreateMarketContract(new TargetContractDescriptor
             {
                 targets = newTargets,
                 reward = newPrice,
@@ -115,7 +93,7 @@ namespace Assets.Scripts.UI.MarketContracts
             });
         }
 
-        public void CreateMarketContract(ContractDescriptor contract)
+        public void CreateMarketContract(TargetContractDescriptor contract)
         {
             var newContract = Instantiate(contractOfferPrefab, marketModalContractsParent.transform);
             newContract.targets = contract.targets;
@@ -123,7 +101,7 @@ namespace Assets.Scripts.UI.MarketContracts
             newContract.seedRequirement = contract.seedRequirement;
             newContract.plantType = contract.plantType;
         }
-        public ContractContainer CreateClaimedContract(ContractDescriptor contract)
+        public ContractContainer CreateClaimedContract(TargetContractDescriptor contract)
         {
             var newContract = Instantiate(claimedContractPrefab, claimedContractsModalParent.transform);
             newContract.targets = contract.targets;
@@ -149,7 +127,7 @@ namespace Assets.Scripts.UI.MarketContracts
             {
                 throw new System.Exception("contract must be in the market");
             }
-            var contractDescriptor = new ContractDescriptor
+            var contractDescriptor = new TargetContractDescriptor
             {
                 reward = marketContract.rewardAmount,
                 targets = marketContract.targets,

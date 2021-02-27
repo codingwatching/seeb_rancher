@@ -29,7 +29,7 @@ namespace Assets.Scripts.UI.MarketContracts
 
         private void EvaluateContract(Seed[] seebs)
         {
-            var descriptor = new ContractDescriptor
+            var descriptor = new TargetContractDescriptor
             {
                 plantType = contract.plantType,
                 reward = contract.rewardAmount,

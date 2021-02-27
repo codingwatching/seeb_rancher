@@ -36,7 +36,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 Instance = null;
         }
 
-        public void InitiateEvaluation(Seed[] seeds, ContractDescriptor contract)
+        public void InitiateEvaluation(Seed[] seeds, TargetContractDescriptor contract)
         {
             if (IsEvaluating)
             {
@@ -55,7 +55,7 @@ namespace Assets.Scripts.UI.MarketContracts
         /// <param name="seeds"></param>
         /// <param name="contract"></param>
         /// <returns></returns>
-        IEnumerator EvaluateSeebs(Seed[] seeds, ContractDescriptor contract)
+        IEnumerator EvaluateSeebs(Seed[] seeds, TargetContractDescriptor contract)
         {
             var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
             var plantType = plantTypeRegistry.GetUniqueObjectFromID(seeds[0].plantType);
