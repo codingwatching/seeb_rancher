@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.DataModels;
-using Dman.LSystem;
 using Dman.LSystem.UnityObjects;
 using Genetics.GeneticDrivers;
 using System.Collections.Generic;
@@ -8,82 +7,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.Plants
 {
-    [System.Serializable]
-    public class LSystemPlantState : PlantState
-    {
-        [System.NonSerialized()]
-        public DefaultLSystemState lSystemState;
-        [System.NonSerialized()]
-        public int totalSystemSteps;
-        [System.NonSerialized()]
-        public bool lastStepChanged;
-
-        //cached stuff
-        [System.NonSerialized()]
-        private LSystem<double> compiledSystem;
-        [System.NonSerialized()]
-        public ArrayParameterRepresenation<double> runtimeParameters;
-
-        public float randomRotationAmount;
-        private string axiom;
-
-        public LSystemPlantState(string axiom, float growth) : base(growth)
-        {
-            // used to generate properties for the plant not related to the L-system. such as random rotation
-            // Is a duplicate, parallel, random generator to the one used by the l-system
-            var ephimeralRandoms = new System.Random(randomSeed);
-            totalSystemSteps = 0;
-            randomRotationAmount = (float)(ephimeralRandoms.NextDouble() * 360);
-
-            this.axiom = axiom;
-            lSystemState = new DefaultLSystemState(this.axiom, randomSeed);
-        }
-
-        public override void AfterDeserialized()
-        {
-            base.AfterDeserialized();
-            lSystemState = new DefaultLSystemState(axiom, randomSeed);
-            totalSystemSteps = 0;
-        }
-
-        public void CompileSystemIfNotCached(
-            FloatGeneticDriverToLSystemParameter[] geneticModifiers,
-            CompiledGeneticDrivers geneticDrivers,
-            LSystemObject system)
-        {
-            if(this.compiledSystem != null)
-            {
-                return;
-            }
-            Debug.Log("compiling System");
-            var geneticModifiedParameters = geneticModifiers
-                .Select(x =>
-                {
-                    if (geneticDrivers.TryGetGeneticData(x.geneticDriver, out var driverValue))
-                    {
-                        return new { x.lSystemDefineDirectiveName, driverValue };
-                    }
-                    return null;
-                })
-                .Where(x => x != null)
-                .ToDictionary(x => x.lSystemDefineDirectiveName, x => x.driverValue.ToString());
-            this.compiledSystem = system.CompileWithParameters(geneticModifiedParameters);
-
-            this.runtimeParameters = system.GetRuntimeParameters();
-        }
-
-        public void StepStateUpToSteps(int targetSteps)
-        {
-            var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
-            while (totalSystemSteps < targetSteps)
-            {
-                var lastSymbols = lSystemState.currentSymbols;
-                compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
-                lastStepChanged = !lastSymbols.Equals(lSystemState.currentSymbols);
-                totalSystemSteps++;
-            }
-        }
-    }
 
     [System.Serializable]
     public struct FloatGeneticDriverToLSystemParameter
@@ -145,7 +68,14 @@ namespace Assets.Scripts.Plants
             systemState.runtimeParameters.SetParameter("isPollinated", pollination.HasAnther ? 1 : 0);
 
             var targetSteps = Mathf.FloorToInt(systemState.growth * stepsPerPhase);
-            systemState.StepStateUpToSteps(targetSteps);
+            if (targetSteps > systemState.totalSystemSteps)
+            {
+                systemState.StepStateUpToSteps(targetSteps);
+            }
+            else
+            {
+                systemState.RepeatLastSystemStep();
+            }
 
 
             var newPlantTarget = Instantiate(turtleInterpretorPrefab, targetContainer);

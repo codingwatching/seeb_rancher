@@ -1,6 +1,10 @@
 #axiom S(0)
 #iterations 70
 
+## flags set based on the pollination state
+#runtime hasAnther 1
+#runtime isPollinated 0
+
 #define primaryBranchInternodes 4
 #define shootHeight 5
 #define internodeHeight 6
@@ -11,7 +15,6 @@
 #define flowerAge 7
 #define timeToFruit 10
 
-#define leafExpression [&&L][/(180)&&L]
 #define flowerFailureChance 0
 
 
@@ -29,22 +32,23 @@ T(x) : x == primaryBranchInternodes -> []
 #define flowerStalkLength 6
 
 ## B is a bud off the main stem, and randomly chooses what it will become
-B(x) -> [^(50)V]P(leavesPerPetiole)
+B(x) -> [^(50)V]petiole(leavesPerPetiole)
 
 ## V is a flowering bud
 P(flowerFailureChance) V -> []
 P(1 - flowerFailureChance) V -> V(flowerStalkLength)
 V(x) : x > 0 -> $(0.1)FV(x - 1)
-V(x) : x <= 0 -> [``C(x)K(1)]
+V(x) : x <= 0 -> [``C(x)K(1)`A(1)]
 
  
 ## C is a flower controller
 C(x) : x < timeToFruit -> C(x + 1)
-C(x)K(y) : x >= timeToFruit -> D(1)
+C(x)K(y)`A(z) : x >= timeToFruit -> D(1)
+C(x)K(y)` : x >= timeToFruit -> D(1)
 
-#define fruiteSize 5
+#define fruitSize 5
 ## D is a fruiting body
-D(x) : x < fruiteSize -> D(x + 1)
+D(x) : x < fruitSize -> D(x + 1)
 
 ## P is the petiole, x is number of leaves
 #define petiole( P(
@@ -56,8 +60,31 @@ O(x, t) : x > 0 -> +(t)L(x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
 I(x) : x > 0 -> I(x - 1)$(0.003)F
 
 ## organs
+
+#define leafExpression [&&L][/(180)&&L]
 N -> leafExpression
+
+## l is a leaf
 L -> [`l(1, leafAge)]
 L(x) -> [`l(1, x)]
 l(x, y) : x < y -> l(x + 1, y)
+
+## K is a flower
 K(x) : x < flowerAge -> K(x + 1)
+
+## A is an anther
+A(x) : x < flowerAge && hasAnther > 0 -> A(x + 1)
+A(x) : hasAnther < 1 -> []
+
+
+
+
+
+
+
+
+
+
+
+
+
