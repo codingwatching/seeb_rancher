@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c8a7589e792efe4eade96d0e6a5b983, type: 3}
-  m_Name: CreateClaimedContract
+  m_Name: Prompt 5 create contract
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: Here's my next offer! I need seeds that will always breed true to small
-    and yellow. I'll pay double since my scientists have been having trouble isolating
-    both small and yellow at the same time.
+  promptText: 'Here''s my offer!
+
+    Once you have some seeds, drop them into the
+    drop slot.
+
+    Don''t try to give me bad seeds! Before I pay you I''ll be breeding
+    them through a few generations to make sure they''re up to snuff!'
   speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
   onOpened:
     m_PersistentCalls:
@@ -24,12 +28,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   contractToCreate:
-    targets:
-    - targetDriver: {fileID: 11400000, guid: 104f80777f26cd442af030c082cd640c, type: 2}
-      targetValue: 0
-    - targetDriver: {fileID: 11400000, guid: 9f6c045497c8e824a83f0ca47b2020ce, type: 2}
-      targetValue: 0
-    reward: 1000
-    plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
-    seedRequirement: 6
+    booleanTargets: []
+    floatTargets: []
+    seedCountTarget:
+    - minSeeds: 10
+    reward: 500
+    plantType: {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}
+    seedRequirement: 20
   variableToPutContractIn: {fileID: 11400000, guid: d7087cadbc2596347936733088da4a07, type: 2}

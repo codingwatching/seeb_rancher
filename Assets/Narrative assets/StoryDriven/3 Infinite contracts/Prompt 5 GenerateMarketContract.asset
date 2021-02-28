@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9e4998ad11b3b440acce663beb2aa1f, type: 3}
-  m_Name: GenerateMarketContract
+  m_Name: Prompt 5 GenerateMarketContract
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: Here's a new one now!

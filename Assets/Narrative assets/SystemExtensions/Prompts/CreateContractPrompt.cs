@@ -18,6 +18,8 @@ namespace Dman.NarrativeSystem
         public override void OpenPrompt(Conversation conversation)
         {
             onOpened?.Invoke();
+            //TODO: clone contract here would be best practice. the object pointer is preserved, which could lead to weirdness
+            //  should be fine for now. No system is set up to run a prompt more than once without a save between.
             var createdContract = MarketManager.Instance.CreateClaimedContract(contractToCreate);
             MarketManager.Instance.ShowClaimedContractsModal();
             createdContract.StartCoroutine(HighlightContract(createdContract.gameObject));

@@ -4,10 +4,10 @@ using Genetics.GeneticDrivers;
 using System.Runtime.Serialization;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.MarketContracts
+namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
 {
-    [System.Serializable]
-    public class BooleanGeneticTarget : ISerializable
+    [System.Serializable]// must be odin serialization compatabile and unity inspector compatible
+    public class BooleanGeneticTarget : ISerializable, IContractTarget
     {
         public BooleanGeneticDriver targetDriver;
         public bool targetValue;

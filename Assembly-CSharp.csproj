@@ -81,7 +81,7 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickSelectorManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\BooleanGeneticTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\BooleanGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
@@ -106,7 +106,7 @@
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\FloatGeneticTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\FloatGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\Plants\Genes\MendelianFloatGene.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
@@ -122,6 +122,9 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\IContractTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\SeedCountTarget.cs" />
+    <Compile Include="Assets\Scripts\TmpUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

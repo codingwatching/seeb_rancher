@@ -1,5 +1,4 @@
-using Assets.Scripts.Plants;
-using Dman.ObjectSets;
+using Assets.Scripts.UI.MarketContracts.EvaluationTargets;
 using Dman.SceneSaveSystem;
 using System.Linq;
 using TMPro;
@@ -9,10 +8,7 @@ namespace Assets.Scripts.UI.MarketContracts
 {
     public class ContractContainer : MonoBehaviour, ISaveableData
     {
-        public BasePlantType plantType;
-        public BooleanGeneticTarget[] targets;
-        public float rewardAmount;
-        public int seedRequirement;
+        public TargetContractDescriptor contract;
 
         public TMP_Text plantNameText;
         public string seedNumberFormat = "# seeds";
@@ -34,33 +30,28 @@ namespace Assets.Scripts.UI.MarketContracts
 
         private void ReRender()
         {
-            plantNameText.text = plantType.plantName;
-            seedNumberText.text = seedNumberFormat.Replace("#", seedRequirement.ToString());
-            rewardText.text = $"${rewardAmount:F2}";
-            targetGeneticsDescriptorText.text = string.Join(", ", targets.Select(target => target.GetDescriptionOfTarget()));
+            plantNameText.text = contract.plantType.plantName;
+            seedNumberText.text = seedNumberFormat.Replace("#", contract.seedRequirement.ToString());
+            rewardText.text = $"${contract.reward:F2}";
+            targetGeneticsDescriptorText.text = string.Join(", ",
+                contract.booleanTargets.Cast<IContractTarget>()
+                    .Concat(contract.floatTargets)
+                    .Concat(contract.seedCountTarget)
+                    .Select(target => target.GetDescriptionOfTarget())
+                );
         }
 
         [System.Serializable]
         class ContractSaveObject
         {
-            BooleanGeneticTarget[] targets;
-            float rewardAmount;
-            int seedRequirement;
-            int plantTypeID;
+            TargetContractDescriptor contract;
             public ContractSaveObject(ContractContainer source)
             {
-                targets = source.targets;
-                rewardAmount = source.rewardAmount;
-                seedRequirement = source.seedRequirement;
-                plantTypeID = source.plantType.myId;
+                contract = source.contract;
             }
             public void ApplyTo(ContractContainer target)
             {
-                target.targets = targets;
-                target.rewardAmount = rewardAmount;
-                target.seedRequirement = seedRequirement;
-                var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
-                target.plantType = plantTypeRegistry.GetUniqueObjectFromID(plantTypeID);
+                target.contract = contract;
             }
         }
 

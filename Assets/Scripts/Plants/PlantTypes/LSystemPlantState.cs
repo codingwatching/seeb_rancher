@@ -10,7 +10,7 @@ namespace Assets.Scripts.Plants
     public class LSystemPlantState : PlantState
     {
         [System.NonSerialized()]
-        public DefaultLSystemState lSystemState;
+        public LSystemState<double> lSystemState;
         [System.NonSerialized()]
         public int totalSystemSteps;
         [System.NonSerialized()]
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Plants
         [System.NonSerialized()]
         public ArrayParameterRepresenation<double> runtimeParameters;
         [System.NonSerialized()]
-        private DefaultLSystemState lastState;
+        private LSystemState<double> lastState;
 
         public float randomRotationAmount;
         private string axiom;
@@ -72,6 +72,17 @@ namespace Assets.Scripts.Plants
             runtimeParameters = system.GetRuntimeParameters();
         }
 
+        public void StepUntilFirstNoChange()
+        {
+            var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
+            do
+            {
+                lastState = lSystemState;
+                lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
+                lastStepChanged = !lastState.currentSymbols.Equals(lSystemState.currentSymbols);
+            } while (lastStepChanged);
+        }
+
         public void StepStateUpToSteps(int targetSteps)
         {
             var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
@@ -85,14 +96,13 @@ namespace Assets.Scripts.Plants
 
                 if (totalSystemSteps >= targetSteps)
                 {
-                    compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
+                    lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
                 }
                 else
                 {
                     // this is the Last step in this series
-                    // use Clone Constructor to prevent sharing array pointers. necessary to check if a change occured, and to restore back to this state later.
-                    lastState = new DefaultLSystemState(lSystemState);
-                    compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
+                    lastState = lSystemState;
+                    lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
                     lastStepChanged = !lastState.currentSymbols.Equals(lSystemState.currentSymbols);
                 }
             }
@@ -105,9 +115,7 @@ namespace Assets.Scripts.Plants
             }
             var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
 
-            lSystemState = lastState;
-            lastState = new DefaultLSystemState(lSystemState); // clone again to make sure the last state stays the same.
-            compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
+            lSystemState = compiledSystem.StepSystem(lastState, ruintimeParamValues);
         }
     }
 }

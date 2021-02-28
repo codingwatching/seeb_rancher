@@ -1,4 +1,5 @@
 using Assets.Scripts.Plants;
+using Assets.Scripts.UI.MarketContracts.EvaluationTargets;
 using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
 using Dman.Utilities;
@@ -86,7 +87,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 .ToArray();
             CreateMarketContract(new TargetContractDescriptor
             {
-                targets = newTargets,
+                booleanTargets = newTargets,
                 reward = newPrice,
                 seedRequirement = defaultSeedCountRequirement,
                 plantType = defaultPlantType
@@ -96,18 +97,12 @@ namespace Assets.Scripts.UI.MarketContracts
         public void CreateMarketContract(TargetContractDescriptor contract)
         {
             var newContract = Instantiate(contractOfferPrefab, marketModalContractsParent.transform);
-            newContract.targets = contract.targets;
-            newContract.rewardAmount = contract.reward;
-            newContract.seedRequirement = contract.seedRequirement;
-            newContract.plantType = contract.plantType;
+            newContract.contract = contract;
         }
         public ContractContainer CreateClaimedContract(TargetContractDescriptor contract)
         {
             var newContract = Instantiate(claimedContractPrefab, claimedContractsModalParent.transform);
-            newContract.targets = contract.targets;
-            newContract.rewardAmount = contract.reward;
-            newContract.seedRequirement = contract.seedRequirement;
-            newContract.plantType = contract.plantType;
+            newContract.contract = contract;
 
             return newContract;
         }
@@ -127,13 +122,7 @@ namespace Assets.Scripts.UI.MarketContracts
             {
                 throw new System.Exception("contract must be in the market");
             }
-            var contractDescriptor = new TargetContractDescriptor
-            {
-                reward = marketContract.rewardAmount,
-                targets = marketContract.targets,
-                seedRequirement = marketContract.seedRequirement,
-                plantType = marketContract.plantType
-            };
+            var contractDescriptor = marketContract.contract;
             Destroy(marketContract.gameObject);
             CreateClaimedContract(contractDescriptor);
         }

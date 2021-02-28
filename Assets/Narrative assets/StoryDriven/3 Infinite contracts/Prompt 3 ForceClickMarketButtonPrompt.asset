@@ -9,16 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c442a6abf06dd4bbfbbeeafeebf389, type: 3}
-  m_Name: Prompt 3
+  m_Script: {fileID: 11500000, guid: b70aafaaac2006b4582ad0dd86e3ab21, type: 3}
+  m_Name: Prompt 3 ForceClickMarketButtonPrompt
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: If you think you can fulfill it, click that "Claim" button and the
-    contract moves to your list of claimed contracts
+  promptText: Open up the market modal here to see my new offers
   speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
-  onOpened:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleted:
-    m_PersistentCalls:
-      m_Calls: []
+  highlightObjectVariable: {fileID: 11400000, guid: 36a5dedcb4f596d41a701f34e48385fa, type: 2}

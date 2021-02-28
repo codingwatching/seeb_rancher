@@ -65,7 +65,7 @@ namespace Assets.Scripts.Plants
 
             systemState.CompileSystemIfNotCached(geneticModifiers, geneticDrivers, lSystem);
             systemState.runtimeParameters.SetParameter("hasAnther", pollination.HasAnther ? 1 : 0);
-            systemState.runtimeParameters.SetParameter("isPollinated", pollination.HasAnther ? 1 : 0);
+            systemState.runtimeParameters.SetParameter("isPollinated", pollination.IsPollinated ? 1 : 0);
 
             var targetSteps = Mathf.FloorToInt(systemState.growth * stepsPerPhase);
             if (targetSteps > systemState.totalSystemSteps)
@@ -76,7 +76,6 @@ namespace Assets.Scripts.Plants
             {
                 systemState.RepeatLastSystemStep();
             }
-
 
             var newPlantTarget = Instantiate(turtleInterpretorPrefab, targetContainer);
 
@@ -113,15 +112,25 @@ namespace Assets.Scripts.Plants
         }
         public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
         {
+            var geneticDrivers = genome.CompileGenome(seed.genes);
+            var tempState = this.GenerateBaseSate() as LSystemPlantState;
+
+            tempState.CompileSystemIfNotCached(geneticModifiers, geneticDrivers, lSystem);
+            // when simulating growth, no anthers are clipped. and it is always pollinated.
+            tempState.runtimeParameters.SetParameter("hasAnther", 1);
+            tempState.runtimeParameters.SetParameter("isPollinated", 1);
+
+            tempState.StepUntilFirstNoChange();
+
+            var seedCount = GetHarvestedSeedNumber(tempState);
             // TODO: these seed counts are picked out of the blue. Consider running the l-system to get the seed counts
             //  for a more accurate simulation.
             //  more relevent if there are certain trait combinations that can sterilize a seed
-            return SelfPollinateSeed(seed, 1, 5);
+            return SelfPollinateSeed(seed, seedCount);
         }
-        IEnumerable<Seed> SelfPollinateSeed(Seed seed, int minSeedCopies, int maxSeedCopies)
+        IEnumerable<Seed> SelfPollinateSeed(Seed seed, int seedCopies)
         {
-            var copies = Random.Range(minSeedCopies, maxSeedCopies);
-            for (int i = 0; i < copies; i++)
+            for (int i = 0; i < seedCopies; i++)
             {
                 yield return new Seed
                 {

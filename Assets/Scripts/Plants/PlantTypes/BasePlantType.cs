@@ -23,7 +23,6 @@ namespace Assets.Scripts.Plants
         {
         }
     }
-
     public abstract class BasePlantType : IDableObject
     {
         public GenomeEditor genome;

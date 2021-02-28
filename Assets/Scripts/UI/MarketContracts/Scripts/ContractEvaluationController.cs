@@ -23,6 +23,8 @@ namespace Assets.Scripts.UI.MarketContracts
 
         public static ContractEvaluationController Instance;
 
+        public int targetSeedQuantity = 100;
+
         public bool IsEvaluating;
         public float rewardAmount;
 
@@ -64,28 +66,26 @@ namespace Assets.Scripts.UI.MarketContracts
                 throw new System.Exception("Cannot evaluate fitness of seeds of different species");
             }
             var genome = contract.plantType.genome;
-            var generationPhase = seeds.SelectMany(seed => plantType.SimulateGrowthToHarvest(seed)).ToList();
+            var generationPhase = seeds.ToList();
             // keep pollinating until there's at least 100 seeds
-            while (generationPhase.Count < 100)
+            while (generationPhase.Count < targetSeedQuantity)
             {
-                yield return new WaitForSeconds(.1f);
-                generationPhase = generationPhase.SelectMany(seed => plantType.SimulateGrowthToHarvest(seed)).ToList();
-            }
-            yield return new WaitForSeconds(.1f);
-
-            var seedsSatisfyingDescriptors = 0;
-
-            for (int i = 0; i < generationPhase.Count; i++)
-            {
-                var seed = generationPhase[i];
-                var resultingDrivers = genome.CompileGenome(seed.genes);
-                if (contract.Matches(resultingDrivers))
+                var previousGeneration = generationPhase;
+                generationPhase = new List<Seed>();
+                foreach (var seed in previousGeneration)
                 {
-                    seedsSatisfyingDescriptors++;
+                    yield return new WaitForEndOfFrame();
+                    generationPhase.AddRange(plantType.SimulateGrowthToHarvest(seed));
+                    if(generationPhase.Count >= targetSeedQuantity)
+                    {
+                        break;
+                    }
                 }
             }
 
-            var seedComplianceRatio = ((float)seedsSatisfyingDescriptors) / generationPhase.Count;
+            yield return StartCoroutine(contract.EvaluateComplianceOfSeeds(generationPhase));
+
+            var seedComplianceRatio = contract._complianceResult;
             seedPercentageComplianceText.text = $"{seedComplianceRatio:P0}";
             rewardAmount = contract.reward * seedComplianceRatio;
             rewardAmountText.text = $"${rewardAmount:F2}";

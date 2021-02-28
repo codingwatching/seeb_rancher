@@ -7,19 +7,19 @@ namespace Assets.Scripts.UI.MarketContracts
 {
     public class ClaimedContractDropSlot : MonoBehaviour
     {
-        public ContractContainer contract;
+        public ContractContainer contractContainer;
         public ScriptableObjectVariable activeManipulator;
 
         public void SeedSlotClicked()
         {
-            if (ContractEvaluationController.Instance.IsEvaluating || contract.seedRequirement <= 0)
+            if (ContractEvaluationController.Instance.IsEvaluating || contractContainer.contract.seedRequirement <= 0)
             {
                 return;
             }
             if (activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
             {
-                var seeds = seedHolder.AttemptTakeSeeds(contract.seedRequirement);
-                if (seeds == null || contract.plantType.myId != seeds[0].plantType)
+                var seeds = seedHolder.AttemptTakeSeeds(contractContainer.contract.seedRequirement);
+                if (seeds == null || contractContainer.contract.plantType.myId != seeds[0].plantType)
                 {
                     return;
                 }
@@ -29,14 +29,8 @@ namespace Assets.Scripts.UI.MarketContracts
 
         private void EvaluateContract(Seed[] seebs)
         {
-            var descriptor = new TargetContractDescriptor
-            {
-                plantType = contract.plantType,
-                reward = contract.rewardAmount,
-                seedRequirement = contract.seedRequirement,
-                targets = contract.targets
-            };
-            Destroy(contract.gameObject);
+            var descriptor = contractContainer.contract;
+            Destroy(contractContainer.gameObject);
 
             ContractEvaluationController.Instance.InitiateEvaluation(seebs, descriptor);
         }
