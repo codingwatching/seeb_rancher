@@ -34,7 +34,7 @@ namespace Dman.NarrativeSystem
                 bucket = seedBucket,
                 description = seedBucketDescription
             });
-            if(seedReceiver == null)
+            if (seedReceiver == null)
             {
                 throw new System.Exception("No available bucket to put seeds in, unhandled problem");
             }

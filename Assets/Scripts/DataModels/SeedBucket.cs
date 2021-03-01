@@ -21,9 +21,9 @@ namespace Assets.Scripts.DataModels
 
         private bool shuffledSinceLastAddition;
 
-        public SeedBucket(Seed[] seeds): this()
+        public SeedBucket(Seed[] seeds) : this()
         {
-            this.AllSeeds = seeds;
+            AllSeeds = seeds;
         }
         public SeedBucket()
         {

@@ -25,7 +25,7 @@ namespace Assets.Scripts.Plants.Editor
 
         private bool ChangeGrowth()
         {
-            if(plantTarget.currentState == null)
+            if (plantTarget.currentState == null)
             {
                 return false;
             }

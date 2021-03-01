@@ -14,7 +14,7 @@ namespace Assets.Scripts.Plants
         public bool HasAnther { get => _hasAnther; private set => _hasAnther = value; }
         [SerializeField]
         private List<Seed> pollinationSources;
-        public bool IsPollinated { get => pollinationSources.Count > 0; }
+        public bool IsPollinated => pollinationSources.Count > 0;
 
         [SerializeField]
         private Seed _selfGenes;
@@ -42,7 +42,7 @@ namespace Assets.Scripts.Plants
             {
                 throw new System.Exception("breeding plants of different types is not supported");
             }
-            if(pollinationSources.Count <= 0)
+            if (pollinationSources.Count <= 0)
             {
                 throw new System.Exception("No pollination source, plant is infertile");
             }

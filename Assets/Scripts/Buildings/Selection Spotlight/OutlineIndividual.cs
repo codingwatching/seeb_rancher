@@ -13,12 +13,12 @@ namespace Assets.Scripts.Buildings.Selection_Spotlight
 
         private void Start()
         {
-            this.ReAddSelf();
+            ReAddSelf();
         }
 
         private void OnValidate()
         {
-            this.ReAddSelf();
+            ReAddSelf();
         }
 
         private void ReAddSelf()

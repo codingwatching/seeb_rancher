@@ -28,7 +28,7 @@ namespace Assets.Scripts.Buildings
             }
             else
             {
-                this.transform.position = spotlightedObject.transform.position;
+                transform.position = spotlightedObject.transform.position;
                 highlighterObject.SetActive(true);
                 var plantContainer = spotlightedObject.GetComponentInParent<PlantContainer>();
                 if (plantContainer != null && plantContainer.CanPollinate())

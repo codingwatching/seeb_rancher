@@ -1,14 +1,12 @@
-﻿using Assets.Scripts.Plants;
-using Genetics.GeneticDrivers;
-using System.Linq;
+﻿using Assets.Scripts.DataModels;
+using Assets.Scripts.Plants;
 using Assets.Scripts.UI.MarketContracts.EvaluationTargets;
-using Assets.Scripts.DataModels;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Runtime.Serialization;
 using Dman.ObjectSets;
-using Assets;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.MarketContracts
 {
@@ -17,7 +15,7 @@ namespace Assets.Scripts.UI.MarketContracts
     /// Goes through odin serialization. Intended to be edited inside the unity editor
     /// </summary>
     [System.Serializable]
-    public class TargetContractDescriptor: ISerializable
+    public class TargetContractDescriptor : ISerializable
     {
         public BooleanGeneticTarget[] booleanTargets;
         public FloatGeneticTarget[] floatTargets;
@@ -29,7 +27,7 @@ namespace Assets.Scripts.UI.MarketContracts
         public int seedRequirement;
 
         public TargetContractDescriptor()
-        {}
+        { }
 
         #region Seed Compliance
         public float _complianceResult;
@@ -70,7 +68,7 @@ namespace Assets.Scripts.UI.MarketContracts
             if (seedCountTarget.Length > 0)
             {
                 var generatedSeeds = plantType.SimulateGrowthToHarvest(seed).Count();
-                if(generatedSeeds < seedCountTarget[0].minSeeds)
+                if (generatedSeeds < seedCountTarget[0].minSeeds)
                 {
                     return false;
                 }

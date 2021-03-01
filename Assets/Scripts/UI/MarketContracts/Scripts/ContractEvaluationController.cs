@@ -76,7 +76,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 {
                     yield return new WaitForEndOfFrame();
                     generationPhase.AddRange(plantType.SimulateGrowthToHarvest(seed));
-                    if(generationPhase.Count >= targetSeedQuantity)
+                    if (generationPhase.Count >= targetSeedQuantity)
                     {
                         break;
                     }

@@ -25,7 +25,7 @@ namespace Dman.NarrativeSystem
                     {
                         return;
                     }
-                    this.StartCoroutine(CheckTriggersOnNextFrame());
+                    StartCoroutine(CheckTriggersOnNextFrame());
                 }).AddTo(this);
             Instance = this;
         }

@@ -1,7 +1,4 @@
-﻿using Dman.ObjectSets;
-using System.Runtime.Serialization;
-
-namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
+﻿namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
 {
     [System.Serializable] // odin and unity inspector
     public class SeedCountTarget : IContractTarget

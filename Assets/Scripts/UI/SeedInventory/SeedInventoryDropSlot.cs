@@ -28,7 +28,7 @@ namespace Assets.Scripts.UI.SeedInventory
 
         private void Awake()
         {
-            if(dataModel == null)
+            if (dataModel == null)
             {
                 UpdateDataModel(new SeedBucketUI());
             }
@@ -72,8 +72,8 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public void UpdateDataModel(SeedBucketUI model)
         {
-            this.dataModel = model;
-            this.MySeedsUpdated();
+            dataModel = model;
+            MySeedsUpdated();
         }
 
         public void InitializeListeners()
@@ -84,7 +84,7 @@ namespace Assets.Scripts.UI.SeedInventory
                 {
                     return;
                 }
-                if(this.dataModel != null)
+                if (dataModel != null)
                 {
                     dataModel.description = newValue;
                 }

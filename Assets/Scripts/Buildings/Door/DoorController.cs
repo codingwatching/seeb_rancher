@@ -1,7 +1,7 @@
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Dman.ReactiveVariables;
-using UnityEngine;
 using UniRx;
+using UnityEngine;
 
 namespace Assets.Scripts.Buildings
 {

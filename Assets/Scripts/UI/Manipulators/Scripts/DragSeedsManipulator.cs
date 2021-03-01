@@ -93,7 +93,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public override bool OnUpdate()
         {
-            if(sourceSlot?.dataModel.bucket.Empty ?? true)
+            if (sourceSlot?.dataModel.bucket.Empty ?? true)
             {
                 // clear the description out. the description moves with the seeds, not owned by the slot.
                 sourceSlot.dataModel.description = "";

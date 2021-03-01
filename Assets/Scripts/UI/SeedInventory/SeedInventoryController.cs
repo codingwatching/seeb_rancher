@@ -1,6 +1,4 @@
 using Assets.Scripts.DataModels;
-using Dman.SceneSaveSystem;
-using Dman.Utilities;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.SeedInventory
@@ -8,7 +6,7 @@ namespace Assets.Scripts.UI.SeedInventory
     public class SeedInventoryController : MonoBehaviour
     {
         public GameObject seedGridLayoutParent;
-        
+
         public static SeedInventoryController Instance;
 
 
@@ -19,8 +17,8 @@ namespace Assets.Scripts.UI.SeedInventory
         /// <returns>the object containing the seed drop slot that was modified. Null if no slot is open</returns>
         public GameObject CreateSeedStack(SeedBucketUI seedStack)
         {
-            var dropSlot = this.GetFirstEmptyDropSlot();
-            if(dropSlot == null)
+            var dropSlot = GetFirstEmptyDropSlot();
+            if (dropSlot == null)
             {
                 return null;
             }

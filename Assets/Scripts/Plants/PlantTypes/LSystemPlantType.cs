@@ -114,7 +114,7 @@ namespace Assets.Scripts.Plants
         public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
         {
             var geneticDrivers = genome.CompileGenome(seed.genes);
-            var tempState = this.GenerateBaseSate() as LSystemPlantState;
+            var tempState = GenerateBaseSate() as LSystemPlantState;
 
             tempState.CompileSystemIfNotCached(geneticModifiers, geneticDrivers, lSystem);
             // when simulating growth, no anthers are clipped. and it is always pollinated.

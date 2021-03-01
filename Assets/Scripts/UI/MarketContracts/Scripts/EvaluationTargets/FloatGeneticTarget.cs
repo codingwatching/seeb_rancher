@@ -35,11 +35,11 @@ namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
 
         public bool Matches(CompiledGeneticDrivers geneticDrivers)
         {
-            if(!geneticDrivers.TryGetGeneticData(targetDriver, out var floatValue))
+            if (!geneticDrivers.TryGetGeneticData(targetDriver, out var floatValue))
             {
                 return false;
             }
-            if(floatValue < minValue || floatValue > maxValue)
+            if (floatValue < minValue || floatValue > maxValue)
             {
                 return false;
             }
