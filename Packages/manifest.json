@@ -42,14 +42,14 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.dman.genetics": "0.1.1",
-    "com.dman.scene-save-system": "0.1.1",
-    "com.dman.reactive-variables": "0.1.1",
-    "com.dman.l-system": "0.1.10",
+    "com.dman.genetics": "0.1.2",
+    "com.dman.scene-save-system": "0.1.2",
+    "com.dman.reactive-variables": "0.1.2",
+    "com.dman.l-system": "0.1.14",
     "com.unityfx.outline": "0.8.3",
     "com.unityfx.outline.urp": "0.3.0",
-    "com.dman.utilities": "0.3.2",
-    "com.dman.plantbuilder": "0.2.1"
+    "com.dman.utilities": "0.3.3",
+    "com.dman.plantbuilder": "0.2.3"
   },
   "scopedRegistries": [
     {

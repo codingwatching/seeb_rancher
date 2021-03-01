@@ -1,0 +1,18 @@
+{
+    "name": "TilingEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6ef464e4fe4001e44b0fd6fc075875af"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

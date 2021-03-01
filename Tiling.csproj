@@ -67,7 +67,6 @@
     <Compile Include="Assets\MyPackages\Tiling\SquareCoords\RectCoordinateRange.cs" />
     <Compile Include="Assets\MyPackages\Tiling\TileSets\UniversalCoordinateSystemMembers.cs" />
     <Compile Include="Assets\MyPackages\Tiling\TileSets\TileMapRegionRenderer.cs" />
-    <Compile Include="Assets\MyPackages\Tiling\Editor\GreenhouseMemberEditor.cs" />
     <Compile Include="Assets\MyPackages\Tiling\TileSets\RotationallySymmetricTileType.cs" />
     <Compile Include="Assets\MyPackages\Tiling\RangePositioner.cs" />
     <Compile Include="Assets\MyPackages\Tiling\TriangleCoords\TriangleTriangleCoordinateRange.cs" />
