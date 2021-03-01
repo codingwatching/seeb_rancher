@@ -1,12 +1,9 @@
 ﻿using Assets.Scripts.Plants;
-using Assets.Scripts.UI.MarketContracts;
 using Dman.ReactiveVariables;
-using System.Collections;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityFx.Outline;
 using UniRx;
+using UnityEngine;
+using UnityFx.Outline;
 
 namespace Dman.NarrativeSystem
 {
@@ -21,7 +18,7 @@ namespace Dman.NarrativeSystem
         {
             var allPlants = GameObject.FindObjectsOfType<PlantContainer>();
             var targetPlant = allPlants.FirstOrDefault(x => x.CanPollinate());
-            if(targetPlant == null)
+            if (targetPlant == null)
             {
                 Debug.LogError("no pollinating plant found");
                 conversation.PromptClosed();
@@ -37,7 +34,7 @@ namespace Dman.NarrativeSystem
                 .TakeUntilDestroy(currentPrompt.gameObject)
                 .Subscribe(nextValue =>
                 {
-                    if(nextValue == outlineTarget)
+                    if (nextValue == outlineTarget)
                     {
                         outlineLayer.Remove(outlineTarget);
                         conversation.PromptClosed();

@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextPhaseUI: {fileID: 3886664853353144032}
+  selectedGameObject: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
 --- !u!1 &6788664048198741192
 GameObject:
   m_ObjectHideFlags: 0

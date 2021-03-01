@@ -1,11 +1,23 @@
 using Assets.Scripts.UI.Manipulators.Scripts;
+using Dman.ReactiveVariables;
 using UnityEngine;
+using UniRx;
 
 namespace Assets.Scripts.Buildings
 {
     public class DoorController : MonoBehaviour, IManipulatorClickReciever
     {
         public GameObject NextPhaseUI;
+        public GameObjectVariable selectedGameObject;
+
+        private void Awake()
+        {
+            selectedGameObject.Value.TakeUntilDestroy(gameObject)
+                .Subscribe(x =>
+                {
+                    NextPhaseUI.SetActive(false);
+                }).AddTo(gameObject);
+        }
 
         // Start is called before the first frame update
         void Start()
