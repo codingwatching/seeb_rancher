@@ -21,6 +21,7 @@ namespace Assets.Scripts.Plants
         public TurtleInterpreterBehavior turtleInterpretorPrefab;
         public LSystemObject lSystem;
 
+        public float phaseFractionTillSprout = 1f;
         public float stepsPerPhase = 3f;
 
         public char flowerCharacter = 'C';
@@ -30,7 +31,7 @@ namespace Assets.Scripts.Plants
 
         public override PlantState GenerateBaseSate()
         {
-            return new LSystemPlantState(lSystem.axiom, 0);
+            return new LSystemPlantState(lSystem.axiom, phaseFractionTillSprout);
         }
 
         /// <summary>

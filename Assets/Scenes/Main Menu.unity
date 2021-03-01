@@ -300,10 +300,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 318919671}
-        m_TargetAssemblyTypeName: Assets.Scripts.Utilities.SaveSystem.WorldSaveManager,
-          Assembly-CSharp
+        m_TargetAssemblyTypeName: Dman.SceneSaveSystem.WorldSaveManager, SceneSaveSystem
         m_MethodName: Load
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -463,6 +462,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveablePrefabRegistry: {fileID: 11400000, guid: 2cfe819c9f00be04ba5184a211e5c613, type: 2}
+  saveLoadScene:
+    scenePath: Assets/Scenes/TheGreenhouse.unity
+  gameobjectSaveRootFileName: objects.dat
 --- !u!4 &318919672
 Transform:
   m_ObjectHideFlags: 0

@@ -23,10 +23,6 @@ namespace Assets.Scripts.Plants
 
         [SerializeField]
         [HideInInspector]
-        //private float growth;
-        //public float Growth => growth;
-        //public int RandomSeed { get; private set; }
-
         public PlantState currentState;
 
         private CompiledGeneticDrivers _drivers;

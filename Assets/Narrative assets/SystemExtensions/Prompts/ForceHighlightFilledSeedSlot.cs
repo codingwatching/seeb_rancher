@@ -25,15 +25,7 @@ namespace Dman.NarrativeSystem
 
             var highlightedObj = TryHighlightDropSlot();
 
-            OpenPromptWithSetup(() =>
-            {
-                if (highlightedObj == null && sourceConversation != null)
-                {
-                    onCompleted?.Invoke();
-                    sourceConversation.PromptClosed();
-                    Destroy(currentPrompt.gameObject);
-                }
-            });
+            OpenPromptWithSetup();
         }
 
         private GameObject TryHighlightDropSlot()

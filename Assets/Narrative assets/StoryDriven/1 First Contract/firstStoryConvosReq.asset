@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conversationsToBeCompleted:
   - {fileID: 11400000, guid: e46676eed3811af4880779c301a7bf9a, type: 2}
+  - {fileID: 11400000, guid: a15af6a7f06dce94892c33e234b252c2, type: 2}
