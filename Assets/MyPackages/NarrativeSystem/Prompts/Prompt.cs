@@ -12,7 +12,7 @@ namespace Dman.NarrativeSystem
 
         protected PromptController currentPrompt;
 
-        protected void OpenPromptWithSetup(Action onClosed)
+        protected void OpenPromptWithSetup(Action onClosed = null)
         {
             currentPrompt = Instantiate(promptPrefab, PromptParentSingleton.Instance.transform);
             currentPrompt.Opened(promptText, speakerSprite, onClosed);

@@ -22,14 +22,12 @@ namespace Dman.NarrativeSystem
         {
             onOpened?.Invoke();
 
-            var seedBucket = new SeedBucket
+            var newSeeds = new Seed[seedNum];
+            for (int i = 0; i < newSeeds.Length; i++)
             {
-                AllSeeds = new Seed[seedNum]
-            };
-            for (int i = 0; i < seedBucket.AllSeeds.Length; i++)
-            {
-                seedBucket.AllSeeds[i] = plantType.GenerateRandomSeed();
+                newSeeds[i] = plantType.GenerateRandomSeed();
             }
+            var seedBucket = new SeedBucket(newSeeds);
 
             var seedReceiver = SeedInventoryController.Instance.CreateSeedStack(new SeedBucketUI
             {

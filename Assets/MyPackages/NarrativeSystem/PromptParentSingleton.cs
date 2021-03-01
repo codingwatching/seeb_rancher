@@ -1,5 +1,6 @@
 ﻿using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
+using System.Collections;
 using UniRx;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace Dman.NarrativeSystem
                     {
                         return;
                     }
-                    narrative.CheckAllConversationTriggers();
+                    this.StartCoroutine(CheckTriggersOnNextFrame());
                 }).AddTo(this);
             Instance = this;
         }
@@ -34,6 +35,12 @@ namespace Dman.NarrativeSystem
             {
                 Instance = null;
             }
+        }
+
+        IEnumerator CheckTriggersOnNextFrame()
+        {
+            yield return new WaitForEndOfFrame();
+            narrative.CheckAllConversationTriggers();
         }
 
         public string UniqueSaveIdentifier => ((ISaveableData)narrative).UniqueSaveIdentifier;

@@ -13,9 +13,22 @@ namespace Assets.Scripts.DataModels
     [Serializable]
     public class SeedBucket
     {
-        public Seed[] AllSeeds = new Seed[0];
+        private Seed[] AllSeeds = new Seed[0];
 
         public bool Empty => AllSeeds.Length <= 0;
+        public int SeedCount => AllSeeds.Length;
+        public int PlantTypeId => AllSeeds[0].plantType;
+
+        private bool shuffledSinceLastAddition;
+
+        public SeedBucket(Seed[] seeds): this()
+        {
+            this.AllSeeds = seeds;
+        }
+        public SeedBucket()
+        {
+            shuffledSinceLastAddition = false;
+        }
 
         public bool TryAddSeedsToSet(Seed[] seeds)
         {
@@ -32,6 +45,7 @@ namespace Assets.Scripts.DataModels
                 }
                 AllSeeds = AllSeeds.Concat(seeds).ToArray();
             }
+            shuffledSinceLastAddition = false;
             return true;
         }
 
@@ -56,6 +70,7 @@ namespace Assets.Scripts.DataModels
             {
                 return null;
             }
+            EnsureShuffled();
             var seedSample = AllSeeds.Take(n).ToArray();
             AllSeeds = AllSeeds.Skip(n).ToArray();
             return seedSample;
@@ -67,9 +82,20 @@ namespace Assets.Scripts.DataModels
             {
                 return null;
             }
+            EnsureShuffled();
             var oneSeed = AllSeeds[0];
             AllSeeds = AllSeeds.Skip(1).ToArray();
             return oneSeed;
+        }
+        private void EnsureShuffled()
+        {
+            if (shuffledSinceLastAddition)
+            {
+                return;
+            }
+            var randomProvider = new System.Random();
+            AllSeeds = AllSeeds.OrderBy(x => randomProvider.NextDouble()).ToArray();
+            shuffledSinceLastAddition = true;
         }
     }
 }

@@ -70,7 +70,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 });
                 if (seedReceiver == null)
                 {
-                    Debug.LogError($"No open seed slots, {seeds.AllSeeds.Length} seeds lost");
+                    Debug.LogError($"No open seed slots, {seeds.SeedCount} seeds lost");
                 }
             }
             seeds = null;

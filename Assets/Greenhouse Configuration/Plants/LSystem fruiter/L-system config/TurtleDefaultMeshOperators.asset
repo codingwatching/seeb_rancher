@@ -63,7 +63,7 @@ MonoBehaviour:
     AlsoMove: 0
   - Character: 65
     MeshRef: {fileID: -7056012562932372494, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
-    IndividualScale: {x: 0.6, y: 0.6, z: 0.6}
+    IndividualScale: {x: 0.7, y: 0.7, z: 0.7}
     ParameterScale: 1
-    ScalePerParameter: {x: 0.5, y: 0.5, z: 0.5}
+    ScalePerParameter: {x: 0.7, y: 0.7, z: 0.7}
     AlsoMove: 0

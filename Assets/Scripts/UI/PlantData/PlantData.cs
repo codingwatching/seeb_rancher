@@ -15,12 +15,15 @@ namespace Assets.Scripts.UI.PlantData
         public PollinatePlantManipulator pollinator;
 
         public TMP_Text plantName;
+
+        public BooleanReference enablePollinateButtonFeature;
         public Button pollinateButton;
 
         private void Awake()
         {
             pollinateButton.onClick.AddListener(DoPollinate);
             selectedPlant.Value
+                .Merge(enablePollinateButtonFeature.ValueChanges.Select(x => selectedPlant.CurrentValue))
                 .TakeUntilDestroy(this)
                 .Select(x => x == null ? null : x)
                 .Subscribe(newObject =>
@@ -57,20 +60,7 @@ namespace Assets.Scripts.UI.PlantData
                 return;
             }
             plantName.text = selectedPlant.plantType.plantName;
-            var canPollinate = selectedPlant.CanPollinate();
-            pollinateButton.gameObject.SetActive(canPollinate);
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            pollinateButton.gameObject.SetActive(enablePollinateButtonFeature.CurrentValue && selectedPlant.CanPollinate());
         }
     }
 }

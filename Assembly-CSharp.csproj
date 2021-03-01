@@ -98,12 +98,14 @@
     <Compile Include="Assets\Scripts\Plants\PlantTypes\RandomResultPlantType.cs" />
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\SelectionSpotlighter.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\PollinatePlantManipulator.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\SeedCountTarget.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketManager.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\PlantTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\IContractTarget.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\FloatGeneticTarget.cs" />
@@ -117,14 +119,15 @@
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateContractPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
+    <Compile Include="Assets\Scripts\TmpUtilities.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\LSystemPlantType.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\IContractTarget.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\SeedCountTarget.cs" />
-    <Compile Include="Assets\Scripts\TmpUtilities.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\OutlineIndividual.cs" />
+    <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\PollinatingPlantExistsTrigger.cs" />
+    <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

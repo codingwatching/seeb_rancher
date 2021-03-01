@@ -17,7 +17,6 @@
 
 #define flowerFailureChance 0
 
-
 ## S is the Shoot symbol
 S(x) : x == 0 -> FS(x + 1)NT(-shootHeight)
 S(x) : x < shootHeight && x > 0-> FS(x+1)
@@ -72,8 +71,9 @@ l(x, y) : x < y -> l(x + 1, y)
 ## K is a flower
 K(x) : x < flowerAge -> K(x + 1)
 
+#define stamenSize 1
 ## A is an anther
-A(x) : x < flowerAge && hasAnther > 0 -> A(x + 1)
+A(x) : x < flowerAge * stamenSize && hasAnther > 0 -> A(x + stamenSize)
 A(x) : hasAnther < 1 -> []
 
 

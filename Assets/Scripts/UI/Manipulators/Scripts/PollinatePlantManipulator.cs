@@ -25,7 +25,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         {
             this.controller = controller;
             var selectedPlantContainer = CurrentlySelectedPlant;
-            if (!selectedPlantContainer.polliationState.CanPollinate())
+            if (!selectedPlantContainer.pollinationState.CanPollinate())
             {
                 controller.manipulatorVariable.SetValue(null);
                 return;
@@ -53,6 +53,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 return true;
             }
+            targetPlant.ClipAnthers();
 
             ToastProvider.ShowToast("pollinated", targetPlant.gameObject, 1);
             if (currentPlant == targetPlant)

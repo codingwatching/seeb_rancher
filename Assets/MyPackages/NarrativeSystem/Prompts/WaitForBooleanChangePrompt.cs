@@ -20,9 +20,7 @@ namespace Dman.NarrativeSystem
                     conversation.PromptClosed();
                     Destroy(currentPrompt.gameObject);
                 });
-            OpenPromptWithSetup(() =>
-            {
-            });
+            OpenPromptWithSetup();
         }
     }
 }

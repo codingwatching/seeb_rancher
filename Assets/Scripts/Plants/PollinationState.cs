@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.DataModels;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Plants
@@ -11,10 +13,8 @@ namespace Assets.Scripts.Plants
         private bool _hasAnther;
         public bool HasAnther { get => _hasAnther; private set => _hasAnther = value; }
         [SerializeField]
-        private Seed pollinatedGenes;
-        [SerializeField]
-        private bool _isPollinated;
-        public bool IsPollinated { get => _isPollinated; private set => _isPollinated = value; }
+        private List<Seed> pollinationSources;
+        public bool IsPollinated { get => pollinationSources.Count > 0; }
 
         [SerializeField]
         private Seed _selfGenes;
@@ -23,8 +23,7 @@ namespace Assets.Scripts.Plants
         public PollinationState(Seed selfGenes)
         {
             HasAnther = true;
-            pollinatedGenes = null;
-            _isPollinated = false;
+            pollinationSources = new List<Seed>();
             SelfGenes = selfGenes;
         }
 
@@ -34,20 +33,24 @@ namespace Assets.Scripts.Plants
             {
                 return;
             }
-            pollinatedGenes = SelfGenes;
-            IsPollinated = true;
+            pollinationSources.Add(SelfGenes);
         }
 
         public Seed GetChildSeed()
         {
-            if (pollinatedGenes.plantType != SelfGenes.plantType)
+            if (pollinationSources.Any(source => source.plantType != SelfGenes.plantType))
             {
                 throw new System.Exception("breeding plants of different types is not supported");
             }
+            if(pollinationSources.Count <= 0)
+            {
+                throw new System.Exception("No pollination source, plant is infertile");
+            }
+            var selectedSource = pollinationSources[Random.Range(0, pollinationSources.Count)];
             return new Seed
             {
-                plantType = pollinatedGenes.plantType,
-                genes = new Genetics.Genome(pollinatedGenes.genes, SelfGenes.genes)
+                plantType = SelfGenes.plantType,
+                genes = new Genetics.Genome(selectedSource.genes, SelfGenes.genes)
             };
         }
 
@@ -56,15 +59,18 @@ namespace Assets.Scripts.Plants
             return HasAnther;
         }
 
+        public void ClipAnthers()
+        {
+            HasAnther = false;
+        }
+
         public bool RecieveGenes(PollinationState other)
         {
-            if (IsPollinated || !other.HasAnther)
+            if (!other.HasAnther)
             {
                 return false;
             }
-            pollinatedGenes = other.SelfGenes;
-            IsPollinated = true;
-            HasAnther = false;
+            pollinationSources.Add(other.SelfGenes);
             return true;
         }
     }

@@ -22,5 +22,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b5154b598229f0a4f80ac21b15480e8b, type: 2}
   - {fileID: 11400000, guid: ee60d965b55d5274a9839b5437d71557, type: 2}
   - {fileID: 11400000, guid: f7637f35e0bd6d1428f7da102abe9963, type: 2}
-  currentPromptIndex: 4
+  currentPromptIndex: 8
   triggerAll: []

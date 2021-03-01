@@ -33,6 +33,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public bool AttemptTransferAllSeedsInto(SeedBucket target)
         {
+            if (Object.ReferenceEquals(target, sourceSlot.dataModel.bucket))
+            {
+                //if attempting to transfer into the bucket which is already the source for this manipulator, shit it all down.
+                return false;
+            }
             if (target.TryTransferSeedsIntoSelf(sourceSlot.dataModel.bucket))
             {
                 OnSeedsUpdated();

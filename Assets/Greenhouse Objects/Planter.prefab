@@ -300,22 +300,20 @@ MonoBehaviour:
     randomSeed: 0
   polliationState:
     _hasAnther: 0
-    pollinatedGenes:
-      plantType: 0
-      genes:
-        allChromosomes: []
-    isPollinated: 0
+    pollinationSources: []
     _selfGenes:
       plantType: 0
       genes:
         allChromosomes: []
+  pollenSpreadDriver: {fileID: 11400000, guid: 8469972dedfb76241a6d5f9c34ed4260, type: 2}
+  minPollenSpreadRadius: 1
+  maxPollenSpreadRadius: 4
   levelPhase:
     DataSource: 1
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 03eca35af0e14d248886a77b498abf4a, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
-  planter: {fileID: 2699758837692072731}
   plantsParent: {fileID: 2918393041374939107}
 --- !u!114 &6971866808769589527
 MonoBehaviour:

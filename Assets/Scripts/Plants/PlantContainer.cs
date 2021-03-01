@@ -5,6 +5,7 @@ using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
 using Dman.Utilities;
 using Genetics.GeneticDrivers;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
@@ -33,13 +34,13 @@ namespace Assets.Scripts.Plants
         {
             get
             {
-                if (plantType == null || polliationState == default)
+                if (plantType == null || pollinationState == default)
                 {
                     return null;
                 }
                 if (_drivers == null)
                 {
-                    _drivers = plantType.genome.CompileGenome(polliationState.SelfGenes.genes);
+                    _drivers = plantType.genome.CompileGenome(pollinationState.SelfGenes.genes);
                 }
                 return _drivers;
             }
@@ -52,7 +53,11 @@ namespace Assets.Scripts.Plants
                 _drivers = null;
             }
         }
-        public PollinationState polliationState;
+        public PollinationState pollinationState;
+        [Tooltip("expected to range from 0 to 1")]
+        public FloatGeneticDriver pollenSpreadDriver;
+        public float minPollenSpreadRadius = 1;
+        public float maxPollenSpreadRadius = 4;
 
         public IntReference levelPhase;
         public GameObject plantsParent;
@@ -78,14 +83,46 @@ namespace Assets.Scripts.Plants
                 plantType.AddGrowth(phaseDiff, currentState);
             }
             GrowthUpdated();
+            if (CanPollinate())
+            {
+                SprayMySeed();
+            }
+        }
+
+        private void SprayMySeed()
+        {
+            var radius = PollinationRadius;
+            var targetOtherPlants = Physics.OverlapCapsule(transform.position - Vector3.up * 5, transform.position + Vector3.up * 5, radius)
+                .Select(collider => collider.gameObject?.GetComponentInParent<PlantContainer>())
+                .Where(x => x != null)
+                .ToList();
+            targetOtherPlants = targetOtherPlants
+                .Where(x => x.CanPollinateFrom(this))
+                .ToList();
+            foreach (var pollinationTarget in targetOtherPlants)
+            {
+                pollinationTarget.PollinateFrom(this);
+            }
+        }
+
+        public float PollinationRadius
+        {
+            get
+            {
+                if (!GeneticDrivers.TryGetGeneticData(pollenSpreadDriver, out var spreadFactor))
+                {
+                    throw new System.Exception($"{pollenSpreadDriver.DriverName} does not exist in the plant's genome");
+                }
+                return spreadFactor * (maxPollenSpreadRadius - minPollenSpreadRadius) + minPollenSpreadRadius;
+            }
         }
 
         public bool CanPlantSeed => plantType == null;
 
         public void PlantSeed(Seed toBePlanted)
         {
-            polliationState = new PollinationState(toBePlanted);
-            plantType = plantTypes.GetUniqueObjectFromID(polliationState.SelfGenes.plantType);
+            pollinationState = new PollinationState(toBePlanted);
+            plantType = plantTypes.GetUniqueObjectFromID(pollinationState.SelfGenes.plantType);
             currentState = plantType.GenerateBaseSate();
             GrowthUpdated(true);
         }
@@ -97,9 +134,9 @@ namespace Assets.Scripts.Plants
         {
             plantType = null;
             currentState = null;
-            polliationState = null;
+            pollinationState = null;
             GeneticDrivers = null;
-            polliationState = null;
+            pollinationState = null;
             GrowthUpdated(true);
         }
 
@@ -130,7 +167,7 @@ namespace Assets.Scripts.Plants
             {
                 return;
             }
-            plantType.BuildPlantInto(plantsParent.transform, GeneticDrivers, currentState, polliationState);
+            plantType.BuildPlantInto(plantsParent.transform, GeneticDrivers, currentState, pollinationState);
         }
 
         /// <summary>
@@ -144,7 +181,7 @@ namespace Assets.Scripts.Plants
                 return false;
             }
             return (plantType.HasFlowers(currentState))
-                && (polliationState?.CanPollinate() ?? false);
+                && (pollinationState?.CanPollinate() ?? false);
         }
 
         /// <summary>
@@ -157,11 +194,7 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            if (polliationState == null || polliationState.IsPollinated)
-            {
-                return false;
-            }
-            if (plantType == null || currentState == null)
+            if (pollinationState == null || plantType == null || currentState == null)
             {
                 return false;
             }
@@ -178,12 +211,16 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            if (polliationState.RecieveGenes(other.polliationState))
+            if (pollinationState.RecieveGenes(other.pollinationState))
             {
-                UpdatePlant();
                 return true;
             }
             return false;
+        }
+        public void ClipAnthers()
+        {
+            pollinationState.ClipAnthers();
+            UpdatePlant();
         }
 
         public bool CanHarvest()
@@ -201,11 +238,11 @@ namespace Assets.Scripts.Plants
 
         private Seed[] HarvestPlant()
         {
-            var harvestedSeeds = plantType.HarvestSeeds(polliationState, currentState);
+            var harvestedSeeds = plantType.HarvestSeeds(pollinationState, currentState);
 
             plantType = null;
             currentState = null;
-            polliationState = null;
+            pollinationState = null;
             GeneticDrivers = null;
             UpdatePlant();
 
@@ -246,13 +283,13 @@ namespace Assets.Scripts.Plants
             {
                 plantTypeId = source.plantType?.myId ?? -1;
                 plantState = source.currentState;
-                pollination = source.polliationState;
+                pollination = source.pollinationState;
             }
 
             public void Apply(PlantContainer target)
             {
                 target.plantType = plantTypeId == -1 ? null : target.plantTypes.GetUniqueObjectFromID(plantTypeId);
-                target.polliationState = pollination;
+                target.pollinationState = pollination;
                 target.currentState = plantState;
                 target.currentState?.AfterDeserialized();
                 target.GrowthUpdated(true);

@@ -21,14 +21,14 @@ namespace Assets.Scripts.UI.SeedInventory
         }
         private void SetSeedSprite(SeedBucket myBucket)
         {
-            if (myBucket.AllSeeds.Length <= 0)
+            if (myBucket.Empty)
             {
                 seedSpriteDisplay.enabled = false;
             }
             else
             {
                 seedSpriteDisplay.enabled = true;
-                var plantId = myBucket.AllSeeds[0].plantType;
+                var plantId = myBucket.PlantTypeId;
                 var plantType = plantTypes.GetUniqueObjectFromID(plantId);
                 seedSpriteDisplay.sprite = plantType.seedIcon;
             }
@@ -36,7 +36,7 @@ namespace Assets.Scripts.UI.SeedInventory
 
         private void SetSeedCount(SeedBucket myBucket)
         {
-            var seedNum = myBucket.AllSeeds.Length;
+            var seedNum = myBucket.SeedCount;
             seedCountDisplay.text = seedNum > 0 ? seedNum.ToString() : "";
         }
     }

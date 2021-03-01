@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b123d24e90cf54d4996a95778d00edf6, type: 3}
-  m_Name: FlowerFailureChance
+  m_Script: {fileID: 11500000, guid: 6c12e51a8cceef449a7937331adb23c8, type: 3}
+  m_Name: PollinatingPlantExistsTrigger
   m_EditorClassIdentifier: 
-  myId: 3
-  DriverName: FloweringChance

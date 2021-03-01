@@ -23,4 +23,24 @@ MonoBehaviour:
     _name: Plant
     _enabled: 1
     _mergeLayerObjects: 0
+  - _settings:
+      _outlineSettings: {fileID: 11400000, guid: 9a2ef86cb39420d4fb5bad5bdd90ef1a, type: 2}
+      _outlineColor: {r: 0.9468937, g: 1, b: 0, a: 1}
+      _outlineWidth: 12
+      _outlineIntensity: 5.7
+      _outlineAlphaCutoff: 0.9
+      _outlineMode: 1
+    _name: PollinationRange
+    _enabled: 1
+    _mergeLayerObjects: 0
+  - _settings:
+      _outlineSettings: {fileID: 11400000, guid: 925ec345cb19d2b4782e016decf935e3, type: 2}
+      _outlineColor: {r: 0.22364914, g: 1, b: 0, a: 1}
+      _outlineWidth: 12
+      _outlineIntensity: 5.7
+      _outlineAlphaCutoff: 0.9
+      _outlineMode: 1
+    _name: SelectMeIndicator
+    _enabled: 1
+    _mergeLayerObjects: 0
   _ignoreLayerMask: 0

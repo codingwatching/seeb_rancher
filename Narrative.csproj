@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\MyPackages\NarrativeSystem\ConversationTriggers\ConversationCompletedTrigger.cs" />
     <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\Prompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\WaitForBooleanChangePrompt.cs" />
+    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\WaitForBooleanChangePrompt.cs" />
     <Compile Include="Assets\MyPackages\NarrativeSystem\Conversation.cs" />
     <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\DebugPrompt.cs" />
     <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\PromptController.cs" />
