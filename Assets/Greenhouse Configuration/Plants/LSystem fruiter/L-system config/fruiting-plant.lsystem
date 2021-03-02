@@ -5,7 +5,7 @@
 #runtime hasAnther 1
 #runtime isPollinated 0
 
-#define primaryBranchInternodes 4
+#define primaryBranchInternodes 7
 #define shootHeight 5
 #define internodeHeight 6
 #define leafAge 3
@@ -15,7 +15,7 @@
 #define flowerAge 7
 #define timeToFruit 10
 
-#define flowerFailureChance 0
+#define flowerFailureChance 0.5
 
 ## S is the Shoot symbol
 S(x) : x == 0 -> FS(x + 1)NT(-shootHeight)
@@ -71,7 +71,7 @@ l(x, y) : x < y -> l(x + 1, y)
 ## K is a flower
 K(x) : x < flowerAge -> K(x + 1)
 
-#define stamenSize 1
+#define stamenSize 0.6
 ## A is an anther
 A(x) : x < flowerAge * stamenSize && hasAnther > 0 -> A(x + stamenSize)
 A(x) : hasAnther < 1 -> []

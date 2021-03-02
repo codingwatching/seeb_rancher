@@ -30,7 +30,9 @@ namespace Assets.Scripts.UI.MarketContracts
         [Tooltip("For every extra genetic driver over 1, multiply the reward by this amount. 3 genetic drivers will be defaultReward * multiplierPerAdditional^2")]
         public float multiplierPerAdditional;
 
-        public BooleanGeneticDriver[] targetBooleanDrivers;
+        public BooleanGeneticDriver[] booleanTargetGenerators;
+        public FloatGeneticTargetGenerator[] floatTargetGenerators;
+        public SeedCountTargetRandomGenerator seedTargetGenerator;
         [Range(0, 1)]
         public float chanceForNewContractPerPhase;
         public int defaultSeedCountRequirement = 5;
@@ -75,23 +77,85 @@ namespace Assets.Scripts.UI.MarketContracts
         private void GenerateNewContract()
         {
             var rangeSample = Random.Range(0f, 1f - 1e-5f);
+            var targetBuckets = new int[] { booleanTargetGenerators.Length, floatTargetGenerators.Length, seedTargetGenerator == null ? 0 : 1 };
+            var totalPossibleTargets = targetBuckets.Sum();
             // varies from 1 to targetSetLength, weighted towards lower numbers
-            var numberOfTargets = Mathf.FloorToInt(Mathf.Pow(rangeSample, 2) * targetBooleanDrivers.Length) + 1;
+            var numberOfTargets = Mathf.FloorToInt(Mathf.Pow(rangeSample, 2) * totalPossibleTargets) + 1;
 
-            var targetIndexes = ArrayExtensions.SelectIndexSources(numberOfTargets, targetBooleanDrivers.Length);
-            var chosenDrivers = targetIndexes.Select(index => targetBooleanDrivers[index]);
-            var newPrice = defaultReward * (Mathf.Pow(multiplierPerAdditional, numberOfTargets));
+            this.SubtractFromBuckets(totalPossibleTargets - numberOfTargets, targetBuckets);
 
-            var newTargets = chosenDrivers
-                .Select(x => new BooleanGeneticTarget(x))
-                .ToArray();
-            CreateMarketContract(new TargetContractDescriptor
+            var contract = new TargetContractDescriptor
             {
-                booleanTargets = newTargets,
-                reward = newPrice,
+                booleanTargets = GenerateBooleanTargets(targetBuckets[0]),
+                floatTargets = GenerateFloatTargets(targetBuckets[1]),
+                seedCountTarget = GenerateSeedTargets(targetBuckets[2]),
                 seedRequirement = defaultSeedCountRequirement,
                 plantType = defaultPlantType
-            });
+            };
+            var totalTargets = (contract.booleanTargets?.Length ?? 0) + (contract.floatTargets?.Length ?? 0) + (contract.seedCountTarget?.Length ?? 0);
+            if(totalTargets != numberOfTargets)
+            {
+                Debug.LogError($"Something has gone very wrong. The number of targets does not match. Expected {numberOfTargets} but actually got {totalTargets}");
+            }
+            contract.reward = defaultReward * Mathf.Pow(multiplierPerAdditional, totalTargets);
+            CreateMarketContract(contract);
+        }
+
+        /// <summary>
+        /// Subtract <paramref name="amount"/> from elements in <paramref name="buckets"/> such that buckets.Sum() - amount before this method equals buckets.Sum() after the method.
+        ///     The chance each bucket will be decreased by each successive unit of <paramref name="amount"/> is proportional to the current size of the bucket.
+        ///     This can be though of as defining a list of bit flags buckets.Sum() in length, and then randomly flipping any of the currently On flags into the off position,
+        ///         as many times as <paramref name="amount"/>
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="buckets"></param>
+        private void SubtractFromBuckets(int amount, int[] buckets)
+        {
+            while (amount > 0)
+            {
+                var totalPossibleTargets = buckets.Sum();
+                var nextTarget = Random.Range(0, totalPossibleTargets);
+                var currentTargetIndex = 0;
+                for (int i = 0; i < buckets.Length; i++)
+                {
+                    currentTargetIndex += buckets[i];
+                    if (nextTarget < currentTargetIndex)
+                    {
+                        buckets[i] -= 1;
+                        amount--;
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        private BooleanGeneticTarget[] GenerateBooleanTargets(int numberOfTargets)
+        {
+            var targetIndexes = ArrayExtensions.SelectIndexSources(numberOfTargets, booleanTargetGenerators.Length);
+            var chosenDrivers = targetIndexes.Select(index => booleanTargetGenerators[index]);
+
+            return chosenDrivers
+                .Select(x => new BooleanGeneticTarget(x))
+                .ToArray();
+        }
+
+        private FloatGeneticTarget[] GenerateFloatTargets(int numberOfTargets)
+        {
+            var targetIndexes = ArrayExtensions.SelectIndexSources(numberOfTargets, floatTargetGenerators.Length);
+            return targetIndexes.Select(index => floatTargetGenerators[index].GenerateTarget()).ToArray();
+        }
+        private SeedCountTarget[] GenerateSeedTargets(int numberOfTargets)
+        {
+            if(numberOfTargets <= 0)
+            {
+                return new SeedCountTarget[0];
+            }
+            if(numberOfTargets > 1)
+            {
+                Debug.LogError($"Cannot have more than one seed target. tried to create with {numberOfTargets}");
+            }
+            return new SeedCountTarget[] { seedTargetGenerator.GenerateTarget() };
         }
 
         public void CreateMarketContract(TargetContractDescriptor contract)

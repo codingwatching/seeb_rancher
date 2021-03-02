@@ -26,7 +26,7 @@ namespace Assets.Scripts.Plants
         public PlantState currentState;
 
         private CompiledGeneticDrivers _drivers;
-        private CompiledGeneticDrivers GeneticDrivers
+        public CompiledGeneticDrivers GeneticDrivers
         {
             get
             {
@@ -40,7 +40,7 @@ namespace Assets.Scripts.Plants
                 }
                 return _drivers;
             }
-            set
+            private set
             {
                 if (value != null)
                 {

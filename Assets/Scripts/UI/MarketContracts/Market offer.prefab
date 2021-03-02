@@ -286,13 +286,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2e315fb5b531f42903e6cbaf0a8c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
-  targets:
-  - targetDriver: {fileID: 11400000, guid: 104f80777f26cd442af030c082cd640c, type: 2}
-    targetValue: 1
-  rewardAmount: 400.5
-  seedRequirement: 3
+  contract:
+    booleanTargets: []
+    floatTargets: []
+    seedCountTarget: []
+    reward: 0
+    plantType: {fileID: 0}
+    seedRequirement: 0
+    _complianceResult: 0
   plantNameText: {fileID: 6106525494372291207}
+  seedNumberFormat: '# seeds'
   seedNumberText: {fileID: 7920390017370076526}
   rewardText: {fileID: 205508212574482076}
   targetGeneticsDescriptorText: {fileID: 205508211789807980}
@@ -386,7 +389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Big, red
+  m_text: Big, red, yield at least 10 seeds per plant, height between 3 and 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -413,8 +416,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -441,15 +444,15 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_horizontalMapping: 0
+  m_horizontalMapping: 2
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_pageToDisplay: 2
+  m_margin: {x: 2, y: 0, z: 2, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

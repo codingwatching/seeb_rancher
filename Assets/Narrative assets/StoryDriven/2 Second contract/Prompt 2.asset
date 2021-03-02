@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: But it turns out I've been missing out on a few customers who are very
-    specific about their tastes, and are only interested in small, yellow tomatoes.
+    specific about their growing conditions, and would much rather have shorter,
+    fertile plants.
   speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
   onOpened:
     m_PersistentCalls:
