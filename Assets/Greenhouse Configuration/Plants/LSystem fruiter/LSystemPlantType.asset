@@ -15,10 +15,11 @@ MonoBehaviour:
   myId: 1
   genome: {fileID: 11400000, guid: cf41996e76a29cc4ea853bae80556938, type: 2}
   selfPollinating: 1
-  plantName: Citrouille Puante
+  plantName: Plumboo
   seedIcon: {fileID: 21300000, guid: b5e538bedcf448d418571287729015af, type: 3}
   turtleInterpretorPrefab: {fileID: 1029797208518164953, guid: 4e51044ad14e04d4d8123fd31561c8bc, type: 3}
   lSystem: {fileID: 378491273550888993, guid: 50ec329eca2ebda45af2187f82130448, type: 3}
+  phaseFractionTillSprout: 1
   stepsPerPhase: 7
   flowerCharacter: 75
   seedBearingCharacter: 68
