@@ -308,11 +308,23 @@
     <Reference Include="Unity.Burst.Unsafe">
       <HintPath>Library\PackageCache\com.unity.burst@1.3.7\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>Library\PackageCache\com.dman.l-system@0.2.0\Runtime\Plugin\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.2.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>Library\PackageCache\com.dman.l-system@0.2.0\Runtime\Plugin\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>Library\PackageCache\com.dman.l-system@0.2.0\Runtime\Plugin\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Library\PackageCache\com.dman.l-system@0.2.0\Runtime\Plugin\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.5\net35\unity-custom\nunit.framework.dll</HintPath>

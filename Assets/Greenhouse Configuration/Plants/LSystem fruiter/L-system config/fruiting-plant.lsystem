@@ -1,6 +1,8 @@
 #axiom S(0)
 #iterations 70
 
+#ignore /\&^F$`
+
 ## flags set based on the pollination state
 #runtime hasAnther 1
 #runtime isPollinated 0
@@ -34,16 +36,15 @@ T(x) : x == primaryBranchInternodes -> []
 B(x) -> [^(50)V]petiole(leavesPerPetiole)
 
 ## V is a flowering bud
-P(flowerFailureChance) V -> []
-P(1 - flowerFailureChance) V -> V(flowerStalkLength)
+P(flowerFailureChance) | V -> []
+P(1 - flowerFailureChance) | V -> V(flowerStalkLength)
 V(x) : x > 0 -> $(0.1)FV(x - 1)
-V(x) : x <= 0 -> [``C(x)K(1)`A(1)]
+V(x) : x <= 0 -> C(x)[``K(1)][```A(1)]
 
  
-## C is a flower controller
+## C is a fruiting controller. transitions to a fruit after waiting
 C(x) : x < timeToFruit -> C(x + 1)
-C(x)K(y)`A(z) : x >= timeToFruit -> D(1)
-C(x)K(y)` : x >= timeToFruit -> D(1)
+C(x) : x >= timeToFruit -> [`D(1)]
 
 #define fruitSize 5
 ## D is a fruiting body
@@ -69,12 +70,14 @@ L(x) -> [`l(1, x)]
 l(x, y) : x < y -> l(x + 1, y)
 
 ## K is a flower
-K(x) : x < flowerAge -> K(x + 1)
+         K(x) : x < flowerAge -> K(x + 1)
+C(age) < K(y) : age >= timeToFruit ->
 
 #define stamenSize 0.6
 ## A is an anther
-A(x) : x < flowerAge * stamenSize && hasAnther > 0 -> A(x + stamenSize)
-A(x) : hasAnther < 1 -> []
+         A(x) : (x < flowerAge * stamenSize) && (hasAnther > 0) -> A(x + stamenSize)
+         A(x) : hasAnther < 1 ->
+C(age) < A(y) : age >= timeToFruit ->
 
 
 
