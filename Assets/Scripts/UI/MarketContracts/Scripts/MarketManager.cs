@@ -36,6 +36,11 @@ namespace Assets.Scripts.UI.MarketContracts
         [Range(0, 1)]
         public float chanceForNewContractPerPhase;
         public int defaultSeedCountRequirement = 5;
+        [Range(0, 1)]
+        public float minComplianceRatio = 0.4f;
+        [Range(0, 1)]
+        public float maxComplianceRatio = 1f;
+        public AnimationCurve rewardMultiplierByComplianceRatio;
         public BasePlantType defaultPlantType;
 
         public static MarketManager Instance;
@@ -97,7 +102,13 @@ namespace Assets.Scripts.UI.MarketContracts
             {
                 Debug.LogError($"Something has gone very wrong. The number of targets does not match. Expected {numberOfTargets} but actually got {totalTargets}");
             }
-            contract.reward = defaultReward * Mathf.Pow(multiplierPerAdditional, totalTargets);
+
+            contract.minimumComplianceRatio = Random.Range(minComplianceRatio, maxComplianceRatio);
+
+            contract.reward = 
+                defaultReward
+                * rewardMultiplierByComplianceRatio.Evaluate(contract.minimumComplianceRatio)
+                * Mathf.Pow(multiplierPerAdditional, totalTargets);
             CreateMarketContract(contract);
         }
 

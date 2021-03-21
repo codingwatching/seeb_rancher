@@ -25,12 +25,16 @@ namespace Assets.Scripts.UI.MarketContracts
         public BasePlantType plantType;
         [Tooltip("how many seeds need to be submitted to evaluate the contract")]
         public int seedRequirement;
+        [Tooltip("The lower bound for compliance in order for this contract to be completed. Seeds which do not satisfy this compliance will not cause the contract to be removed.")]
+        [Range(0f, 1f)]
+        public float minimumComplianceRatio;
 
         public TargetContractDescriptor()
         { }
 
         #region Seed Compliance
-        public float _complianceResult;
+        public float ComplianceResult { get; set; }
+
         public IEnumerator EvaluateComplianceOfSeeds(IEnumerable<Seed> seeds)
         {
             var seedsSatisfyingDescriptors = 0;
@@ -47,7 +51,7 @@ namespace Assets.Scripts.UI.MarketContracts
             yield return new WaitForEndOfFrame();
 
             var seedComplianceRatio = ((float)seedsSatisfyingDescriptors) / totalSeeds;
-            _complianceResult = seedComplianceRatio;
+            ComplianceResult = seedComplianceRatio;
             //return seedComplianceRatio;
         }
 
@@ -86,6 +90,7 @@ namespace Assets.Scripts.UI.MarketContracts
             info.AddValue("seedCountTarget", seedCountTarget);
             info.AddValue("reward", reward);
             info.AddValue("seedRequirement", seedRequirement);
+            info.AddValue("minimumCompliance", minimumComplianceRatio);
             info.AddValue("plantType", new IDableSavedReference(plantType));
         }
 
@@ -99,6 +104,7 @@ namespace Assets.Scripts.UI.MarketContracts
 
             reward = info.GetSingle("reward");
             seedRequirement = info.GetInt32("seedRequirement");
+            minimumComplianceRatio = info.GetSingle("minimumCompliance");
 
             var savedReference = info.GetValue("plantType", typeof(IDableSavedReference)) as IDableSavedReference;
             plantType = savedReference?.GetObject<BasePlantType>();

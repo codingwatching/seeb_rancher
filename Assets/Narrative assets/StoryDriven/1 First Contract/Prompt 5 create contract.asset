@@ -35,4 +35,5 @@ MonoBehaviour:
     reward: 500
     plantType: {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}
     seedRequirement: 20
+    minimumComplianceRatio: 0.6
   variableToPutContractIn: {fileID: 11400000, guid: d7087cadbc2596347936733088da4a07, type: 2}

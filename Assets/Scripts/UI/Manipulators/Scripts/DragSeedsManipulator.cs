@@ -47,7 +47,12 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         }
         public Seed[] AttemptTakeSeeds(int seedCount)
         {
-            return sourceSlot?.dataModel.bucket.TakeN(seedCount);
+            var seedResult = sourceSlot?.dataModel.bucket.TakeN(seedCount);
+            if(seedResult != null)
+            {
+                this.OnSeedsUpdated();
+            }
+            return seedResult;
         }
 
         /// <summary>

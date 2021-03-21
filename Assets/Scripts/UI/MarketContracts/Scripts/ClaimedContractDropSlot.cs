@@ -29,10 +29,7 @@ namespace Assets.Scripts.UI.MarketContracts
 
         private void EvaluateContract(Seed[] seebs)
         {
-            var descriptor = contractContainer.contract;
-            Destroy(contractContainer.gameObject);
-
-            ContractEvaluationController.Instance.InitiateEvaluation(seebs, descriptor);
+            ContractEvaluationController.Instance.InitiateEvaluation(seebs, contractContainer);
         }
     }
 }

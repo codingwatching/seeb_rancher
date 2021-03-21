@@ -21,6 +21,10 @@ namespace Assets.Scripts.UI.MarketContracts
         public TMP_Text seedPercentageComplianceText;
         public TMP_Text rewardAmountText;
 
+        public GameObject contractThinkingObject;
+        public GameObject contractSuccessObj;
+        public GameObject contractRejectObj;
+
         public static ContractEvaluationController Instance;
 
         public int targetSeedQuantity = 100;
@@ -38,15 +42,27 @@ namespace Assets.Scripts.UI.MarketContracts
                 Instance = null;
         }
 
-        public void InitiateEvaluation(Seed[] seeds, TargetContractDescriptor contract)
+        private void ClearHeadings()
+        {
+            contractThinkingObject.SetActive(false);
+            contractSuccessObj.SetActive(false);
+            contractRejectObj.SetActive(false);
+        }
+
+        public void InitiateEvaluation(Seed[] seeds, ContractContainer contract)
         {
             if (IsEvaluating)
             {
                 throw new System.Exception("shouldn't be evaluating: evaluation in progress");
             }
+            IsEvaluating = true;
+
             evaluationModal.SetActive(true);
             loadingSection.SetActive(true);
             evaluationResultsSection.SetActive(false);
+
+            ClearHeadings();
+            contractThinkingObject.SetActive(true);
 
             StartCoroutine(EvaluateSeebs(seeds, contract));
         }
@@ -57,7 +73,7 @@ namespace Assets.Scripts.UI.MarketContracts
         /// <param name="seeds"></param>
         /// <param name="contract"></param>
         /// <returns></returns>
-        IEnumerator EvaluateSeebs(Seed[] seeds, TargetContractDescriptor contract)
+        IEnumerator EvaluateSeebs(Seed[] seeds, ContractContainer contract)
         {
             var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
             var plantType = plantTypeRegistry.GetUniqueObjectFromID(seeds[0].plantType);
@@ -65,7 +81,10 @@ namespace Assets.Scripts.UI.MarketContracts
             {
                 throw new System.Exception("Cannot evaluate fitness of seeds of different species");
             }
-            var genome = contract.plantType.genome;
+
+            var contractData = contract.contract;
+
+            var genome = contractData.plantType.genome;
             var generationPhase = seeds.ToList();
             // keep pollinating until there's at least 100 seeds
             while (generationPhase.Count < targetSeedQuantity)
@@ -83,11 +102,25 @@ namespace Assets.Scripts.UI.MarketContracts
                 }
             }
 
-            yield return StartCoroutine(contract.EvaluateComplianceOfSeeds(generationPhase));
+            yield return StartCoroutine(contractData.EvaluateComplianceOfSeeds(generationPhase));
 
-            var seedComplianceRatio = contract._complianceResult;
+            var seedComplianceRatio = contractData.ComplianceResult;
+
+            if (seedComplianceRatio >= contractData.minimumComplianceRatio)
+            {
+                Destroy(contract.gameObject);
+                rewardAmount = contractData.reward * seedComplianceRatio;
+                ClearHeadings();
+                contractSuccessObj.SetActive(true);
+            }
+            else
+            {
+                rewardAmount = 0;
+                ClearHeadings();
+                contractRejectObj.SetActive(true);
+            }
+
             seedPercentageComplianceText.text = $"{seedComplianceRatio:P0}";
-            rewardAmount = contract.reward * seedComplianceRatio;
             rewardAmountText.text = $"${rewardAmount:F2}";
 
             loadingSection.SetActive(false);

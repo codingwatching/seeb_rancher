@@ -37,7 +37,12 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         }
         public Seed[] AttemptTakeSeeds(int seedCount)
         {
-            return seeds?.TakeN(seedCount);
+            var resultSeeds = seeds?.TakeN(seedCount);
+            if(resultSeeds != null)
+            {
+                this.OnSeedsUpdated();
+            }
+            return resultSeeds;
         }
 
         public override void OnOpen(ManipulatorController controller)
@@ -122,7 +127,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         private void OnSeedsUpdated()
         {
-            if (seeds.Empty)
+            if (seeds == null || seeds.Empty)
             {
                 // close the manipulator if the bucket is empty
                 controller.manipulatorVariable.SetValue(null);

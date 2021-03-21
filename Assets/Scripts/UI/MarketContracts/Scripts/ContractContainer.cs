@@ -11,7 +11,7 @@ namespace Assets.Scripts.UI.MarketContracts
         public TargetContractDescriptor contract;
 
         public TMP_Text plantNameText;
-        public string seedNumberFormat = "# seeds";
+        public string seedNumberFormat = "Minimum % compliance Submit # seeds";
         public TMP_Text seedNumberText;
         public TMP_Text rewardText;
         public TMP_Text targetGeneticsDescriptorText;
@@ -31,7 +31,9 @@ namespace Assets.Scripts.UI.MarketContracts
         private void ReRender()
         {
             plantNameText.text = contract.plantType.plantName;
-            seedNumberText.text = seedNumberFormat.Replace("#", contract.seedRequirement.ToString());
+            seedNumberText.text = seedNumberFormat
+                .Replace("#", contract.seedRequirement.ToString())
+                .Replace("%", (contract.minimumComplianceRatio * 100).ToString("F0") + "%");
             rewardText.text = $"${contract.reward:F2}";
             targetGeneticsDescriptorText.text = string.Join(", ",
                 contract.booleanTargets.Cast<IContractTarget>()

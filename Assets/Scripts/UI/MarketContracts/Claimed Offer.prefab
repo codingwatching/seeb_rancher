@@ -169,7 +169,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000015258789}
-  m_SizeDelta: {x: 0, y: 24.8}
+  m_SizeDelta: {x: 0, y: 39.5}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2728791106525304329
 CanvasRenderer:
@@ -199,7 +199,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Submit 5 seeds:'
+  m_text: 'Minimum 50% compliance
+
+    Submit 5 seeds'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -226,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.4
-  m_fontSizeBase: 21.4
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -304,7 +306,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 4.5}
-  m_SizeDelta: {x: 0, y: 67.8}
+  m_SizeDelta: {x: 0, y: 84.1}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &4351461023192779638
 MonoBehaviour:
@@ -362,7 +364,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 230, y: 230}
+  m_SizeDelta: {x: 230, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6611463320935539540
 CanvasRenderer:
@@ -441,9 +443,9 @@ MonoBehaviour:
     reward: 0
     plantType: {fileID: 0}
     seedRequirement: 0
-    _complianceResult: 0
+    minimumComplianceRatio: 0
   plantNameText: {fileID: 1518436973893210659}
-  seedNumberFormat: 'Submit # seeds:'
+  seedNumberFormat: Minimum % compliance Submit # seeds
   seedNumberText: {fileID: 1149523141491164626}
   rewardText: {fileID: 3903322637666623966}
   targetGeneticsDescriptorText: {fileID: 6611463321505239170}

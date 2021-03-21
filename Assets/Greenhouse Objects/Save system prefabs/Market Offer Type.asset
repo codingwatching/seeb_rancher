@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Market Offer Type
   m_EditorClassIdentifier: 
   myId: 1
-  prefab: {fileID: 1675697127549440229, guid: 6a16ff6fb91aab6439252428b0f7b33b, type: 3}
+  prefab: {fileID: 7974524890394211404, guid: a6a492e15a8fc3d4bb6e4ca6c849d378, type: 3}
