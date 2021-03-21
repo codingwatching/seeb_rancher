@@ -60,6 +60,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
             CursorTracker.ClearCursor();
             singleOutlineHelper.ClearOutlinedObject();
+            selectedGameObject.SetValue(null);
 
             if (!seeds.Empty)
             {
@@ -83,7 +84,12 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
             singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);
 
-            if (!validTarget || !Input.GetMouseButtonDown(0))
+            if (!validTarget)
+            {
+                return true;
+            }
+            selectedGameObject.SetValue(planter.gameObject);
+            if (!Input.GetMouseButtonDown(0))
             {
                 return true;
             }

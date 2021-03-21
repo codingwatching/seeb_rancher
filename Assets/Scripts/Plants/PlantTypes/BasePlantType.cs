@@ -56,6 +56,10 @@ namespace Assets.Scripts.Plants
         public abstract IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed);
 
         protected abstract int GetHarvestedSeedNumber(PlantState currentState);
+        public int TotalNumberOfSeedsInState(PlantState currentState)
+        {
+            return this.GetHarvestedSeedNumber(currentState);
+        }
 
         public Seed[] HarvestSeeds(PollinationState sourcePollination, PlantState currentState)
         {

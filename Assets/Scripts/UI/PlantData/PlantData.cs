@@ -27,7 +27,7 @@ namespace Assets.Scripts.UI.PlantData
         public FloatGeneticDriver[] floatDrivers;
         public BooleanGeneticDriver[] booleanDrivers;
 
-        public TMP_Text geneticDescription;
+        public TMP_Text plantDescription;
 
         private void Awake()
         {
@@ -79,10 +79,10 @@ namespace Assets.Scripts.UI.PlantData
             }
             plantName.text = selectedPlant.plantType.plantName;
             pollinateButton.gameObject.SetActive(enablePollinateButtonFeature.CurrentValue && selectedPlant.CanPollinate());
-            geneticDescription.text = GetGeneDescription(selectedPlant);
+            plantDescription.text = GetPlantDescription(selectedPlant);
         }
 
-        private string GetGeneDescription(PlantContainer container)
+        private string GetPlantDescription(PlantContainer container)
         {
             var drivers = container.GeneticDrivers;
             if(drivers == null)
@@ -104,6 +104,9 @@ namespace Assets.Scripts.UI.PlantData
                     resultstring.AppendLine($"{driver.DriverName}: {driverValue}");
                 }
             }
+
+            var seedCount = container.plantType?.TotalNumberOfSeedsInState(container.currentState) ?? 0;
+            resultstring.AppendLine($"Seeds: {seedCount}");
             return resultstring.ToString();
         }
     }
