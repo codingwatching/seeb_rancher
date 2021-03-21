@@ -1,13 +1,12 @@
 using Assets.Scripts.Plants;
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Dman.ReactiveVariables;
+using Genetics.GeneticDrivers;
+using System.Text;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
-using Genetics;
-using System.Text;
-using Genetics.GeneticDrivers;
 
 namespace Assets.Scripts.UI.PlantData
 {
@@ -85,7 +84,7 @@ namespace Assets.Scripts.UI.PlantData
         private string GetPlantDescription(PlantContainer container)
         {
             var drivers = container.GeneticDrivers;
-            if(drivers == null)
+            if (drivers == null)
             {
                 return "";
             }

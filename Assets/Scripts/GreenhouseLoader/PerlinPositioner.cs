@@ -1,15 +1,9 @@
-﻿using ProceduralToolkit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.GreenhouseLoader
 {
     [ExecuteInEditMode]
-    public class PerlinPositioner: MonoBehaviour
+    public class PerlinPositioner : MonoBehaviour
     {
         public PerlineSampler sampler;
         public Vector2 sampleOffsetFromTransformCenter = Vector2.zero;
@@ -31,7 +25,7 @@ namespace Assets.Scripts.GreenhouseLoader
         private void RepositionSelf()
         {
             var position = transform.position;
-            var samplePoint = this.transform.TransformPoint(sampleOffsetFromTransformCenter.x, 0, sampleOffsetFromTransformCenter.y);
+            var samplePoint = transform.TransformPoint(sampleOffsetFromTransformCenter.x, 0, sampleOffsetFromTransformCenter.y);
             position.y = sampler.SampleNoise(samplePoint.x, samplePoint.z) + yOffset;
             transform.position = position;
         }

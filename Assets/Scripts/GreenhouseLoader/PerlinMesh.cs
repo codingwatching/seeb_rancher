@@ -1,16 +1,11 @@
 ﻿using ProceduralToolkit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.GreenhouseLoader
 {
     [RequireComponent(typeof(MeshFilter))]
     [ExecuteInEditMode]
-    public class PerlinMesh: MonoBehaviour
+    public class PerlinMesh : MonoBehaviour
     {
         public PerlineSampler sampler;
         public Vector2Int samplesPerTile = 5 * Vector2Int.one;
@@ -49,7 +44,7 @@ namespace Assets.Scripts.GreenhouseLoader
                     var x1y0 = VertexInPlane(quadX + quadWidth, quadY);
                     var x0y1 = VertexInPlane(quadX, quadY + quadHeight);
                     var x1y1 = VertexInPlane(quadX + quadWidth, quadY + quadHeight);
-                    var center = VertexInPlane(quadX + quadWidth/2, quadY + quadHeight/2);
+                    var center = VertexInPlane(quadX + quadWidth / 2, quadY + quadHeight / 2);
                     builder.AddTriangle(x0y0, x0y1, x1y1, true);
                     builder.AddTriangle(x1y1, x1y0, x0y0, true);
                     //builder.AddQuad(
@@ -74,7 +69,7 @@ namespace Assets.Scripts.GreenhouseLoader
 
         private Vector3 VertexInPlane(float x, float y)
         {
-            var samplePoint = this.transform.TransformPoint(x, 0, y);
+            var samplePoint = transform.TransformPoint(x, 0, y);
             return new Vector3(x, sampler.SampleNoise(samplePoint.x, samplePoint.z), y);
         }
     }

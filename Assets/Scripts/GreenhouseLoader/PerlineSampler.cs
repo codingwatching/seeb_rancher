@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.GreenhouseLoader
@@ -39,7 +36,7 @@ namespace Assets.Scripts.GreenhouseLoader
 
         public float SampleNoise(float x, float y)
         {
-            return this.SampleNoise(new Vector2(x, y));
+            return SampleNoise(new Vector2(x, y));
         }
 
         public float SampleNoise(Vector2 point)

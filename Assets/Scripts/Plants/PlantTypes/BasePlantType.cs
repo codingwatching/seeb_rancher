@@ -58,7 +58,7 @@ namespace Assets.Scripts.Plants
         protected abstract int GetHarvestedSeedNumber(PlantState currentState);
         public int TotalNumberOfSeedsInState(PlantState currentState)
         {
-            return this.GetHarvestedSeedNumber(currentState);
+            return GetHarvestedSeedNumber(currentState);
         }
 
         public Seed[] HarvestSeeds(PollinationState sourcePollination, PlantState currentState)

@@ -82,7 +82,7 @@ namespace Assets.Scripts.UI.MarketContracts
             // varies from 1 to targetSetLength, weighted towards lower numbers
             var numberOfTargets = Mathf.FloorToInt(Mathf.Pow(rangeSample, 2) * totalPossibleTargets) + 1;
 
-            this.SubtractFromBuckets(totalPossibleTargets - numberOfTargets, targetBuckets);
+            SubtractFromBuckets(totalPossibleTargets - numberOfTargets, targetBuckets);
 
             var contract = new TargetContractDescriptor
             {
@@ -93,7 +93,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 plantType = defaultPlantType
             };
             var totalTargets = (contract.booleanTargets?.Length ?? 0) + (contract.floatTargets?.Length ?? 0) + (contract.seedCountTarget?.Length ?? 0);
-            if(totalTargets != numberOfTargets)
+            if (totalTargets != numberOfTargets)
             {
                 Debug.LogError($"Something has gone very wrong. The number of targets does not match. Expected {numberOfTargets} but actually got {totalTargets}");
             }
@@ -147,11 +147,11 @@ namespace Assets.Scripts.UI.MarketContracts
         }
         private SeedCountTarget[] GenerateSeedTargets(int numberOfTargets)
         {
-            if(numberOfTargets <= 0)
+            if (numberOfTargets <= 0)
             {
                 return new SeedCountTarget[0];
             }
-            if(numberOfTargets > 1)
+            if (numberOfTargets > 1)
             {
                 Debug.LogError($"Cannot have more than one seed target. tried to create with {numberOfTargets}");
             }

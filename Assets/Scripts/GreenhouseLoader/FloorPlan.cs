@@ -32,7 +32,7 @@ namespace Assets.Scripts.GreenhouseLoader
         public Object GenerateFloorPlan()
         {
             var generatedMembers = floorTiles.GenerateFloorPlan();
-            if(generatedMembers.Any(x => x.Value == null))
+            if (generatedMembers.Any(x => x.Value == null))
             {
                 throw new System.Exception("null tile detected, this is not a valid floor plan.");
             }
