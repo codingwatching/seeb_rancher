@@ -15,7 +15,7 @@ namespace Dman.Tiling.TileSets
             UniversalCoordinateSystemMembers members)
         {
             var newTile = base.BasicCreateTile(offsetOnFloor, tileModelPrefab, parentTransform);
-            newTile.transform.localRotation *= Quaternion.Euler(0, 0, 90 * UnityEngine.Random.Range(0, 3));
+            newTile.transform.localRotation *= Quaternion.Euler(0, 90 * UnityEngine.Random.Range(0, 3), 0);
             return newTile;
         }
     }

@@ -2,6 +2,7 @@ using Dman.Tiling;
 using Dman.Tiling.SquareCoords;
 using Dman.Tiling.TileSets;
 using Dman.Utilities;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -31,6 +32,10 @@ namespace Assets.Scripts.GreenhouseLoader
         public Object GenerateFloorPlan()
         {
             var generatedMembers = floorTiles.GenerateFloorPlan();
+            if(generatedMembers.Any(x => x.Value == null))
+            {
+                throw new System.Exception("null tile detected, this is not a valid floor plan.");
+            }
             tiles.SetTileDataInEditMode(TileMembersSaveObject.FromTileTypeDictionary(generatedMembers));
             return tiles;
         }

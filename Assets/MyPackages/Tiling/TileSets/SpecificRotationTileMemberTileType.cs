@@ -6,7 +6,7 @@ namespace Dman.Tiling.TileSets
     [CreateAssetMenu(fileName = "SpecificRotationTileType", menuName = "Greenhouse/SpecificRotationTileType", order = 2)]
     public class SpecificRotationTileMemberTileType : TileType
     {
-        public TileMember tileModelPrefab;
+        public GameObject tileModelPrefab;
         public EdgeRotation specificRotation;
 
         public override GameObject CreateTile(
@@ -15,10 +15,12 @@ namespace Dman.Tiling.TileSets
             Transform parentTransform,
             UniversalCoordinateSystemMembers members)
         {
-            var newTile = Instantiate(tileModelPrefab, parentTransform);
-            newTile.SetPosition(coordinate);
-            SquareEdgeTileType.RotateInstanceByRotatedMatch(specificRotation, newTile.transform);
-            return newTile.gameObject;
+            var newTile = base.BasicCreateTile(offsetOnFloor, tileModelPrefab, parentTransform);
+            return newTile;
+            //var newTile = Instantiate(tileModelPrefab, parentTransform);
+            //newTile.SetPosition(coordinate);
+            //SquareEdgeTileType.RotateInstanceByRotatedMatch(specificRotation, newTile.transform);
+            //return newTile.gameObject;
         }
     }
 }

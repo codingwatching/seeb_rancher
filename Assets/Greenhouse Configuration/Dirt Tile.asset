@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 564061f072c3e7d418ce8ce107b5d82b, type: 3}
-  m_Name: LinoliumTile
+  m_Script: {fileID: 11500000, guid: ae4b0066288fbe1439f95fc218dc1928, type: 3}
+  m_Name: Dirt Tile
   m_EditorClassIdentifier: 
-  myId: 0
-  tileModelPrefab: {fileID: 7530086663021603285, guid: b5ac3db221173534c94cfe56dd01cd30, type: 3}
+  myId: 3
+  tileModelPrefab: {fileID: 2382978521318329550, guid: e4b46815d9abd5d4683b9ad6bd166744, type: 3}
+  specificRotation: 0

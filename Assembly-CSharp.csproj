@@ -111,6 +111,8 @@
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinMesh.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\PerlineSampler.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\FloatGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\Plants\Genes\MendelianFloatGene.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
+    <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinPositioner.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Dman.Tiling.TileSets
 {
-    enum NR // neighbor State
+    enum NeighborState
     {
         /// <summary>
         /// Set
@@ -44,9 +44,9 @@ namespace Dman.Tiling.TileSets
     class EdgingStateChecker
     {
         public EdgingState TargetState { get; private set; }
-        private NR[] matchingNeighbors;
+        private NeighborState[] matchingNeighbors;
 
-        public EdgingStateChecker(EdgingState targetState, NR[] matchingNeighbors)
+        public EdgingStateChecker(EdgingState targetState, NeighborState[] matchingNeighbors)
         {
             TargetState = targetState;
             this.matchingNeighbors = matchingNeighbors;
@@ -75,13 +75,13 @@ namespace Dman.Tiling.TileSets
             {
                 switch (matchingNeighbors[i])
                 {
-                    case NR.SET:
+                    case NeighborState.SET:
                         if (!neighbors[(i + offset) % size]) return false;
                         break;
-                    case NR.UNSET:
+                    case NeighborState.UNSET:
                         if (neighbors[(i + offset) % size]) return false;
                         break;
-                    case NR.IRRELIVENT:
+                    case NeighborState.IRRELIVENT:
                     default:
                         break;
                 }
@@ -116,14 +116,14 @@ namespace Dman.Tiling.TileSets
         private EdgingStateChecker[] StateChecks = new EdgingStateChecker[]
         {
             new EdgingStateChecker(EdgingState.Flat,
-                new NR[]
+                new NeighborState[]
                 {
-                    NR.IRRELIVENT, NR.UNSET, NR.UNSET, NR.IRRELIVENT, NR.SET, NR.IRRELIVENT, NR.UNSET, NR.UNSET
+                    NeighborState.IRRELIVENT, NeighborState.UNSET, NeighborState.UNSET, NeighborState.IRRELIVENT, NeighborState.SET, NeighborState.IRRELIVENT, NeighborState.UNSET, NeighborState.UNSET
                 }),
             new EdgingStateChecker(EdgingState.Corner,
-                new NR[]
+                new NeighborState[]
                 {
-                    NR.UNSET, NR.SET, NR.UNSET, NR.UNSET, NR.UNSET, NR.UNSET, NR.UNSET, NR.UNSET
+                    NeighborState.UNSET, NeighborState.SET, NeighborState.UNSET, NeighborState.UNSET, NeighborState.UNSET, NeighborState.UNSET, NeighborState.UNSET, NeighborState.UNSET
                 })
         };
 
@@ -161,7 +161,7 @@ namespace Dman.Tiling.TileSets
 
         public static void RotateInstanceByRotatedMatch(EdgeRotation rotation, Transform transform)
         {
-            transform.localRotation *= Quaternion.Euler(0, 0, 90 * ((int)rotation));
+            transform.localRotation *= Quaternion.Euler(0, 90 * ((int)rotation), 0);
         }
 
 
@@ -180,10 +180,11 @@ namespace Dman.Tiling.TileSets
             var edgeMatch = GetEdgeMatchFromNeighbors(neighbors);
             if (edgeMatch == null)
             {
+                Debug.LogError("no edge match found");
                 edgeMatch = new EdgeMatch
                 {
                     rotation = EdgeRotation.RIGHT,
-                    targetState = EdgingState.SingleEdge
+                    targetState = EdgingState.Corner
                 };
             }
             var edgeTile = GetEdgePrefabFromEdgeState(edgeMatch);

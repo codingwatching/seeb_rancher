@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4c8cd86c7ca5ea45b0c7c51082ffe43, type: 3}
-  m_Name: FloorTiles
+  m_Name: Floor Tile Plan
   m_EditorClassIdentifier: 
   floorSize:
     coord0:
@@ -18,6 +18,14 @@ MonoBehaviour:
       column: -10
     rows: 10
     cols: 20
+  dirtPlanterSize:
+    coord0:
+      row: -3
+      column: -5
+    rows: 6
+    cols: 10
+  dirtTile: {fileID: 11400000, guid: dcbcdd9e5fdf83e44b8880f091b918bf, type: 2}
+  dirtEdgeTile: {fileID: 11400000, guid: 19501fa0ea85a3a4ab36dc181a62029c, type: 2}
   floorTile: {fileID: 11400000, guid: 6c1d7f7df0d0e3741b45c56f09093119, type: 2}
-  wallTile: {fileID: 11400000, guid: 2f9ee2b2d12c8334fa6846eb8191eab5, type: 2}
+  floorEdgeTile: {fileID: 11400000, guid: 2f9ee2b2d12c8334fa6846eb8191eab5, type: 2}
   doorTile: {fileID: 11400000, guid: b83f41708e7a61444a689be33554a270, type: 2}
