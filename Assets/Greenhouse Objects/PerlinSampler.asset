@@ -21,4 +21,4 @@ MonoBehaviour:
     weight: 2
   - frequency: {x: 2, y: 4}
     weight: 1
-  randomSeed: 924
+  randomSeed: 1028

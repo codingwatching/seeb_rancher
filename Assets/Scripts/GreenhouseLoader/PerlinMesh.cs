@@ -45,12 +45,19 @@ namespace Assets.Scripts.GreenhouseLoader
                 for (float y = 0; y < samplesPerTile.y; y++)
                 {
                     var quadY = y * quadHeight;
-                    builder.AddQuad(
-                        VertexInPlane(quadX, quadY),
-                        VertexInPlane(quadX, quadY + quadHeight),
-                        VertexInPlane(quadX + quadWidth, quadY + quadHeight),
-                        VertexInPlane(quadX + quadWidth, quadY),
-                        true);
+                    var x0y0 = VertexInPlane(quadX, quadY);
+                    var x1y0 = VertexInPlane(quadX + quadWidth, quadY);
+                    var x0y1 = VertexInPlane(quadX, quadY + quadHeight);
+                    var x1y1 = VertexInPlane(quadX + quadWidth, quadY + quadHeight);
+                    var center = VertexInPlane(quadX + quadWidth/2, quadY + quadHeight/2);
+                    builder.AddTriangle(x0y0, x0y1, x1y1, true);
+                    builder.AddTriangle(x1y1, x1y0, x0y0, true);
+                    //builder.AddQuad(
+                    //    VertexInPlane(quadX, quadY),
+                    //    VertexInPlane(quadX, quadY + quadHeight),
+                    //    VertexInPlane(quadX + quadWidth, quadY + quadHeight),
+                    //    VertexInPlane(quadX + quadWidth, quadY),
+                    //    true);
                 }
             }
             //for (int i = 0; i < builder.vertexCount; i++)
