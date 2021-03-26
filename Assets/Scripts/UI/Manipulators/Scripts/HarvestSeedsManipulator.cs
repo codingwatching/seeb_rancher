@@ -2,6 +2,8 @@
 using Assets.Scripts.Plants;
 using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
+using Dman.Tiling;
+using Dman.Tiling.SquareCoords;
 using Dman.Utilities;
 using UnityEngine;
 using UnityFx.Outline;
@@ -16,6 +18,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public RaycastGroup harvestCaster;
 
         public Sprite harvestCursor;
+
+        public GameObject dragAreaRenderer;
 
         private SeedBucketDisplay draggingSeedsInstance;
         private SeedBucket seeds = null;
@@ -81,19 +85,23 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             seeds = null;
         }
-
         public override bool OnUpdate()
         {
+            //UpdateDragState();
             var planter = GetHoveredPlantContainer();
             var validTarget = planter?.CanHarvest() ?? false;
-
             singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);
+
 
             if (!validTarget)
             {
                 return true;
             }
-            selectedGameObject.SetValue(planter.gameObject);
+            if (validTarget)
+            {
+                selectedGameObject.SetValue(planter.gameObject);
+            }
+
             if (!Input.GetMouseButtonDown(0))
             {
                 return true;
@@ -118,6 +126,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             OnSeedsUpdated();
             return true;
         }
+
+
         private PlantContainer GetHoveredPlantContainer()
         {
             var mouseOvered = harvestCaster.CurrentlyHitObject;
