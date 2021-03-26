@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Dman.Tiling;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
 {
@@ -15,5 +16,10 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         /// <returns>whether or not to keep the manipulator alive</returns>
         public abstract bool OnUpdate();
         public abstract void OnClose();
+    }
+
+    public interface IAreaSelectManipulator
+    {
+        void OnAreaSelected(UniversalCoordinateRange range);
     }
 }

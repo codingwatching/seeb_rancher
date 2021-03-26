@@ -20,6 +20,12 @@ namespace Dman.Tiling.SquareCoords
         public SquareCoordinate MaximumBound => coord0 + new SquareCoordinate(rows - 1, cols - 1);
 
 
+        public void ToBox(float height, out Vector3 center, out Vector3 size)
+        {
+            center = new Vector3(coord0.column + (cols - 1) / 2f, 0, coord0.row + (rows - 1) / 2f);
+            size = new Vector3(cols - .5f, height, rows - .5f);
+        }
+
         public IEnumerator<SquareCoordinate> GetEnumerator()
         {
             for (var column = 0; column < cols; column++)

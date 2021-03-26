@@ -5,13 +5,14 @@ using Dman.ReactiveVariables;
 using Dman.Tiling;
 using Dman.Tiling.SquareCoords;
 using Dman.Utilities;
+using System.Linq;
 using UnityEngine;
 using UnityFx.Outline;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
 {
     [CreateAssetMenu(fileName = "HarvestSeedsManipulator", menuName = "Tiling/Manipulators/HarvestSeedsManipulator", order = 2)]
-    public class HarvestSeedsManipulator : MapManipulator, ISeedHoldingManipulator
+    public class HarvestSeedsManipulator : MapManipulator, ISeedHoldingManipulator, IAreaSelectManipulator
     {
 
         public GameObjectVariable selectedGameObject;
@@ -106,10 +107,19 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 return true;
             }
+            if (TryHarvestPlant(planter))
+            {
+                OnSeedsUpdated();
+            }
+            return true;
+        }
+
+        private bool TryHarvestPlant(PlantContainer planter)
+        {
             var harvested = planter.TryHarvest();
             if (harvested.Length <= 0)
             {
-                return true;
+                return false;
             }
             if (draggingSeedsInstance == null)
             {
@@ -121,9 +131,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 // TODO: what happens to the seeds if they can't be added? 
                 //  we should probably not harvest the plant if the seeds will just dissapear into the void
                 Debug.LogError("Incompatible seeds, they have been lost!");
-                return true;
+                return false;
             }
-            OnSeedsUpdated();
             return true;
         }
 
@@ -144,6 +153,30 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return;
             }
             draggingSeedsInstance.DisplaySeedBucket(seeds);
+        }
+
+        public void OnAreaSelected(UniversalCoordinateRange range)
+        {
+            Debug.Log("Harvest inside range:");
+            Debug.Log(range);
+
+            range.rectangleDataView.ToBox(5, out var center, out var size);
+            var extent = size / 2;
+            Debug.Log(center);
+            Debug.Log(extent);
+            var allTargetPlanters = Physics.OverlapBox(center, extent);
+            var harvestablePlanters = allTargetPlanters
+                .Select(x => x.gameObject.GetComponentInParent<PlantContainer>())
+                .Where(x => x?.CanHarvest() ?? false)
+                .ToList();
+            foreach (var planter in harvestablePlanters)
+            {
+                if (!TryHarvestPlant(planter))
+                {
+                    return;
+                }
+            }
+            OnSeedsUpdated();
         }
     }
 }
