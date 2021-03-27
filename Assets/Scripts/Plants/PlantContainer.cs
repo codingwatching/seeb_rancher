@@ -5,6 +5,7 @@ using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
 using Dman.Utilities;
 using Genetics.GeneticDrivers;
+using System.Collections;
 using System.Linq;
 using UniRx;
 using UnityEngine;
@@ -245,11 +246,20 @@ namespace Assets.Scripts.Plants
             currentState = null;
             pollinationState = null;
             GeneticDrivers = null;
-            UpdatePlant();
 
-            harvestEffect.Play();
+            StartCoroutine(HarvestEffect());
 
             return harvestedSeeds;
+        }
+
+        private IEnumerator HarvestEffect()
+        {
+            var plantObject = plantsParent.GetComponentInChildren<MeshFilter>();
+            // assuming the mesh has been rotated 90 degrees around z axis. 
+            harvestEffect.SetFloat("height", plantObject.mesh.bounds.size.x * plantObject.transform.localScale.x);
+            harvestEffect.Play();
+            yield return new WaitForSeconds(0.3f);
+            UpdatePlant();
         }
 
         /// <summary>
