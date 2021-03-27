@@ -1,11 +1,18 @@
 using Assets.Scripts.DataModels;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
     public class SeedInventoryController : MonoBehaviour
     {
+        [Tooltip("The gameobject which all SeedInventoryDropSlots are directly nested under")]
         public GameObject seedGridLayoutParent;
+
+        public SeedInventoryDropSlot trashSlot;
+
+        //public VisualEffect trashParticles;
+        //public Camera mainCamera;
 
         public static SeedInventoryController Instance;
 
@@ -37,9 +44,28 @@ namespace Assets.Scripts.UI.SeedInventory
                     return dropSlot;
                 }
             }
+            if (trashSlot != null)
+            {
+                if (!trashSlot.dataModel.bucket.Empty)
+                {
+                    DoTrashEffect();
+                }
+                trashSlot.UpdateDataModel(new SeedBucketUI
+                {
+                    bucket = new SeedBucket(),
+                    description = ""
+                });
+
+                return trashSlot;
+            }
             return null;
         }
 
+        private void DoTrashEffect()
+        {
+            var trashAnim = trashSlot.GetComponentInChildren<Animator>();
+            trashAnim.SetTrigger("trashed");
+        }
 
         private void Awake()
         {
