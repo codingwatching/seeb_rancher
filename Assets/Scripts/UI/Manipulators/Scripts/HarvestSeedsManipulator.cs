@@ -90,7 +90,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public override bool OnUpdate()
         {
-            //UpdateDragState();
             var planter = GetHoveredPlantContainer();
             var validTarget = planter?.CanHarvest() ?? false;
             singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);

@@ -27,23 +27,9 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private UniversalCoordinateRange lastDragRange = default;
         public GameObject dragAreaRenderer;
 
-
-        private void UpdateIsMouseDrag()
+        private void Start()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                mouseDownPosition = Input.mousePosition;
-                dragging = false;
-            }
-            if (mouseDownPosition.HasValue)
-            {
-                var mouseDistance = (Input.mousePosition - mouseDownPosition).Value.magnitude;
-                mouseDownPosition = null;
-                if (mouseDistance >= MouseMoveDragThreshold)
-                {
-                    dragging = true;
-                }
-            }
+            dragAreaRenderer.SetActive(false);
         }
 
         // Update is called once per frame
@@ -52,7 +38,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var hoveredCoordinate = GetHoveredCoordinate();
 
 
-            if (Input.GetMouseButtonDown(0) && hoveredCoordinate != null)
+            if (Input.GetMouseButtonDown(0) && hoveredCoordinate != null && manipulationController.activeManipulator is IAreaSelectManipulator)
             {
                 mouseDownPosition = Input.mousePosition;
                 originDragPoint = hoveredCoordinate.Value;
