@@ -112,7 +112,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             if (Input.GetMouseButtonUp(0) && mouseDownPosition.HasValue)
             {
                 var mouseDistance = (Input.mousePosition - mouseDownPosition).Value.magnitude;
-                if (mouseDistance < 0.3f)
+                mouseDownPosition = null;
+                if (mouseDistance < DragAreaSelector.MouseMoveDragThreshold)
                 {
                     if (TryHarvestPlant(planter)) OnSeedsUpdated();
                 }
