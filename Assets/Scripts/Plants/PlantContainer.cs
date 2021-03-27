@@ -8,6 +8,7 @@ using Genetics.GeneticDrivers;
 using System.Linq;
 using UniRx;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Assets.Scripts.Plants
 {
@@ -20,6 +21,9 @@ namespace Assets.Scripts.Plants
         public BasePlantType plantType;
         public PlantTypeRegistry plantTypes;
         public GameObjectVariable selectedPlant;
+
+        public VisualEffect harvestEffect;
+        public VisualEffect plantedEffect;
 
         [SerializeField]
         [HideInInspector]
@@ -120,6 +124,7 @@ namespace Assets.Scripts.Plants
             pollinationState = new PollinationState(toBePlanted);
             plantType = plantTypes.GetUniqueObjectFromID(pollinationState.SelfGenes.plantType);
             currentState = plantType.GenerateBaseSate();
+            plantedEffect.Play();
             GrowthUpdated(true);
         }
 
@@ -241,6 +246,8 @@ namespace Assets.Scripts.Plants
             pollinationState = null;
             GeneticDrivers = null;
             UpdatePlant();
+
+            harvestEffect.Play();
 
             return harvestedSeeds;
         }

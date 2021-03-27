@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinPositioner.cs" />
     <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
+    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragAreaSelector.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantFormDefinition.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
@@ -131,7 +132,6 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragAreaSelector.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -899,6 +899,12 @@
     </Reference>
     <Reference Include="SplineMesh">
       <HintPath>Library\ScriptAssemblies\SplineMesh.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualEffectGraph.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualEffectGraph.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
