@@ -11,11 +11,7 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public SeedInventoryDropSlot trashSlot;
 
-        //public VisualEffect trashParticles;
-        //public Camera mainCamera;
-
         public static SeedInventoryController Instance;
-
 
         /// <summary>
         /// finds the first open drop slot, and puts the <paramref name="seedStack"/> in there.
@@ -29,7 +25,7 @@ namespace Assets.Scripts.UI.SeedInventory
             {
                 return null;
             }
-            dropSlot.UpdateDataModel(seedStack);
+            dropSlot.RecieveNewSeeds(seedStack);
             return dropSlot.gameObject;
         }
 
@@ -38,33 +34,16 @@ namespace Assets.Scripts.UI.SeedInventory
             foreach (Transform bucketInstance in seedGridLayoutParent.transform)
             {
                 var dropSlot = bucketInstance.GetComponent<SeedInventoryDropSlot>();
-                var seedModel = dropSlot.dataModel;
-                if (string.IsNullOrWhiteSpace(seedModel.description) && seedModel.bucket.Empty)
+                if (dropSlot.CanSlotRecieveNewStack())
                 {
                     return dropSlot;
                 }
             }
-            if (trashSlot != null)
+            if (trashSlot?.CanSlotRecieveNewStack() ?? false)
             {
-                if (!trashSlot.dataModel.bucket.Empty)
-                {
-                    DoTrashEffect();
-                }
-                trashSlot.UpdateDataModel(new SeedBucketUI
-                {
-                    bucket = new SeedBucket(),
-                    description = ""
-                });
-
                 return trashSlot;
             }
             return null;
-        }
-
-        private void DoTrashEffect()
-        {
-            var trashAnim = trashSlot.GetComponentInChildren<Animator>();
-            trashAnim.SetTrigger("trashed");
         }
 
         private void Awake()

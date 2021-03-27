@@ -22,9 +22,9 @@ namespace Assets.Scripts.UI.SeedInventory
         public DragSeedsManipulator draggingSeedsManipulator;
         public ScriptableObjectVariable activeManipulator;
 
-        public SeedBucketUI dataModel { get; private set; }
+        public SeedBucketUI dataModel { get; protected set; }
 
-        private SeedBucketDisplay Displayer => GetComponent<SeedBucketDisplay>();
+        protected SeedBucketDisplay Displayer => GetComponent<SeedBucketDisplay>();
 
         private void Awake()
         {
@@ -35,6 +35,11 @@ namespace Assets.Scripts.UI.SeedInventory
             InitializeListeners();
         }
 
+        public virtual bool CanSlotRecieveNewStack()
+        {
+            return string.IsNullOrWhiteSpace(dataModel.description) && dataModel.bucket.Empty;
+        }
+
         /// <summary>
         /// This method will be kind of messy because it keys off of a button instead of the <see cref="Manipulators.Scripts.ManipulatorController"/> system
         /// </summary>
@@ -42,27 +47,53 @@ namespace Assets.Scripts.UI.SeedInventory
         {
             if (activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
             {
-                var emptyPreTransfer = dataModel?.bucket.Empty ?? true;
-                var seedsTransferred = seedHolder.AttemptTransferAllSeedsInto(dataModel.bucket);
-                if (emptyPreTransfer && seedsTransferred)
-                {
-                    Debug.Log($"setting description to {seedHolder.SeedGroupName}");
-                    dataModel.description = seedHolder.SeedGroupName;
-                }
+                AddSeedsFromManipulator(seedHolder);
             }
             else
             {
-                if (dataModel.bucket.Empty)
-                {
-                    return;
-                }
-                // if there are no dragging seeds, pull out of the slot and start dragging seeds
-                activeManipulator.SetValue(draggingSeedsManipulator);
-                draggingSeedsManipulator.InitializeSeedBucketFrom(this);
-                onSeedFirstGrabbed?.Invoke();
+                GrabSeedsOut();
             }
             MySeedsUpdated();
         }
+
+        /// <summary>
+        /// Grab the seeds out from this slot into a new dragging cursor
+        /// </summary>
+        protected void GrabSeedsOut()
+        {
+            if (dataModel.bucket.Empty)
+            {
+                return;
+            }
+            // if there are no dragging seeds, pull out of the slot and start dragging seeds
+            activeManipulator.SetValue(draggingSeedsManipulator);
+            draggingSeedsManipulator.InitializeSeedBucketFrom(this);
+            onSeedFirstGrabbed?.Invoke();
+        }
+
+        /// <summary>
+        /// Takes seeds from the manipulator and add it to this slot, if possible
+        /// </summary>
+        protected virtual void AddSeedsFromManipulator(ISeedHoldingManipulator seedHolder)
+        {
+            var emptyPreTransfer = dataModel?.bucket.Empty ?? true;
+            var seedsTransferred = seedHolder.AttemptTransferAllSeedsInto(dataModel.bucket);
+            if (emptyPreTransfer && seedsTransferred)
+            {
+                dataModel.description = seedHolder.SeedGroupName;
+            }
+        }
+
+        public virtual bool RecieveNewSeeds(SeedBucketUI model)
+        {
+            if (!CanSlotRecieveNewStack())
+            {
+                return false;
+            }
+            this.UpdateDataModel(model);
+            return true;
+        }
+
 
         public void MySeedsUpdated()
         {
