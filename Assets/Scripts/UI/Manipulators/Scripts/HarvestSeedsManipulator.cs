@@ -3,7 +3,6 @@ using Assets.Scripts.Plants;
 using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using Dman.Tiling;
-using Dman.Tiling.SquareCoords;
 using Dman.Utilities;
 using System.Linq;
 using UnityEngine;
@@ -43,9 +42,9 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public Seed[] AttemptTakeSeeds(int seedCount)
         {
             var resultSeeds = seeds?.TakeN(seedCount);
-            if(resultSeeds != null)
+            if (resultSeeds != null)
             {
-                this.OnSeedsUpdated();
+                OnSeedsUpdated();
             }
             return resultSeeds;
         }
@@ -86,6 +85,9 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             seeds = null;
         }
+
+        private Vector3? mouseDownPosition = null;
+
         public override bool OnUpdate()
         {
             //UpdateDragState();
@@ -103,14 +105,19 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 selectedGameObject.SetValue(planter.gameObject);
             }
 
-            if (!Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                return true;
+                mouseDownPosition = Input.mousePosition;
             }
-            if (TryHarvestPlant(planter))
+            if (Input.GetMouseButtonUp(0) && mouseDownPosition.HasValue)
             {
-                OnSeedsUpdated();
+                var mouseDistance = (Input.mousePosition - mouseDownPosition).Value.magnitude;
+                if (mouseDistance < 0.3f)
+                {
+                    if (TryHarvestPlant(planter)) OnSeedsUpdated();
+                }
             }
+
             return true;
         }
 
