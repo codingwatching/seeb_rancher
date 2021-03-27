@@ -90,7 +90,7 @@ namespace Assets.Scripts.UI.SeedInventory
             {
                 return false;
             }
-            this.UpdateDataModel(model);
+            UpdateDataModel(model);
             return true;
         }
 

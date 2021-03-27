@@ -1,6 +1,5 @@
 using Assets.Scripts.DataModels;
 using UnityEngine;
-using UnityEngine.VFX;
 
 namespace Assets.Scripts.UI.SeedInventory
 {

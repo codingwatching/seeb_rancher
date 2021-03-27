@@ -105,7 +105,7 @@ namespace Assets.Scripts.UI.MarketContracts
 
             contract.minimumComplianceRatio = Random.Range(minComplianceRatio, maxComplianceRatio);
 
-            contract.reward = 
+            contract.reward =
                 defaultReward
                 * rewardMultiplierByComplianceRatio.Evaluate(contract.minimumComplianceRatio)
                 * Mathf.Pow(multiplierPerAdditional, totalTargets);

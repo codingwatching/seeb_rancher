@@ -45,7 +45,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public void OnAreaSelected(UniversalCoordinateRange range)
         {
-            if(activeManipulator is IAreaSelectManipulator areaManipulator)
+            if (activeManipulator is IAreaSelectManipulator areaManipulator)
             {
                 areaManipulator.OnAreaSelected(range);
             }

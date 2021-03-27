@@ -1,12 +1,6 @@
 ﻿using Assets.Scripts.DataModels;
 using Assets.Scripts.UI.Manipulators.Scripts;
-using Dman.ReactiveVariables;
-using Dman.SceneSaveSystem;
-using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
@@ -34,7 +28,7 @@ namespace Assets.Scripts.UI.SeedInventory
             {
                 DoTrashEffect();
             }
-            this.UpdateDataModel(model);
+            UpdateDataModel(model);
             return true;
         }
 
