@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.dman.genetics": "0.1.2",
-    "com.dman.l-system": "0.2.0",
+    "com.dman.l-system": "0.2.1",
     "com.dman.plantbuilder": "0.2.3",
     "com.dman.reactive-variables": "0.1.3",
     "com.dman.scene-save-system": "0.1.2",

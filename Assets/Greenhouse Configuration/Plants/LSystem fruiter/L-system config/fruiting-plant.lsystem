@@ -1,7 +1,7 @@
 #axiom S(0)
 #iterations 70
 
-#ignore /\&^F$`
+#ignore /\&^F$`@
 
 ## flags set based on the pollination state
 #runtime hasAnther 1
@@ -20,7 +20,7 @@
 #define flowerFailureChance 0.5
 
 ## S is the Shoot symbol
-S(x) : x == 0 -> FS(x + 1)NT(-shootHeight)
+S(x) : x == 0 -> @FS(x + 1)NT(-shootHeight)
 S(x) : x < shootHeight && x > 0-> FS(x+1)
 S(x) : x == shootHeight -> 
 
@@ -62,7 +62,7 @@ petiole(x) : x > 0 -> L
 O(x, t) : x > 0 -> +(t)L(x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
 
 ## I is an internode, used to just build length of certain size
-I(x) : x > 0 -> I(x - 1)$(0.003)F
+I(x) : x > 0 -> I(x - 1)$(0.003)@F
 I(x) > J     -> JI(x)
 
 ## organs
