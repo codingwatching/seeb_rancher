@@ -64,7 +64,7 @@ namespace Assets.Scripts.Plants
                 return;
             }
 
-            systemState.CompileSystemIfNotCached(geneticModifiers, geneticDrivers, lSystem);
+            systemState.CompileSystemIfNotCached(() => CompileToGlobalParameters(geneticDrivers), lSystem);
             systemState.runtimeParameters.SetParameter("hasAnther", pollination.HasAnther ? 1 : 0);
             systemState.runtimeParameters.SetParameter("isPollinated", pollination.IsPollinated ? 1 : 0);
 
@@ -84,6 +84,21 @@ namespace Assets.Scripts.Plants
             var lastAngles = newPlantTarget.transform.parent.localEulerAngles;
             lastAngles.y = systemState.randomRotationAmount;
             newPlantTarget.transform.parent.localEulerAngles = lastAngles;
+        }
+
+        public Dictionary<string, string> CompileToGlobalParameters(CompiledGeneticDrivers geneticDrivers)
+        {
+            return geneticModifiers
+                .Select(x =>
+                {
+                    if (geneticDrivers.TryGetGeneticData(x.geneticDriver, out var driverValue))
+                    {
+                        return new { x.lSystemDefineDirectiveName, driverValue };
+                    }
+                    return null;
+                })
+                .Where(x => x != null)
+                .ToDictionary(x => x.lSystemDefineDirectiveName, x => x.driverValue.ToString());
         }
 
         public override bool HasFlowers(PlantState currentState)
@@ -116,7 +131,7 @@ namespace Assets.Scripts.Plants
             var geneticDrivers = genome.CompileGenome(seed.genes);
             var tempState = GenerateBaseSate() as LSystemPlantState;
 
-            tempState.CompileSystemIfNotCached(geneticModifiers, geneticDrivers, lSystem);
+            tempState.CompileSystemIfNotCached(() => CompileToGlobalParameters(geneticDrivers), lSystem);
             // when simulating growth, no anthers are clipped. and it is always pollinated.
             tempState.runtimeParameters.SetParameter("hasAnther", 1);
             tempState.runtimeParameters.SetParameter("isPollinated", 1);

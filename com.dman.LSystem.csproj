@@ -8,11 +8,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{54CA7512-07AE-506F-0123-7EFBE4B7FCA6}</ProjectGuid>
+    <RootNamespace>Dman.LSystem</RootNamespace>
+    <ProjectGuid>{DD72B859-1013-9260-F42D-99C160940558}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>TilingEditor</AssemblyName>
+    <AssemblyName>com.dman.LSystem</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -48,7 +48,7 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
     <UnityProjectGeneratorVersion>2.0.5</UnityProjectGeneratorVersion>
-    <UnityProjectType>Editor:5</UnityProjectType>
+    <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.2.1f1</UnityVersion>
   </PropertyGroup>
@@ -56,10 +56,51 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MyPackages\Tiling\Editor\GreenhouseMemberEditor.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\StringSegment.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\RuleParser.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Token.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemObject.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ArrayStringifyExtensions.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\LSystem.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperationSet.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Tokenizer.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleRotateOperations.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\InputSymbolParser.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\CompilerContext.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\TurtleInterpretor.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ReplacementSymbolGenerator.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemRuntimeException.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\RuleOutcome.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleScaleOperations.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\SymbolStringBranchingCache.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\TokenExpression.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleMeshOperations.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemBehavior.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\AssemblyFlags.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ReplacementSymbolGeneratorParser.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\ITurtleOperator.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\BasicRule.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\ISymbolString.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemDeveloper.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ParsedRuleEqualityComparer.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SymbolString.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleInterpreterBehavior.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\SymbolSeriesMatcher.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ExpressionCompiler.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\IRule.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ParsedRule.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\InputSymbol.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\TurtleState.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\SyntaxException.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\ArrayParameterRepresenation.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleBendTowardsOperation.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\MyPackages\Tiling\Editor\TilingEditor.asmdef" />
+     <None Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\com.dman.l-system.asmdef" />
+     <None Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Collections.Immutable.dll" />
+     <None Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Memory.dll" />
+     <None Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Runtime.CompilerServices.Unsafe.dll" />
+     <None Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Buffers.dll" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -666,24 +707,26 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
+    <Reference Include="Utilities">
+      <HintPath>Library\ScriptAssemblies\Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="ProceduralToolkit">
+      <HintPath>Library\ScriptAssemblies\ProceduralToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="com.dman.MeshDraftExtensions">
+      <HintPath>Library\ScriptAssemblies\com.dman.MeshDraftExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TestRunner">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Tiling.csproj">
-      <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
-      <Name>Tiling</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

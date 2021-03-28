@@ -7,7 +7,12 @@
 #runtime hasAnther 1
 #runtime isPollinated 0
 
+## variables controlled by genes
 #define primaryBranchInternodes 7
+#define flowerFailureChance 0.25
+#define stamenSize 0.6
+
+## variables defined for utility
 #define shootHeight 5
 #define internodeHeight 6
 #define leafAge 3
@@ -17,7 +22,6 @@
 #define flowerAge 7
 #define timeToFruit 10
 
-#define flowerFailureChance 0.5
 
 ## S is the Shoot symbol
 S(x) : x == 0 -> @FS(x + 1)NT(-shootHeight)
@@ -40,7 +44,7 @@ P(flowerFailureChance) | V -> []
 P(1 - flowerFailureChance) | V -> V(flowerStalkLength)
 
         V(x) : x > 0 -> $(0.1)FV(x - 1)
-JI(a) < V(x) : x <= 0 -> C(x)[K(1)][A(1)]
+JI(a) < V(x) : x <= 0 -> C(x)[K(0, 1)][A(1)]
 
 ## J is a signal which propigates from the apex, signaling flowering.
 J(x) : x > 0 -> J(x - 1)
@@ -49,11 +53,12 @@ J ->
  
 ## C is a fruiting controller. transitions to a fruit after waiting
 C(x) : x < timeToFruit -> C(x + 1)
-C(x) : x >= timeToFruit -> [D(1)]
+C(x) : x >= timeToFruit -> [D(0, 1)]
 
 #define fruitSize 5
 ## D is a fruiting body
-D(x) : x < fruitSize -> D(x + 1)
+D(y, x) : x < fruitSize -> D(y, x + 1)
+## D(y, x) : x >= fruitSize -> D(y + 1, x)
 
 ## P is the petiole, x is number of leaves
 #define petiole( P(
@@ -76,10 +81,10 @@ L(x) -> [l(1, x)]
 l(x, y) : x < y -> l(x + 1, y)
 
 ## K is a flower
-         K(x) : x < flowerAge -> K(x + 1)
-C(age) < K(y) : age >= timeToFruit ->
+         K(y, x) : x < flowerAge -> K(y, x + 1)
+         K(y, x) : x >= flowerAge -> K(y + 1, x)
+C(age) < K(y, x) : age >= timeToFruit ->
 
-#define stamenSize 0.6
 ## A is an anther
          A(x) : (x < flowerAge * stamenSize) && (hasAnther > 0) -> A(x + stamenSize)
          A(x) : hasAnther < 1 ->

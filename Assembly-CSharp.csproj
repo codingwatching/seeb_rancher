@@ -120,6 +120,7 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinPositioner.cs" />
     <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragAreaSelector.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryTrashSlot.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantFormDefinition.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
@@ -132,7 +133,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryTrashSlot.cs" />
+    <Compile Include="Assets\Scripts\Plants\Specific plant implementations\GeneticLSystemParameterGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -386,19 +387,19 @@
       <HintPath>Library\PackageCache\com.unity.burst@1.3.7\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Collections.Immutable">
-      <HintPath>Library\PackageCache\com.dman.l-system@0.2.0\Runtime\Plugin\System.Collections.Immutable.dll</HintPath>
+      <HintPath>C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0-preview\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Memory">
-      <HintPath>Library\PackageCache\com.dman.l-system@0.2.0\Runtime\Plugin\System.Memory.dll</HintPath>
+      <HintPath>C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers">
-      <HintPath>Library\PackageCache\com.dman.l-system@0.2.0\Runtime\Plugin\System.Buffers.dll</HintPath>
+      <HintPath>C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.dman.l-system@0.2.0\Runtime\Plugin\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.5\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -805,9 +806,6 @@
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="com.dman.plantbuilder.editor">
-      <HintPath>Library\ScriptAssemblies\com.dman.plantbuilder.editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
@@ -828,9 +826,6 @@
     </Reference>
     <Reference Include="ProceduralToolkit">
       <HintPath>Library\ScriptAssemblies\ProceduralToolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="com.dman.plantbuilder">
-      <HintPath>Library\ScriptAssemblies\com.dman.plantbuilder.dll</HintPath>
     </Reference>
     <Reference Include="ProceduralToolkit.FastNoiseLib">
       <HintPath>Library\ScriptAssemblies\ProceduralToolkit.FastNoiseLib.dll</HintPath>
@@ -883,9 +878,6 @@
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="com.dman.l-system.editor">
-      <HintPath>Library\ScriptAssemblies\com.dman.l-system.editor.dll</HintPath>
-    </Reference>
     <Reference Include="com.dman.MeshDraftExtensions">
       <HintPath>Library\ScriptAssemblies\com.dman.MeshDraftExtensions.dll</HintPath>
     </Reference>
@@ -897,9 +889,6 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="com.dman.LSystem">
-      <HintPath>Library\ScriptAssemblies\com.dman.LSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
@@ -920,6 +909,14 @@
     <ProjectReference Include="Tiling.csproj">
       <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
       <Name>Tiling</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.dman.l-system.editor.csproj">
+      <Project>{64660CD5-FA0A-67A9-375B-9B84960E0AC8}</Project>
+      <Name>com.dman.l-system.editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.dman.LSystem.csproj">
+      <Project>{DD72B859-1013-9260-F42D-99C160940558}</Project>
+      <Name>com.dman.LSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

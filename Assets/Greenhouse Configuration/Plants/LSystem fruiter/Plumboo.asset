@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71da9d4550b647549b7f3bc1f543d3fd, type: 3}
-  m_Name: LSystemPlantType
+  m_Name: Plumboo
   m_EditorClassIdentifier: 
   myId: 1
   genome: {fileID: 11400000, guid: cf41996e76a29cc4ea853bae80556938, type: 2}

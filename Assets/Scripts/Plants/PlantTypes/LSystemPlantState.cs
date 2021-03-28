@@ -1,6 +1,8 @@
 ﻿using Dman.LSystem;
 using Dman.LSystem.UnityObjects;
 using Genetics.GeneticDrivers;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -47,8 +49,7 @@ namespace Assets.Scripts.Plants
         }
 
         public void CompileSystemIfNotCached(
-            FloatGeneticDriverToLSystemParameter[] geneticModifiers,
-            CompiledGeneticDrivers geneticDrivers,
+            Func<Dictionary<string, string>> globalParameterGenerator,
             LSystemObject system)
         {
             if (compiledSystem != null)
@@ -56,18 +57,7 @@ namespace Assets.Scripts.Plants
                 return;
             }
             Debug.Log("compiling System");
-            var geneticModifiedParameters = geneticModifiers
-                .Select(x =>
-                {
-                    if (geneticDrivers.TryGetGeneticData(x.geneticDriver, out var driverValue))
-                    {
-                        return new { x.lSystemDefineDirectiveName, driverValue };
-                    }
-                    return null;
-                })
-                .Where(x => x != null)
-                .ToDictionary(x => x.lSystemDefineDirectiveName, x => x.driverValue.ToString());
-            compiledSystem = system.CompileWithParameters(geneticModifiedParameters);
+            compiledSystem = system.CompileWithParameters(globalParameterGenerator());
 
             runtimeParameters = system.GetRuntimeParameters();
         }
