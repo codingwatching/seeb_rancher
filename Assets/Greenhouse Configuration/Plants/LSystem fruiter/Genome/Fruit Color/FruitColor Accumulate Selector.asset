@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac14bcf6862d0b41b9f7a0540d4fab1, type: 3}
+  m_Name: FruitColor Accumulate Selector
+  m_EditorClassIdentifier: 
+  floatOutput: {fileID: 11400000, guid: a973c6d139ad7a5438dd09156b9d1360, type: 2}
+  booleanInputs:
+  - {fileID: 11400000, guid: 8199bf39eae7b2d4da494140b0c82ea6, type: 2}
+  - {fileID: 11400000, guid: c628b314bc7fa5143a45968d4cd5f3bc, type: 2}

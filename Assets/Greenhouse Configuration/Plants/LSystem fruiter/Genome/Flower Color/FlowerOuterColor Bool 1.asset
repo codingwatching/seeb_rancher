@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0302d98401b626647b18102116b97345, type: 3}
-  m_Name: L System Genome
+  m_Script: {fileID: 11500000, guid: 08045ec0511dbdd49a9ad68ab25b9344, type: 3}
+  m_Name: FlowerOuterColor Bool 1
   m_EditorClassIdentifier: 
-  chromosomes:
-  - {fileID: 11400000, guid: c254a00dec023314db47268a61527eeb, type: 2}
-  - {fileID: 11400000, guid: 3623cfc797719434dacb98fd0f498b41, type: 2}
-  geneInterpretors: []
+  myId: 12
+  DriverName: Outer Flower color regulator 2
+  outcomeWhenTrue: Index+
+  outcomeWhenFalse: Index-

@@ -30,3 +30,9 @@ MonoBehaviour:
     lSystemDefineDirectiveName: flowerFailureChance
   - geneticDriver: {fileID: 11400000, guid: 8469972dedfb76241a6d5f9c34ed4260, type: 2}
     lSystemDefineDirectiveName: stamenSize
+  - geneticDriver: {fileID: 11400000, guid: a973c6d139ad7a5438dd09156b9d1360, type: 2}
+    lSystemDefineDirectiveName: fruitColorIndex
+  - geneticDriver: {fileID: 11400000, guid: b959950948c96d5499b781cfe4e8fed0, type: 2}
+    lSystemDefineDirectiveName: flowerColorInnerIndex
+  - geneticDriver: {fileID: 11400000, guid: 3fe6aa0fcb95eae4e9935b3da2f91ef1, type: 2}
+    lSystemDefineDirectiveName: flowerColorOuterIndex

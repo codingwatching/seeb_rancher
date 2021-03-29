@@ -48,7 +48,7 @@ namespace Assets.Scripts.Plants
         {
             return new Seed
             {
-                genes = genome.GenerateBaseGenomeData(),
+                genes = genome.GenerateBaseGenomeData(new System.Random(Random.Range(int.MinValue, int.MaxValue))),
                 plantType = myId
             };
         }

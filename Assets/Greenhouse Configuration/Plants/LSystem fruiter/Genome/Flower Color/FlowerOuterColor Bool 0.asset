@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36da55203e1d2304d8dc8be959c92390, type: 3}
-  m_Name: PlantHeightGene
+  m_Script: {fileID: 11500000, guid: 08045ec0511dbdd49a9ad68ab25b9344, type: 3}
+  m_Name: FlowerOuterColor Bool 0
   m_EditorClassIdentifier: 
-  floatOutput: {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
-  higherValueDominant: 0
-  rangeMin: 1
-  rangeMax: 7
+  myId: 11
+  DriverName: Outer Flower color regulator 1
+  outcomeWhenTrue: Index+
+  outcomeWhenFalse: Index-

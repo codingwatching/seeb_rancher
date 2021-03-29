@@ -7,10 +7,18 @@
 #runtime hasAnther 1
 #runtime isPollinated 0
 
+## composition definitions. define directives evaluate in-order, these directives rely on subsequent definitions to complete
+#define flowerMeshIndex (flowerColorInnerIndex + flowerColorOuterIndex * 3)
+
 ## variables controlled by genes
 #define primaryBranchInternodes 7
 #define flowerFailureChance 0.25
 #define stamenSize 0.6
+## ranges from 0 to 2. 0 is least ripe, 2 is most ripe.
+#define fruitColorIndex 1
+#define flowerColorInnerIndex 1
+#define flowerColorOuterIndex 1
+
 
 ## variables defined for utility
 #define shootHeight 5
@@ -44,7 +52,7 @@ P(flowerFailureChance) | V -> []
 P(1 - flowerFailureChance) | V -> V(flowerStalkLength)
 
         V(x) : x > 0 -> $(0.1)FV(x - 1)
-JI(a) < V(x) : x <= 0 -> C(x)[K(0, 1)][A(1)]
+JI(a) < V(x) : x <= 0 -> C(x)[K(flowerMeshIndex, 1)][A(1)]
 
 ## J is a signal which propigates from the apex, signaling flowering.
 J(x) : x > 0 -> J(x - 1)
@@ -53,12 +61,11 @@ J ->
  
 ## C is a fruiting controller. transitions to a fruit after waiting
 C(x) : x < timeToFruit -> C(x + 1)
-C(x) : x >= timeToFruit -> [D(0, 1)]
+C(x) : x >= timeToFruit -> [D(fruitColorIndex, 1)]
 
 #define fruitSize 5
 ## D is a fruiting body
 D(y, x) : x < fruitSize -> D(y, x + 1)
-## D(y, x) : x >= fruitSize -> D(y + 1, x)
 
 ## P is the petiole, x is number of leaves
 #define petiole( P(
@@ -82,7 +89,6 @@ l(x, y) : x < y -> l(x + 1, y)
 
 ## K is a flower
          K(y, x) : x < flowerAge -> K(y, x + 1)
-         K(y, x) : x >= flowerAge -> K(y + 1, x)
 C(age) < K(y, x) : age >= timeToFruit ->
 
 ## A is an anther

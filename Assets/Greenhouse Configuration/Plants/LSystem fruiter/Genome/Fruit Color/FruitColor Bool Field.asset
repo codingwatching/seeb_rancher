@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0302d98401b626647b18102116b97345, type: 3}
-  m_Name: L System Genome
+  m_Script: {fileID: 11500000, guid: 0e9ee743b7ce79f41b211994ba37a24a, type: 3}
+  m_Name: FruitColor Bool Field
   m_EditorClassIdentifier: 
-  chromosomes:
-  - {fileID: 11400000, guid: c254a00dec023314db47268a61527eeb, type: 2}
-  - {fileID: 11400000, guid: 3623cfc797719434dacb98fd0f498b41, type: 2}
-  geneInterpretors: []
+  outputDrivers:
+  - {fileID: 11400000, guid: 8199bf39eae7b2d4da494140b0c82ea6, type: 2}
+  - {fileID: 11400000, guid: c628b314bc7fa5143a45968d4cd5f3bc, type: 2}
+  dominantValues: 0001

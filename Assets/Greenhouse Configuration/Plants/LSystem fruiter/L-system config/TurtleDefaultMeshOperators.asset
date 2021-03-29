@@ -30,14 +30,16 @@ MonoBehaviour:
     AlsoMove: 0
     UseThickness: 0
   - Character: 75
-    MeshRef: {fileID: 2395147057453291171, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    MeshRef: {fileID: -8233340004779243719, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants:
+    - {fileID: 2395147057453291171, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     - {fileID: -128952280852606664, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     - {fileID: 3321107443752818698, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    - {fileID: 794568307061694738, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     - {fileID: -2463450769316877441, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     - {fileID: -6183008214913326418, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     - {fileID: -16920097807987086, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
-    - {fileID: 5466525949851082012, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    - {fileID: -3366813454224735725, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     IndividualScale: {x: 1, y: 1, z: 1}
     ParameterScale: 1
     ScalePerParameter: {x: 2, y: 0.5, z: 0.5}
@@ -76,10 +78,10 @@ MonoBehaviour:
     AlsoMove: 0
     UseThickness: 0
   - Character: 68
-    MeshRef: {fileID: 1569212055897181770, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    MeshRef: {fileID: -632565698310742879, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants:
     - {fileID: 5010122461826768861, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
-    - {fileID: -632565698310742879, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    - {fileID: 1569212055897181770, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     IndividualScale: {x: 0.7, y: 0.7, z: 0.7}
     ParameterScale: 1
     ScalePerParameter: {x: 0.7, y: 0.7, z: 0.7}

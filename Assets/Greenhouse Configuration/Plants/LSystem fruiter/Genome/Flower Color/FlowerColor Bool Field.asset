@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9ee743b7ce79f41b211994ba37a24a, type: 3}
+  m_Name: FlowerColor Bool Field
+  m_EditorClassIdentifier: 
+  outputDrivers:
+  - {fileID: 11400000, guid: 2c2eaef2740f1964a94a6c8dab105b3a, type: 2}
+  - {fileID: 11400000, guid: de3869ef3dbfba94fbbb2cfdcdb43188, type: 2}
+  - {fileID: 11400000, guid: c9978d1844fec22409b2d96f4ab3d311, type: 2}
+  - {fileID: 11400000, guid: 334b795bd717dbd4c8b865ea7a9f0e23, type: 2}
+  dominantValues: 00010001

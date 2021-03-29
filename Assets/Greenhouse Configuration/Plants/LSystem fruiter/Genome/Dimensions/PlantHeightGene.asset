@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0302d98401b626647b18102116b97345, type: 3}
-  m_Name: L System Genome
+  m_Script: {fileID: 11500000, guid: 0a076b4913a0118448c26c33edc6da83, type: 3}
+  m_Name: PlantHeightGene
   m_EditorClassIdentifier: 
-  chromosomes:
-  - {fileID: 11400000, guid: c254a00dec023314db47268a61527eeb, type: 2}
-  - {fileID: 11400000, guid: 3623cfc797719434dacb98fd0f498b41, type: 2}
-  geneInterpretors: []
+  floatOutput: {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
+  higherValueDominant: 0
+  rangeMin: 1
+  rangeMax: 7
