@@ -29,9 +29,11 @@ MonoBehaviour:
       m_Calls: []
   contractToCreate:
     booleanTargets: []
-    floatTargets: []
-    seedCountTarget:
-    - minSeeds: 10
+    floatTargets:
+    - targetDriver: {fileID: 11400000, guid: 9ac9121ae6b59ed4895b1f9b010fff45, type: 2}
+      minValue: 0
+      maxValue: 0.01
+    seedCountTarget: []
     reward: 500
     plantType: {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}
     seedRequirement: 20

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac14bcf6862d0b41b9f7a0540d4fab1, type: 3}
   m_Name: FruitColor Accumulate Selector
   m_EditorClassIdentifier: 
-  floatOutput: {fileID: 11400000, guid: a973c6d139ad7a5438dd09156b9d1360, type: 2}
+  floatOutput: {fileID: 11400000, guid: a27f660603e361c4bb3611b86e2fa010, type: 2}
   booleanInputs:
   - {fileID: 11400000, guid: 8199bf39eae7b2d4da494140b0c82ea6, type: 2}
   - {fileID: 11400000, guid: c628b314bc7fa5143a45968d4cd5f3bc, type: 2}

@@ -19,7 +19,7 @@ namespace Assets.Scripts.UI.MarketContracts
     {
         public BooleanGeneticTarget[] booleanTargets;
         public FloatGeneticTarget[] floatTargets;
-        [Tooltip("only ever put one thing in here")]
+        [Tooltip("This array should contain either 0 or 1 elements, never more")]
         public SeedCountTarget[] seedCountTarget;
         public float reward;
         public BasePlantType plantType;

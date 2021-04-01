@@ -70,6 +70,8 @@
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GenomeEditor.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneticDrivers\BooleanGeneticDriver.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\Genes\MendelianBooleanSwitch.cs" />
+    <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneticDrivers\DiscreteFloatGeneticDriver.cs" />
+    <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneticDrivers\ContinuousFloatGeneticDriver.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\Genetics.asmdef" />

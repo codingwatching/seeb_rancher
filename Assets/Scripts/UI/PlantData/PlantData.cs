@@ -93,14 +93,14 @@ namespace Assets.Scripts.UI.PlantData
             {
                 if (drivers.TryGetGeneticData(driver, out var driverValue))
                 {
-                    resultstring.AppendLine($"{driver.DriverName}: {driverValue:F2}");
+                    resultstring.AppendLine(driver.DescribeState(driverValue));
                 }
             }
             foreach (var driver in booleanDrivers)
             {
                 if (drivers.TryGetGeneticData(driver, out var driverValue))
                 {
-                    resultstring.AppendLine($"{driver.DriverName}: {driverValue}");
+                    resultstring.AppendLine(driver.DescribeState(driverValue));
                 }
             }
 

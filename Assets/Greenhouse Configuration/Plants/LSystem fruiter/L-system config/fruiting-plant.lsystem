@@ -8,7 +8,7 @@
 #runtime isPollinated 0
 
 ## composition definitions. define directives evaluate in-order, these directives rely on subsequent definitions to complete
-#define flowerMeshIndex (flowerColorInnerIndex + flowerColorOuterIndex * 3)
+#define flowerMeshIndex (flowerColorOuterIndex + flowerColorInnerIndex * 3)
 
 ## variables controlled by genes
 #define primaryBranchInternodes 7

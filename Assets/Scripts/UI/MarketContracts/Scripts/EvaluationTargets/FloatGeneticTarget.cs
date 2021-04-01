@@ -33,7 +33,7 @@ namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
     [System.Serializable]// odin and unity inspector
     public class FloatGeneticTarget : ISerializable, IContractTarget
     {
-        public GeneticDriver<float> targetDriver;
+        public FloatGeneticDriver targetDriver;
         public float minValue;
         public float maxValue;
 
@@ -56,7 +56,7 @@ namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
             minValue = info.GetSingle("minValue");
             maxValue = info.GetSingle("maxValue");
             var savedReference = info.GetValue("driverReference", typeof(IDableSavedReference)) as IDableSavedReference;
-            targetDriver = savedReference?.GetObject<GeneticDriver>() as GeneticDriver<float>;
+            targetDriver = savedReference?.GetObject<GeneticDriver>() as FloatGeneticDriver;
             if (targetDriver == null)
             {
                 throw new SerializationException($"Could not deserialize a value for ${nameof(targetDriver)}");
@@ -69,16 +69,12 @@ namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
             {
                 return false;
             }
-            if (floatValue < minValue || floatValue > maxValue)
-            {
-                return false;
-            }
-            return true;
+            return targetDriver.FallsInRange(minValue, maxValue, floatValue);
         }
 
         public string GetDescriptionOfTarget()
         {
-            return $"{targetDriver.DriverName} between {minValue} and {maxValue}";
+            return targetDriver.DescribeRange(minValue, maxValue);
         }
     }
 }

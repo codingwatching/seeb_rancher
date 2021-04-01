@@ -42,7 +42,7 @@ namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
 
         public string GetDescriptionOfTarget()
         {
-            return targetValue ? targetDriver.outcomeWhenTrue : targetDriver.outcomeWhenFalse;
+            return this.targetDriver.DescribeState(targetValue);
         }
     }
 }

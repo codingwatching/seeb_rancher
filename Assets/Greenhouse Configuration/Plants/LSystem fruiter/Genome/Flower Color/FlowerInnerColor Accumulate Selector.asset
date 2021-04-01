@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac14bcf6862d0b41b9f7a0540d4fab1, type: 3}
   m_Name: FlowerInnerColor Accumulate Selector
   m_EditorClassIdentifier: 
-  floatOutput: {fileID: 11400000, guid: b959950948c96d5499b781cfe4e8fed0, type: 2}
+  floatOutput: {fileID: 11400000, guid: 9ac9121ae6b59ed4895b1f9b010fff45, type: 2}
   booleanInputs:
   - {fileID: 11400000, guid: 2c2eaef2740f1964a94a6c8dab105b3a, type: 2}
   - {fileID: 11400000, guid: de3869ef3dbfba94fbbb2cfdcdb43188, type: 2}
