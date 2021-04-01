@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Prompt 3
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: Wow, this looks pretty empty. I guess I can spare some seeds from these
-    packets I found in the back of my seed drawer....
+  promptText: Wow, it looks like you don't have any seebs yet. Let me fix that, I
+    think I've got some laying around here somewhere...
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:

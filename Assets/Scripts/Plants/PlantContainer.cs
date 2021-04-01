@@ -235,7 +235,7 @@ namespace Assets.Scripts.Plants
             {
                 return HarvestPlant();
             }
-            return new Seed[0];
+            return null;
         }
 
         private Seed[] HarvestPlant()

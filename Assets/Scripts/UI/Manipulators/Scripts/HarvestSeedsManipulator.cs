@@ -124,9 +124,13 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private bool TryHarvestPlant(PlantContainer planter)
         {
             var harvested = planter.TryHarvest();
-            if (harvested.Length <= 0)
+            if(harvested == null)
             {
                 return false;
+            }
+            if (harvested.Length <= 0)
+            {
+                return true;
             }
             if (draggingSeedsInstance == null)
             {
