@@ -17,16 +17,12 @@ namespace Assets.Scripts.UI.MarketContracts
 
         [Header("Contract prefabs")]
         public ContractContainer contractOfferPrefab;
-        public SaveablePrefabParent marketModalContractsParent;
-        public GameObject marketModal;
         public ContractContainer claimedContractPrefab;
         public SaveablePrefabParent claimedContractsModalParent;
         public GameObject claimedContractModal;
         public EventGroup onModalOpened;
 
         [Header("Contract generation parameters")]
-        public BooleanReference contractGenerationEnabled;
-        public IntReference levelPhase;
         public float defaultReward;
         [Tooltip("For every extra genetic driver over 1, multiply the reward by this amount. 3 genetic drivers will be defaultReward * multiplierPerAdditional^2")]
         public float multiplierPerAdditional;
@@ -34,8 +30,6 @@ namespace Assets.Scripts.UI.MarketContracts
         public BooleanGeneticDriver[] booleanTargetGenerators;
         public FloatGeneticTargetGenerator[] floatTargetGenerators;
         public SeedCountTargetRandomGenerator seedTargetGenerator;
-        [Range(0, 1)]
-        public float chanceForNewContractPerPhase;
         public int defaultSeedCountRequirement = 5;
         [Range(0, 1)]
         public float minComplianceRatio = 0.4f;
@@ -177,7 +171,7 @@ namespace Assets.Scripts.UI.MarketContracts
 
         public void ClaimContract(ContractContainer marketContract)
         {
-            if (marketContract.transform.parent != marketModalContractsParent.transform)
+            if (marketContract.transform.parent.GetComponent<SaveablePrefabParent>() == null)
             {
                 throw new System.Exception("contract must be in the market");
             }
