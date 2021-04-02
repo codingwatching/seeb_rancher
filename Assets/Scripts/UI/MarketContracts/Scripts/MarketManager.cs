@@ -1,4 +1,5 @@
 using Assets.Scripts.Plants;
+using Assets.Scripts.UI.MarketContracts.ChildCycler;
 using Assets.Scripts.UI.MarketContracts.EvaluationTargets;
 using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
@@ -11,7 +12,7 @@ using UnityEngine;
 namespace Assets.Scripts.UI.MarketContracts
 {
 
-    public class MarketManager : MonoBehaviour
+    public class MarketManager : MonoBehaviour, IChildBuilder
     {
 
         [Header("Contract prefabs")]
@@ -48,25 +49,6 @@ namespace Assets.Scripts.UI.MarketContracts
         private void Awake()
         {
             Instance = this;
-            levelPhase.ValueChanges
-                .TakeUntilDestroy(this)
-                .Pairwise()
-                .Subscribe(pair =>
-                {
-                    if (!contractGenerationEnabled.CurrentValue)
-                    {
-                        return;
-                    }
-                    if (pair.Current - pair.Previous != 1)
-                    {
-                        return;
-                    }
-                    var hasNewContract = Random.Range(0f, 1f) < chanceForNewContractPerPhase;
-                    if (hasNewContract)
-                    {
-                        GenerateNewContract();
-                    }
-                }).AddTo(this);
         }
         private void OnDestroy()
         {
@@ -75,11 +57,12 @@ namespace Assets.Scripts.UI.MarketContracts
                 Instance = null;
             }
         }
-        public void TriggerNewContractGeneration()
+
+        public GameObject InstantiateUnderParent(GameObject parent)
         {
-            GenerateNewContract();
+            return this.GenerateNewContract(parent).gameObject;
         }
-        private void GenerateNewContract()
+        private ContractContainer GenerateNewContract(GameObject parent)
         {
             var rangeSample = Random.Range(0f, 1f - 1e-5f);
             var targetBuckets = new int[] { booleanTargetGenerators.Length, floatTargetGenerators.Length, seedTargetGenerator == null ? 0 : 1 };
@@ -109,7 +92,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 defaultReward
                 * rewardMultiplierByComplianceRatio.Evaluate(contract.minimumComplianceRatio)
                 * Mathf.Pow(multiplierPerAdditional, totalTargets);
-            CreateMarketContract(contract);
+            return CreateMarketContract(contract, parent);
         }
 
         /// <summary>
@@ -169,10 +152,11 @@ namespace Assets.Scripts.UI.MarketContracts
             return new SeedCountTarget[] { seedTargetGenerator.GenerateTarget() };
         }
 
-        public void CreateMarketContract(TargetContractDescriptor contract)
+        public ContractContainer CreateMarketContract(TargetContractDescriptor contract, GameObject parent)
         {
-            var newContract = Instantiate(contractOfferPrefab, marketModalContractsParent.transform);
+            var newContract = Instantiate(contractOfferPrefab, parent.transform);
             newContract.contract = contract;
+            return newContract;
         }
         public ContractContainer CreateClaimedContract(TargetContractDescriptor contract)
         {

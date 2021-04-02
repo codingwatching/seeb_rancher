@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.UI.MarketContracts;
+using Assets.Scripts.UI.MarketContracts.ChildCycler;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +14,7 @@ namespace Dman.NarrativeSystem
         public override void OpenPrompt(Conversation conversation)
         {
             onOpened?.Invoke();
-            MarketManager.Instance.TriggerNewContractGeneration();
+            MarketManager.Instance.GetComponent<PhaseBasedChildCyclingManager>().TriggerNewChild();
 
             OpenPromptWithSetup(() =>
             {
