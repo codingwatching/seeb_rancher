@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorSize:
     coord0:
-      row: -5
-      column: -10
-    rows: 10
-    cols: 20
+      row: -8
+      column: -8
+    rows: 16
+    cols: 16
   dirtPlanterSize:
     coord0:
       row: -3
-      column: -5
+      column: -3
     rows: 6
-    cols: 10
+    cols: 6
   dirtTile: {fileID: 11400000, guid: dcbcdd9e5fdf83e44b8880f091b918bf, type: 2}
   dirtEdgeTile: {fileID: 11400000, guid: 19501fa0ea85a3a4ab36dc181a62029c, type: 2}
   floorTile: {fileID: 11400000, guid: 6c1d7f7df0d0e3741b45c56f09093119, type: 2}

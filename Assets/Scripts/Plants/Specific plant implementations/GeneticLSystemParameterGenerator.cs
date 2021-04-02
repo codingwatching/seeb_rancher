@@ -3,7 +3,7 @@ using System.Collections;
 using Dman.LSystem.UnityObjects;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Plants.Specific_plant_implementations
+namespace Assets.Scripts.Plants
 {
     public class GeneticLSystemParameterGenerator : LSystemCompileTimeParameterGenerator
     {

@@ -15,8 +15,8 @@ MonoBehaviour:
   spawningSize:
     coord0:
       row: -3
-      column: -5
+      column: -3
     rows: 6
-    cols: 10
+    cols: 6
   thingToSpawn: {fileID: 6703808689825917318, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
   inRange: {fileID: 11400000, guid: 4d3be1bd9e513984597e7e71acd6d1b9, type: 2}
