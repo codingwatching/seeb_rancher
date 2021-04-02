@@ -30,7 +30,7 @@ MonoBehaviour:
   contractToCreate:
     booleanTargets: []
     floatTargets:
-    - targetDriver: {fileID: 11400000, guid: 9ac9121ae6b59ed4895b1f9b010fff45, type: 2}
+    - targetDriver: {fileID: 11400000, guid: a27f660603e361c4bb3611b86e2fa010, type: 2}
       minValue: 0
       maxValue: 0.01
     seedCountTarget: []
