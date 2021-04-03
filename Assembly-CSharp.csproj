@@ -83,7 +83,6 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickSelectorManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\BooleanGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\OutlineIndividual.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ISeedHoldingManipulator.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\SeebStoreManager.cs" />
     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
     <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\TargetContractDescriptor.cs" />
@@ -109,13 +109,11 @@
     <Compile Include="Assets\Scripts\Plants\PlantTypes\PlantTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\IContractTarget.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinMesh.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlineSampler.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\FloatGeneticTarget.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinPositioner.cs" />
@@ -125,6 +123,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantFormDefinition.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
+    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ChildCycler\PhaseBasedChildCyclingManager.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateContractPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
@@ -134,7 +133,6 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ChildCycler\PhaseBasedChildCyclingManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

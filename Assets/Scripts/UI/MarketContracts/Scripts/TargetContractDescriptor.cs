@@ -2,6 +2,7 @@
 using Assets.Scripts.Plants;
 using Assets.Scripts.UI.MarketContracts.EvaluationTargets;
 using Dman.ObjectSets;
+using Genetics.ParameterizedGenomeGenerator;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

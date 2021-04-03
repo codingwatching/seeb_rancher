@@ -13,32 +13,22 @@ using UnityEngine;
 namespace Assets.Scripts.UI.MarketContracts
 {
 
-    public class MarketManager : MonoBehaviour, IChildBuilder
+    public class SeebStoreManager : MonoBehaviour, IChildBuilder
     {
-        [Header("Contract prefabs")]
-        public ContractContainer contractOfferPrefab;
-        public ContractContainer claimedContractPrefab;
-        public SaveablePrefabParent claimedContractsModalParent;
-        public GameObject claimedContractModal;
+        [Header("store prefabs")]
+        public GameObject seebOfferBinPrefab;
         public EventGroup onModalOpened;
 
         [Header("Contract generation parameters")]
-        public float defaultReward;
+        public float defaultPrice;
         [Tooltip("For every extra genetic driver over 1, multiply the reward by this amount. 3 genetic drivers will be defaultReward * multiplierPerAdditional^2")]
         public float multiplierPerAdditional;
 
         public BooleanGeneticDriver[] booleanTargetGenerators;
         public FloatGeneticTargetGenerator[] floatTargetGenerators;
-        public SeedCountTargetRandomGenerator seedTargetGenerator;
-        public int defaultSeedCountRequirement = 5;
-        [Range(0, 1)]
-        public float minComplianceRatio = 0.4f;
-        [Range(0, 1)]
-        public float maxComplianceRatio = 1f;
-        public AnimationCurve rewardMultiplierByComplianceRatio;
-        public BasePlantType defaultPlantType;
+        public BasePlantType seebType;
 
-        public static MarketManager Instance;
+        public static SeebStoreManager Instance;
 
         private void Awake()
         {
@@ -54,12 +44,12 @@ namespace Assets.Scripts.UI.MarketContracts
 
         public GameObject InstantiateUnderParent(GameObject parent)
         {
-            return this.GenerateNewContract(parent).gameObject;
+            return this.GenerateNewContract(parent);
         }
-        private ContractContainer GenerateNewContract(GameObject parent)
+        private GameObject GenerateNewContract(GameObject parent)
         {
             var rangeSample = Random.Range(0f, 1f - 1e-5f);
-            var targetBuckets = new int[] { booleanTargetGenerators.Length, floatTargetGenerators.Length, seedTargetGenerator == null ? 0 : 1 };
+            var targetBuckets = new int[] { booleanTargetGenerators.Length, floatTargetGenerators.Length };
             var totalPossibleTargets = targetBuckets.Sum();
             // varies from 1 to targetSetLength, weighted towards lower numbers
             var numberOfTargets = Mathf.FloorToInt(Mathf.Pow(rangeSample, 2) * totalPossibleTargets) + 1;
@@ -70,9 +60,7 @@ namespace Assets.Scripts.UI.MarketContracts
             {
                 booleanTargets = GenerateBooleanTargets(targetBuckets[0]),
                 floatTargets = GenerateFloatTargets(targetBuckets[1]),
-                seedCountTarget = GenerateSeedTargets(targetBuckets[2]),
-                seedRequirement = defaultSeedCountRequirement,
-                plantType = defaultPlantType
+                plantType = seebType
             };
             var totalTargets = (contract.booleanTargets?.Length ?? 0) + (contract.floatTargets?.Length ?? 0) + (contract.seedCountTarget?.Length ?? 0);
             if (totalTargets != numberOfTargets)
@@ -80,11 +68,10 @@ namespace Assets.Scripts.UI.MarketContracts
                 Debug.LogError($"Something has gone very wrong. The number of targets does not match. Expected {numberOfTargets} but actually got {totalTargets}");
             }
 
-            contract.minimumComplianceRatio = Random.Range(minComplianceRatio, maxComplianceRatio);
+            contract.minimumComplianceRatio = -1;
 
             contract.reward =
-                defaultReward
-                * rewardMultiplierByComplianceRatio.Evaluate(contract.minimumComplianceRatio)
+                defaultPrice
                 * Mathf.Pow(multiplierPerAdditional, totalTargets);
             return CreateMarketContract(contract, parent);
         }
@@ -133,51 +120,12 @@ namespace Assets.Scripts.UI.MarketContracts
             var targetIndexes = ArrayExtensions.SelectIndexSources(numberOfTargets, floatTargetGenerators.Length);
             return targetIndexes.Select(index => floatTargetGenerators[index].GenerateTarget()).ToArray();
         }
-        private SeedCountTarget[] GenerateSeedTargets(int numberOfTargets)
-        {
-            if (numberOfTargets <= 0)
-            {
-                return new SeedCountTarget[0];
-            }
-            if (numberOfTargets > 1)
-            {
-                Debug.LogError($"Cannot have more than one seed target. tried to create with {numberOfTargets}");
-            }
-            return new SeedCountTarget[] { seedTargetGenerator.GenerateTarget() };
-        }
 
-        public ContractContainer CreateMarketContract(TargetContractDescriptor contract, GameObject parent)
+        public GameObject CreateMarketContract(TargetContractDescriptor contract, GameObject parent)
         {
-            var newContract = Instantiate(contractOfferPrefab, parent.transform);
-            newContract.contract = contract;
+            var newContract = Instantiate(seebOfferBinPrefab, parent.transform);
+            // TODO: newContract.contract = contract;
             return newContract;
-        }
-        public ContractContainer CreateClaimedContract(TargetContractDescriptor contract)
-        {
-            var newContract = Instantiate(claimedContractPrefab, claimedContractsModalParent.transform);
-            newContract.contract = contract;
-
-            return newContract;
-        }
-        public void ShowClaimedContractsModal()
-        {
-            onModalOpened.TriggerEvent();
-            claimedContractModal.SetActive(true);
-        }
-        public int ClaimedContractsCount()
-        {
-            return claimedContractsModalParent.transform.childCount;
-        }
-
-        public void ClaimContract(ContractContainer marketContract)
-        {
-            if (marketContract.transform.parent.GetComponent<SaveablePrefabParent>() == null)
-            {
-                throw new System.Exception("contract must be in the market");
-            }
-            var contractDescriptor = marketContract.contract;
-            Destroy(marketContract.gameObject);
-            CreateClaimedContract(contractDescriptor);
         }
     }
 }

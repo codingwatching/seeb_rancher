@@ -1,5 +1,6 @@
 using Assets.Scripts.UI.MarketContracts.EvaluationTargets;
 using Dman.SceneSaveSystem;
+using Genetics.ParameterizedGenomeGenerator;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 .Replace("%", (contract.minimumComplianceRatio * 100).ToString("F0") + "%");
             rewardText.text = $"${contract.reward:F2}";
             targetGeneticsDescriptorText.text = string.Join(", ",
-                contract.booleanTargets.Cast<IContractTarget>()
+                contract.booleanTargets.Cast<IGeneticTarget>()
                     .Concat(contract.floatTargets)
                     .Concat(contract.seedCountTarget)
                     .Select(target => target.GetDescriptionOfTarget())
