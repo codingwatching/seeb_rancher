@@ -13,7 +13,7 @@ namespace Assets.Scripts.UI.MarketContracts
 {
     /// <summary>
     /// class used during runtime to describe a contract
-    /// Goes through odin serialization. Intended to be edited inside the unity editor
+    /// Goes through binary serialization. Intended to be edited inside the unity editor
     /// </summary>
     [System.Serializable]
     public class TargetContractDescriptor : ISerializable

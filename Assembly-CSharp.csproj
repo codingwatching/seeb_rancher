@@ -67,22 +67,22 @@
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\DebugModeSetup.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractContainer.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\ContractContainer.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
     <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MovingSingleOutlineHelper.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\BasePlantType.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ContractEvaluationController.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\ContractEvaluationController.cs" />
     <Compile Include="Assets\Scripts\Plants\PollinationState.cs" />
     <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
     <Compile Include="Assets\Scripts\Plants\Specific plant implementations\GeneticLSystemParameterGenerator.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ClaimedContractDropSlot.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\ClaimedContractDropSlot.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickSelectorManipulator.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketContractClaimTrigger.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketContractClaimTrigger.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
@@ -93,17 +93,17 @@
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\OutlineIndividual.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ISeedHoldingManipulator.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\SeebStoreManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreManager.cs" />
     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\TargetContractDescriptor.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\TargetContractDescriptor.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\RandomResultPlantType.cs" />
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\SelectionSpotlighter.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\PollinatePlantManipulator.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\EvaluationTargets\SeedCountTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\EvaluationTargets\SeedCountTarget.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\MarketManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketManager.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\PollinatingPlantExistsTrigger.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\PlantTypeRegistry.cs" />
@@ -123,7 +123,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantFormDefinition.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
-    <Compile Include="Assets\Scripts\UI\MarketContracts\Scripts\ChildCycler\PhaseBasedChildCyclingManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\ChildCycler\PhaseBasedChildCyclingManager.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateContractPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
@@ -133,6 +133,9 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreBinDescriptor.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebBinContainer.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebPurchaseButton.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -7,14 +7,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.MarketContracts
 {
-    public class ContractContainer : MonoBehaviour, ISaveableData
+    public class SeebBinContainer : MonoBehaviour, ISaveableData
     {
-        public TargetContractDescriptor contract;
+        public SeebStoreBinDescriptor binDescriptor;
 
         public TMP_Text plantNameText;
-        public string seedNumberFormat = "Minimum % compliance Submit # seeds";
+        public string seedNumberFormat = "# seeds";
         public TMP_Text seedNumberText;
-        public TMP_Text rewardText;
+        public TMP_Text priceText;
         public TMP_Text targetGeneticsDescriptorText;
 
         // Start is called before the first frame update
@@ -31,34 +31,32 @@ namespace Assets.Scripts.UI.MarketContracts
 
         private void ReRender()
         {
-            plantNameText.text = contract.plantType.plantName;
+            plantNameText.text = binDescriptor.plantType.plantName;
             seedNumberText.text = seedNumberFormat
-                .Replace("#", contract.seedRequirement.ToString())
-                .Replace("%", (contract.minimumComplianceRatio * 100).ToString("F0") + "%");
-            rewardText.text = $"${contract.reward:F2}";
+                .Replace("#", binDescriptor.seedCount.ToString());
+            priceText.text = $"${binDescriptor.price:F2}";
             targetGeneticsDescriptorText.text = string.Join(", ",
-                contract.booleanTargets.Cast<IGeneticTarget>()
-                    .Concat(contract.floatTargets)
-                    .Concat(contract.seedCountTarget)
+                binDescriptor.booleanTargets.Cast<IGeneticTarget>()
+                    .Concat(binDescriptor.floatTargets)
                     .Select(target => target.GetDescriptionOfTarget())
                 );
         }
 
         [System.Serializable]
-        class ContractSaveObject
+        class SeebBinContainerSaveObject
         {
-            TargetContractDescriptor contract;
-            public ContractSaveObject(ContractContainer source)
+            SeebStoreBinDescriptor contract;
+            public SeebBinContainerSaveObject(SeebBinContainer source)
             {
-                contract = source.contract;
+                contract = source.binDescriptor;
             }
-            public void ApplyTo(ContractContainer target)
+            public void ApplyTo(SeebBinContainer target)
             {
-                target.contract = contract;
+                target.binDescriptor = contract;
             }
         }
 
-        public string UniqueSaveIdentifier => "SeebContract";
+        public string UniqueSaveIdentifier => "SeebBin";
 
         public ISaveableData[] GetDependencies()
         {
@@ -67,12 +65,12 @@ namespace Assets.Scripts.UI.MarketContracts
 
         public object GetSaveObject()
         {
-            return new ContractSaveObject(this);
+            return new SeebBinContainerSaveObject(this);
         }
 
         public void SetupFromSaveObject(object save)
         {
-            if (save is ContractSaveObject contract)
+            if (save is SeebBinContainerSaveObject contract)
             {
                 contract.ApplyTo(this);
                 ReRender();
