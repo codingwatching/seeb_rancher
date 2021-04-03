@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 10 seebs
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -686,6 +686,7 @@ MonoBehaviour:
     price: 0
     plantType: {fileID: 0}
     seedCount: 0
+  purchaseSpot: {fileID: 2641564570812960388}
   plantNameText: {fileID: 1518436973893210659}
   seedNumberFormat: '# seeds'
   seedNumberText: {fileID: 7346605064234103534}
@@ -1004,6 +1005,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6611463320935539543}
     m_Modifications:
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: canManipulatorsDespositSeeds.ConstantValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedsGrabbed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedCountUpdated.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedsGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedsGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2144239120170147298}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedCountUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedsGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedCountUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2144239120170147298}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedsGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BinAndSeebSlotStateUpdated
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedCountUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedCountUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BinAndSeebSlotStateUpdated
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedsGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.UI.MarketContracts.SeebBinContainer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedCountUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.UI.MarketContracts.SeebBinContainer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedsGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412321333317631675, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
+      propertyPath: onSeedCountUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1809839804131385804, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

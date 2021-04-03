@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.MarketContracts.EvaluationTargets;
+using Assets.Scripts.UI.SeedInventory;
 using Dman.SceneSaveSystem;
 using Genetics.ParameterizedGenomeGenerator;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace Assets.Scripts.UI.MarketContracts
     public class SeebBinContainer : MonoBehaviour, ISaveableData
     {
         public SeebStoreBinDescriptor binDescriptor;
+        public SeedInventoryDropSlot purchaseSpot;
 
         public TMP_Text plantNameText;
         public string seedNumberFormat = "# seeds";
@@ -20,13 +21,20 @@ namespace Assets.Scripts.UI.MarketContracts
         // Start is called before the first frame update
         void Start()
         {
-            ReRender();
+            BinAndSeebSlotStateUpdated();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void BinAndSeebSlotStateUpdated()
         {
-
+            Debug.Log("seeb slot updated");
+            if (binDescriptor.seedCount <= 0 && purchaseSpot.dataModel.bucket.Empty)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                ReRender();
+            }
         }
 
         private void ReRender()

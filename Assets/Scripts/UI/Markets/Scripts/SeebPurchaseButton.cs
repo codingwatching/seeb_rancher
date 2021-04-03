@@ -16,7 +16,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 return;
             }
 
-            StartCoroutine(GenerateSeebs(1));
+            StartCoroutine(GenerateSeebs(seebBin.binDescriptor.seedCount));
         }
 
         private IEnumerator GenerateSeebs(int seebNum)
@@ -27,8 +27,13 @@ namespace Assets.Scripts.UI.MarketContracts
             var seeds = bin.GeneratedSeebs;
             var seebUi = purchaseSpot.dataModel;
             seebUi.description = "generated";
-            seebUi.bucket.TryAddSeedsToSet(seeds.ToArray());
+            var success = seebUi.bucket.TryAddSeedsToSet(seeds.ToArray());
             purchaseSpot.MySeedsUpdated();
+            if (success)
+            {
+                seebBin.binDescriptor.seedCount -= seeds.Count;
+                seebBin.BinAndSeebSlotStateUpdated();
+            }
         }
     }
 }

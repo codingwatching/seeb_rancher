@@ -13,8 +13,10 @@ namespace Assets.Scripts.UI.SeedInventory
     [RequireComponent(typeof(SeedBucketDisplay))]
     public class SeedInventoryDropSlot : MonoBehaviour, ISaveableData
     {
-        [Tooltip("Called when seeds are pulled out of a slot to be moved around")]
-        public UnityEvent onSeedFirstGrabbed;
+        [Tooltip("Called when seeb count is changed")]
+        public UnityEvent onSeedCountUpdated;
+        private int lastSeedCount = -1;
+        public BooleanReference canManipulatorsDespositSeeds;
 
         public Button DropSlotButton;
         public TMP_InputField labelInputField;
@@ -37,7 +39,7 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public virtual bool CanSlotRecieveNewStack()
         {
-            return string.IsNullOrWhiteSpace(dataModel.description) && dataModel.bucket.Empty;
+            return string.IsNullOrWhiteSpace(dataModel.description) && dataModel.bucket.Empty && canManipulatorsDespositSeeds.CurrentValue;
         }
 
         /// <summary>
@@ -68,7 +70,6 @@ namespace Assets.Scripts.UI.SeedInventory
             // if there are no dragging seeds, pull out of the slot and start dragging seeds
             activeManipulator.SetValue(draggingSeedsManipulator);
             draggingSeedsManipulator.InitializeSeedBucketFrom(this);
-            onSeedFirstGrabbed?.Invoke();
         }
 
         /// <summary>
@@ -76,6 +77,10 @@ namespace Assets.Scripts.UI.SeedInventory
         /// </summary>
         protected virtual void AddSeedsFromManipulator(ISeedHoldingManipulator seedHolder)
         {
+            if (!canManipulatorsDespositSeeds.CurrentValue)
+            {
+                return;
+            }
             var emptyPreTransfer = dataModel?.bucket.Empty ?? true;
             var seedsTransferred = seedHolder.AttemptTransferAllSeedsInto(dataModel.bucket);
             if (emptyPreTransfer && seedsTransferred)
@@ -97,6 +102,11 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public void MySeedsUpdated()
         {
+            if (lastSeedCount != dataModel.bucket.SeedCount)
+            {
+                onSeedCountUpdated?.Invoke();
+                lastSeedCount = dataModel.bucket.SeedCount;
+            }
             Displayer.DisplaySeedBucket(dataModel.bucket);
             labelInputField.text = dataModel.description;
         }

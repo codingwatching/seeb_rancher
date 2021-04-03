@@ -282,9 +282,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8b3e585e5d562488ae44d69840a7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSeedFirstGrabbed:
+  onSeedsGrabbed:
     m_PersistentCalls:
       m_Calls: []
+  canManipulatorsDespositSeeds:
+    DataSource: 0
+    ConstantValue: 1
+    Variable: {fileID: 0}
+    Instancer: {fileID: 0}
+    NamePath: 
   DropSlotButton: {fileID: 298817955184868032}
   labelInputField: {fileID: 5308498450268038710}
   draggingSeedsManipulator: {fileID: 11400000, guid: 734200144025c4e4996becdd288ebbd9, type: 2}
