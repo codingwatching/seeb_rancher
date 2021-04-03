@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.SeedInventory;
+﻿using Assets.Scripts.UI.SeedInventory;
 using Dman.SceneSaveSystem;
 using Genetics.ParameterizedGenomeGenerator;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace Assets.Scripts.UI.MarketContracts
         public void BinAndSeebSlotStateUpdated()
         {
             Debug.Log("seeb slot updated");
-            if (binDescriptor.seedCount <= 0 && purchaseSpot.dataModel.bucket.Empty)
+            if (binDescriptor.seedCount <= 0 && binDescriptor.seedCount != -1 && purchaseSpot.dataModel.bucket.Empty)
             {
                 Destroy(gameObject);
             }
@@ -40,8 +40,9 @@ namespace Assets.Scripts.UI.MarketContracts
         private void ReRender()
         {
             plantNameText.text = binDescriptor.plantType.plantName;
+            var seedCountText = binDescriptor.seedCount >= 0 ? binDescriptor.seedCount.ToString() : "∞";
             seedNumberText.text = seedNumberFormat
-                .Replace("#", binDescriptor.seedCount.ToString());
+                .Replace("#", seedCountText);
             priceText.text = $"${binDescriptor.price:F2}";
             targetGeneticsDescriptorText.text = string.Join(", ",
                 binDescriptor.booleanTargets.Cast<IGeneticTarget>()

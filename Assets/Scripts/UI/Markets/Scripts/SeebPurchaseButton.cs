@@ -1,4 +1,5 @@
 using Assets.Scripts.UI.SeedInventory;
+using Dman.ReactiveVariables;
 using System.Collections;
 using UnityEngine;
 
@@ -8,18 +9,27 @@ namespace Assets.Scripts.UI.MarketContracts
     {
         public SeebBinContainer seebBin;
         public SeedInventoryDropSlot purchaseSpot;
+        public FloatReference money;
 
         public void PurchaseButtonClicked()
         {
-            if (seebBin.binDescriptor.seedCount <= 0)
+            var seebCount = seebBin.binDescriptor.seedCount >= 0 ? seebBin.binDescriptor.seedCount : 5;
+            if (seebCount <= 0)
             {
                 return;
             }
 
-            StartCoroutine(GenerateSeebs(seebBin.binDescriptor.seedCount));
+            var cost = seebBin.binDescriptor.price;
+            if(money.CurrentValue < cost)
+            {
+                // not enough money
+                return;
+            }
+
+            StartCoroutine(GenerateSeebs(seebCount, cost));
         }
 
-        private IEnumerator GenerateSeebs(int seebNum)
+        private IEnumerator GenerateSeebs(int seebNum, float price)
         {
             var bin = seebBin.binDescriptor;
             yield return StartCoroutine(bin.EvaluateNewSeebs(seebNum));
@@ -33,6 +43,7 @@ namespace Assets.Scripts.UI.MarketContracts
             {
                 seebBin.binDescriptor.seedCount -= seeds.Count;
                 seebBin.BinAndSeebSlotStateUpdated();
+                money.SetValue(money.CurrentValue - price);
             }
         }
     }

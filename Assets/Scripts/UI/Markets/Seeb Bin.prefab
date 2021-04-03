@@ -417,6 +417,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seebBin: {fileID: 2144239120170147298}
   purchaseSpot: {fileID: 2641564570812960388}
+  money:
+    DataSource: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 5284b0f63cb4ec749b19230ff734bcae, type: 2}
+    Instancer: {fileID: 0}
+    NamePath: 
 --- !u!1 &3812496985417637236
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba9ee01b76ab8746b37ec289fcde9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPrefabType: {fileID: 11400000, guid: 5ce3a99a896dad7458f1a029f85ce430, type: 2}
+  myPrefabType: {fileID: 11400000, guid: aae2dfca3e3b394439bb427e9456a98d, type: 2}
 --- !u!114 &2144239120170147298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,7 +1159,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seed Inventory Slot
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1114982477722433483, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6eae87b8d8a79d841a61f0cfea106cf8, type: 3}
 --- !u!224 &3327312988802060787 stripped
 RectTransform:
