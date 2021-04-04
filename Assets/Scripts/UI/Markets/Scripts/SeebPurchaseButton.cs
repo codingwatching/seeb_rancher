@@ -41,7 +41,10 @@ namespace Assets.Scripts.UI.MarketContracts
             purchaseSpot.MySeedsUpdated();
             if (success)
             {
-                seebBin.binDescriptor.seedCount -= seeds.Count;
+                if(seebBin.binDescriptor.seedCount != -1)
+                {
+                    seebBin.binDescriptor.seedCount -= seeds.Count;
+                }
                 seebBin.BinAndSeebSlotStateUpdated();
                 money.SetValue(money.CurrentValue - price);
             }

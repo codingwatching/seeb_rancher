@@ -43,6 +43,7 @@ namespace Assets.Scripts.Plants
             PollinationState pollination);
 
         public abstract bool CanHarvest(PlantState state);
+        public abstract bool IsMature(PlantState state);
 
         public Seed GenerateRandomSeed()
         {

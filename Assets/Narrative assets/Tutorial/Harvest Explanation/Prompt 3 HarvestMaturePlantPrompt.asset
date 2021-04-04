@@ -9,18 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c442a6abf06dd4bbfbbeeafeebf389, type: 3}
-  m_Name: Prompt 4
+  m_Script: {fileID: 11500000, guid: 191b762e423583e489497dec2940fb00, type: 3}
+  m_Name: Prompt 3 HarvestMaturePlantPrompt
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: At the begining of every phase, every plant with flowers will spread
-    their pollen onto every other plant in range that has flowers that phase. Each
-    time pollen spreads to a plant, the chance that it fertilizes each seeb within
-    range increases.
+  promptText: Now harvest that plant! Click on the plant, or click and drag to harvest
+    multiple at the same time
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
-  onOpened:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleted:
-    m_PersistentCalls:
-      m_Calls: []
+  layerCollection: {fileID: 11400000, guid: 24f77318f5af7c8458aa58e7fc0eb63a, type: 2}
+  preClickOutlineIndex: 2

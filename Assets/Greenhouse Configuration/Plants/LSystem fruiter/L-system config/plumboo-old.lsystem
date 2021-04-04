@@ -24,8 +24,8 @@
 #define shootHeight 5
 #define internodeHeight 6
 #define leafAge 3
-#define leavesPerPetiole 3
-#define petioleLeafAngularDist 110
+#define leavesPerPetiole 5
+#define petioleLeafAngularDist 70
 
 #define flowerAge 7
 #define timeToFruit 10

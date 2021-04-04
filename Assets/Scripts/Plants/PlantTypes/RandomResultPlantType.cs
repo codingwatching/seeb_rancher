@@ -38,6 +38,11 @@ namespace Assets.Scripts.Plants
             return currentState.growth >= 1 - 1e-5;
         }
 
+        public override bool IsMature(PlantState state)
+        {
+            return CanHarvest(state);
+        }
+
         public override void BuildPlantInto(
             Transform targetContainer,
             CompiledGeneticDrivers geneticDrivers,
@@ -68,6 +73,5 @@ namespace Assets.Scripts.Plants
                 };
             }
         }
-
     }
 }

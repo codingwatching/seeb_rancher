@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02c442a6abf06dd4bbfbbeeafeebf389, type: 3}
-  m_Name: Prompt 7
+  m_Name: Prompt 6
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: Now back in the greenhouse you plant the seeds by clicking on the planters.
+  promptText: Use this to your advantage!
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:

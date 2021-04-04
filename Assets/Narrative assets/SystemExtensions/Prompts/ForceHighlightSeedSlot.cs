@@ -6,17 +6,20 @@ using UnityEngine.Events;
 
 namespace Dman.NarrativeSystem
 {
-    [CreateAssetMenu(fileName = "ForceHighlightOpenSeedSlot", menuName = "Narrative/Prompts/ForceHighlightOpenSeedSlot", order = 1)]
-    public class ForceHighlightFilledSeedSlot : Prompt
+    [CreateAssetMenu(fileName = "ForceHighlightSeedSlot", menuName = "Narrative/Prompts/ForceHighlightSeedSlot", order = 1)]
+    public class ForceHighlightSeedSlot : Prompt
     {
 
         public UnityEvent onOpened;
         public UnityEvent onCompleted;
 
+        [Tooltip("When true, will highlight a filled slot. When false, will highlight an empty slot.")]
+        public bool selectFilled = true;
+
         public GameObjectVariable highlightedGameObject;
 
         private Conversation sourceConversation;
-        private SeedInventoryDropSlot filledSlot;
+        private SeedInventoryDropSlot targetSlot;
 
         public override void OpenPrompt(Conversation conversation)
         {
@@ -30,15 +33,15 @@ namespace Dman.NarrativeSystem
 
         private GameObject TryHighlightDropSlot()
         {
-            filledSlot = GameObject
+            targetSlot = GameObject
                 .FindObjectsOfType<SeedInventoryDropSlot>()
-                .Where(slot => !slot.dataModel.bucket.Empty)
+                .Where(slot => selectFilled && !slot.dataModel.bucket.Empty || !selectFilled && slot.dataModel.bucket.Empty)
                 .FirstOrDefault();
-            if (filledSlot != null)
+            if (targetSlot != null)
             {
-                highlightedGameObject.SetValue(filledSlot.gameObject);
-                filledSlot.DropSlotButton.onClick.AddListener(DropSlotClicked);
-                return filledSlot.gameObject;
+                highlightedGameObject.SetValue(targetSlot.gameObject);
+                targetSlot.DropSlotButton.onClick.AddListener(DropSlotClicked);
+                return targetSlot.gameObject;
             }
             return null;
         }
@@ -49,7 +52,7 @@ namespace Dman.NarrativeSystem
             {
                 return;
             }
-            filledSlot.DropSlotButton.onClick.RemoveListener(DropSlotClicked);
+            targetSlot.DropSlotButton.onClick.RemoveListener(DropSlotClicked);
             onCompleted?.Invoke();
             sourceConversation.PromptClosed();
             Destroy(currentPrompt.gameObject);
@@ -57,7 +60,7 @@ namespace Dman.NarrativeSystem
 
             sourceConversation = null;
             currentPrompt = null;
-            filledSlot = null;
+            targetSlot = null;
         }
     }
 }

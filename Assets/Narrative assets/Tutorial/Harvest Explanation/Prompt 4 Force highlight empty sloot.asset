@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b09324b30913f6140bb5425c6c941bfb, type: 3}
-  m_Name: Prompt 6
+  m_Name: Prompt 4 Force highlight empty sloot
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: Go ahead and grab that stack of seeds I gave you by clicking on it
+  promptText: You've got your first seebs! Now place those seebs into an inventory
+    slot, and you can start planting them.
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
@@ -21,4 +22,5 @@ MonoBehaviour:
   onCompleted:
     m_PersistentCalls:
       m_Calls: []
+  selectFilled: 0
   highlightedGameObject: {fileID: 11400000, guid: d7087cadbc2596347936733088da4a07, type: 2}

@@ -18,10 +18,10 @@ public class DebugModeSetup : MonoBehaviour
     {
         Debug.Log("debug mode setting up");
 
-        foreach (var door in GameObject.FindObjectsOfType<DoorController>())
-        {
-            door.gameObject.SetActive(false);
-        }
+        //foreach (var door in GameObject.FindObjectsOfType<DoorController>())
+        //{
+        //    door.gameObject.SetActive(false);
+        //}
 
         var i = 0;
         foreach (var plantContainer in greenhouseParent.GetComponentsInChildren<PlantContainer>())

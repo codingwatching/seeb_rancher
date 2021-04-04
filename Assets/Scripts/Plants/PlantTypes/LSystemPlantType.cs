@@ -118,6 +118,16 @@ namespace Assets.Scripts.Plants
             // if the plant is done growing always allow harvesting to avoid letting plants with no fruit hang around
             return !systemState.lastStepChanged || systemState.lSystemState.currentSymbols.symbols.Contains((int)seedBearingCharacter);
         }
+
+        public override bool IsMature(PlantState currentState)
+        {
+            if (!(currentState is LSystemPlantState systemState))
+            {
+                return false;
+            }
+            return !systemState.lastStepChanged;
+        }
+
         protected override int GetHarvestedSeedNumber(PlantState currentState)
         {
             if (!(currentState is LSystemPlantState systemState))

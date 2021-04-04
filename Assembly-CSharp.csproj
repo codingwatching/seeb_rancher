@@ -88,7 +88,7 @@
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\LSystemPlantState.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\ClaimedContractsClearedTrigger.cs" />
-    <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\ForceHighlightFilledSeedSlot.cs" />
+    <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\ForceHighlightSeedSlot.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\OutlineIndividual.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ISeedHoldingManipulator.cs" />
@@ -107,6 +107,8 @@
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\PollinatingPlantExistsTrigger.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\PlantTypeRegistry.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebPurchaseButton.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreBinDescriptor.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlineSampler.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebBinContainer.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinPositioner.cs" />
     <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragAreaSelector.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\ChildCycler\PhaseBasedChildCyclingManager.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateContractPrompt.cs" />
+    <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\MatureHarvestablePlantExistsTrigger.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
     <Compile Include="Assets\Scripts\TmpUtilities.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
@@ -133,9 +137,8 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreBinDescriptor.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebBinContainer.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebPurchaseButton.cs" />
+    <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\HarvestMaturePlantPrompt.cs" />
+    <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\WaitForManipulatorChangePrompt.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

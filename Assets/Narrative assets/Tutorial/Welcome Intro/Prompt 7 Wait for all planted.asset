@@ -9,18 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c442a6abf06dd4bbfbbeeafeebf389, type: 3}
-  m_Name: Prompt 4
+  m_Script: {fileID: 11500000, guid: cc9e9179521f5f4419baaf133ac909a5, type: 3}
+  m_Name: Prompt 7 Wait for all planted
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: At the begining of every phase, every plant with flowers will spread
-    their pollen onto every other plant in range that has flowers that phase. Each
-    time pollen spreads to a plant, the chance that it fertilizes each seeb within
-    range increases.
+  promptText: Now back in the greenhouse you plant the seeds by clicking in the dirt,
+    or by clicking and dragging over an area
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
-  onOpened:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleted:
-    m_PersistentCalls:
-      m_Calls: []
+  manipulatorVariable: {fileID: 11400000, guid: 1bab0bbceb6e9174a97b61869f921917, type: 2}
+  manipulator: {fileID: 11400000, guid: 734200144025c4e4996becdd288ebbd9, type: 2}

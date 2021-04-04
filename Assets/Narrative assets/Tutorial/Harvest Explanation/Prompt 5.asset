@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a7d386aafdbc764f9bbb3a3c3df32a5, type: 3}
-  m_Name: Prompt 4
+  m_Script: {fileID: 11500000, guid: 02c442a6abf06dd4bbfbbeeafeebf389, type: 3}
+  m_Name: Prompt 5
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: As you plant more seebs you might find that certain seebs make plants
-    with different characteristics than other seebs. Use the inventory slots in your
-    hotbar to keep them separate
+  promptText: 'Now you can grab the seebs out of that slot, and plant them again.
+    The seebs will carry the genes given to them by their two parents: the plant
+    which they grew from, and the plant which pollinated that seed.'
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
@@ -23,6 +23,3 @@ MonoBehaviour:
   onCompleted:
     m_PersistentCalls:
       m_Calls: []
-  plantType: {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}
-  seedNum: 25
-  seedBucketDescription: Trash seeds

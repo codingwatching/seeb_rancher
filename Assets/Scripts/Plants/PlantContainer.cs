@@ -5,6 +5,7 @@ using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
 using Dman.Utilities;
 using Genetics.GeneticDrivers;
+using System;
 using System.Collections;
 using System.Linq;
 using UniRx;
@@ -63,6 +64,7 @@ namespace Assets.Scripts.Plants
         public IntReference levelPhase;
         public GameObject plantsParent;
 
+        public event Action OnHarvested;
 
         private void Start()
         {
@@ -225,9 +227,26 @@ namespace Assets.Scripts.Plants
             UpdatePlant();
         }
 
+        public bool IsMatureAndHasSeeds()
+        {
+            return this.IsMature() && this.CanHarvest() && this.CurrentSeedCount() > 0;
+        }
+
+        public bool IsMature()
+        {
+            return currentState != null && plantType != null && plantType.IsMature(currentState);
+        }
+
         public bool CanHarvest()
         {
             return currentState != null && plantType != null && plantType.CanHarvest(currentState);
+        }
+        public int CurrentSeedCount()
+        {
+            if (currentState == null && plantType == null) {
+                return 0;
+            }
+            return plantType.TotalNumberOfSeedsInState(currentState);
         }
         public Seed[] TryHarvest()
         {
@@ -247,6 +266,7 @@ namespace Assets.Scripts.Plants
             pollinationState = null;
             GeneticDrivers = null;
 
+            OnHarvested?.Invoke();
             StartCoroutine(HarvestEffect());
 
             return harvestedSeeds;
