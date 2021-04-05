@@ -16,11 +16,9 @@ namespace Dman.Tiling.TileSets
             UniversalCoordinateSystemMembers members)
         {
             var newTile = base.BasicCreateTile(offsetOnFloor, tileModelPrefab, parentTransform);
+            //return newTile;
+            SquareEdgeTileType.RotateInstanceByRotatedMatch(specificRotation, newTile.transform);
             return newTile;
-            //var newTile = Instantiate(tileModelPrefab, parentTransform);
-            //newTile.SetPosition(coordinate);
-            //SquareEdgeTileType.RotateInstanceByRotatedMatch(specificRotation, newTile.transform);
-            //return newTile.gameObject;
         }
     }
 }

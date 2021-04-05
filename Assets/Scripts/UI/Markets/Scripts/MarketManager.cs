@@ -156,6 +156,11 @@ namespace Assets.Scripts.UI.MarketContracts
         {
             var newContract = Instantiate(claimedContractPrefab, claimedContractsModalParent.transform);
             newContract.contract = contract;
+            var lifetimeController = newContract.GetComponent<PhaseLifetimeExpiration>();
+            if(lifetimeController != null)
+            {
+                lifetimeController.timeTillExpiration = contract.expirationTime;
+            }
 
             return newContract;
         }
@@ -164,13 +169,26 @@ namespace Assets.Scripts.UI.MarketContracts
             onModalOpened.TriggerEvent();
             claimedContractModal.SetActive(true);
         }
+
+        public bool CanClaimContract()
+        {
+            return ClaimedContractsCount() < maxClaimedContracts;
+        }
+
         public int ClaimedContractsCount()
         {
             return claimedContractsModalParent.transform.childCount;
         }
 
+        public int maxClaimedContracts = 3;
+
         public void ClaimContract(ContractContainer marketContract)
         {
+            if (!CanClaimContract())
+            {
+                Debug.LogWarning("Tried to claim contract when there are too many contracts claimed");
+                return;
+            }
             if (marketContract.transform.parent.GetComponent<SaveablePrefabParent>() == null)
             {
                 throw new System.Exception("contract must be in the market");

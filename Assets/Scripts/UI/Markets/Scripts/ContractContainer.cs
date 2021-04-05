@@ -38,6 +38,11 @@ namespace Assets.Scripts.UI.MarketContracts
                 );
         }
 
+        public void CloseContract()
+        {
+            Destroy(gameObject);
+        }
+
         [System.Serializable]
         class ContractSaveObject
         {

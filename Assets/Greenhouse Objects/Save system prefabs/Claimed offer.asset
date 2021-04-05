@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Claimed offer
   m_EditorClassIdentifier: 
   myId: 2
-  prefab: {fileID: 5646383451684356363, guid: a23507a29a0d9e74b941ed7a8401dfe8, type: 3}
+  prefab: {fileID: 2203546761597184092, guid: c0ede1b696dc3414187a8637c36bcbae, type: 3}

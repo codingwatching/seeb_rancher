@@ -29,6 +29,7 @@ namespace Assets.Scripts.UI.MarketContracts
         [Tooltip("The lower bound for compliance in order for this contract to be completed. Seeds which do not satisfy this compliance will not cause the contract to be removed.")]
         [Range(0f, 1f)]
         public float minimumComplianceRatio;
+        public int expirationTime = 5;
 
         public TargetContractDescriptor()
         { }

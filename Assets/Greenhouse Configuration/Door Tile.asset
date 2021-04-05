@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myId: 2
   tileModelPrefab: {fileID: 5963196683201512497, guid: dc130f99de2a4c443af98388cbf63155, type: 3}
-  specificRotation: 0
+  specificRotation: 1
