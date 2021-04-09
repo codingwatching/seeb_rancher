@@ -18,7 +18,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public Sprite harvestCursor;
         private PlantContainer CurrentlySelectedPlant => selectedThing.CurrentValue?.GetComponent<PlantContainer>();
         private ManipulatorController controller;
-        private MovingSingleOutlineHelper singleOutlineHelper;
+        private MovingOutlineHelper singleOutlineHelper;
         public OutlineLayerCollection outlineCollection;
 
         public override void OnOpen(ManipulatorController controller)
@@ -31,7 +31,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return;
             }
             CursorTracker.SetCursor(harvestCursor);
-            singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
+            singleOutlineHelper = new MovingOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()

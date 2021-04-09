@@ -4,6 +4,7 @@ using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using Dman.Tiling;
 using Dman.Utilities;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityFx.Outline;
@@ -25,7 +26,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private SeedBucket seeds = null;
 
         private ManipulatorController controller;
-        private MovingSingleOutlineHelper singleOutlineHelper;
+        private MovingOutlineHelper singleOutlineHelper;
         public OutlineLayerCollection outlineCollection;
 
         public string SeedGroupName => "harvested";
@@ -56,7 +57,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             Debug.Log("harvest manipulator opened");
             CursorTracker.SetCursor(harvestCursor);
             seeds = new SeedBucket();
-            singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
+            singleOutlineHelper = new MovingOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()
@@ -92,7 +93,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         {
             var planter = GetHoveredPlantContainer();
             var validTarget = planter?.CanHarvest() ?? false;
-            singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);
+            if (!isDragging)
+            {
+                // if draging is happening, don't update outline here.
+                singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);
+            }
 
 
             if (!validTarget)
@@ -101,7 +106,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             if (validTarget)
             {
-                selectedGameObject.SetValue(planter.gameObject);
+                selectedGameObject.SetValue(planter.GetOutlineObject());
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -188,6 +193,28 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 }
             }
             OnSeedsUpdated();
+        }
+        public void OnDragAreaChanged(UniversalCoordinateRange range)
+        {
+            Debug.Log("Harvest drag inside range:");
+            Debug.Log(range);
+
+            range.rectangleDataView.ToBox(5, out var center, out var size);
+            var extent = size / 2;
+            var allTargetPlanters = Physics.OverlapBox(center, extent);
+            var harvestableSeeds = allTargetPlanters
+                .Select(x => x.gameObject.GetComponentInParent<PlantContainer>())
+                .Where(x => x?.CanHarvest() ?? false)
+                .Select(x => x.GetOutlineObject())
+                .Where(x => x != null)
+                .ToList();
+            var newHighlight = new HashSet<GameObject>(harvestableSeeds);
+            singleOutlineHelper.UpdateOutlineObjectSet(newHighlight);
+        }
+        private bool isDragging;
+        public void SetDragging(bool isDragging)
+        {
+            this.isDragging = isDragging;
         }
     }
 }

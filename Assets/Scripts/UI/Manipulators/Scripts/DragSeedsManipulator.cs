@@ -4,6 +4,7 @@ using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using Dman.Tiling;
 using Dman.Utilities;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityFx.Outline;
@@ -28,7 +29,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         [SerializeField] private GameObjectVariable selectedGameObject;
 
         private ManipulatorController controller;
-        private MovingSingleOutlineHelper singleOutlineHelper;
+        private MovingOutlineHelper singleOutlineHelper;
         public OutlineLayerCollection outlineCollection;
 
         public string SeedGroupName => sourceSlot?.dataModel.description;
@@ -85,7 +86,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             draggingSeedsInstance = draggingParentProvider.SpawnNewDraggingSeeds();
 
             IsActive = true;
-            singleOutlineHelper = new MovingSingleOutlineHelper(outlineCollection);
+            singleOutlineHelper = new MovingOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()
@@ -99,6 +100,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         }
 
         private Vector3? mouseDownPosition = null;
+        private bool isDragging;
         public override bool OnUpdate()
         {
             if (sourceSlot?.dataModel.bucket.Empty ?? true)
@@ -114,7 +116,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             // must be able to plant seed, in a planter
             var planterValid = planter?.CanPlantSeed ?? false;
 
-            singleOutlineHelper.UpdateOutlineObject(planterValid ? planter.GetOutlineObject() : null);
+            if(!isDragging)
+            {
+                // if draging is happening, don't update outline here.
+                singleOutlineHelper.UpdateOutlineObject(planterValid ? planter.GetOutlineObject() : null);
+            }
 
             if (!planterValid)
             {
@@ -168,7 +174,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         }
         public void OnAreaSelected(UniversalCoordinateRange range)
         {
-            Debug.Log("Harvest inside range:");
+            Debug.Log("plant inside range:");
             Debug.Log(range);
 
             range.rectangleDataView.ToBox(5, out var center, out var size);
@@ -188,6 +194,26 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 }
             }
             OnSeedsUpdated();
+        }
+        public void OnDragAreaChanged(UniversalCoordinateRange range)
+        {
+            Debug.Log("outline view inside range:");
+            Debug.Log(range);
+            range.rectangleDataView.ToBox(5, out var center, out var size);
+            var extent = size / 2;
+            var allTargetPlanters = Physics.OverlapBox(center, extent);
+            var plantableSeeds = allTargetPlanters
+                .Select(x => x.gameObject.GetComponentInParent<PlantContainer>())
+                .Where(x => x?.CanPlantSeed ?? false)
+                .Select(x => x.GetOutlineObject())
+                .Where(x => x != null)
+                .ToList();
+            var newHighlight = new HashSet<GameObject>(plantableSeeds);
+            singleOutlineHelper.UpdateOutlineObjectSet(newHighlight);
+        }
+        public void SetDragging(bool isDragging)
+        {
+            this.isDragging = isDragging;
         }
     }
 }

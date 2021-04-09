@@ -90,9 +90,9 @@ namespace Dman.Tiling
                 case CoordinateRangeType.TRIANGLE:
                     return triangleDataView.Equals(other.triangleDataView);
                 case CoordinateRangeType.TRIANGLE_RHOMBOID:
-                    return triangeRhomboidDataView.Equals(other.triangleDataView);
+                    return triangeRhomboidDataView.Equals(other.triangeRhomboidDataView);
                 case CoordinateRangeType.RECTANGLE:
-                    return rectangleDataView.Equals(other.triangleDataView);
+                    return rectangleDataView.Equals(other.rectangleDataView);
                 default:
                     return false;
             }

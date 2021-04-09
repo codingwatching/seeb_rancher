@@ -21,5 +21,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     public interface IAreaSelectManipulator
     {
         void OnAreaSelected(UniversalCoordinateRange range);
+        void OnDragAreaChanged(UniversalCoordinateRange range);
+        void SetDragging(bool isDragging);
     }
 }

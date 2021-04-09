@@ -13,13 +13,13 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public GameObjectVariable selectedGameObject;
 
-        private MovingSingleOutlineHelper singleOutlineHelper;
+        private MovingOutlineHelper singleOutlineHelper;
         private ManipulatorController controller;
 
         public override void OnOpen(ManipulatorController controller)
         {
             this.controller = controller;
-            singleOutlineHelper = new MovingSingleOutlineHelper(selectableOutline);
+            singleOutlineHelper = new MovingOutlineHelper(selectableOutline);
         }
 
         public override void OnClose()

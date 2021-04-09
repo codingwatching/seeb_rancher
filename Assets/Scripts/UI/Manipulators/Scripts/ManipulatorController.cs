@@ -50,5 +50,19 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 areaManipulator.OnAreaSelected(range);
             }
         }
+        public void OnDragAreaChanged(UniversalCoordinateRange range)
+        {
+            if (activeManipulator is IAreaSelectManipulator areaManipulator)
+            {
+                areaManipulator.OnDragAreaChanged(range);
+            }
+        }
+        public void SetDragging(bool isDragging)
+        {
+            if (activeManipulator is IAreaSelectManipulator areaManipulator)
+            {
+                areaManipulator.SetDragging(isDragging);
+            }
+        }
     }
 }

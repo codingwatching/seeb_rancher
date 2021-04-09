@@ -30,6 +30,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private void Start()
         {
             dragAreaRenderer.SetActive(false);
+            manipulationController.SetDragging(false);
         }
 
         // Update is called once per frame
@@ -66,72 +67,47 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                         var currentDraggingPoint = hoveredCoordinate.Value;
                         lastDragRange = UniversalCoordinateRange.From(RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView), originDragPoint.CoordinatePlaneID);
                     }
-                    manipulationController.OnAreaSelected(lastDragRange);
-
-                    dragging = false;
-                    originDragPoint = default;
-                    dragAreaRenderer.SetActive(false);
+                    this.ClearLastDragRange();
                 }
                 else if (hoveredCoordinate != null)
                 {
                     var currentDraggingPoint = hoveredCoordinate.Value;
-                    lastDragRange = UniversalCoordinateRange.From(RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView), originDragPoint.CoordinatePlaneID);
+                    var newDragRange = UniversalCoordinateRange.From(RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView), originDragPoint.CoordinatePlaneID);
+                    if (newDragRange.Equals(lastDragRange))
+                    {
+                        return;
+                    }else
+                    {
+                        lastDragRange = newDragRange;
+                    }
 
-                    var coords = lastDragRange.BoundingPolygon();
-                    var vMin = coords.OrderBy(x => x.x + x.y).First();
-                    var vMax = coords.OrderByDescending(x => x.x + x.y).First();
-                    var vAvg = (vMin + vMax) / 2;
-                    dragAreaRenderer.SetActive(true);
-                    dragAreaRenderer.transform.localScale = new Vector3(vMax.x - vMin.x, 1, vMax.y - vMin.y);
-                    dragAreaRenderer.transform.position = new Vector3(vAvg.x, dragAreaRenderer.transform.position.y, vAvg.y);
+                    this.RenderLastDragRange();
                 }
 
             }
+        }
 
-            //if (!Input.GetMouseButton(0))
-            //{
-            //    if (dragging)
-            //    {
-            //        if (hoveredCoordinate != null)
-            //        {
-            //            var currentDraggingPoint = hoveredCoordinate.Value;
-            //            lastDragRange = UniversalCoordinateRange.From(RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView), originDragPoint.CoordinatePlaneID);
-            //        }
-            //        manipulationController.OnAreaSelected(lastDragRange);
+        private void RenderLastDragRange()
+        {
+            var coords = lastDragRange.BoundingPolygon();
+            var vMin = coords.OrderBy(x => x.x + x.y).First();
+            var vMax = coords.OrderByDescending(x => x.x + x.y).First();
+            var vAvg = (vMin + vMax) / 2;
+            dragAreaRenderer.SetActive(true);
+            dragAreaRenderer.transform.localScale = new Vector3(vMax.x - vMin.x, 1, vMax.y - vMin.y);
+            dragAreaRenderer.transform.position = new Vector3(vAvg.x, dragAreaRenderer.transform.position.y, vAvg.y);
 
-            //        dragging = false;
-            //        originDragPoint = default;
-            //        dragAreaRenderer.SetActive(false);
-            //    }
-            //    return;
-            //}
-            //if (Input.GetMouseButtonDown(0))
-            //{
-            //    if (hoveredCoordinate == null)
-            //    {
-            //        return;
-            //    }
-            //    dragging = true;
-            //    originDragPoint = hoveredCoordinate.Value;
-            //}
+            manipulationController.SetDragging(true);
+            manipulationController.OnDragAreaChanged(lastDragRange);
+        }
+        private void ClearLastDragRange()
+        {
+            manipulationController.OnAreaSelected(lastDragRange);
+            manipulationController.SetDragging(false);
 
-            //if (dragging)
-            //{
-            //    if (Input.GetMouseButton(0) && hoveredCoordinate != null)
-            //    {
-            //        var currentDraggingPoint = hoveredCoordinate.Value;
-            //        lastDragRange = UniversalCoordinateRange.From(RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView), originDragPoint.CoordinatePlaneID);
-
-            //        var coords = lastDragRange.BoundingPolygon();
-            //        var vMin = coords.OrderBy(x => x.x + x.y).First();
-            //        var vMax = coords.OrderByDescending(x => x.x + x.y).First();
-            //        var vAvg = (vMin + vMax) / 2;
-            //        dragAreaRenderer.SetActive(true);
-            //        dragAreaRenderer.transform.localScale = new Vector3(vMax.x - vMin.x, 1, vMax.y - vMin.y);
-            //        dragAreaRenderer.transform.position = new Vector3(vAvg.x, dragAreaRenderer.transform.position.y, vAvg.y);
-
-            //    }
-            //}
+            dragging = false;
+            originDragPoint = default;
+            dragAreaRenderer.SetActive(false);
         }
 
         private void OnDrawGizmos()
