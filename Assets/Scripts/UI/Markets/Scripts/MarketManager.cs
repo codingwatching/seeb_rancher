@@ -37,6 +37,7 @@ namespace Assets.Scripts.UI.MarketContracts
         public float maxComplianceRatio = 1f;
         public AnimationCurve rewardMultiplierByComplianceRatio;
         public BasePlantType defaultPlantType;
+        public int expirationPhaseCount = 20;
 
         public static MarketManager Instance;
 
@@ -72,7 +73,8 @@ namespace Assets.Scripts.UI.MarketContracts
                 floatTargets = GenerateFloatTargets(targetBuckets[1]),
                 seedCountTarget = GenerateSeedTargets(targetBuckets[2]),
                 seedRequirement = defaultSeedCountRequirement,
-                plantType = defaultPlantType
+                plantType = defaultPlantType,
+                expirationTime = expirationPhaseCount
             };
             var totalTargets = (contract.booleanTargets?.Length ?? 0) + (contract.floatTargets?.Length ?? 0) + (contract.seedCountTarget?.Length ?? 0);
             if (totalTargets != numberOfTargets)
