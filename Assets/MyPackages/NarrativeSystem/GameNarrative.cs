@@ -14,28 +14,25 @@ namespace Dman.NarrativeSystem
         public string UniqueSaveIdentifier => "GameNarrative";
 
         private Queue<Conversation> activatedConversations;
+        private Conversation currentlyActiveConvo = null;
 
         public void Init()
         {
             completedConversations = new HashSet<int>();
             activatedConversations = new Queue<Conversation>();
+            currentlyActiveConvo = null;
         }
-
-        //private void Awake()
-        //{
-        //    completedConversations = new HashSet<int>();
-        //}
 
         public void CheckAllConversationTriggers()
         {
             foreach (var convo in allObjects)
             {
-                if (!completedConversations.Contains(convo.myId))
+                if (!completedConversations.Contains(convo.myId) &&
+                    !activatedConversations.Contains(convo) &&
+                    currentlyActiveConvo != convo &&
+                    convo.ShouldStartConversation(this))
                 {
-                    if (convo.ShouldStartConversation(this))
-                    {
-                        activatedConversations.Enqueue(convo);
-                    }
+                    activatedConversations.Enqueue(convo);
                 }
             }
             StartNextConvoIfExists();
@@ -43,7 +40,7 @@ namespace Dman.NarrativeSystem
 
         private void StartNextConvoIfExists()
         {
-            if (activatedConversations.Count <= 0)
+            if(currentlyActiveConvo != null || activatedConversations.Count <= 0)
             {
                 return;
             }
@@ -51,12 +48,20 @@ namespace Dman.NarrativeSystem
             if (nextConvo != null)
             {
                 nextConvo.StartConversation(this);
+                currentlyActiveConvo = nextConvo;
             }
         }
 
         public void ConversationEnded(Conversation endedConversation)
         {
             completedConversations.Add(endedConversation.myId);
+            if(endedConversation != currentlyActiveConvo)
+            {
+                Debug.LogError("ended conversation which is not active.");
+            }else
+            {
+                currentlyActiveConvo = null;
+            }
             StartNextConvoIfExists();
         }
 
@@ -73,6 +78,7 @@ namespace Dman.NarrativeSystem
             public void ApplyTo(GameNarrative target)
             {
                 target.completedConversations = new HashSet<int>(completedConversations);
+                target.currentlyActiveConvo = null;
             }
         }
 

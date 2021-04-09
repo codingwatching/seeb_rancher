@@ -14,8 +14,6 @@ namespace Dman.NarrativeSystem
 
         private GameNarrative narrative;
 
-
-
         public bool ShouldStartConversation(GameNarrative narrative)
         {
             return triggerAll.All(x => x.ShouldTrigger(narrative));
