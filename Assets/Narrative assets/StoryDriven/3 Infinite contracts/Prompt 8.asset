@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02c442a6abf06dd4bbfbbeeafeebf389, type: 3}
-  m_Name: Prompt 7
+  m_Name: Prompt 8
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: Be careful accepting too many offers! You can only accept up to 3 contracts
-    at a time. And each contract will expire 20 phases after you claimed it.
+  promptText: Good luck!
   speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
   onOpened:
     m_PersistentCalls:

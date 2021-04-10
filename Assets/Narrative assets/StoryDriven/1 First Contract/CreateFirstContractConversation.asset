@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 263204bd6c7386f49a5e89ebbb3ceebe, type: 2}
   - {fileID: 11400000, guid: 15132503ca24b3c4e899b0597d02d760, type: 2}
   - {fileID: 11400000, guid: 27dc896d890baeb4eaaf3fa410f64267, type: 2}
+  - {fileID: 11400000, guid: 66cba2adb8327a342a5f59e93b8378c0, type: 2}
   currentPromptIndex: 6
   triggerAll:
   - {fileID: 11400000, guid: 140a57607ca5a6e41b33f28c5e89a9af, type: 2}
