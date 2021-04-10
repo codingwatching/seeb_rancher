@@ -201,7 +201,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Minimum 50% compliance
 
-    5 seeds'
+    5 seebs'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -446,7 +446,7 @@ MonoBehaviour:
     minimumComplianceRatio: 0
     expirationTime: 5
   plantNameText: {fileID: 1518436973893210659}
-  seedNumberFormat: Minimum % compliance # seeds
+  seedNumberFormat: Minimum % compliance # seebs
   seedNumberText: {fileID: 1149523141491164626}
   rewardText: {fileID: 3903322637666623966}
   targetGeneticsDescriptorText: {fileID: 6611463321505239170}
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Big, red, yield at least 10 seeds per plant, height between 3 and 4. either
+  m_text: Big, red, yield at least 10 seebs per plant, height between 3 and 4. either
     red or green. or fruit color of green. and fruit color of yellow or red. and
     inner flower color of pink or orange
   m_isRightToLeft: 0

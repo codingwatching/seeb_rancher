@@ -25,7 +25,7 @@ namespace Assets.Scripts.UI.MarketContracts.EvaluationTargets
 
         public string GetDescriptionOfTarget()
         {
-            return $"yield at least {minSeeds} seeds per plant";
+            return $"yield at least {minSeeds} seebs per plant";
         }
 
         public bool Matches(CompiledGeneticDrivers drivers)

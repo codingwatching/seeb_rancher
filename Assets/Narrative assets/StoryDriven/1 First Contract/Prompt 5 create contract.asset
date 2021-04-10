@@ -15,10 +15,10 @@ MonoBehaviour:
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: 'Here''s my offer!
 
-    Once you have some seeds, drop them into the
+    Once you have some seebs, drop them into the
     drop slot.
 
-    Don''t try to give me bad seeds! Before I pay you I''ll be breeding
+    Don''t try to give me bad seebs! Before I pay you I''ll be breeding
     them through a few generations to make sure they''re up to snuff!'
   speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
   onOpened:

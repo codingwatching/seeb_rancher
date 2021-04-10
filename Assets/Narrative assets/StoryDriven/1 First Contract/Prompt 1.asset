@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Prompt 1
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: 'Looks like you''ve got a solid seed breeding setup here.
+  promptText: 'Looks like you''ve got a solid seeb breeding setup here.
 
     I''m
     in the farming business, and I''ve been having a hard time with my crops. My

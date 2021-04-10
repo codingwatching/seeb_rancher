@@ -13,7 +13,7 @@ namespace Assets.Scripts.UI.MarketContracts
         public SeedInventoryDropSlot purchaseSpot;
 
         public TMP_Text plantNameText;
-        public string seedNumberFormat = "# seeds";
+        public string seedNumberFormat = "# seebs";
         public TMP_Text seedNumberText;
         public TMP_Text priceText;
         public TMP_Text targetGeneticsDescriptorText;

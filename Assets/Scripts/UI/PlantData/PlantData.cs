@@ -105,7 +105,7 @@ namespace Assets.Scripts.UI.PlantData
             }
 
             var seedCount = container.plantType?.TotalNumberOfSeedsInState(container.currentState) ?? 0;
-            resultstring.AppendLine($"Seeds: {seedCount}");
+            resultstring.AppendLine($"Seebs: {seedCount}");
             return resultstring.ToString();
         }
     }

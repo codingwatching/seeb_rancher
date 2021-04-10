@@ -694,7 +694,7 @@ MonoBehaviour:
     seedCount: 0
   purchaseSpot: {fileID: 2641564570812960388}
   plantNameText: {fileID: 1518436973893210659}
-  seedNumberFormat: '# seeds'
+  seedNumberFormat: '# seebs'
   seedNumberText: {fileID: 7346605064234103534}
   priceText: {fileID: 3903322637666623966}
   targetGeneticsDescriptorText: {fileID: 6611463321505239170}
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Big, red, yield at least 10 seeds per plant, height between 3 and 4. either
+  m_text: Big, red, yield at least 10 seebs per plant, height between 3 and 4. either
     red or green. or fruit color of green. and fruit color of yellow or red. and
     inner flower color of pink or orange
   m_isRightToLeft: 0
