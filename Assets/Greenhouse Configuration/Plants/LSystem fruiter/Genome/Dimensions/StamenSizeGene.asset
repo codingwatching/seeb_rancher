@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StamenSizeGene
   m_EditorClassIdentifier: 
   floatOutput: {fileID: 11400000, guid: 8469972dedfb76241a6d5f9c34ed4260, type: 2}
-  higherValueDominant: 0
+  relativeDominantRange: 0
   rangeMin: 0
   rangeMax: 1

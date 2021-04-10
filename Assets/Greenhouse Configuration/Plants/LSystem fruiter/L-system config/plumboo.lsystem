@@ -18,6 +18,7 @@
 #define fruitColorIndex 1
 #define flowerColorInnerIndex 1
 #define flowerColorOuterIndex 1
+#define primaryAngularSeparation 137
 
 
 ## variables defined for utility
@@ -38,7 +39,7 @@ S(x) : x == shootHeight ->
 
 ## T is the terminal bud
 T(x) : x < 0 -> T(x + 1)
-T(x) : x < primaryBranchInternodes && x >= 0 -> I(internodeHeight)[&(60)B(x + 1)][\(180)&(60)B(x + 1)]\(137)T(x + 1)
+T(x) : x < primaryBranchInternodes && x >= 0 -> I(internodeHeight)[&(60)B(x + 1)][\(180)&(60)B(x + 1)]\(primaryAngularSeparation)T(x + 1)
 T(x) : x >= primaryBranchInternodes -> J(internodeHeight)
 
 

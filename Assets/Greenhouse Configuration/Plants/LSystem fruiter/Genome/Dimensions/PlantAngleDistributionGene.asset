@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc4cb1ff26602446b671490bced4272, type: 3}
-  m_Name: ContinuousFloatDriverTest
+  m_Script: {fileID: 11500000, guid: 0a076b4913a0118448c26c33edc6da83, type: 3}
+  m_Name: PlantAngleDistributionGene
   m_EditorClassIdentifier: 
-  myId: 0
-  DriverName: 
+  floatOutput: {fileID: 11400000, guid: cdeb03db77a42164caffde479397edad, type: 2}
+  relativeDominantRange: 0.5
+  rangeMin: 87
+  rangeMax: 187

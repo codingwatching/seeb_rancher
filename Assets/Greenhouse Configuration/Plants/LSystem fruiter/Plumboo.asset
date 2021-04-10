@@ -36,3 +36,5 @@ MonoBehaviour:
     lSystemDefineDirectiveName: flowerColorInnerIndex
   - geneticDriver: {fileID: 11400000, guid: bdb509912dfbf6349a5736ce9c4685a0, type: 2}
     lSystemDefineDirectiveName: flowerColorOuterIndex
+  - geneticDriver: {fileID: 11400000, guid: cdeb03db77a42164caffde479397edad, type: 2}
+    lSystemDefineDirectiveName: primaryAngularSeparation
