@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.DataModels;
+using Dman.LSystem.SystemRuntime.DOTSRenderer;
 using Dman.LSystem.UnityObjects;
 using Genetics.GeneticDrivers;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Assets.Scripts.Plants
     [CreateAssetMenu(fileName = "LSystemPlantType", menuName = "Greenhouse/LSystemPlantType", order = 1)]
     public class LSystemPlantType : BasePlantType
     {
-        public TurtleInterpreterBehavior turtleInterpretorPrefab;
+        public DOTSTurtleInterpreterBehavior turtleInterpretorPrefab;
         public LSystemObject lSystem;
 
         public float phaseFractionTillSprout = 1f;
@@ -80,7 +81,8 @@ namespace Assets.Scripts.Plants
 
             var newPlantTarget = Instantiate(turtleInterpretorPrefab, targetContainer);
 
-            newPlantTarget.InterpretSymbols(systemState.lSystemState.currentSymbols);
+            // TODO: deffer?
+            newPlantTarget.InterpretSymbols(systemState.lSystemState.currentSymbols).Complete();
             var lastAngles = newPlantTarget.transform.parent.localEulerAngles;
             lastAngles.y = systemState.randomRotationAmount;
             newPlantTarget.transform.parent.localEulerAngles = lastAngles;

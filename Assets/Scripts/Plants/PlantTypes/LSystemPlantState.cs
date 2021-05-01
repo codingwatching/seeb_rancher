@@ -4,6 +4,7 @@ using Genetics.GeneticDrivers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Jobs;
 using UnityEngine;
 
 namespace Assets.Scripts.Plants
@@ -12,7 +13,7 @@ namespace Assets.Scripts.Plants
     public class LSystemPlantState : PlantState
     {
         [System.NonSerialized()]
-        public LSystemState<double> lSystemState;
+        public LSystemState<float> lSystemState;
         [System.NonSerialized()]
         public int totalSystemSteps;
         [System.NonSerialized()]
@@ -20,11 +21,11 @@ namespace Assets.Scripts.Plants
 
         //cached stuff
         [System.NonSerialized()]
-        private LSystem<double> compiledSystem;
+        private LSystem compiledSystem;
         [System.NonSerialized()]
-        public ArrayParameterRepresenation<double> runtimeParameters;
+        public ArrayParameterRepresenation<float> runtimeParameters;
         [System.NonSerialized()]
-        private LSystemState<double> lastState;
+        private LSystemState<float> lastState;
 
         public float randomRotationAmount;
         private string axiom;
@@ -67,14 +68,16 @@ namespace Assets.Scripts.Plants
             var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
             do
             {
+                lastState?.currentSymbols.Dispose();
                 lastState = lSystemState;
-                lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
+                lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues, disposeOldSystem: false);
                 lastStepChanged = !lastState.currentSymbols.Equals(lSystemState.currentSymbols);
             } while (lastStepChanged);
         }
 
         public void StepStateUpToSteps(int targetSteps)
         {
+            // TODO: interleave with other steps
             var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
             if (totalSystemSteps >= targetSteps)
             {
@@ -91,8 +94,9 @@ namespace Assets.Scripts.Plants
                 else
                 {
                     // this is the Last step in this series
+                    lastState?.currentSymbols.Dispose();
                     lastState = lSystemState;
-                    lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
+                    lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues, disposeOldSystem: false);
                     lastStepChanged = !lastState.currentSymbols.Equals(lSystemState.currentSymbols);
                 }
             }
@@ -106,6 +110,38 @@ namespace Assets.Scripts.Plants
             var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
 
             lSystemState = compiledSystem.StepSystem(lastState, ruintimeParamValues);
+        }
+        public override JobHandle Dispose(JobHandle inputDeps)
+        {
+            if(lSystemState == null)
+            {
+                if(lastState == null)
+                {
+                    return inputDeps;
+                }else
+                {
+                    return lastState.currentSymbols.Dispose(inputDeps);
+                }
+            }else
+            {
+                if (lastState == null)
+                {
+                    return lSystemState.currentSymbols.Dispose(inputDeps);
+                }
+                else
+                {
+                    return JobHandle.CombineDependencies(
+                        lastState.currentSymbols.Dispose(inputDeps),
+                        lSystemState.currentSymbols.Dispose(inputDeps)
+                        );
+                }
+            }
+        }
+
+        public override void Dispose()
+        {
+            lastState.currentSymbols.Dispose();
+            lSystemState.currentSymbols.Dispose();
         }
     }
 }

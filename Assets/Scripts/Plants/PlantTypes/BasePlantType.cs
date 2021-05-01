@@ -3,12 +3,14 @@ using Dman.ObjectSets;
 using Genetics;
 using Genetics.GeneticDrivers;
 using System.Collections.Generic;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
 
 namespace Assets.Scripts.Plants
 {
     [System.Serializable]
-    public class PlantState
+    public class PlantState: INativeDisposable
     {
         public float growth;
         public int randomSeed;
@@ -20,6 +22,15 @@ namespace Assets.Scripts.Plants
         }
 
         public virtual void AfterDeserialized()
+        {
+        }
+
+        public virtual JobHandle Dispose(JobHandle inputDeps)
+        {
+            return inputDeps;
+        }
+
+        public virtual void Dispose()
         {
         }
     }
