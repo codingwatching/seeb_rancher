@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 580790798096052421}
   - component: {fileID: 3659063814337790138}
   - component: {fileID: 7204148366389022951}
-  - component: {fileID: 1280340169345363659}
+  - component: {fileID: 2534050122168149447}
   - component: {fileID: 3523818817750080634}
   m_Layer: 0
   m_Name: Turtler
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemObject: {fileID: 0}
---- !u!114 &1280340169345363659
+--- !u!114 &2534050122168149447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1565226725280258474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c330099717b1bb842b62843865854d4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fdc2729f42a9b649a7c24d3cc3faab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   operationSets:
