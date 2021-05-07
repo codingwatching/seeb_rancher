@@ -196,9 +196,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         }
         public void OnDragAreaChanged(UniversalCoordinateRange range)
         {
-            Debug.Log("Harvest drag inside range:");
-            Debug.Log(range);
-
             range.rectangleDataView.ToBox(5, out var center, out var size);
             var extent = size / 2;
             var allTargetPlanters = Physics.OverlapBox(center, extent);

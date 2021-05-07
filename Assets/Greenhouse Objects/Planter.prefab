@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b9d0145b0bcbc4da11e5ce82acb0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantType: {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
+  plantType: {fileID: 0}
   plantTypes: {fileID: 11400000, guid: dc25e9d70a2d4cc4b84087e55e4f34ed, type: 2}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
   harvestEffect: {fileID: 2779792373701461089}

@@ -12,136 +12,82 @@ namespace Assets.Scripts.Plants
     [System.Serializable]
     public class LSystemPlantState : PlantState
     {
-        [System.NonSerialized()]
-        public LSystemState<float> lSystemState;
-        [System.NonSerialized()]
-        public int totalSystemSteps;
-        [System.NonSerialized()]
-        public bool lastStepChanged;
-
         //cached stuff
         [System.NonSerialized()]
-        private LSystem compiledSystem;
-        [System.NonSerialized()]
-        public ArrayParameterRepresenation<float> runtimeParameters;
-        [System.NonSerialized()]
-        private LSystemState<float> lastState;
+        public LSystemSteppingHandle steppingHandle;
 
         public float randomRotationAmount;
-        private string axiom;
 
-        public LSystemPlantState(string axiom, float growth) : base(growth)
+        public LSystemPlantState(
+            LSystemObject lSystem,
+            float initialGrowth) : base(initialGrowth)
         {
             // used to generate properties for the plant not related to the L-system. such as random rotation
             // Is a duplicate, parallel, random generator to the one used by the l-system
             var ephimeralRandoms = new System.Random(randomSeed);
-            totalSystemSteps = 0;
             randomRotationAmount = (float)(ephimeralRandoms.NextDouble() * 360);
 
-            this.axiom = axiom;
-            lSystemState = new DefaultLSystemState(this.axiom, randomSeed);
+            this.steppingHandle = new LSystemSteppingHandle(lSystem, false);
         }
 
         public override void AfterDeserialized()
         {
             base.AfterDeserialized();
-            lSystemState = new DefaultLSystemState(axiom, randomSeed);
-            totalSystemSteps = 0;
         }
 
+        /// <summary>
+        /// function used to do first-time setup on the state. Should handle cases right after 
+        ///     state was deserialized
+        /// </summary>
+        /// <param name="globalParameterGenerator"></param>
         public void CompileSystemIfNotCached(
             Func<Dictionary<string, string>> globalParameterGenerator,
-            LSystemObject system)
+            LSystemObject lSystem)
         {
-            if (compiledSystem != null)
+            if(steppingHandle == null)
+            {
+                this.steppingHandle = new LSystemSteppingHandle(lSystem, false);
+            }
+            if (steppingHandle.HasValidSystem())
             {
                 return;
             }
-            Debug.Log("compiling System");
-            compiledSystem = system.CompileWithParameters(globalParameterGenerator());
-
-            runtimeParameters = system.GetRuntimeParameters();
+            steppingHandle.RecompileLSystem(globalParameterGenerator());
         }
 
         public void StepUntilFirstNoChange()
         {
-            var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
             do
             {
-                lastState?.currentSymbols.Dispose();
-                lastState = lSystemState;
-                lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues, disposeOldSystem: false);
-                lastStepChanged = !lastState.currentSymbols.Equals(lSystemState.currentSymbols);
-            } while (lastStepChanged);
+                steppingHandle.StepSystemImmediate();
+            } while (steppingHandle.lastUpdateChanged);
         }
 
         public void StepStateUpToSteps(int targetSteps)
         {
             // TODO: interleave with other steps
-            var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
-            if (totalSystemSteps >= targetSteps)
+            if (steppingHandle.totalSteps >= targetSteps)
             {
                 return;
             }
-            while (totalSystemSteps < targetSteps)
+            while (steppingHandle.totalSteps < targetSteps)
             {
-                totalSystemSteps++;
-
-                if (totalSystemSteps >= targetSteps)
-                {
-                    lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues);
-                }
-                else
-                {
-                    // this is the Last step in this series
-                    lastState?.currentSymbols.Dispose();
-                    lastState = lSystemState;
-                    lSystemState = compiledSystem.StepSystem(lSystemState, ruintimeParamValues, disposeOldSystem: false);
-                    lastStepChanged = !lastState.currentSymbols.Equals(lSystemState.currentSymbols);
-                }
+                steppingHandle.StepSystemImmediate();
             }
         }
         public void RepeatLastSystemStep()
         {
-            if (lastState == null)
-            {
-                return;
-            }
-            var ruintimeParamValues = runtimeParameters.GetCurrentParameters();
-
-            lSystemState = compiledSystem.StepSystem(lastState, ruintimeParamValues);
+            steppingHandle.RepeatLastStepImmediate();
         }
         public override JobHandle Dispose(JobHandle inputDeps)
         {
-            if(lSystemState == null)
-            {
-                if(lastState == null)
-                {
-                    return inputDeps;
-                }else
-                {
-                    return lastState.currentSymbols.Dispose(inputDeps);
-                }
-            }else
-            {
-                if (lastState == null)
-                {
-                    return lSystemState.currentSymbols.Dispose(inputDeps);
-                }
-                else
-                {
-                    return JobHandle.CombineDependencies(
-                        lastState.currentSymbols.Dispose(inputDeps),
-                        lSystemState.currentSymbols.Dispose(inputDeps)
-                        );
-                }
-            }
+            steppingHandle.Dispose();
+            return inputDeps;
         }
 
         public override void Dispose()
         {
-            lastState.currentSymbols.Dispose();
-            lSystemState.currentSymbols.Dispose();
+            steppingHandle.Dispose();
         }
     }
 }

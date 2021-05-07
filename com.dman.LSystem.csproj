@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_2;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_2;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ENABLE_HYBRID_RENDERER_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -61,47 +61,56 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\StringSegment.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\RuleParser.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Token.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DOTSRenderer\TurtleInterpretingSystem.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\NativeVertexDatum.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\ErroredCompletable.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleOrganSpawningCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemObject.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ArrayStringifyExtensions.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\JaggedNativeArray.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleOperationSet.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\LSystem.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemEvaluator\LSystemStepper.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Tokenizer.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleRotateOperations.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\InputSymbolParser.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\CompilerContext.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleInterpretor.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DOTSRenderer\LSystemOrganComponent.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ReplacementSymbolGenerator.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemRuntimeException.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\RuleOutcome.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\CompletableExecutor.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemEvaluator\LSystemSymbolReplacementCompletable.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleStringReadingCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleScaleOperations.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\SymbolStringBranchingCache.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\SystemLevelRuleNativeData.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DOTSRenderer\LSystemComponent.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemEvaluator\LSystemRuleMatchCompletable.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemSteppingHandle.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\TokenExpression.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\DependencyTracker.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleMeshOperations.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemBehavior.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\AssemblyFlags.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DynamicExpressions\OperatorDefinition.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ReplacementSymbolGeneratorParser.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\ITurtleOperator.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\CompletableHandle.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleOrganTemplate.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeArrayBuilder.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\ICompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\BasicRule.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DOTSRenderer\LSystemMeshMemberUpdateSystem.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\ISymbolString.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemDeveloper.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeOrderedMultiDictionary.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ParsedRuleEqualityComparer.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SymbolString.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\NativeTurtleData.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\SymbolSeriesSuffixMatcher.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ExpressionCompiler.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\CompletableExtensions.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DynamicExpressions\StructExpression.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\DynamicExpressionData.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DOTSRenderer\DOTSTurtleInterpreterBehavior.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DOTSRenderer\LSystemOrganTemplateComponentFlag.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleInterpreterBehavior.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeStack.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\CompleteCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ParsedRule.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\InputSymbol.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleState.cs" />
@@ -720,15 +729,6 @@
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Entities">
-      <HintPath>Library\ScriptAssemblies\Unity.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Transforms">
-      <HintPath>Library\ScriptAssemblies\Unity.Transforms.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rendering.Hybrid">
-      <HintPath>Library\ScriptAssemblies\Unity.Rendering.Hybrid.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>

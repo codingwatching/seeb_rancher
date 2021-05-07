@@ -77,6 +77,19 @@ namespace Assets.Scripts.Plants
                 }).AddTo(this);
         }
 
+        private void OnDestroy()
+        {
+            if(currentState == null)
+            {
+                Debug.Log("Current state is null. not disposing");
+            }else
+            {
+                Debug.Log("Current state is not null. disposing");
+                currentState?.Dispose();
+                currentState = null;
+            }
+        }
+
         private void AdvanceGrowPhase(int phaseDiff)
         {
             if (plantType == null)
@@ -126,7 +139,8 @@ namespace Assets.Scripts.Plants
         {
             pollinationState = new PollinationState(toBePlanted);
             plantType = plantTypes.GetUniqueObjectFromID(pollinationState.SelfGenes.plantType);
-            currentState = plantType.GenerateBaseSate();
+            currentState?.Dispose();
+            currentState = plantType.GenerateBaseStateAndHookTo();
             plantedEffect.Play();
             GrowthUpdated(true);
         }
@@ -137,6 +151,7 @@ namespace Assets.Scripts.Plants
         public void SetupAfterSpawn()
         {
             plantType = null;
+            currentState?.Dispose();
             currentState = null;
             pollinationState = null;
             GeneticDrivers = null;
@@ -166,9 +181,9 @@ namespace Assets.Scripts.Plants
         /// </summary>
         public void UpdatePlant()
         {
-            plantsParent.DestroyAllChildren();
             if (plantType == null || currentState == null)
             {
+                plantsParent.DestroyAllChildren();
                 return;
             }
             plantType.BuildPlantInto(plantsParent.transform, GeneticDrivers, currentState, pollinationState);
@@ -262,6 +277,7 @@ namespace Assets.Scripts.Plants
             var harvestedSeeds = plantType.HarvestSeeds(pollinationState, currentState);
 
             plantType = null;
+            currentState?.Dispose();
             currentState = null;
             pollinationState = null;
             GeneticDrivers = null;
@@ -274,9 +290,8 @@ namespace Assets.Scripts.Plants
 
         private IEnumerator HarvestEffect()
         {
-            var plantObject = plantsParent.GetComponentInChildren<MeshFilter>();
-            // assuming the mesh has been rotated 90 degrees around z axis. 
-            harvestEffect.SetFloat("height", plantObject.mesh.bounds.size.x * plantObject.transform.localScale.x);
+            // assuming the mesh has been rotated 90 degrees around z axis.
+            harvestEffect.SetFloat("height", 10 * plantsParent.transform.localScale.x);
             harvestEffect.Play();
             yield return new WaitForSeconds(0.3f);
             UpdatePlant();
@@ -323,8 +338,11 @@ namespace Assets.Scripts.Plants
             {
                 target.plantType = plantTypeId == -1 ? null : target.plantTypes.GetUniqueObjectFromID(plantTypeId);
                 target.pollinationState = pollination;
+
+                target.currentState?.Dispose();
                 target.currentState = plantState;
                 target.currentState?.AfterDeserialized();
+
                 target.GrowthUpdated(true);
             }
         }

@@ -41,7 +41,7 @@ namespace Assets.Scripts.Plants
         public string plantName;
         public Sprite seedIcon;
 
-        public abstract PlantState GenerateBaseSate();
+        public abstract PlantState GenerateBaseStateAndHookTo();
 
         public abstract void AddGrowth(int phaseDiff, PlantState currentState);
 

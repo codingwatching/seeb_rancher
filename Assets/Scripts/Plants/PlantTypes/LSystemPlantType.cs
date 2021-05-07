@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.DataModels;
 using Dman.LSystem.SystemRuntime.DOTSRenderer;
+using Dman.LSystem.SystemRuntime.ThreadBouncer;
 using Dman.LSystem.UnityObjects;
 using Genetics.GeneticDrivers;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Plants
     [CreateAssetMenu(fileName = "LSystemPlantType", menuName = "Greenhouse/LSystemPlantType", order = 1)]
     public class LSystemPlantType : BasePlantType
     {
-        public DOTSTurtleInterpreterBehavior turtleInterpretorPrefab;
+        public TurtleInterpreterBehavior turtleInterpretorPrefab;
         public LSystemObject lSystem;
 
         public float phaseFractionTillSprout = 1f;
@@ -30,9 +31,11 @@ namespace Assets.Scripts.Plants
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
-        public override PlantState GenerateBaseSate()
+        public override PlantState GenerateBaseStateAndHookTo()
         {
-            return new LSystemPlantState(lSystem.axiom, phaseFractionTillSprout);
+            return new LSystemPlantState(
+                lSystem,
+                phaseFractionTillSprout);
         }
 
         /// <summary>
@@ -65,12 +68,21 @@ namespace Assets.Scripts.Plants
                 return;
             }
 
-            systemState.CompileSystemIfNotCached(() => CompileToGlobalParameters(geneticDrivers), lSystem);
-            systemState.runtimeParameters.SetParameter("hasAnther", pollination.HasAnther ? 1 : 0);
-            systemState.runtimeParameters.SetParameter("isPollinated", pollination.IsPollinated ? 1 : 0);
+            var targetTurtle = targetContainer.GetComponentInChildren<TurtleInterpreterBehavior>();
+            if(targetTurtle == null)
+            {
+                targetTurtle = Instantiate(turtleInterpretorPrefab, targetContainer);
+            }
+
+
+            systemState.CompileSystemIfNotCached(
+                () => CompileToGlobalParameters(geneticDrivers),
+                lSystem);
+            systemState.steppingHandle.runtimeParameters.SetParameter("hasAnther", pollination.HasAnther ? 1 : 0);
+            systemState.steppingHandle.runtimeParameters.SetParameter("isPollinated", pollination.IsPollinated ? 1 : 0);
 
             var targetSteps = Mathf.FloorToInt(systemState.growth * stepsPerPhase);
-            if (targetSteps > systemState.totalSystemSteps)
+            if (targetSteps > systemState.steppingHandle.totalSteps)
             {
                 systemState.StepStateUpToSteps(targetSteps);
             }
@@ -79,13 +91,12 @@ namespace Assets.Scripts.Plants
                 systemState.RepeatLastSystemStep();
             }
 
-            var newPlantTarget = Instantiate(turtleInterpretorPrefab, targetContainer);
 
-            // TODO: deffer?
-            newPlantTarget.InterpretSymbols(systemState.lSystemState.currentSymbols).Complete();
-            var lastAngles = newPlantTarget.transform.parent.localEulerAngles;
+            var completable = targetTurtle.InterpretSymbols(systemState.steppingHandle.currentState.currentSymbols);
+            CompletableExecutor.Instance.RegisterCompletable(completable);
+            var lastAngles = targetTurtle.transform.parent.localEulerAngles;
             lastAngles.y = systemState.randomRotationAmount;
-            newPlantTarget.transform.parent.localEulerAngles = lastAngles;
+            targetTurtle.transform.parent.localEulerAngles = lastAngles;
         }
 
         public Dictionary<string, string> CompileToGlobalParameters(CompiledGeneticDrivers geneticDrivers)
@@ -109,7 +120,7 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            return systemState.lSystemState.currentSymbols.symbols.Contains((int)flowerCharacter);
+            return systemState.steppingHandle.currentState.currentSymbols.Data.symbols.Contains((int)flowerCharacter);
         }
         public override bool CanHarvest(PlantState currentState)
         {
@@ -118,7 +129,7 @@ namespace Assets.Scripts.Plants
                 return false;
             }
             // if the plant is done growing always allow harvesting to avoid letting plants with no fruit hang around
-            return !systemState.lastStepChanged || systemState.lSystemState.currentSymbols.symbols.Contains((int)seedBearingCharacter);
+            return !systemState.steppingHandle.lastUpdateChanged || systemState.steppingHandle.currentState.currentSymbols.Data.symbols.Contains((int)seedBearingCharacter);
         }
 
         public override bool IsMature(PlantState currentState)
@@ -127,7 +138,7 @@ namespace Assets.Scripts.Plants
             {
                 return false;
             }
-            return !systemState.lastStepChanged;
+            return !systemState.steppingHandle.lastUpdateChanged;
         }
 
         protected override int GetHarvestedSeedNumber(PlantState currentState)
@@ -136,17 +147,19 @@ namespace Assets.Scripts.Plants
             {
                 return 0;
             }
-            return systemState.lSystemState.currentSymbols.symbols.Sum(symbol => symbol == seedBearingCharacter ? 1 : 0);
+            return systemState.steppingHandle.currentState.currentSymbols.Data.symbols.Sum(symbol => symbol == seedBearingCharacter ? 1 : 0);
         }
         public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
         {
             var geneticDrivers = genome.CompileGenome(seed.genes);
-            var tempState = GenerateBaseSate() as LSystemPlantState;
+            using var tempState = GenerateBaseStateAndHookTo() as LSystemPlantState;
 
-            tempState.CompileSystemIfNotCached(() => CompileToGlobalParameters(geneticDrivers), lSystem);
+            tempState.CompileSystemIfNotCached(
+                () => CompileToGlobalParameters(geneticDrivers),
+                lSystem);
             // when simulating growth, no anthers are clipped. and it is always pollinated.
-            tempState.runtimeParameters.SetParameter("hasAnther", 1);
-            tempState.runtimeParameters.SetParameter("isPollinated", 1);
+            tempState.steppingHandle.runtimeParameters.SetParameter("hasAnther", 1);
+            tempState.steppingHandle.runtimeParameters.SetParameter("isPollinated", 1);
 
             tempState.StepUntilFirstNoChange();
 
