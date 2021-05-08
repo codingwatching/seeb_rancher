@@ -3,11 +3,6 @@
 
 #ignore /\&^F$`@
 
-# first step: identify minimal match identity
-# 	contains an ID of the matched rule. which requires context matches
-#	already contains a mapping from match into symbols. used to extract parameters.
-#	can store either captured parameters directly. or matched symbol mapping. both are of unknown length 
-	
 
 ## flags set based on the pollination state
 #runtime hasAnther 1
@@ -15,11 +10,16 @@
 
 ## composition definitions. define directives evaluate in-order, these directives rely on subsequent definitions to complete
 #define flowerMeshIndex (flowerColorOuterIndex + flowerColorInnerIndex * 3)
+#define petioleLeafAngularDist (270 / leavesPerPetiole)
 
 ## variables controlled by genes
 #define primaryBranchInternodes 7
 #define flowerFailureChance 0.25
 #define stamenSize 0.6
+## ranges from 1 to 5
+#define leavesPerPetiole 5
+
+
 ## ranges from 0 to 2. 0 is least ripe, 2 is most ripe.
 #define fruitColorIndex 1
 #define flowerColorInnerIndex 1
@@ -31,8 +31,6 @@
 #define shootHeight 5
 #define internodeHeight 3
 #define leafAge 3
-#define leavesPerPetiole 3
-#define petioleLeafAngularDist 50
 
 #define flowerAge 7
 #define timeToFruit 10

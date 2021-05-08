@@ -38,3 +38,5 @@ MonoBehaviour:
     lSystemDefineDirectiveName: flowerColorOuterIndex
   - geneticDriver: {fileID: 11400000, guid: cdeb03db77a42164caffde479397edad, type: 2}
     lSystemDefineDirectiveName: primaryAngularSeparation
+  - geneticDriver: {fileID: 11400000, guid: 48b44ffd308cac841a56dbb06d85ba6a, type: 2}
+    lSystemDefineDirectiveName: leavesPerPetiole
