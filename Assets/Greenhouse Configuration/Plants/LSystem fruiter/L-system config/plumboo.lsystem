@@ -1,4 +1,4 @@
-#axiom S(0)
+#axiom s(1)r(0)S(0)
 #iterations 70
 
 #ignore /\&^F$`@
@@ -102,15 +102,39 @@ C(age) < K(y, x) : age >= timeToFruit ->
          A(x) : hasAnther < 1 ->
 C(age) < A(y) : age >= timeToFruit ->
 
+####### RESOURCE DIFFUSION SYSTEM #######
+#define resourceNodeTargetMax 10
+## s is a resource source node
+s(x) -> s(x)b(x)
 
 
+## r is a resource diffusion/distribution node
+       r(x) > a(a) -> r(x + a)
+b(b) < r(x) > a(a) -> r(x + a + b)
+b(b) < r(x)        -> r(x + b)
+       r(x)        -> r(x)
 
 
+## w is a node which pull resources forward from the base into a branch
+##	Pulls resources when any are available from the root node, and will generate
+##	a back-propigating negative command and a forward-propigating positive command
+## Randomly decide whether or not to pull resources forward
+
+P(0.2) | r(a)q < w > r(x) : a >= 1 && x < resourceNodeTargetMax -> a(-a / 2)wb(a / 2)
+P(0.8) | r(a)q < w > r(x) : a >= 1 && x < resourceNodeTargetMax -> w
 
 
+## a is a resource amount, propigating downwards, to be captured by a resource node
+a(x)        -> 
+a(x) > a(y) -> a(y)
 
+## q is a resource amount downpropigation node
+q > [a(x)][a(y)][a(z)][a(c)] -> a(x + y + z + c)q
+q > [a(x)][a(y)][a(z)] -> a(x + y + z)q
+q > [a(x)][a(y)] -> a(x + y)q
+q > [a(x)] -> a(x)q
 
-
-
-
+## b is a resource amount, propigating upwards, to be captured by a resource node
+       b(x) -> 
+b(y) < b(x) -> b(y)
 
