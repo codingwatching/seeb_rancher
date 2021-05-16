@@ -56,6 +56,9 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Editor\LSystemDebugger\LSystemStructureTreeElement.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Editor\LSystemDebugger\LSystemStructureTreeWindow.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Editor\LSystemDebugger\LSystemStructureTreeView.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Editor\LSystemAssetImporter.cs" />
   </ItemGroup>
   <ItemGroup>
