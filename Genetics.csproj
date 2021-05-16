@@ -62,11 +62,15 @@
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneticDrivers\FloatGeneticDriver.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneticDriver.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\ParameterizedGenomeGenerator\GenomeGenerator.cs" />
+    <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneSummarization\AbstractSummary.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\ParameterizedGenomeGenerator\FloatGeneticTarget.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\HammingUtilities.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\ChromosomeEditor.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\Genes\MendelianFloatGene.cs" />
+    <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneSummarization\GeneticDriverSummarySet.cs" />
+    <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneSummarization\DiscreteSummary.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\Genes\MultiBooleanGene.cs" />
+    <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneSummarization\ContinuousSummary.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneticDrivers\ContinuousFloatGeneticDriver.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\ParameterizedGenomeGenerator\IGeneticTarget.cs" />
     <Compile Include="C:\source\Game-Dev\Genetics\Assets\GeneticsPackage\Runtime\GeneticDrivers\CompiledGeneticDrivers.cs" />

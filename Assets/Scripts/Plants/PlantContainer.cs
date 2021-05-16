@@ -81,10 +81,8 @@ namespace Assets.Scripts.Plants
         {
             if(currentState == null)
             {
-                Debug.Log("Current state is null. not disposing");
             }else
             {
-                Debug.Log("Current state is not null. disposing");
                 currentState?.Dispose();
                 currentState = null;
             }

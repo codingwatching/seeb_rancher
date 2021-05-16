@@ -2,6 +2,7 @@
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
+using Genetics.GeneSummarization;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -23,6 +24,8 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public DragSeedsManipulator draggingSeedsManipulator;
         public ScriptableObjectVariable activeManipulator;
+
+        public GeneticDriverSummarySet summarization;
 
         public SeedBucketUI dataModel { get; protected set; }
 
@@ -99,7 +102,6 @@ namespace Assets.Scripts.UI.SeedInventory
             return true;
         }
 
-
         public void MySeedsUpdated()
         {
             if (lastSeedCount != dataModel.bucket.SeedCount)
@@ -109,6 +111,9 @@ namespace Assets.Scripts.UI.SeedInventory
             }
             Displayer.DisplaySeedBucket(dataModel.bucket);
             labelInputField.text = dataModel.description;
+
+            summarization = dataModel.bucket.SummarizeSeeds();
+            if(summarization != null) Debug.Log(summarization.ToString());
         }
 
         public void UpdateDataModel(SeedBucketUI model)

@@ -41,6 +41,8 @@ namespace Assets.Scripts.Plants
         public string plantName;
         public Sprite seedIcon;
 
+        public GeneticDriver[] summaryDrivers;
+
         public abstract PlantState GenerateBaseStateAndHookTo();
 
         public abstract void AddGrowth(int phaseDiff, PlantState currentState);

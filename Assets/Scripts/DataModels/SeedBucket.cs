@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Assets.Scripts.Plants;
+using Dman.ObjectSets;
+using Genetics.GeneSummarization;
+using System;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Scripts.DataModels
 {
@@ -28,6 +32,20 @@ namespace Assets.Scripts.DataModels
         public SeedBucket()
         {
             shuffledSinceLastAddition = false;
+        }
+
+        public GeneticDriverSummarySet SummarizeSeeds()
+        {
+            if (Empty)
+            {
+                return null;
+            }
+            var firstSeed = AllSeeds[0];
+            var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
+            var plantType = plantTypeRegistry.GetUniqueObjectFromID(firstSeed.plantType);
+            return new GeneticDriverSummarySet(
+                plantType.summaryDrivers,
+                AllSeeds.Select(x => x.parentAttributes));
         }
 
         public bool TryAddSeedsToSet(Seed[] seeds)

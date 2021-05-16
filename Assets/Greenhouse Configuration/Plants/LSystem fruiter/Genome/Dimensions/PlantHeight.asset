@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myId: 2
   DriverName: Plant Height
+  minValue: 5
+  maxValue: 13
