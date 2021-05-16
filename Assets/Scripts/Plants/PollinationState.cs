@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.DataModels;
+using Genetics.GeneticDrivers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace Assets.Scripts.Plants
             pollinationSources.Add(SelfGenes);
         }
 
-        public Seed GetChildSeed()
+        public Seed GetChildSeed(CompiledGeneticDrivers drivers)
         {
             if (pollinationSources.Any(source => source.plantType != SelfGenes.plantType))
             {
@@ -47,11 +48,10 @@ namespace Assets.Scripts.Plants
                 throw new System.Exception("No pollination source, plant is infertile");
             }
             var selectedSource = pollinationSources[Random.Range(0, pollinationSources.Count)];
-            return new Seed
-            {
-                plantType = SelfGenes.plantType,
-                genes = new Genetics.Genome(selectedSource.genes, SelfGenes.genes)
-            };
+            return new Seed(
+                new Genetics.Genome(selectedSource.genes, SelfGenes.genes),
+                SelfGenes.plantType,
+                drivers);
         }
 
         public bool CanPollinate()

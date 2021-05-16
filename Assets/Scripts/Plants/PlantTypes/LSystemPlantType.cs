@@ -167,17 +167,16 @@ namespace Assets.Scripts.Plants
             // TODO: these seed counts are picked out of the blue. Consider running the l-system to get the seed counts
             //  for a more accurate simulation.
             //  more relevent if there are certain trait combinations that can sterilize a seed
-            return SelfPollinateSeed(seed, seedCount);
+            return SelfPollinateSimulatedSeed(seed, seedCount);
         }
-        IEnumerable<Seed> SelfPollinateSeed(Seed seed, int seedCopies)
+        IEnumerable<Seed> SelfPollinateSimulatedSeed(Seed seed, int seedCopies)
         {
             for (int i = 0; i < seedCopies; i++)
             {
-                yield return new Seed
-                {
-                    plantType = seed.plantType,
-                    genes = new Genetics.Genome(seed.genes, seed.genes)
-                };
+                yield return new Seed(
+                    new Genetics.Genome(seed.genes, seed.genes),
+                    this,
+                    null);
             }
         }
     }

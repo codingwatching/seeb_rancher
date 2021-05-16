@@ -274,7 +274,7 @@ namespace Assets.Scripts.Plants
 
         private Seed[] HarvestPlant()
         {
-            var harvestedSeeds = plantType.HarvestSeeds(pollinationState, currentState);
+            var harvestedSeeds = plantType.HarvestSeeds(pollinationState, currentState, GeneticDrivers);
 
             plantType = null;
             currentState?.Dispose();

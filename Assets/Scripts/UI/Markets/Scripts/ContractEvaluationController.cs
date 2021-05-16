@@ -127,19 +127,6 @@ namespace Assets.Scripts.UI.MarketContracts
             evaluationResultsSection.SetActive(true);
         }
 
-        IEnumerable<Seed> SelfPollinateSeed(Seed seed, int minSeedCopies, int maxSeedCopies)
-        {
-            var copies = Random.Range(minSeedCopies, maxSeedCopies);
-            for (int i = 0; i < copies; i++)
-            {
-                yield return new Seed
-                {
-                    plantType = seed.plantType,
-                    genes = new Genetics.Genome(seed.genes, seed.genes)
-                };
-            }
-        }
-
         public void AcceptResults()
         {
             // add rewardAmount

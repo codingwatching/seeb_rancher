@@ -54,7 +54,7 @@ namespace Assets.Scripts.UI.MarketContracts
                     yield return new WaitForEndOfFrame();
                     continue;
                 }
-                var newSeed = new Seed(nextGene, plantType);
+                var newSeed = new Seed(nextGene, plantType, null);
                 GeneratedSeebs.Add(newSeed);
                 if (GeneratedSeebs.Count >= seedCount)
                 {

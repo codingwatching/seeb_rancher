@@ -58,11 +58,10 @@ namespace Assets.Scripts.Plants
 
         public Seed GenerateRandomSeed()
         {
-            return new Seed
-            {
-                genes = genome.GenerateBaseGenomeData(new System.Random(Random.Range(int.MinValue, int.MaxValue))),
-                plantType = myId
-            };
+            return new Seed(
+                genome.GenerateBaseGenomeData(new System.Random(Random.Range(int.MinValue, int.MaxValue))),
+                this,
+                null);
         }
 
         public abstract IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed);
@@ -73,7 +72,10 @@ namespace Assets.Scripts.Plants
             return GetHarvestedSeedNumber(currentState);
         }
 
-        public Seed[] HarvestSeeds(PollinationState sourcePollination, PlantState currentState)
+        public Seed[] HarvestSeeds(
+            PollinationState sourcePollination,
+            PlantState currentState,
+            CompiledGeneticDrivers drivers)
         {
             if (selfPollinating)
             {
@@ -87,11 +89,7 @@ namespace Assets.Scripts.Plants
             var seedResult = new Seed[generatedSeeds];
             for (int i = 0; i < seedResult.Length; i++)
             {
-                seedResult[i] = new Seed
-                {
-                    plantType = myId,
-                    genes = sourcePollination.GetChildSeed().genes
-                };
+                seedResult[i] = sourcePollination.GetChildSeed(drivers);
             }
             return seedResult;
         }
