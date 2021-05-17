@@ -7,12 +7,13 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
     [RequireComponent(typeof(SeedBucketDisplay))]
-    public class SeedInventoryDropSlot : MonoBehaviour, ISaveableData
+    public class SeedInventoryDropSlot : MonoBehaviour, ISaveableData, IPointerEnterHandler, IPointerExitHandler
     {
         [Tooltip("Called when seeb count is changed")]
         public UnityEvent onSeedCountUpdated;
@@ -26,6 +27,7 @@ namespace Assets.Scripts.UI.SeedInventory
         public ScriptableObjectVariable activeManipulator;
 
         public GeneticDriverSummarySet summarization;
+        public GameObjectVariable hoveredDropSlot;
 
         public SeedBucketUI dataModel { get; protected set; }
 
@@ -38,6 +40,14 @@ namespace Assets.Scripts.UI.SeedInventory
                 UpdateDataModel(new SeedBucketUI());
             }
             InitializeListeners();
+        }
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            hoveredDropSlot?.SetValue(gameObject);
+        }
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            hoveredDropSlot?.SetValue(null);
         }
 
         public virtual bool CanSlotRecieveNewStack()
@@ -180,6 +190,7 @@ namespace Assets.Scripts.UI.SeedInventory
                 UpdateDataModel(new SeedBucketUI());
             }
         }
+
         #endregion
     }
 }

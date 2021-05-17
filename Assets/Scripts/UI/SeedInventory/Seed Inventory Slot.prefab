@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8b3e585e5d562488ae44d69840a7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSeedsGrabbed:
+  onSeedCountUpdated:
     m_PersistentCalls:
       m_Calls: []
   canManipulatorsDespositSeeds:
@@ -295,6 +295,7 @@ MonoBehaviour:
   labelInputField: {fileID: 5308498450268038710}
   draggingSeedsManipulator: {fileID: 11400000, guid: 734200144025c4e4996becdd288ebbd9, type: 2}
   activeManipulator: {fileID: 11400000, guid: 1bab0bbceb6e9174a97b61869f921917, type: 2}
+  hoveredDropSlot: {fileID: 11400000, guid: de7db67bbc0050a439c6b20e00d9388b, type: 2}
 --- !u!114 &4022953965823276303
 MonoBehaviour:
   m_ObjectHideFlags: 0
