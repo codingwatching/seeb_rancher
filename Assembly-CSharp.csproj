@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\TargetContractDescriptor.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryRow.cs" />
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\SelectionSpotlighter.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\PollinatePlantManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\EvaluationTargets\SeedCountTarget.cs" />
@@ -141,7 +142,8 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryRow.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\HistogramSummaryDisplay.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\DiscreteSummaryDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
