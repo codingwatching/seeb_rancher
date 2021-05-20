@@ -7,11 +7,12 @@ namespace Assets.Scripts.UI.SeedInventory
     [RequireComponent(typeof(Image))]
     public class HistogramSummaryDisplay : MonoBehaviour
     {
-        
+
         public void SetSummaryDisplay(ContinuousSummary summary)
         {
-            var myRect = this.GetComponent<RectTransform>().rect;
+            var myRect = GetComponent<RectTransform>().rect;
             var texture = new Texture2D((int)myRect.width, (int)myRect.height);
+            texture.filterMode = FilterMode.Point;
 
             var image = GetComponent<Image>();
             image.material.mainTexture = texture;
