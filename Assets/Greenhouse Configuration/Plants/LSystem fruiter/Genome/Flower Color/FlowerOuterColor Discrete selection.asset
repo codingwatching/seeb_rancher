@@ -15,6 +15,10 @@ MonoBehaviour:
   myId: 13
   DriverName: Flower Outer Color
   possibleStates:
-  - orange
-  - pink
-  - red
+  - Orange
+  - Pink
+  - Red
+  possibleColors:
+  - {r: 0.9686275, g: 0.5294118, b: 0, a: 1}
+  - {r: 0.882353, g: 0.42352945, b: 0.62352943, a: 1}
+  - {r: 0.77647066, g: 0, b: 0.003921569, a: 1}

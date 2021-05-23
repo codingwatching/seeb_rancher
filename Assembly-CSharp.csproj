@@ -104,7 +104,9 @@
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\EvaluationTargets\SeedCountTarget.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketManager.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\FullyDiscreteSummaryDisplay.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\PollinatingPlantExistsTrigger.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\HistogramSummaryDisplay.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\PlantTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebPurchaseButton.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MovingOutlineHelper.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\HarvestMaturePlantPrompt.cs" />
+    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\DiscreteClassificationCell.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinMesh.cs" />
@@ -142,8 +145,6 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\HistogramSummaryDisplay.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\DiscreteSummaryDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

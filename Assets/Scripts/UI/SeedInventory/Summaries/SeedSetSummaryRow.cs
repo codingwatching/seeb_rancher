@@ -28,7 +28,7 @@ namespace Assets.Scripts.UI.SeedInventory
         public GameObject summaryObjectContainer;
 
         public HistogramSummaryDisplay continuousSummaryPrefab;
-        public DiscreteSummaryDisplay discretSummaryPrefab;
+        public FullyDiscreteSummaryDisplay discretSummaryPrefab;
 
 
         public void DisplaySummary(KeyValuePair<string, AbstractSummary> summaryByName)

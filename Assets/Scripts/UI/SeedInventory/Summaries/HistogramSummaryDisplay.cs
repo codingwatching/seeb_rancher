@@ -4,29 +4,35 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
-    [RequireComponent(typeof(Image))]
     public class HistogramSummaryDisplay : MonoBehaviour
     {
-
+        public Image histogramImage;
+        public TMPro.TMP_Text minValueText;
+        public TMPro.TMP_Text maxValueText;
         public void SetSummaryDisplay(ContinuousSummary summary)
         {
+            minValueText.text = summary.minValue.ToString();
+            maxValueText.text = summary.maxValue.ToString();
+
             var myRect = GetComponent<RectTransform>().rect;
             var texture = new Texture2D((int)myRect.width, (int)myRect.height);
             texture.filterMode = FilterMode.Point;
 
-            var image = GetComponent<Image>();
+            var image = histogramImage;
             image.material.mainTexture = texture;
 
-            var randgen = new System.Random(Random.Range(int.MinValue, int.MaxValue));
-            for (int i = 0; i < 1000; i++)
-            {
-                var pixelPoint = new Vector2Int(randgen.Next(0, texture.width), randgen.Next(0, texture.height));
-                var color = new Color(
-                    (float)randgen.NextDouble(),
-                    (float)randgen.NextDouble(),
-                    (float)randgen.NextDouble());
+            var histogramResult = summary.RenderContinuousHistogram(
+                texture.width,
+                x => 1 - x);
 
-                texture.SetPixel(pixelPoint.x, pixelPoint.y, color);
+            for (int x = 0; x < histogramResult.Length; x++)
+            {
+                var histogramIntensity = histogramResult[x];
+                var color = new Color(1 - histogramIntensity, 1 - histogramIntensity, 1 - histogramIntensity);
+                for (int y = 0; y < texture.height; y++)
+                {
+                    texture.SetPixel(x, y, color);
+                }
             }
 
             texture.Apply();
