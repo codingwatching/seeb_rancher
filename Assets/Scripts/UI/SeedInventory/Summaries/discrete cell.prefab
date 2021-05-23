@@ -338,9 +338,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorblindMode:
-    DataSource: 0
-    ConstantValue: 0
-    Variable: {fileID: 0}
+    DataSource: 1
+    ConstantValue: 1
+    Variable: {fileID: 11400000, guid: 2a7122c91aa64b243bfaaf796ab97ce6, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
   descriptionLabel: {fileID: 8111244437367628790}

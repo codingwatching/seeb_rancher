@@ -16,21 +16,32 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public void SetCellDisplay(float proportionalWeight, Color cellColor, string description)
         {
-            descriptionLabel.text = description;
             uiCellImage.color = cellColor;
 
             var newHeight = maxUiCellImageHeight * proportionalWeight;
 
             uiCellImage.rectTransform.sizeDelta = new Vector2(uiCellImage.rectTransform.sizeDelta.x, newHeight);
 
+            var hasLabel = colorblindMode.CurrentValue;
+            float labelWidth = 0;
+            if (hasLabel)
+            {
+                descriptionLabel.gameObject.SetActive(true);
+                descriptionLabel.text = description;
+                labelWidth = descriptionLabel.preferredWidth;
+                descriptionLabel.rectTransform.sizeDelta = new Vector2(labelWidth, descriptionLabel.rectTransform.sizeDelta.y);
+            }else
+            {
+                descriptionLabel.gameObject.SetActive(false);
+                labelWidth = 0;
+            }
 
-            descriptionLabel.rectTransform.sizeDelta = new Vector2(descriptionLabel.preferredWidth, descriptionLabel.rectTransform.sizeDelta.y);
             var pos = uiCellComponent.anchoredPosition;
-            pos.x = descriptionLabel.rectTransform.sizeDelta.x;
+            pos.x = labelWidth;
             uiCellComponent.anchoredPosition = pos;
 
             var myRect = this.transform as RectTransform;
-            myRect.sizeDelta = new Vector2(descriptionLabel.rectTransform.sizeDelta.x + uiCellComponent.sizeDelta.x, myRect.sizeDelta.y);
+            myRect.sizeDelta = new Vector2(labelWidth + uiCellComponent.sizeDelta.x, myRect.sizeDelta.y);
         }
     }
 }

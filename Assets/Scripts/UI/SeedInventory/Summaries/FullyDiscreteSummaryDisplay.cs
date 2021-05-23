@@ -16,6 +16,7 @@ namespace Assets.Scripts.UI.SeedInventory
             discreteCellsPrefabParent.gameObject.DestroyAllChildren();
 
             float maxBucketSize = summary.allClassifications.Max(x => x.totalClassifications);
+            float totalBucketSize = summary.allClassifications.Sum(x => x.totalClassifications);
 
             for (int i = 0; i < summary.allClassifications.Length; i++)
             {
@@ -34,7 +35,7 @@ namespace Assets.Scripts.UI.SeedInventory
                 }
 
                 var newCell = Instantiate(singleDiscreteValuePrefab, discreteCellsPrefabParent);
-                newCell.SetCellDisplay(bucket.totalClassifications / maxBucketSize, color, bucket.description);
+                newCell.SetCellDisplay(bucket.totalClassifications / totalBucketSize, color, bucket.description);
             }
 
             // TODO
