@@ -16,7 +16,7 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public void SetCellDisplay(float proportionalWeight, Color cellColor, string description)
         {
-            uiCellImage.color = cellColor;
+            uiCellImage.color = colorblindMode.CurrentValue ? Color.black : cellColor;
 
             var newHeight = maxUiCellImageHeight * proportionalWeight;
 

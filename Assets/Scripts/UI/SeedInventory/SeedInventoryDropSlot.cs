@@ -120,7 +120,10 @@ namespace Assets.Scripts.UI.SeedInventory
                 lastSeedCount = dataModel.bucket.SeedCount;
             }
             Displayer.DisplaySeedBucket(dataModel.bucket);
-            labelInputField.text = dataModel.description;
+            if(labelInputField != null)
+            {
+                labelInputField.text = dataModel.description;
+            }
 
             summarization = dataModel.bucket.SummarizeSeeds();
             if(summarization != null) Debug.Log(summarization.ToString());
@@ -134,18 +137,21 @@ namespace Assets.Scripts.UI.SeedInventory
 
         public void InitializeListeners()
         {
-            labelInputField.onDeselect.AddListener(newValue =>
+            if (labelInputField != null)
             {
-                if (isResetting)
+                labelInputField.onDeselect.AddListener(newValue =>
                 {
-                    return;
-                }
-                if (dataModel != null)
-                {
-                    dataModel.description = newValue;
-                }
-                StartCoroutine(ResetTextField());
-            });
+                    if (isResetting)
+                    {
+                        return;
+                    }
+                    if (dataModel != null)
+                    {
+                        dataModel.description = newValue;
+                    }
+                    StartCoroutine(ResetTextField());
+                });
+            }
         }
         private bool isResetting = false;
         /// <summary>

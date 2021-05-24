@@ -28,7 +28,7 @@ namespace Assets.Scripts.UI.SeedInventory
             for (int x = 0; x < histogramResult.Length; x++)
             {
                 var histogramIntensity = histogramResult[x];
-                var color = new Color(1 - histogramIntensity, 1 - histogramIntensity, 1 - histogramIntensity);
+                var color = new Color(1,1,1, histogramIntensity);
                 for (int y = 0; y < texture.height; y++)
                 {
                     texture.SetPixel(x, y, color);
