@@ -955,13 +955,13 @@ TextureImporter:
       name: UI_Wood_Flat_35
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 160
-        width: 160
-        height: 160
+        width: 159
+        height: 159
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 32, y: 32, z: 33, w: 32}
+      border: {x: 0, y: 1, z: 1, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -981,7 +981,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 7, y: 4, z: 9, w: 11}
       outline: []
       physicsShape: []
@@ -1002,7 +1002,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 7, y: 4, z: 9, w: 11}
       outline: []
       physicsShape: []
