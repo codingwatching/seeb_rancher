@@ -29,10 +29,13 @@ namespace Assets.Scripts.UI.PlantData
 
         private void SetupPlantViewer(PlantContainer plantContainer)
         {
-            foreach (Transform transform in plantContainer.plantsParent.transform)
-            {
-                Instantiate(transform.gameObject, this.transform);
-            }
+            var plantModel = plantContainer.plantsParent.transform.GetChild(0);
+            var plantMesh = plantModel.GetComponentInChildren<MeshFilter>();
+
+
+            var newObject = Instantiate(plantModel, this.transform);
+            var newMesh = newObject.GetComponentInChildren<MeshFilter>();
+            newMesh.mesh = plantMesh.mesh;
         }
 
         private void ClearPlantViewer()
