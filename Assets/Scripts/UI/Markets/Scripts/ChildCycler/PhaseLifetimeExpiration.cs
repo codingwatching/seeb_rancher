@@ -1,4 +1,5 @@
 ﻿using Dman.ReactiveVariables;
+using Dman.SceneSaveSystem;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.UI.MarketContracts.ChildCycler
 {
 
-    public class PhaseLifetimeExpiration : MonoBehaviour
+    public class PhaseLifetimeExpiration : MonoBehaviour, ISaveableData
     {
         public IntReference levelPhase;
         [Tooltip("phases till this gameobject gets destroyed. -1 is infinite")]
@@ -55,6 +56,47 @@ namespace Assets.Scripts.UI.MarketContracts.ChildCycler
             expirationText.text = expirationNumberFormat
                 .Replace("#", replacement);
         }
+
+        #region Saving
+        public string UniqueSaveIdentifier => "PhaseLifetimeExpiration";
+
+        [System.Serializable]
+        class SaveObject
+        {
+            int timeTillExpire;
+            string expirationFormat;
+
+            public SaveObject(PhaseLifetimeExpiration source)
+            {
+                timeTillExpire = source.timeTillExpiration;
+                expirationFormat = source.expirationNumberFormat;
+            }
+            public void ApplyTo(PhaseLifetimeExpiration target)
+            {
+                target.timeTillExpiration = timeTillExpire;
+                target.expirationNumberFormat = expirationFormat;
+
+            }
+        }
+        public object GetSaveObject()
+        {
+            return new SaveObject(this);
+        }
+
+        public void SetupFromSaveObject(object save)
+        {
+            if (save is SaveObject data)
+            {
+                data.ApplyTo(this);
+                UpdateText();
+            }
+        }
+
+        public ISaveableData[] GetDependencies()
+        {
+            return new ISaveableData[0];
+        }
+        #endregion
     }
 
 }

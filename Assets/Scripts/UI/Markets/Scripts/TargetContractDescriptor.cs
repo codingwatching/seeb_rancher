@@ -29,10 +29,11 @@ namespace Assets.Scripts.UI.MarketContracts
         [Tooltip("The lower bound for compliance in order for this contract to be completed. Seeds which do not satisfy this compliance will not cause the contract to be removed.")]
         [Range(0f, 1f)]
         public float minimumComplianceRatio;
-        public int expirationTime = 5;
+        public int expirationTime;
 
         public TargetContractDescriptor()
-        { }
+        {
+        }
 
         #region Seed Compliance
         public float ComplianceResult { get; set; }
@@ -93,6 +94,7 @@ namespace Assets.Scripts.UI.MarketContracts
             info.AddValue("reward", reward);
             info.AddValue("seedRequirement", seedRequirement);
             info.AddValue("minimumCompliance", minimumComplianceRatio);
+            info.AddValue("expirationTime", expirationTime);
             info.AddValue("plantType", new IDableSavedReference(plantType));
         }
 
@@ -107,6 +109,7 @@ namespace Assets.Scripts.UI.MarketContracts
             reward = info.GetSingle("reward");
             seedRequirement = info.GetInt32("seedRequirement");
             minimumComplianceRatio = info.GetSingle("minimumCompliance");
+            expirationTime = info.GetInt32("expirationTime");
 
             var savedReference = info.GetValue("plantType", typeof(IDableSavedReference)) as IDableSavedReference;
             plantType = savedReference?.GetObject<BasePlantType>();

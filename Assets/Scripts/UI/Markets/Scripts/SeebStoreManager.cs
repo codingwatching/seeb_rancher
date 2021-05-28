@@ -60,7 +60,8 @@ namespace Assets.Scripts.UI.MarketContracts
             {
                 booleanTargets = GenerateBooleanTargets(targetBuckets[0]),
                 floatTargets = GenerateFloatTargets(targetBuckets[1]),
-                plantType = seebType
+                plantType = seebType,
+                expirationTime = 5
             };
             var totalTargets = (contract.booleanTargets?.Length ?? 0) + (contract.floatTargets?.Length ?? 0) + (contract.seedCountTarget?.Length ?? 0);
             if (totalTargets != numberOfTargets)
