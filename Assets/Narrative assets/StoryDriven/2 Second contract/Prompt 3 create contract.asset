@@ -30,8 +30,8 @@ MonoBehaviour:
       minValue: 0
       maxValue: 0.1
     - targetDriver: {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
-      minValue: 1
-      maxValue: 4
+      minValue: 3
+      maxValue: 7
     seedCountTarget: []
     reward: 1000
     plantType: {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}

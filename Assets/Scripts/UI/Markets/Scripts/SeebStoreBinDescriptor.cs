@@ -41,10 +41,16 @@ namespace Assets.Scripts.UI.MarketContracts
 
             // take no more than 60 frames, or 1 second, per seed generated
             var totalFrameLimit = 60 * seedCount;
+            var randomSource = new System.Random(Random.Range(int.MinValue, int.MaxValue));
+            var seedSequence = genomeGenerator.GenerateGenomes(
+                10,
+                () => plantType.GenerateRandomSeed(randomSource),
+                seed => seed.genes
+                );
             // Warning: this could be an infinite loop, GenerateGenomes is an infinite generator function
-            foreach (var nextGene in genomeGenerator.GenerateGenomes(new System.Random(), 10))
+            foreach (var nextSeed in seedSequence)
             {
-                if (nextGene == null)
+                if (nextSeed == null)
                 {
                     totalFrameLimit--;
                     if (totalFrameLimit <= 0)
@@ -54,8 +60,7 @@ namespace Assets.Scripts.UI.MarketContracts
                     yield return new WaitForEndOfFrame();
                     continue;
                 }
-                var newSeed = new Seed(nextGene, plantType, null);
-                GeneratedSeebs.Add(newSeed);
+                GeneratedSeebs.Add(nextSeed);
                 if (GeneratedSeebs.Count >= seedCount)
                 {
                     yield break;

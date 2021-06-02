@@ -58,12 +58,27 @@ namespace Assets.Scripts.Plants
         public abstract bool CanHarvest(PlantState state);
         public abstract bool IsMature(PlantState state);
 
-        public Seed GenerateRandomSeed()
+        public Seed GenerateRandomSeed(System.Random randomProvider = null)
         {
-            return new Seed(
-                genome.GenerateBaseGenomeData(new System.Random(Random.Range(int.MinValue, int.MaxValue))),
+            if(randomProvider == null)
+            {
+                randomProvider = new System.Random(Random.Range(int.MinValue, int.MaxValue));
+            }
+            var mother = new Seed(
+                genome.GenerateBaseGenomeData(new System.Random(randomProvider.Next(int.MinValue, int.MaxValue))),
                 this,
                 null);
+            var father = new Seed(
+                genome.GenerateBaseGenomeData(new System.Random(randomProvider.Next(int.MinValue, int.MaxValue))),
+                this,
+                null);
+
+            var motherDrivers = genome.CompileGenome(mother.genes);
+
+            return new Seed(
+                new Genome(mother.genes, father.genes),
+                this,
+                motherDrivers);
         }
 
         public abstract IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed);
