@@ -32,9 +32,9 @@ namespace RTS_Cam
         #region Movement
 
         public float keyboardMovementSpeed = 5f; //speed with keyboard movement
-        public float screenEdgeMovementSpeed = 3f; //spee with screen edge movement
+        public float screenEdgeMovementSpeed = 3f; //speed with screen edge movement
         public float followingSpeed = 5f; //speed when following a target
-        public float rotationSped = 3f;
+        public float rotationSpeed = 3f;
         public float panningSpeed = 10f;
         public float mouseRotationSpeed = 10f;
 
@@ -42,12 +42,12 @@ namespace RTS_Cam
 
         #region Height
 
-        public bool autoHeight = true;
         public float heightDampening = 5f;
         public LayerMask groundMask = -1; //layermask of ground or other objects that affect height
+        public float maxRaycastDistance = 100f;
 
-        public float maxHeight = 10f; //maximal height
-        public float minHeight = 15f; //minimnal height
+        public float maxHeight = 10f;
+        public float minHeight = 15f;
         public float keyboardZoomingSensitivity = 2f;
         public float scrollWheelZoomingSensitivity = 25f;
 
@@ -144,7 +144,7 @@ namespace RTS_Cam
             }
         }
 
-        private int RotationDirection
+        private int RotationKeyDirection
         {
             get
             {
@@ -279,11 +279,27 @@ namespace RTS_Cam
         /// </summary>
         private void Rotation()
         {
-            if(useKeyboardRotation)
-                transform.Rotate(Vector3.up, RotationDirection * Time.deltaTime * rotationSped, Space.World);
+            var netRotationInput = 0f;
+            if (useKeyboardRotation)
+                netRotationInput += RotationKeyDirection * Time.deltaTime * rotationSpeed;
 
             if (useMouseRotation && Input.GetKey(mouseRotationKey))
-                m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed, Space.World);
+                netRotationInput += -MouseAxis.x * Time.deltaTime * mouseRotationSpeed;
+
+            if(Mathf.Abs(netRotationInput) < 1e-5)
+            {
+                return;
+            }
+            var cam = GetComponent<Camera>();
+            var centerLookRay = cam.ScreenPointToRay(new Vector3(cam.pixelWidth / 2f, cam.pixelHeight / 2f));
+            var rotationAnchor = transform.position;
+            Debug.DrawRay(centerLookRay.origin, centerLookRay.direction);
+            if(Physics.Raycast(centerLookRay, out var hit, maxRaycastDistance, groundMask))
+            {
+                rotationAnchor = hit.point;
+            }
+
+            transform.RotateAround(rotationAnchor, Vector3.up, netRotationInput);
         }
 
         /// <summary>
@@ -333,7 +349,7 @@ namespace RTS_Cam
         {
             Ray ray = new Ray(m_Transform.position, Vector3.down);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, groundMask.value))
+            if (Physics.Raycast(ray, out hit, maxRaycastDistance, groundMask))
                 return (hit.point - m_Transform.position).magnitude;
 
             return m_Transform.position.y;

@@ -24,12 +24,13 @@ namespace RTS_Cam
 
         public override void OnInspectorGUI()
         {
-            //base.OnInspectorGUI();
             Undo.RecordObject(camera, "RTS_CAmera");
             tabs.Draw();
             if (GUI.changed)
                 camera.lastTab = tabs.curMethodIndex;
             EditorUtility.SetDirty(camera);
+            // Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
+            serializedObject.ApplyModifiedProperties();
         }
 
         private void MovementTab()
@@ -99,7 +100,7 @@ namespace RTS_Cam
             {
                 camera.rotateLeftKey = (KeyCode)EditorGUILayout.EnumPopup("Rotate left: ", camera.rotateLeftKey);
                 camera.rotateRightKey = (KeyCode)EditorGUILayout.EnumPopup("Rotate right: ", camera.rotateRightKey);
-                camera.rotationSped = EditorGUILayout.FloatField("Keyboard rotation speed", camera.rotationSped);
+                camera.rotationSpeed = EditorGUILayout.FloatField("Keyboard rotation speed", camera.rotationSpeed);
             }
 
             using (new HorizontalBlock())
@@ -116,16 +117,9 @@ namespace RTS_Cam
 
         private void HeightTab()
         {
-            using (new HorizontalBlock())
-            {
-                GUILayout.Label("Auto height: ", EditorStyles.boldLabel, GUILayout.Width(170f));
-                camera.autoHeight = EditorGUILayout.Toggle(camera.autoHeight);
-            }
-            if (camera.autoHeight)
-            {
-                camera.heightDampening = EditorGUILayout.FloatField("Height dampening: ", camera.heightDampening);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("groundMask"));
-            }
+            camera.heightDampening = EditorGUILayout.FloatField("Height dampening: ", camera.heightDampening);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("groundMask"));
+            camera.maxRaycastDistance = EditorGUILayout.FloatField("Raycast Distance: ", camera.maxRaycastDistance);
 
             using (new HorizontalBlock())
             {

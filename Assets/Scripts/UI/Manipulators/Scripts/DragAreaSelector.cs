@@ -124,7 +124,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         {
             var mouseOvered = targetCastGroup.CurrentlyHitObject;
             var hoveredGameObject = mouseOvered.HasValue ? mouseOvered.Value.collider.gameObject : null;
-            return hoveredGameObject?.GetComponentInParent<TileMember>().CoordinatePosition;
+            return hoveredGameObject?.GetComponentInParent<TileMember>()?.CoordinatePosition;
         }
 
     }

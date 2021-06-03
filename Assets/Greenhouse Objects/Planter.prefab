@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5768599730393717948}
   - component: {fileID: 997874978991339320}
   - component: {fileID: 376600085013969235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: planter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,6 +200,7 @@ VFXRenderer:
   m_Materials:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -316,6 +317,7 @@ VFXRenderer:
   m_Materials:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -348,7 +350,7 @@ GameObject:
   - component: {fileID: 3089011082921295308}
   - component: {fileID: 373652550688649060}
   - component: {fileID: 5513190866295211983}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
