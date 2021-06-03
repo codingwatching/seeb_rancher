@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorSize:
     coord0:
-      row: -10
-      column: -10
-    rows: 20
-    cols: 20
+      row: -6
+      column: -6
+    rows: 12
+    cols: 12
   dirtPlanterSize:
     coord0:
       row: -3

@@ -148,6 +148,7 @@ namespace RTS_Cam
                     camera.minHeight = EditorGUILayout.FloatField("Min height: ", camera.minHeight);
                     camera.maxHeight = EditorGUILayout.FloatField("Max height: ", camera.maxHeight);
                 }
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("angleByRelativeHeight"));
             }  
         }
     }

@@ -45,13 +45,15 @@ namespace RTS_Cam
         public float heightDampening = 5f;
         public LayerMask groundMask = -1; //layermask of ground or other objects that affect height
         public float maxRaycastDistance = 100f;
+        [Tooltip("Animation curve sampled between 0 and 1, outputting the vertical rotation of the camera at each height")]
+        public AnimationCurve angleByRelativeHeight;
 
         public float maxHeight = 10f;
         public float minHeight = 15f;
         public float keyboardZoomingSensitivity = 2f;
         public float scrollWheelZoomingSensitivity = 25f;
 
-        private float zoomPos = 0; //value in range (0, 1) used as t in Matf.Lerp
+        private float zoomPos = .5f; //value in range (0, 1) used as t in Matf.Lerp
 
         #endregion
 
@@ -272,6 +274,12 @@ namespace RTS_Cam
 
             m_Transform.position = Vector3.Lerp(m_Transform.position, 
                 new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z), Time.deltaTime * heightDampening);
+
+            var heightRelativeInRange = (m_Transform.position.y - minHeight) / (maxHeight - minHeight);
+            var newRotation = angleByRelativeHeight.Evaluate(heightRelativeInRange);
+            var angles = m_Transform.eulerAngles;
+            angles.x = newRotation;
+            m_Transform.eulerAngles = angles;
         }
 
         /// <summary>
