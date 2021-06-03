@@ -29,8 +29,8 @@ namespace Assets.Scripts.GreenhouseLoader
             GenerateRangeAndBorders(floorSize, floorTile, floorEdgeTile, tiles);
             GenerateRangeAndBorders(dirtPlanterSize, dirtTile, dirtEdgeTile, tiles);
 
-            var doorCoordinate = new SquareCoordinate(floorSize.rows * 1 / 3, floorSize.cols) + floorSize.coord0;
-            tiles[UniversalCoordinate.From(doorCoordinate)] = doorTile;
+            //var doorCoordinate = new SquareCoordinate(floorSize.rows * 1 / 3, floorSize.cols) + floorSize.coord0;
+            //tiles[UniversalCoordinate.From(doorCoordinate)] = doorTile;
 
             return tiles;
         }
