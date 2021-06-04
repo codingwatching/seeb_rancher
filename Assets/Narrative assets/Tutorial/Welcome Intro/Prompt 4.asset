@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Prompt 4
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: As you plant more seebs you might find that certain seebs make plants
-    with different characteristics than other seebs. Use the inventory slots in your
-    hotbar to keep them separate
+  promptText: If you need more seebs, you can buy more at the Seeb Store
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:

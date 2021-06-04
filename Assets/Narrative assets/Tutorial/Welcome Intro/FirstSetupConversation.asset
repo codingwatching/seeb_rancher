@@ -15,6 +15,7 @@ MonoBehaviour:
   myId: 0
   prompts:
   - {fileID: 11400000, guid: 2779c9a7ba2967f439334252152a4637, type: 2}
+  - {fileID: 11400000, guid: 19c4b7b1efb221444b55b2b6c41014b0, type: 2}
   - {fileID: 11400000, guid: 8eed8f0599c36694593ef65d2d02cbba, type: 2}
   - {fileID: 11400000, guid: 9b4f62031b931204f99ce3bbf0e100bb, type: 2}
   - {fileID: 11400000, guid: b92be9e80c4f652449f8a9e6b1d7cbfb, type: 2}
