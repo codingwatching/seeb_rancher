@@ -57,10 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GreenhouseLoader\Editor\FloorPlanEditor.cs" />
+    <Compile Include="Assets\External\RTS_Camera\Scripts\Editor\RTS_CameraEditor.cs" />
+    <Compile Include="Assets\External\RTS_Camera\Scripts\Editor\LayoutHelpers.cs" />
     <Compile Include="Assets\Scripts\Editor\EditorObjectExporter.cs" />
     <Compile Include="Assets\Scripts\Plants\Editor\PlantContainerEditor.cs" />
-    <Compile Include="Assets\External\RTS_Camera\Scripts\Editor\LayoutHelpers.cs" />
-    <Compile Include="Assets\External\RTS_Camera\Scripts\Editor\RTS_CameraEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

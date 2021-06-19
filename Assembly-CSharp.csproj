@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketManager.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\FullyDiscreteSummaryDisplay.cs" />
+    <Compile Include="Assets\External\RTS_Camera\Scripts\RTS_Camera.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\PollinatingPlantExistsTrigger.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\HistogramSummaryDisplay.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
@@ -146,7 +147,6 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\External\RTS_Camera\Scripts\RTS_Camera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\External\TextMesh Pro\Shaders\TMPro.cginc" />

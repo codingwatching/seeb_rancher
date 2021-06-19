@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78755203f1cf4e742b0faa6bb03bf6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsPerUpdate: 0.25
+  secondsPerUpdate: 0.3
   timeBeforeRestart: 3
   systemObject: {fileID: 378491273550888993, guid: 50ec329eca2ebda45af2187f82130448, type: 3}
 --- !u!4 &84002262

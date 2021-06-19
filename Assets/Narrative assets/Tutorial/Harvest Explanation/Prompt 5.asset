@@ -15,7 +15,9 @@ MonoBehaviour:
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: 'Now you can grab the seebs out of that slot, and plant them again.
     The seebs will carry the genes given to them by their two parents: the plant
-    which they grew from, and the plant which pollinated that seeb.'
+    which they grew from, and the plant which pollinated that seeb. When hovering
+    over the seebs, information about the plants that those seebs were harvested
+    from will show up'
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
