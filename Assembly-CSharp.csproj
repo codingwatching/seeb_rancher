@@ -58,9 +58,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
+    <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantedLSystem.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantContainer.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\BackdropUIGameObject.cs" />
     <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
@@ -70,7 +70,6 @@
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\ContractContainer.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
     <Compile Include="Assets\Scripts\InitializationEvents.cs" />
-    <Compile Include="Assets\Scripts\Plants\Specific plant implementations\TomatoBuilder.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\BasePlantType.cs" />
@@ -86,7 +85,6 @@
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantTypes\LSystemPlantState.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\ClaimedContractsClearedTrigger.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\ForceHighlightSeedSlot.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
@@ -127,6 +125,7 @@
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebBinContainer.cs" />
+    <Compile Include="Assets\Scripts\UI\SelectedIdProvider.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinPositioner.cs" />
     <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragAreaSelector.cs" />
@@ -147,6 +146,7 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
+    <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantableDirt.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\External\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -785,6 +785,9 @@
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Genetics">
+      <HintPath>Library\ScriptAssemblies\Genetics.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
@@ -904,10 +907,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Genetics.csproj">
-      <Project>{E8A52BDE-01ED-1E7E-E731-D4BCE65B3D4D}</Project>
-      <Name>Genetics</Name>
-    </ProjectReference>
     <ProjectReference Include="TilingEditor.csproj">
       <Project>{54CA7512-07AE-506F-0123-7EFBE4B7FCA6}</Project>
       <Name>TilingEditor</Name>

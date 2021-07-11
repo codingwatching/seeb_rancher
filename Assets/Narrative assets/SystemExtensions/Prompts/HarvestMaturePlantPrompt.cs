@@ -13,7 +13,7 @@ namespace Dman.NarrativeSystem
         public OutlineLayerCollection layerCollection;
         public int preClickOutlineIndex;
 
-        private PlantContainer targetPlant;
+        private PlantedLSystem targetPlant;
         private Conversation currentParentConvo;
         public override void OpenPrompt(Conversation conversation)
         {
@@ -22,7 +22,7 @@ namespace Dman.NarrativeSystem
                 Debug.LogError("scriptable object prompt already in open state. could lead to unpredictable behavior.");
             }
 
-            var allPlants = GameObject.FindObjectsOfType<PlantContainer>();
+            var allPlants = GameObject.FindObjectsOfType<PlantedLSystem>();
             targetPlant = allPlants.FirstOrDefault(x => x.IsMatureAndHasSeeds());
             if (targetPlant == null)
             {

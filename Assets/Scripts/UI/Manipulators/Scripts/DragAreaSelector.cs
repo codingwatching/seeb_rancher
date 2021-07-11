@@ -65,14 +65,18 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                     if (hoveredCoordinate != null)
                     {
                         var currentDraggingPoint = hoveredCoordinate.Value;
-                        lastDragRange = UniversalCoordinateRange.From(RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView), originDragPoint.CoordinatePlaneID);
+                        lastDragRange = UniversalCoordinateRange.From(
+                            RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView),
+                            originDragPoint.CoordinatePlaneID);
                     }
                     this.ClearLastDragRange();
                 }
                 else if (hoveredCoordinate != null)
                 {
                     var currentDraggingPoint = hoveredCoordinate.Value;
-                    var newDragRange = UniversalCoordinateRange.From(RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView), originDragPoint.CoordinatePlaneID);
+                    var newDragRange = UniversalCoordinateRange.From(
+                        RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView),
+                        originDragPoint.CoordinatePlaneID);
                     if (newDragRange.Equals(lastDragRange))
                     {
                         return;

@@ -16,7 +16,7 @@ namespace Dman.NarrativeSystem
 
         public override void OpenPrompt(Conversation conversation)
         {
-            var allPlants = GameObject.FindObjectsOfType<PlantContainer>();
+            var allPlants = GameObject.FindObjectsOfType<PlantedLSystem>();
             var targetPlant = allPlants.FirstOrDefault(x => x.CanPollinate());
             if (targetPlant == null)
             {

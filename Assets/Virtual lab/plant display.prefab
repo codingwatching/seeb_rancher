@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7204148366389022951}
   - component: {fileID: 2534050122168149447}
   - component: {fileID: 3523818817750080634}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Turtler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c384c60503020c41b22d34e30528805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logStates: 0
   systemObject: {fileID: 0}
 --- !u!114 &2534050122168149447
 MonoBehaviour:
@@ -138,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 513670463070592417}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plant display
   m_TagString: Untagged
   m_Icon: {fileID: 0}

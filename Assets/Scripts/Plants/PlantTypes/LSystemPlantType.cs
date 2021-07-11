@@ -1,8 +1,10 @@
 ﻿using Assets.Scripts.DataModels;
 using Dman.LSystem.SystemRuntime.DOTSRenderer;
+using Dman.LSystem.SystemRuntime.LSystemEvaluator;
 using Dman.LSystem.SystemRuntime.ThreadBouncer;
 using Dman.LSystem.UnityObjects;
 using Genetics.GeneticDrivers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,7 +22,7 @@ namespace Assets.Scripts.Plants
     [CreateAssetMenu(fileName = "LSystemPlantType", menuName = "Greenhouse/LSystemPlantType", order = 1)]
     public class LSystemPlantType : BasePlantType
     {
-        public TurtleInterpreterBehavior turtleInterpretorPrefab;
+        public PlantedLSystem lSystemPlantPrefab;
         public LSystemObject lSystem;
 
         public float phaseFractionTillSprout = 1f;
@@ -31,72 +33,43 @@ namespace Assets.Scripts.Plants
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
-        public override PlantState GenerateBaseStateAndHookTo()
+        public override GameObject SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed)
         {
-            return new LSystemPlantState(
-                lSystem,
-                phaseFractionTillSprout);
+            var newPlant = GameObject.Instantiate(lSystemPlantPrefab, seedlingPosition, Quaternion.identity);
+            newPlant.InitializeWithSeed(plantedSeed);
+
+            return newPlant.gameObject;
         }
 
-        /// <summary>
-        /// In this implemntation, the growth property is used to directly reflect how many phases the plant has aged through.
-        ///     during rendering this is converted into L-system steps
-        /// This is done because there is no known end-time for the L-system plant, the harvestability and pollination state
-        ///     is derived only from the state of the L-system instead of a special value of the growth variable
-        /// </summary>
-        /// <param name="phaseDiff"></param>
-        /// <param name="currentState"></param>
-        public override void AddGrowth(int phaseDiff, PlantState currentState)
-        {
-            if (!(currentState is LSystemPlantState systemState))
-            {
-                Debug.LogError("invalid plant state type");
-                return;
-            }
-            systemState.growth += phaseDiff;
-        }
-
-        public override void BuildPlantInto(
-            Transform targetContainer,
+        public override void ConfigureLSystemWithSeedling(
+            LSystemBehavior lSystemContainer,
             CompiledGeneticDrivers geneticDrivers,
-            PlantState currentState,
             PollinationState pollination)
         {
-            if (!(currentState is LSystemPlantState systemState))
-            {
-                Debug.LogError("invalid plant state type");
-                return;
+            lSystemContainer.SetSystem(lSystem);
+            // the reset will draw the global parameters from the planted L -system via ILSystemCompileTimeParameterGenerator
+            lSystemContainer.ResetState();
+
+            var steppingHandle = lSystemContainer.steppingHandle;
+
+            steppingHandle.runtimeParameters.SetParameter("hasAnther", pollination.HasAnther ? 1 : 0);
+            steppingHandle.runtimeParameters.SetParameter("isPollinated", pollination.IsPollinated ? 1 : 0);
+
+            // step the number of steps required for a seebling to show up immediately
+            var seeblingSteps = phaseFractionTillSprout * stepsPerPhase;
+            while (steppingHandle.totalSteps < seeblingSteps) {
+                steppingHandle.StepSystemImmediate();
             }
 
-            var targetTurtle = targetContainer.GetComponentInChildren<TurtleInterpreterBehavior>();
-            if(targetTurtle == null)
-            {
-                targetTurtle = Instantiate(turtleInterpretorPrefab, targetContainer);
-            }
+            // TODO: the turtle -should- be uneccesary, because it should be hooked into the l-system behaviors updates
+            //var completable = targetTurtle.InterpretSymbols(systemState.steppingHandle.currentState.currentSymbols);
+            //CompletableExecutor.Instance.RegisterCompletable(completable);
 
-
-            systemState.CompileSystemIfNotCached(
-                () => CompileToGlobalParameters(geneticDrivers),
-                lSystem);
-            systemState.steppingHandle.runtimeParameters.SetParameter("hasAnther", pollination.HasAnther ? 1 : 0);
-            systemState.steppingHandle.runtimeParameters.SetParameter("isPollinated", pollination.IsPollinated ? 1 : 0);
-
-            var targetSteps = Mathf.FloorToInt(systemState.growth * stepsPerPhase);
-            if (targetSteps > systemState.steppingHandle.totalSteps)
-            {
-                systemState.StepStateUpToSteps(targetSteps);
-            }
-            else
-            {
-                systemState.RepeatLastSystemStep();
-            }
-
-
-            var completable = targetTurtle.InterpretSymbols(systemState.steppingHandle.currentState.currentSymbols);
-            CompletableExecutor.Instance.RegisterCompletable(completable);
-            var lastAngles = targetTurtle.transform.parent.localEulerAngles;
-            lastAngles.y = systemState.randomRotationAmount;
-            targetTurtle.transform.parent.localEulerAngles = lastAngles;
+            // TODO: the angles are not saved off anywhere else. the save system should serialize the full transform which places the
+            //  l-system in the world somewhere
+            var lastAngles = lSystemContainer.transform.parent.localEulerAngles;
+            lastAngles.y = UnityEngine.Random.Range(0f, 360f);
+            lSystemContainer.transform.parent.localEulerAngles = lastAngles;
         }
 
         public Dictionary<string, string> CompileToGlobalParameters(CompiledGeneticDrivers geneticDrivers)
@@ -114,70 +87,33 @@ namespace Assets.Scripts.Plants
                 .ToDictionary(x => x.lSystemDefineDirectiveName, x => x.driverValue.ToString());
         }
 
-        public override bool HasFlowers(PlantState currentState)
+        public override bool HasFlowers(LSystemBehavior systemManager)
         {
-            if (!(currentState is LSystemPlantState systemState))
-            {
-                return false;
-            }
-            return systemState.steppingHandle.currentState.currentSymbols.Data.symbols.Contains((int)flowerCharacter);
+            return systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains((int)flowerCharacter);
         }
-        public override bool CanHarvest(PlantState currentState)
+        public override bool CanHarvest(LSystemBehavior systemManager)
         {
-            if (!(currentState is LSystemPlantState systemState))
-            {
-                return false;
-            }
             // if the plant is done growing always allow harvesting to avoid letting plants with no fruit hang around
-            return !systemState.steppingHandle.lastUpdateChanged || systemState.steppingHandle.currentState.currentSymbols.Data.symbols.Contains((int)seedBearingCharacter);
+            return !systemManager.steppingHandle.lastUpdateChanged || systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains((int)seedBearingCharacter);
         }
 
-        public override bool IsMature(PlantState currentState)
+        public override bool IsMature(LSystemBehavior systemManager)
         {
-            if (!(currentState is LSystemPlantState systemState))
-            {
-                return false;
-            }
-            return !systemState.steppingHandle.lastUpdateChanged;
+            return !systemManager.steppingHandle.lastUpdateChanged;
         }
 
-        protected override int GetHarvestedSeedNumber(PlantState currentState)
+        protected override int GetHarvestedSeedNumber(LSystemBehavior systemManager)
         {
-            if (!(currentState is LSystemPlantState systemState))
-            {
-                return 0;
-            }
-            return systemState.steppingHandle.currentState.currentSymbols.Data.symbols.Sum(symbol => symbol == seedBearingCharacter ? 1 : 0);
+            return systemManager?.steppingHandle.currentState.currentSymbols.Data.symbols.Sum(symbol => symbol == seedBearingCharacter ? 1 : 0) ?? 0;
         }
         public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
         {
-            var geneticDrivers = genome.CompileGenome(seed.genes);
-            using var tempState = GenerateBaseStateAndHookTo() as LSystemPlantState;
+            // TODO: rework plant growth and breeding simulation
+            //  will need to incorporate turtles and sunlight
+            //  and basically create an entire virtual space in which the growth 
+            //  and breeding takes place in an automated way
 
-            tempState.CompileSystemIfNotCached(
-                () => CompileToGlobalParameters(geneticDrivers),
-                lSystem);
-            // when simulating growth, no anthers are clipped. and it is always pollinated.
-            tempState.steppingHandle.runtimeParameters.SetParameter("hasAnther", 1);
-            tempState.steppingHandle.runtimeParameters.SetParameter("isPollinated", 1);
-
-            tempState.StepUntilFirstNoChange();
-
-            var seedCount = GetHarvestedSeedNumber(tempState);
-            // TODO: these seed counts are picked out of the blue. Consider running the l-system to get the seed counts
-            //  for a more accurate simulation.
-            //  more relevent if there are certain trait combinations that can sterilize a seed
-            return SelfPollinateSimulatedSeed(seed, seedCount);
-        }
-        IEnumerable<Seed> SelfPollinateSimulatedSeed(Seed seed, int seedCopies)
-        {
-            for (int i = 0; i < seedCopies; i++)
-            {
-                yield return new Seed(
-                    new Genetics.Genome(seed.genes, seed.genes),
-                    this,
-                    null);
-            }
+            throw new NotImplementedException();
         }
     }
 }

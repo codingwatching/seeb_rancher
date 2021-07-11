@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Plants;
 using Assets.UI.Buttery_Toast;
+using Dman.LSystem.SystemRuntime.GlobalCoordinator;
 using Dman.ReactiveVariables;
 using Dman.Utilities;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public GameObjectVariable selectedThing;
 
         public Sprite harvestCursor;
-        private PlantContainer CurrentlySelectedPlant => selectedThing.CurrentValue?.GetComponent<PlantContainer>();
+        private PlantedLSystem CurrentlySelectedPlant => selectedThing.CurrentValue?.GetComponent<PlantedLSystem>();
         private ManipulatorController controller;
         private MovingOutlineHelper singleOutlineHelper;
         public OutlineLayerCollection outlineCollection;
@@ -68,11 +69,12 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             return true;
         }
-        private PlantContainer GetHoveredPlantContainer()
+        private PlantedLSystem GetHoveredPlantContainer()
         {
-            var mouseOvered = targetCaster.CurrentlyHitObject;
-            var hoveredGameObject = mouseOvered.HasValue ? mouseOvered.Value.collider.gameObject : null;
-            return hoveredGameObject?.GetComponentInParent<PlantContainer>();
+            var behavior = GlobalLSystemCoordinator.instance.GetBehaviorContainingOrganId(SelectedIdProvider.instance.HoveredId);
+
+            // TODO: ensure l system behavior is in same game object as planted l system
+            return behavior?.GetComponent<PlantedLSystem>();
         }
     }
 }

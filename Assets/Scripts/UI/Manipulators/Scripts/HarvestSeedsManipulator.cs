@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.DataModels;
 using Assets.Scripts.Plants;
 using Assets.Scripts.UI.SeedInventory;
+using Dman.LSystem.SystemRuntime.GlobalCoordinator;
 using Dman.ReactiveVariables;
 using Dman.Tiling;
 using Dman.Utilities;
@@ -126,7 +127,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             return true;
         }
 
-        private bool TryHarvestPlant(PlantContainer planter)
+        private bool TryHarvestPlant(PlantedLSystem planter)
         {
             var harvested = planter.TryHarvest();
             if(harvested == null)
@@ -153,11 +154,12 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         }
 
 
-        private PlantContainer GetHoveredPlantContainer()
+        private PlantedLSystem GetHoveredPlantContainer()
         {
-            var mouseOvered = harvestCaster.CurrentlyHitObject;
-            var hoveredGameObject = mouseOvered.HasValue ? mouseOvered.Value.collider.gameObject : null;
-            return hoveredGameObject?.GetComponentInParent<PlantContainer>();
+            var behavior = GlobalLSystemCoordinator.instance.GetBehaviorContainingOrganId(SelectedIdProvider.instance.HoveredId);
+
+            // TODO: ensure l system behavior is in same game object as planted l system
+            return behavior?.GetComponent<PlantedLSystem>();
         }
 
         private void OnSeedsUpdated()
@@ -173,6 +175,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public void OnAreaSelected(UniversalCoordinateRange range)
         {
+            // TODO: make sure that the planted L system prefabs have a primitive collider that
+            //  can interact with this system
             Debug.Log("Harvest inside range:");
             Debug.Log(range);
 
@@ -182,7 +186,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             Debug.Log(extent);
             var allTargetPlanters = Physics.OverlapBox(center, extent);
             var harvestablePlanters = allTargetPlanters
-                .Select(x => x.gameObject.GetComponentInParent<PlantContainer>())
+                .Select(x => x.gameObject.GetComponentInParent<PlantedLSystem>())
                 .Where(x => x?.CanHarvest() ?? false)
                 .ToList();
             foreach (var planter in harvestablePlanters)
@@ -200,7 +204,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var extent = size / 2;
             var allTargetPlanters = Physics.OverlapBox(center, extent);
             var harvestableSeeds = allTargetPlanters
-                .Select(x => x.gameObject.GetComponentInParent<PlantContainer>())
+                .Select(x => x.gameObject.GetComponentInParent<PlantedLSystem>())
                 .Where(x => x?.CanHarvest() ?? false)
                 .Select(x => x.GetOutlineObject())
                 .Where(x => x != null)

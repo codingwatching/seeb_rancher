@@ -1,12 +1,16 @@
 ﻿using Assets.Scripts.DataModels;
 using Assets.Scripts.GreenhouseLoader;
 using Assets.Scripts.UI.Manipulators.Scripts;
+using Dman.LSystem.SystemRuntime.DOTSRenderer;
+using Dman.LSystem.UnityObjects;
+using Dman.ObjectSets;
 using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
 using Dman.Utilities;
 using Genetics.GeneticDrivers;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
@@ -14,29 +18,28 @@ using UnityEngine.VFX;
 
 namespace Assets.Scripts.Plants
 {
-
-    public class PlantContainer : MonoBehaviour,
-        ISpawnable,
-        IManipulatorClickReciever,
-        ISaveableData
+    /// <summary>
+    /// handles the breeding and planting of an l-system
+    /// does not own the l-system's state itself. that is managed entirely by a l system behavior component
+    /// </summary>
+    public class PlantedLSystem : MonoBehaviour,
+        ISaveableData,
+        ILSystemCompileTimeParameterGenerator
     {
-        public BasePlantType plantType;
-        public PlantTypeRegistry plantTypes;
+        public LSystemPlantType plantType;
+        public LSystemBehavior lSystemManager;
+
         public GameObjectVariable selectedPlant;
 
         public VisualEffect harvestEffect;
         public VisualEffect plantedEffect;
-
-        [SerializeField]
-        [HideInInspector]
-        public PlantState currentState;
 
         private CompiledGeneticDrivers _drivers;
         public CompiledGeneticDrivers GeneticDrivers
         {
             get
             {
-                if (plantType == null || pollinationState == default)
+                if (pollinationState == default)
                 {
                     return null;
                 }
@@ -61,63 +64,9 @@ namespace Assets.Scripts.Plants
         public float minPollenSpreadRadius = 1;
         public float maxPollenSpreadRadius = 4;
 
-        public IntReference levelPhase;
         public GameObject plantsParent;
 
         public event Action OnHarvested;
-
-        private void Start()
-        {
-            levelPhase.ValueChanges
-                .TakeUntilDisable(this)
-                .Pairwise()
-                .Subscribe(pair =>
-                {
-                    AdvanceGrowPhase(pair.Current - pair.Previous);
-                }).AddTo(this);
-        }
-
-        private void OnDestroy()
-        {
-            if(currentState == null)
-            {
-            }else
-            {
-                currentState?.Dispose();
-                currentState = null;
-            }
-        }
-
-        private void AdvanceGrowPhase(int phaseDiff)
-        {
-            if (plantType == null)
-                return;
-            if (currentState != null && plantType != null)
-            {
-                plantType.AddGrowth(phaseDiff, currentState);
-            }
-            GrowthUpdated();
-            if (CanPollinate())
-            {
-                SprayMySeed();
-            }
-        }
-
-        private void SprayMySeed()
-        {
-            var radius = PollinationRadius;
-            var targetOtherPlants = Physics.OverlapCapsule(transform.position - Vector3.up * 5, transform.position + Vector3.up * 5, radius)
-                .Select(collider => collider.gameObject?.GetComponentInParent<PlantContainer>())
-                .Where(x => x != null)
-                .ToList();
-            targetOtherPlants = targetOtherPlants
-                .Where(x => x.CanPollinateFrom(this))
-                .ToList();
-            foreach (var pollinationTarget in targetOtherPlants)
-            {
-                pollinationTarget.PollinateFrom(this);
-            }
-        }
 
         public float PollinationRadius
         {
@@ -131,60 +80,57 @@ namespace Assets.Scripts.Plants
             }
         }
 
-        public bool CanPlantSeed => plantType == null;
+        private void Start()
+        {
+        }
 
-        public void PlantSeed(Seed toBePlanted)
+        private void OnDestroy()
+        {
+        }
+
+        // this will be handled exclusively by L-system steps
+        private void AdvanceGrowPhase(int phaseDiff)
+        {
+        }
+
+        private void SprayMySeed()
+        {
+            var radius = PollinationRadius;
+            var targetOtherPlants = Physics.OverlapCapsule(transform.position - Vector3.up * 5, transform.position + Vector3.up * 5, radius)
+                .Select(collider => collider.gameObject?.GetComponentInParent<PlantedLSystem>())
+                .Where(x => x != null)
+                .ToList();
+            targetOtherPlants = targetOtherPlants
+                .Where(x => x.CanPollinateFrom(this))
+                .ToList();
+            foreach (var pollinationTarget in targetOtherPlants)
+            {
+                pollinationTarget.PollinateFrom(this);
+            }
+        }
+
+
+        public void InitializeWithSeed(Seed toBePlanted)
         {
             pollinationState = new PollinationState(toBePlanted);
-            plantType = plantTypes.GetUniqueObjectFromID(pollinationState.SelfGenes.plantType);
-            currentState?.Dispose();
-            currentState = plantType.GenerateBaseStateAndHookTo();
+            var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
+            plantType = (LSystemPlantType)plantTypeRegistry.GetUniqueObjectFromID(pollinationState.SelfGenes.plantType);
             plantedEffect.Play();
-            GrowthUpdated(true);
         }
-
-        /// <summary>
-        /// Called whenever the object is spawned through spawning code
-        /// </summary>
-        public void SetupAfterSpawn()
+        public Dictionary<string, string> GenerateCompileTimeParameters()
         {
-            plantType = null;
-            currentState?.Dispose();
-            currentState = null;
-            pollinationState = null;
-            GeneticDrivers = null;
-            pollinationState = null;
-            GrowthUpdated(true);
-        }
-
-        /// <summary>
-        /// called whenever growth is changed, to conditionally trigger updating the plant.
-        /// </summary>
-        /// <param name="forcePrefabInstantiate"></param>
-        public void GrowthUpdated(bool forcePrefabInstantiate = false)
-        {
-            if (plantType == null || currentState == null)
-            {
-                if (forcePrefabInstantiate)
+            var drivers = this.GeneticDrivers;
+            return plantType.geneticModifiers
+                .Select(x =>
                 {
-                    UpdatePlant();
-                }
-                return;
-            }
-            UpdatePlant();
-        }
-
-        /// <summary>
-        /// update the redndered plant view based on current state
-        /// </summary>
-        public void UpdatePlant()
-        {
-            if (plantType == null || currentState == null)
-            {
-                plantsParent.DestroyAllChildren();
-                return;
-            }
-            plantType.BuildPlantInto(plantsParent.transform, GeneticDrivers, currentState, pollinationState);
+                    if (drivers.TryGetGeneticData(x.geneticDriver, out var driverValue))
+                    {
+                        return new { x.lSystemDefineDirectiveName, driverValue };
+                    }
+                    return null;
+                })
+                .Where(x => x != null)
+                .ToDictionary(x => x.lSystemDefineDirectiveName, x => x.driverValue.ToString());
         }
 
         /// <summary>
@@ -193,11 +139,11 @@ namespace Assets.Scripts.Plants
         /// <returns></returns>
         public bool CanPollinate()
         {
-            if (plantType == null || currentState == null)
+            if (plantType == null)
             {
                 return false;
             }
-            return (plantType.HasFlowers(currentState))
+            return (plantType.HasFlowers(this.lSystemManager))
                 && (pollinationState?.CanPollinate() ?? false);
         }
 
@@ -205,24 +151,24 @@ namespace Assets.Scripts.Plants
         /// Whether this plant can be pollinated from other plants
         /// </summary>
         /// <returns></returns>
-        public bool CanPollinateFrom(PlantContainer other)
+        public bool CanPollinateFrom(PlantedLSystem other)
         {
             if (!other.CanPollinate())
             {
                 return false;
             }
-            if (pollinationState == null || plantType == null || currentState == null)
+            if (pollinationState == null || plantType == null)
             {
                 return false;
             }
-            if (!plantType.HasFlowers(currentState))
+            if (!plantType.HasFlowers(this.lSystemManager))
             {
                 return false;
             }
             return true;
         }
 
-        public bool PollinateFrom(PlantContainer other)
+        public bool PollinateFrom(PlantedLSystem other)
         {
             if (!CanPollinateFrom(other))
             {
@@ -237,7 +183,9 @@ namespace Assets.Scripts.Plants
         public void ClipAnthers()
         {
             pollinationState.ClipAnthers();
-            UpdatePlant();
+
+            // TODO: write code to programatically update the state, removing only anthers
+            //  OR, just update the plant once. if built for very frequent updates, won't make much difference
         }
 
         public bool IsMatureAndHasSeeds()
@@ -247,19 +195,19 @@ namespace Assets.Scripts.Plants
 
         public bool IsMature()
         {
-            return currentState != null && plantType != null && plantType.IsMature(currentState);
+            return plantType != null && plantType.IsMature(this.lSystemManager);
         }
 
         public bool CanHarvest()
         {
-            return currentState != null && plantType != null && plantType.CanHarvest(currentState);
+            return plantType != null && plantType.CanHarvest(this.lSystemManager);
         }
         public int CurrentSeedCount()
         {
-            if (currentState == null && plantType == null) {
+            if (plantType == null) {
                 return 0;
             }
-            return plantType.TotalNumberOfSeedsInState(currentState);
+            return plantType.TotalNumberOfSeedsInState(this.lSystemManager);
         }
         public Seed[] TryHarvest()
         {
@@ -272,11 +220,9 @@ namespace Assets.Scripts.Plants
 
         private Seed[] HarvestPlant()
         {
-            var harvestedSeeds = plantType.HarvestSeeds(pollinationState, currentState, GeneticDrivers);
+            var harvestedSeeds = plantType.HarvestSeeds(pollinationState, this.lSystemManager, GeneticDrivers);
 
             plantType = null;
-            currentState?.Dispose();
-            currentState = null;
             pollinationState = null;
             GeneticDrivers = null;
 
@@ -292,15 +238,16 @@ namespace Assets.Scripts.Plants
             harvestEffect.SetFloat("height", 10 * plantsParent.transform.localScale.x);
             harvestEffect.Play();
             yield return new WaitForSeconds(0.3f);
-            UpdatePlant();
+            Destroy(this.gameObject);
         }
 
         /// <summary>
         /// Handles clicks from the Click Manipulator
+        ///     TODO: dispatch events to this method based on the unique organ identification system
         /// </summary>
         /// <param name="hit"></param>
         /// <returns></returns>
-        public bool SelfHit(RaycastHit hit)
+        public bool OrganClicked(uint organId)
         {
             if (plantType == null)
             {
@@ -323,25 +270,18 @@ namespace Assets.Scripts.Plants
         class PlantSaveObject
         {
             int plantTypeId;
-            PlantState plantState;
             PollinationState pollination;
-            public PlantSaveObject(PlantContainer source)
+            public PlantSaveObject(PlantedLSystem source)
             {
                 plantTypeId = source.plantType?.myId ?? -1;
-                plantState = source.currentState;
                 pollination = source.pollinationState;
             }
 
-            public void Apply(PlantContainer target)
+            public void Apply(PlantedLSystem target)
             {
-                target.plantType = plantTypeId == -1 ? null : target.plantTypes.GetUniqueObjectFromID(plantTypeId);
+                var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
+                target.plantType = (LSystemPlantType)(plantTypeId == -1 ? null : plantTypeRegistry.GetUniqueObjectFromID(plantTypeId));
                 target.pollinationState = pollination;
-
-                target.currentState?.Dispose();
-                target.currentState = plantState;
-                target.currentState?.AfterDeserialized();
-
-                target.GrowthUpdated(true);
             }
         }
 
@@ -363,6 +303,7 @@ namespace Assets.Scripts.Plants
         {
             return new ISaveableData[0];
         }
+
         #endregion
     }
 }

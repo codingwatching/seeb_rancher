@@ -9,7 +9,7 @@ namespace Dman.NarrativeSystem.ConversationTriggers
     {
         public override bool ShouldTrigger(GameNarrative narrative)
         {
-            var allPlants = GameObject.FindObjectsOfType<PlantContainer>();
+            var allPlants = GameObject.FindObjectsOfType<PlantedLSystem>();
             return allPlants.Any(x => x.IsMatureAndHasSeeds());
         }
     }

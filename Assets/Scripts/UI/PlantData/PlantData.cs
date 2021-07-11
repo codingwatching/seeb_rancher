@@ -37,7 +37,7 @@ namespace Assets.Scripts.UI.PlantData
                 .Select(x => x == null ? null : x)
                 .Subscribe(newObject =>
                 {
-                    var plantContainer = newObject?.GetComponentInParent<PlantContainer>();
+                    var plantContainer = newObject?.GetComponentInParent<PlantedLSystem>();
                     if (plantContainer == null)
                     {
                         ClearPlantDataUI();
@@ -67,7 +67,7 @@ namespace Assets.Scripts.UI.PlantData
             gameObject.SetActive(false);
         }
 
-        public void RebuildPlantDataViewUI(PlantContainer selectedPlant)
+        public void RebuildPlantDataViewUI(PlantedLSystem selectedPlant)
         {
             gameObject.SetActive(true);
             var isPlanted = selectedPlant.plantType != null;
@@ -81,7 +81,7 @@ namespace Assets.Scripts.UI.PlantData
             plantDescription.text = GetPlantDescription(selectedPlant);
         }
 
-        private string GetPlantDescription(PlantContainer container)
+        private string GetPlantDescription(PlantedLSystem container)
         {
             var drivers = container.GeneticDrivers;
             if (drivers == null)
@@ -104,7 +104,7 @@ namespace Assets.Scripts.UI.PlantData
                 }
             }
 
-            var seedCount = container.plantType?.TotalNumberOfSeedsInState(container.currentState) ?? 0;
+            var seedCount = container.CurrentSeedCount();
             resultstring.AppendLine($"Seebs: {seedCount}");
             return resultstring.ToString();
         }

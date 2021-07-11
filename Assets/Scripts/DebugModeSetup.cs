@@ -24,10 +24,10 @@ public class DebugModeSetup : MonoBehaviour
         //}
 
         var i = 0;
-        foreach (var plantContainer in greenhouseParent.GetComponentsInChildren<PlantContainer>())
+        foreach (var plant in greenhouseParent.GetComponentsInChildren<PlantedLSystem>())
         {
             i++;
-            var targetContainer = plantContainer.plantsParent;
+            var targetContainer = plant.plantsParent;
             var resultObject = GameObject.Instantiate(lSystemPrefab, targetContainer.transform);
             var lSystem = resultObject.GetComponentInChildren<LSystemBehavior>();
             var generator = lSystem.gameObject.AddComponent<GeneticLSystemParameterGenerator>();

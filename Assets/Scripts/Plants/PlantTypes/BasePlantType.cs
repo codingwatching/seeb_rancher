@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.DataModels;
+using Dman.LSystem.SystemRuntime.LSystemEvaluator;
+using Dman.LSystem.UnityObjects;
 using Dman.ObjectSets;
 using Genetics;
 using Genetics.GeneticDrivers;
@@ -43,20 +45,17 @@ namespace Assets.Scripts.Plants
 
         public GeneticDriver[] summaryDrivers;
 
-        public abstract PlantState GenerateBaseStateAndHookTo();
+        public abstract GameObject SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed);
 
-        public abstract void AddGrowth(int phaseDiff, PlantState currentState);
+        public abstract bool HasFlowers(LSystemBehavior systemManager);
 
-        public abstract bool HasFlowers(PlantState currentState);
-
-        public abstract void BuildPlantInto(
-            Transform parent,
+        public abstract void ConfigureLSystemWithSeedling(
+            LSystemBehavior lSystemContainer,
             CompiledGeneticDrivers geneticDrivers,
-            PlantState currentState,
             PollinationState pollination);
 
-        public abstract bool CanHarvest(PlantState state);
-        public abstract bool IsMature(PlantState state);
+        public abstract bool CanHarvest(LSystemBehavior systemManager);
+        public abstract bool IsMature(LSystemBehavior systemManager);
 
         public Seed GenerateRandomSeed(System.Random randomProvider = null)
         {
@@ -83,15 +82,15 @@ namespace Assets.Scripts.Plants
 
         public abstract IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed);
 
-        protected abstract int GetHarvestedSeedNumber(PlantState currentState);
-        public int TotalNumberOfSeedsInState(PlantState currentState)
+        protected abstract int GetHarvestedSeedNumber(LSystemBehavior systemManager);
+        public int TotalNumberOfSeedsInState(LSystemBehavior systemManager)
         {
-            return GetHarvestedSeedNumber(currentState);
+            return GetHarvestedSeedNumber(systemManager);
         }
 
         public Seed[] HarvestSeeds(
             PollinationState sourcePollination,
-            PlantState currentState,
+            LSystemBehavior systemManager,
             CompiledGeneticDrivers drivers)
         {
             if (selfPollinating)
@@ -102,7 +101,7 @@ namespace Assets.Scripts.Plants
             {
                 return new Seed[0];
             }
-            var generatedSeeds = GetHarvestedSeedNumber(currentState);
+            var generatedSeeds = GetHarvestedSeedNumber(systemManager);
             var seedResult = new Seed[generatedSeeds];
             for (int i = 0; i < seedResult.Length; i++)
             {

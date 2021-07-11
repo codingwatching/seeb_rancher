@@ -19,7 +19,7 @@ namespace Assets.Scripts.UI.PlantData
                 .Subscribe(newObject =>
                 {
                     ClearPlantViewer();
-                    var plantContainer = newObject?.GetComponentInParent<PlantContainer>();
+                    var plantContainer = newObject?.GetComponentInParent<PlantedLSystem>();
                     if (plantContainer?.plantType != null)
                     {
                         SetupPlantViewer(plantContainer);
@@ -27,7 +27,7 @@ namespace Assets.Scripts.UI.PlantData
                 }).AddTo(this);
         }
 
-        private void SetupPlantViewer(PlantContainer plantContainer)
+        private void SetupPlantViewer(PlantedLSystem plantContainer)
         {
             var plantModel = plantContainer.plantsParent.transform.GetChild(0);
             var plantMesh = plantModel.GetComponentInChildren<MeshFilter>();

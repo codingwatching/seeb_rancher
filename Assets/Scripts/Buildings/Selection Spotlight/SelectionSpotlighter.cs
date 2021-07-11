@@ -30,7 +30,7 @@ namespace Assets.Scripts.Buildings
             {
                 transform.position = spotlightedObject.transform.position;
                 highlighterObject.SetActive(true);
-                var plantContainer = spotlightedObject.GetComponentInParent<PlantContainer>();
+                var plantContainer = spotlightedObject.GetComponentInParent<PlantedLSystem>();
                 if (plantContainer != null && plantContainer.CanPollinate())
                 {
                     pollinationRangeObject.transform.localScale = new Vector3(

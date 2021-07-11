@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.DataModels;
 using Assets.Scripts.Plants;
 using Assets.Scripts.UI.SeedInventory;
+using Dman.ObjectSets;
 using Dman.ReactiveVariables;
 using Dman.Tiling;
 using Dman.Utilities;
@@ -20,8 +21,10 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     {
         public bool IsActive { get; private set; }
 
+
         [SerializeField] public RaycastGroup harvestCaster;
         [SerializeField] private Sprite plantCursor;
+        [SerializeField] public LayerMask plantableLayers;
 
         private SeedBucketDisplay draggingSeedsInstance;
         private SeedInventoryDropSlot sourceSlot = null;
@@ -100,6 +103,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         }
 
         private Vector3? mouseDownPosition = null;
+        private RaycastHit? mouseDownRaycastHit = null;
         private bool isDragging;
         public override bool OnUpdate()
         {
@@ -112,24 +116,28 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return false;
             }
 
-            var planter = GetHoveredPlantContainer();
-            // must be able to plant seed, in a planter
-            var planterValid = planter?.CanPlantSeed ?? false;
+            var hoveredSpot = harvestCaster.CurrentlyHitObject;
+            var dirtPlanter = hoveredSpot.HasValue ? hoveredSpot.Value.collider.GetComponent<PlantableDirt>() : null;
 
-            if(!isDragging)
-            {
-                // if draging is happening, don't update outline here.
-                singleOutlineHelper.UpdateOutlineObject(planterValid ? planter.GetOutlineObject() : null);
-            }
+            var canPlantHere = dirtPlanter != null;
 
-            if (!planterValid)
+            if (!canPlantHere)
             {
+                singleOutlineHelper.UpdateOutlineObject(null);
                 return true;
             }
+
+            if (!isDragging)
+            {
+                // if draging is happening, don't update preview here.
+                singleOutlineHelper.UpdateOutlineObject(dirtPlanter.GetOutlineObject());
+            }
+
 
             if (Input.GetMouseButtonDown(0))
             {
                 mouseDownPosition = Input.mousePosition;
+                mouseDownRaycastHit = hoveredSpot;
             }
 
             if (Input.GetMouseButtonUp(0) && mouseDownPosition.HasValue)
@@ -138,7 +146,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 mouseDownPosition = null;
                 if (mouseDistance < DragAreaSelector.MouseMoveDragThreshold)
                 {
-                    if (!TryPlantSeed(planter))
+                    if (!TryPlantSeed(mouseDownRaycastHit.Value))
                     {
                         return false;
                     }
@@ -148,7 +156,13 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             return true;
         }
 
-        private bool TryPlantSeed(PlantContainer planter)
+        /// <summary>
+        /// return true if there are any more seebs to plant. false if the last seeb was planted,
+        ///     or if there were no seebs to plant at all
+        /// </summary>
+        /// <param name="plantLocation"></param>
+        /// <returns></returns>
+        private bool TryPlantSeed(RaycastHit plantLocation)
         {
             var nextSeed = sourceSlot.dataModel.bucket.TakeOne();
             if (nextSeed == null)
@@ -156,15 +170,13 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 // close the manipulator if we can't get any more seeds
                 return false;
             }
-            planter.PlantSeed(nextSeed);
-            return true;
-        }
 
-        private PlantContainer GetHoveredPlantContainer()
-        {
-            var mouseOvered = harvestCaster.CurrentlyHitObject;
-            var hoveredGameObject = mouseOvered.HasValue ? mouseOvered.Value.collider.gameObject : null;
-            return hoveredGameObject?.GetComponentInParent<PlantContainer>();
+            var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
+            var seedType = plantTypeRegistry.GetUniqueObjectFromID(nextSeed.plantType);
+
+            var newPlant = seedType.SpawnNewPlant(plantLocation.point, nextSeed);
+
+            return !sourceSlot.dataModel.bucket.Empty;
         }
 
         private void OnSeedsUpdated()
@@ -181,33 +193,34 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var extent = size / 2;
             Debug.Log(center);
             Debug.Log(extent);
-            var allTargetPlanters = Physics.OverlapBox(center, extent);
-            var plantableSeeds = allTargetPlanters
-                .Select(x => x.gameObject.GetComponentInParent<PlantContainer>())
-                .Where(x => x?.CanPlantSeed ?? false)
-                .ToList();
-            foreach (var planter in plantableSeeds)
+
+            var plantDensity = 1f;
+
+            var totalPlants = size.x * size.z * plantDensity;
+
+            for (int i = 0; i < totalPlants; i++)
             {
-                if (!TryPlantSeed(planter))
+                var plantPoint = 
+                    new Vector3(
+                        Random.Range(-extent.x, extent.x),
+                        0f,
+                        Random.Range(-extent.z, extent.z)) +
+                    center +
+                    Vector3.up * 10;
+                var ray = new Ray(plantPoint, Vector3.down);
+                if(Physics.Raycast(ray, out var hit, 100f, plantableLayers))
                 {
-                    return;
+                    if (!TryPlantSeed(hit))
+                    {
+                        break;
+                    }
                 }
             }
             OnSeedsUpdated();
         }
         public void OnDragAreaChanged(UniversalCoordinateRange range)
         {
-            range.rectangleDataView.ToBox(5, out var center, out var size);
-            var extent = size / 2;
-            var allTargetPlanters = Physics.OverlapBox(center, extent);
-            var plantableSeeds = allTargetPlanters
-                .Select(x => x.gameObject.GetComponentInParent<PlantContainer>())
-                .Where(x => x?.CanPlantSeed ?? false)
-                .Select(x => x.GetOutlineObject())
-                .Where(x => x != null)
-                .ToList();
-            var newHighlight = new HashSet<GameObject>(plantableSeeds);
-            singleOutlineHelper.UpdateOutlineObjectSet(newHighlight);
+            // noop
         }
         public void SetDragging(bool isDragging)
         {

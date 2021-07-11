@@ -1,0 +1,92 @@
+using Dman.LSystem.SystemRuntime.Turtle;
+using UnityEngine;
+
+namespace Assets.Scripts.UI
+{
+    public class SelectedIdProvider : MonoBehaviour
+    {
+        public static SelectedIdProvider instance;
+
+        public Camera mainCamera;
+        public Camera idCamera;
+
+        public uint HoveredId { get; private set; }
+
+
+        private RenderTexture idTexture;
+        private Texture2D idTextureTempSpace;
+
+        private void Awake()
+        {
+            instance = this;
+
+            idTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 24, RenderTextureFormat.ARGB32, 0)
+            {
+                antiAliasing = 1,
+                filterMode = FilterMode.Point,
+                autoGenerateMips = false,
+                depth = 24,
+                graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_UNorm
+            };
+            idTexture.Create();
+
+            idTextureTempSpace = new Texture2D(1, 1)
+            {
+                filterMode = FilterMode.Point,
+                minimumMipmapLevel = 0,
+            };
+
+            idCamera.targetTexture = idTexture;
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            var mousePosition = new Vector2Int((int)Input.mousePosition.x, (int)Input.mousePosition.y);
+            //Debug.Log(mousePosition);
+            var nextHoveredId = ReadColorAtPixel(mousePosition.x, mousePosition.y, idTexture)?.UIntValue ?? HoveredId;
+            if (HoveredId != nextHoveredId)
+            {
+                HoveredId = nextHoveredId;
+                Debug.Log($"Hovered id:{nextHoveredId}");
+            }
+        }
+
+
+        private static UIntFloatColor32? ReadColorAtPixel(int x, int y, RenderTexture renderTexture)
+        {
+            if (x < 0 || x >= renderTexture.width || y < 0 || y >= renderTexture.height)
+            {
+                return null;
+            }
+
+            var lastActiveTexture = RenderTexture.active;
+
+            RenderTexture.active = renderTexture;
+
+            // Create a new Texture2D and read the RenderTexture image into it
+            Texture2D tex = new Texture2D(1, 1);
+            tex.ReadPixels(new Rect(x, renderTexture.height - y, 1, 1), 0, 0);
+
+            RenderTexture.active = lastActiveTexture;
+
+            var nativeData = tex.GetPixelData<uint>(0);
+
+            var result = nativeData[0];
+
+            return new UIntFloatColor32(result);
+        }
+
+        private void OnDestroy()
+        {
+            idTexture.Release();
+        }
+    }
+
+}

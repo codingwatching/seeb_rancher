@@ -2,11 +2,14 @@
 #iterations 70
 
 #symbols /\&^+-!F$`@
-
 #symbols RO
 
 ## TODO: this isn't defined yet
 ## #include ./resourceTree (T->R) (O->o) (X->X)
+
+#symbols i
+#matches i
+#include organIdentity (Identifier->i)
 
 ## flags set based on the pollination state
 #runtime hasAnther 1
@@ -60,7 +63,7 @@ T(x) : x >= primaryBranchInternodes -> J(internodeHeight)
 ## B is a bud off the main stem, and randomly chooses what it will become
 #symbols B
 #matches B
-B(x) -> [^(50)V]petiole(leavesPerPetiole)
+B(x) -> [^(50)V][i(0)petiole(leavesPerPetiole)]
 
 ## V is a flowering bud
 #symbols V
@@ -111,7 +114,7 @@ I(x) > J     -> JI(x)H
 
 ## organs
 
-#define leafExpression [&&L][/(180)&&L]
+#define leafExpression [i(0)[&&L][/(180)&&L]]
 #symbols NL
 #matches NL
 N -> leafExpression
@@ -119,7 +122,7 @@ N -> leafExpression
 ## l is a leaf
 #symbols Ll
 #matches Ll
-L -> [l(1, leafAge)]
+L    -> [l(1, leafAge)]
 L(x) -> [l(1, x)]
 l(x, y) : x < y -> l(x + 1, y)
 
