@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2675d4da8192841ac0217f9e3aaaa2, type: 3}
-  m_Name: TomatoBiggGene
+  m_Script: {fileID: 11500000, guid: 6cd0ea497ffa0e84aa640c3e82c9fc40, type: 3}
+  m_Name: PlantableRaycastGroup
   m_EditorClassIdentifier: 
-  switchOutput: {fileID: 11400000, guid: 104f80777f26cd442af030c082cd640c, type: 2}
+  layersToRaycastTo:
+    serializedVersion: 2
+    m_Bits: 2048
+  uiBlocksRay: 1

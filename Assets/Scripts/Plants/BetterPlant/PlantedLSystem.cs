@@ -116,6 +116,9 @@ namespace Assets.Scripts.Plants
             var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
             plantType = (LSystemPlantType)plantTypeRegistry.GetUniqueObjectFromID(pollinationState.SelfGenes.plantType);
             plantedEffect.Play();
+
+            // sprout the seedling
+            plantType.ConfigureLSystemWithSeedling(lSystemManager, GeneticDrivers, pollinationState);
         }
         public Dictionary<string, string> GenerateCompileTimeParameters()
         {

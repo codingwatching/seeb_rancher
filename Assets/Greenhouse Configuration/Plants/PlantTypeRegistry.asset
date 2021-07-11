@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: PlantTypeRegistry
   m_EditorClassIdentifier: 
   allObjects:
-  - {fileID: 11400000, guid: ff20f4ec18a80394890cea5fa0a93e68, type: 2}
   - {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}

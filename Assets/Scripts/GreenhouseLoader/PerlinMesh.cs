@@ -65,6 +65,13 @@ namespace Assets.Scripts.GreenhouseLoader
             newMesh.RecalculateNormals();
             var meshfilter = GetComponent<MeshFilter>();
             meshfilter.mesh = newMesh;
+
+
+            var meshCollider = GetComponent<MeshCollider>();
+            if (meshCollider != null)
+            {
+                meshCollider.sharedMesh = newMesh;
+            }
         }
 
         private Vector3 VertexInPlane(float x, float y)

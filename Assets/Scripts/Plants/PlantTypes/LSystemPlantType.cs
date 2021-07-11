@@ -22,7 +22,7 @@ namespace Assets.Scripts.Plants
     [CreateAssetMenu(fileName = "LSystemPlantType", menuName = "Greenhouse/LSystemPlantType", order = 1)]
     public class LSystemPlantType : BasePlantType
     {
-        public PlantedLSystem lSystemPlantPrefab;
+        public GameObject lSystemPlantPrefab;
         public LSystemObject lSystem;
 
         public float phaseFractionTillSprout = 1f;
@@ -36,9 +36,10 @@ namespace Assets.Scripts.Plants
         public override GameObject SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed)
         {
             var newPlant = GameObject.Instantiate(lSystemPlantPrefab, seedlingPosition, Quaternion.identity);
-            newPlant.InitializeWithSeed(plantedSeed);
+            var plantController = newPlant.GetComponentInChildren<PlantedLSystem>();
+            plantController.InitializeWithSeed(plantedSeed);
 
-            return newPlant.gameObject;
+            return newPlant;
         }
 
         public override void ConfigureLSystemWithSeedling(

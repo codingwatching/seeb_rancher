@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71da9d4550b647549b7f3bc1f543d3fd, type: 3}
   m_Name: Plumboo
   m_EditorClassIdentifier: 
-  myId: 1
+  myId: 0
   genome: {fileID: 11400000, guid: cf41996e76a29cc4ea853bae80556938, type: 2}
   selfPollinating: 1
   plantName: Plumboo
@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ac9121ae6b59ed4895b1f9b010fff45, type: 2}
   - {fileID: 11400000, guid: bdb509912dfbf6349a5736ce9c4685a0, type: 2}
   - {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
-  turtleInterpretorPrefab: {fileID: 2519965064432804268, guid: 4e51044ad14e04d4d8123fd31561c8bc, type: 3}
+  lSystemPlantPrefab: {fileID: 7126020408499974555, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
   lSystem: {fileID: 378491273550888993, guid: 50ec329eca2ebda45af2187f82130448, type: 3}
   phaseFractionTillSprout: 1
   stepsPerPhase: 7

@@ -22,9 +22,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         public bool IsActive { get; private set; }
 
 
-        [SerializeField] public RaycastGroup harvestCaster;
+        [SerializeField] public RaycastGroup plantableCaster;
         [SerializeField] private Sprite plantCursor;
-        [SerializeField] public LayerMask plantableLayers;
 
         private SeedBucketDisplay draggingSeedsInstance;
         private SeedInventoryDropSlot sourceSlot = null;
@@ -116,7 +115,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return false;
             }
 
-            var hoveredSpot = harvestCaster.CurrentlyHitObject;
+            var hoveredSpot = plantableCaster.CurrentlyHitObject;
             var dirtPlanter = hoveredSpot.HasValue ? hoveredSpot.Value.collider.GetComponent<PlantableDirt>() : null;
 
             var canPlantHere = dirtPlanter != null;
@@ -208,7 +207,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                     center +
                     Vector3.up * 10;
                 var ray = new Ray(plantPoint, Vector3.down);
-                if(Physics.Raycast(ray, out var hit, 100f, plantableLayers))
+                if(Physics.Raycast(ray, out var hit, 100f, plantableCaster.layersToRaycastTo))
                 {
                     if (!TryPlantSeed(hit))
                     {
