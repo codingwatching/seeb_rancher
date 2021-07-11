@@ -24,7 +24,8 @@ namespace Assets.Scripts.Plants
     /// </summary>
     public class PlantedLSystem : MonoBehaviour,
         ISaveableData,
-        ILSystemCompileTimeParameterGenerator
+        ILSystemCompileTimeParameterGenerator,
+        IManipulatorClickReciever
     {
         public LSystemPlantType plantType;
         public LSystemBehavior lSystemManager;
@@ -250,7 +251,7 @@ namespace Assets.Scripts.Plants
         /// </summary>
         /// <param name="hit"></param>
         /// <returns></returns>
-        public bool OrganClicked(uint organId)
+        public bool SelfClicked(uint clickedObjectID)
         {
             if (plantType == null)
             {

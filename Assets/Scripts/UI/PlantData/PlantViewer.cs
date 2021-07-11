@@ -9,6 +9,7 @@ namespace Assets.Scripts.UI.PlantData
     public class PlantViewer : MonoBehaviour
     {
         public GameObjectVariable selectedPlant;
+        public GameObject plantRenderer;
 
 
         private void Awake()
@@ -29,18 +30,20 @@ namespace Assets.Scripts.UI.PlantData
 
         private void SetupPlantViewer(PlantedLSystem plantContainer)
         {
-            var plantModel = plantContainer.plantsParent.transform.GetChild(0);
-            var plantMesh = plantModel.GetComponentInChildren<MeshFilter>();
+            plantRenderer.SetActive(true);
 
+            var sourceMesh = plantContainer.GetComponentInChildren<MeshFilter>();
+            var targetMeshFilter = plantRenderer.GetComponent<MeshFilter>();
+            targetMeshFilter.mesh = sourceMesh.mesh;
 
-            var newObject = Instantiate(plantModel, this.transform);
-            var newMesh = newObject.GetComponentInChildren<MeshFilter>();
-            newMesh.mesh = plantMesh.mesh;
+            var sourceRenderer = plantContainer.GetComponentInChildren<MeshRenderer>();
+            var targetRenderer = plantRenderer.GetComponent<MeshRenderer>();
+            targetRenderer.materials = sourceRenderer.materials;
         }
 
         private void ClearPlantViewer()
         {
-            gameObject.DestroyAllChildren();
+            plantRenderer.SetActive(false);
         }
     }
 }

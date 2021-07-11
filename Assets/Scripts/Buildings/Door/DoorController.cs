@@ -30,7 +30,7 @@ namespace Assets.Scripts.Buildings
         {
 
         }
-        public bool SelfHit(RaycastHit hit)
+        public bool SelfClicked(uint clickedObjectID)
         {
             NextPhaseUI.SetActive(true);
             return true;

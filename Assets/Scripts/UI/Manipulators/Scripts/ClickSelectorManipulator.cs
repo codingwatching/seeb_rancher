@@ -1,4 +1,5 @@
-﻿using Dman.ReactiveVariables;
+﻿using Dman.LSystem.SystemRuntime.GlobalCoordinator;
+using Dman.ReactiveVariables;
 using Dman.Utilities;
 using UnityEngine;
 using UnityFx.Outline;
@@ -31,25 +32,41 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         {
             var (clickable, hit) = GetHoveredManipulationReciever();
             var canClick = clickable?.IsSelectable() ?? false;
-            singleOutlineHelper.UpdateOutlineObject(canClick ? clickable.GetOutlineObject() : null);
-
-            if (canClick && hit.HasValue && Input.GetMouseButtonDown(0))
+            if (!canClick)
             {
-                ClickObject(clickable, hit.Value);
+                singleOutlineHelper.UpdateOutlineObject(null);
+                return true;
+            }
+
+            singleOutlineHelper.UpdateOutlineObject(clickable.GetOutlineObject());
+
+            if (canClick && Input.GetMouseButtonDown(0))
+            {
+                ClickObject(clickable, hit);
             }
             return true;
         }
 
-        private (IManipulatorClickReciever clickable, RaycastHit? hit) GetHoveredManipulationReciever()
+        private (IManipulatorClickReciever clickable, uint hoveredId) GetHoveredManipulationReciever()
         {
+
+            var hoveredId = SelectedIdProvider.instance.HoveredId;
+            var hoveredController = GlobalLSystemCoordinator.instance.GetBehaviorContainingOrganId(hoveredId)?.GetComponentInParent<IManipulatorClickReciever>();
+            if (hoveredController != null)
+            {
+                return (hoveredController, hoveredId);
+            }
+
             var mouseOvered = harvestCaster.CurrentlyHitObject;
             var hoveredGameObject = mouseOvered.HasValue ? mouseOvered.Value.collider.gameObject : null;
-            return (hoveredGameObject?.GetComponentInParent<IManipulatorClickReciever>(), mouseOvered);
+            var raycastedClickable = hoveredGameObject?.GetComponentInParent<IManipulatorClickReciever>();
+
+            return (raycastedClickable, 0);
         }
 
-        private void ClickObject(IManipulatorClickReciever reciever, RaycastHit hit)
+        private void ClickObject(IManipulatorClickReciever reciever, uint objectId)
         {
-            if (!reciever.SelfHit(hit))
+            if (!reciever.SelfClicked(objectId))
             {
                 selectedGameObject.SetValue(null);
             }

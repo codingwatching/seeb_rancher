@@ -49,12 +49,10 @@ namespace Assets.Scripts.UI
         void Update()
         {
             var mousePosition = new Vector2Int((int)Input.mousePosition.x, (int)Input.mousePosition.y);
-            //Debug.Log(mousePosition);
             var nextHoveredId = ReadColorAtPixel(mousePosition.x, mousePosition.y, idTexture)?.UIntValue ?? HoveredId;
             if (HoveredId != nextHoveredId)
             {
                 HoveredId = nextHoveredId;
-                Debug.Log($"Hovered id:{nextHoveredId}");
             }
         }
 

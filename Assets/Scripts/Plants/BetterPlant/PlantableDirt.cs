@@ -33,7 +33,7 @@ namespace Assets.Scripts.Plants
             return false;
         }
 
-        public bool SelfHit(RaycastHit hit)
+        public bool SelfClicked(uint clickedObjectID)
         {
             return false;
         }

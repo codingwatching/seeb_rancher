@@ -4,7 +4,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 {
     public interface IManipulatorClickReciever
     {
-        bool SelfHit(RaycastHit hit);
+        bool SelfClicked(uint clickedObjectID);
         bool IsSelectable();
         GameObject GetOutlineObject();
     }

@@ -1,5 +1,7 @@
-#axiom S(0)
+#axiom Qi(0)S(0)
 #iterations 70
+
+#symbols Q
 
 #symbols /\&^+-!F$`@
 #symbols RO
