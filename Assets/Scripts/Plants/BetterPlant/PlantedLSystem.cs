@@ -69,6 +69,12 @@ namespace Assets.Scripts.Plants
 
         public event Action OnHarvested;
 
+        public EventGroup beginPhaseTransition;
+        public float maxTimeBetweenSteps;
+        public float minTimeBetweenSteps;
+        private int stepsLeftInPhaseTransition = 0;
+        private float timeTillNextStep;
+
         public float PollinationRadius
         {
             get
@@ -81,17 +87,52 @@ namespace Assets.Scripts.Plants
             }
         }
 
+        private void Awake()
+        {
+            beginPhaseTransition.OnEvent += PhaseTransitionBegin;
+        }
+
         private void Start()
         {
         }
 
-        private void OnDestroy()
+        private void Update()
         {
+            if(stepsLeftInPhaseTransition <= 0)
+            {
+                return;
+            }
+
+            timeTillNextStep -= Time.deltaTime;
+
+            if (!lSystemManager.steppingHandle.CanStep())
+            {
+                return;
+            }
+
+            if(timeTillNextStep <= 0)
+            {
+                this.StepOnce();
+                timeTillNextStep = UnityEngine.Random.Range(minTimeBetweenSteps, maxTimeBetweenSteps);
+                stepsLeftInPhaseTransition--;
+                PhaseAdvancingCoordinator.instance.DelayPhaseComplete(maxTimeBetweenSteps + 0.1f);
+            }
         }
 
-        // this will be handled exclusively by L-system steps
-        private void AdvanceGrowPhase(int phaseDiff)
+        private void OnDestroy()
         {
+            beginPhaseTransition.OnEvent -= PhaseTransitionBegin;
+        }
+
+        private void PhaseTransitionBegin()
+        {
+            this.stepsLeftInPhaseTransition = plantType.stepsPerPhase;
+            timeTillNextStep = UnityEngine.Random.Range(minTimeBetweenSteps, maxTimeBetweenSteps);
+        }
+
+        private void StepOnce()
+        {
+            this.lSystemManager.StepSystem();
         }
 
         private void SprayMySeed()

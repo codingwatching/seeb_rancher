@@ -341,6 +341,9 @@ MonoBehaviour:
   minPollenSpreadRadius: 1
   maxPollenSpreadRadius: 4
   plantsParent: {fileID: 7643680841328762183}
+  beginPhaseTransition: {fileID: 11400000, guid: 8d7e0fe5c2836ba42bf6bf9307c09361, type: 2}
+  maxTimeBetweenSteps: 1
+  minTimeBetweenSteps: 0.5
 --- !u!114 &5756600527171596922
 MonoBehaviour:
   m_ObjectHideFlags: 0

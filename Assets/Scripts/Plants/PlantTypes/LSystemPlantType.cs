@@ -26,7 +26,7 @@ namespace Assets.Scripts.Plants
         public LSystemObject lSystem;
 
         public float phaseFractionTillSprout = 1f;
-        public float stepsPerPhase = 3f;
+        public int stepsPerPhase = 3;
 
         public char flowerCharacter = 'C';
         public char seedBearingCharacter = 'D';
@@ -47,9 +47,9 @@ namespace Assets.Scripts.Plants
             CompiledGeneticDrivers geneticDrivers,
             PollinationState pollination)
         {
-            lSystemContainer.SetSystem(lSystem);
             // the reset will draw the global parameters from the planted L -system via ILSystemCompileTimeParameterGenerator
-            lSystemContainer.ResetState();
+            lSystemContainer.SetSystem(lSystem);
+            // lSystemContainer.ResetState();
 
             var steppingHandle = lSystemContainer.steppingHandle;
 

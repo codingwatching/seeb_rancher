@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{37559713-CA7C-C360-8061-F926A34967A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -101,6 +100,7 @@
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryRow.cs" />
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\SelectionSpotlighter.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\PollinatePlantManipulator.cs" />
+    <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantableDirt.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\EvaluationTargets\SeedCountTarget.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketManager.cs" />
@@ -147,7 +147,7 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantableDirt.cs" />
+    <Compile Include="Assets\Scripts\GameState\PhaseAdvancingCoordinator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\External\TextMesh Pro\Shaders\TMPro.cginc" />

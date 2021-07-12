@@ -1,5 +1,6 @@
 ﻿using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -9,7 +10,6 @@ namespace Assets.Scripts.GreenhouseLoader
     {
         public LevelState levelState;
         public EventGroup phaseAdvanceTrigger;
-
         public BooleanVariable[] savedBooleans;
 
         public string UniqueSaveIdentifier => "LevelState";
@@ -28,6 +28,7 @@ namespace Assets.Scripts.GreenhouseLoader
             levelState.AdvancePhase();
         }
 
+        #region Saving
         [System.Serializable]
         class LevelStateSaved
         {
@@ -73,5 +74,6 @@ namespace Assets.Scripts.GreenhouseLoader
         {
             return new ISaveableData[0];
         }
+        #endregion
     }
 }
