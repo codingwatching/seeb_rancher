@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dec5d0144ddd844aa538c1298c898b3, type: 3}
-  m_Name: PlanterType
+  m_Name: Plant
   m_EditorClassIdentifier: 
   myId: 0
   prefab: {fileID: 6971866808769589527, guid: b9b02da6181793949942adaa2d8106c8, type: 3}

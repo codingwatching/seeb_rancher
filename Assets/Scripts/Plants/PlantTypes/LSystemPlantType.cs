@@ -3,6 +3,7 @@ using Dman.LSystem.SystemRuntime.DOTSRenderer;
 using Dman.LSystem.SystemRuntime.LSystemEvaluator;
 using Dman.LSystem.SystemRuntime.ThreadBouncer;
 using Dman.LSystem.UnityObjects;
+using Dman.SceneSaveSystem;
 using Genetics.GeneticDrivers;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,13 @@ namespace Assets.Scripts.Plants
 
         public override GameObject SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed)
         {
-            var newPlant = GameObject.Instantiate(lSystemPlantPrefab, seedlingPosition, Quaternion.identity);
+            var plantParent = GameObject.FindObjectsOfType<SaveablePrefabParent>().Where(x => x.prefabParentName == "Global Plant Parent").FirstOrDefault();
+            if(plantParent == null)
+            {
+                Debug.LogError("No plant parent found. create a SaveablePrefabParent with a prefabParentName of 'Global Plant Parent'");
+            }
+
+            var newPlant = GameObject.Instantiate(lSystemPlantPrefab,seedlingPosition, Quaternion.identity, plantParent.transform);
             var plantController = newPlant.GetComponentInChildren<PlantedLSystem>();
             plantController.InitializeWithSeed(plantedSeed);
 

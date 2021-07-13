@@ -93,6 +93,7 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemEvaluator\LSystemSymbolReplacementCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\RuntimeParameterAndDefault.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\CustomRules\IdentityAssignmentPostProcessRule.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemObjectRegistry.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeMultipleHashSets.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleStringReadingCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleScaleOperations.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\BitMixer.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemDeveloper.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\Builtin\SunlightApplicationLibrary.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SerializationExtension.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeOrderedMultiDictionary.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ParsedRuleEqualityComparer.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SymbolString.cs" />
@@ -789,6 +791,12 @@
     </Reference>
     <Reference Include="ProceduralToolkit">
       <HintPath>Library\ScriptAssemblies\ProceduralToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="SceneSaveSystem">
+      <HintPath>Library\ScriptAssemblies\SceneSaveSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectSets">
+      <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
