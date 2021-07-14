@@ -72,7 +72,6 @@ namespace Assets.Scripts.Plants
 
         public event Action OnHarvested;
 
-        public EventGroup beginPhaseTransition;
         public StochasticTimerFrequencyVaried updateStepTiming;
         public StochasticTimerFrequencyVaried pollinationSpreadTiming;
         private int stepsLeftInPhaseTransition = 0;
@@ -91,7 +90,6 @@ namespace Assets.Scripts.Plants
 
         private void Awake()
         {
-            beginPhaseTransition.OnEvent += PhaseTransitionBegin;
         }
 
         private void Start()
@@ -106,6 +104,9 @@ namespace Assets.Scripts.Plants
             }
             StepSystemDuringPhaseChange();
             PollinateOthersDuringPhaseChange();
+        }
+        private void OnDestroy()
+        {
         }
 
         private void StepSystemDuringPhaseChange()
@@ -138,12 +139,8 @@ namespace Assets.Scripts.Plants
             this.SprayMySeed();
         }
 
-        private void OnDestroy()
-        {
-            beginPhaseTransition.OnEvent -= PhaseTransitionBegin;
-        }
 
-        private void PhaseTransitionBegin()
+        public void PhaseTransitionBegin()
         {
             this.stepsLeftInPhaseTransition = plantType.stepsPerPhase;
             updateStepTiming.Reset();

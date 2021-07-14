@@ -9,21 +9,11 @@ namespace Assets.Scripts.GreenhouseLoader
     public class LevelStateOwner : MonoBehaviour, ISaveableData
     {
         public LevelState levelState;
-        public EventGroup phaseAdvanceTrigger;
         public BooleanVariable[] savedBooleans;
 
         public string UniqueSaveIdentifier => "LevelState";
 
-        private void Awake()
-        {
-            phaseAdvanceTrigger.OnEvent += AdvancePhase;
-        }
-        private void OnDestroy()
-        {
-            phaseAdvanceTrigger.OnEvent -= AdvancePhase;
-        }
-
-        private void AdvancePhase()
+        public void AdvancePhase()
         {
             levelState.AdvancePhase();
         }

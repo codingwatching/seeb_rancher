@@ -4,14 +4,15 @@ using System;
 using System.Linq;
 using UnityEngine;
 
+using UniRx;
+
 namespace Assets.Scripts.GreenhouseLoader
 {
     public class PhaseAdvancingCoordinator : MonoBehaviour, ISaveableData
     {
         public static PhaseAdvancingCoordinator instance;
 
-        public EventGroup beginPhaseTransition;
-        public EventGroup phaseTransitionCompleted;
+        public BooleanVariable isPhaseTransitionActive;
 
         public float defaultTimeTillPhaseCompletion = 3f;
         private float timeTillPhaseCompletion = -1;
@@ -23,12 +24,20 @@ namespace Assets.Scripts.GreenhouseLoader
         private void Awake()
         {
             instance = this;
-            this.beginPhaseTransition.OnEvent += PhaseTransitionTriggered;
+
+            isPhaseTransitionActive.Value.TakeUntilDestroy(this)
+                .Pairwise()
+                .Subscribe(pair =>
+                {
+                    if (pair.Current == true && pair.Current != pair.Previous)
+                    {
+                        this.PhaseTransitionTriggered();
+                    }
+                }).AddTo(this);
         }
 
         private void OnDestroy()
         {
-            this.beginPhaseTransition.OnEvent -= PhaseTransitionTriggered;
         }
 
         private void PhaseTransitionTriggered()
@@ -62,7 +71,7 @@ namespace Assets.Scripts.GreenhouseLoader
             if(timeTillPhaseCompletion <= 0)
             {
                 timeTillPhaseCompletion = -1;
-                phaseTransitionCompleted.TriggerEvent();
+                isPhaseTransitionActive.SetValue(false);
             }
         }
 

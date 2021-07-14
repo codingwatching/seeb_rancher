@@ -460,6 +460,7 @@ GameObject:
   - component: {fileID: 3264437631373378232}
   - component: {fileID: 3616660833815421315}
   - component: {fileID: 1282153023010645922}
+  - component: {fileID: 1743998931049911220}
   m_Layer: 8
   m_Name: Planter
   m_TagString: Untagged
@@ -515,7 +516,6 @@ MonoBehaviour:
   minPollenSpreadRadius: 1
   maxPollenSpreadRadius: 4
   plantsParent: {fileID: 7643680841328762183}
-  beginPhaseTransition: {fileID: 11400000, guid: 8d7e0fe5c2836ba42bf6bf9307c09361, type: 2}
   updateStepTiming:
     frequency: 4
     frequencyVariance: 0.4
@@ -604,3 +604,34 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c934b5692a0cfc94a8e8481fcbb8a618, type: 2}
   initialScale: {x: 1, y: 1, z: 1}
   submeshIndexIncrementor: 96
+--- !u!114 &1743998931049911220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7643680841328762183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469cdb3c1c445474695e2e28e748ab7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  booleanToWatch: {fileID: 11400000, guid: 9caa366f59d66994b9b118049691ea8d, type: 2}
+  OnChangedToTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5247614895902558156}
+        m_TargetAssemblyTypeName: Assets.Scripts.Plants.PlantedLSystem, Assembly-CSharp
+        m_MethodName: PhaseTransitionBegin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnChangedToFalse:
+    m_PersistentCalls:
+      m_Calls: []
