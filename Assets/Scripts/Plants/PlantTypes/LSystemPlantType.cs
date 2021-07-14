@@ -34,7 +34,7 @@ namespace Assets.Scripts.Plants
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
-        public override PlantedLSystem SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed)
+        public override PlantedLSystem SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed, bool startWithSeedling)
         {
             var plantParent = GameObject.FindObjectsOfType<SaveablePrefabParent>().Where(x => x.prefabParentName == "Global Plant Parent").FirstOrDefault();
             if(plantParent == null)
@@ -44,7 +44,7 @@ namespace Assets.Scripts.Plants
 
             var newPlant = GameObject.Instantiate(lSystemPlantPrefab,seedlingPosition, Quaternion.identity, plantParent.transform);
             var plantController = newPlant.GetComponentInChildren<PlantedLSystem>();
-            plantController.InitializeWithSeed(plantedSeed);
+            plantController.InitializeWithSeed(plantedSeed, startWithSeedling); // TODO: this comes right back to ConfigureLSystemWithSeedling. maybe simplify
 
             return plantController;
         }
@@ -52,21 +52,25 @@ namespace Assets.Scripts.Plants
         public override void ConfigureLSystemWithSeedling(
             LSystemBehavior lSystemContainer,
             CompiledGeneticDrivers geneticDrivers,
-            PollinationState pollination)
+            PollinationState pollination,
+            bool sproutSeed)
         {
             // the reset will draw the global parameters from the planted L -system via ILSystemCompileTimeParameterGenerator
             lSystemContainer.SetSystem(lSystem);
-            // lSystemContainer.ResetState();
 
             var steppingHandle = lSystemContainer.steppingHandle;
 
             steppingHandle.runtimeParameters.SetParameter("hasAnther", pollination.HasAnther ? 1 : 0);
             steppingHandle.runtimeParameters.SetParameter("isPollinated", pollination.IsPollinated ? 1 : 0);
 
-            // step the number of steps required for a seebling to show up immediately
-            var seeblingSteps = phaseFractionTillSprout * stepsPerPhase;
-            while (steppingHandle.totalSteps < seeblingSteps) {
-                steppingHandle.StepSystemImmediate();
+            if (sproutSeed)
+            {
+                // step the number of steps required for a seebling to show up immediately
+                var seeblingSteps = phaseFractionTillSprout * stepsPerPhase;
+                while (steppingHandle.totalSteps < seeblingSteps)
+                {
+                    steppingHandle.StepSystemImmediate();
+                }
             }
 
             // TODO: the turtle -should- be uneccesary, because it should be hooked into the l-system behaviors updates
@@ -97,22 +101,25 @@ namespace Assets.Scripts.Plants
 
         public override bool HasFlowers(LSystemBehavior systemManager)
         {
-            return systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains((int)flowerCharacter);
+            var flowerSymbol = lSystem.linkedFiles.GetSymbolFromRoot(flowerCharacter);
+            return systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains(flowerSymbol);
         }
         public override bool CanHarvest(LSystemBehavior systemManager)
         {
             // if the plant is done growing always allow harvesting to avoid letting plants with no fruit hang around
-            return !systemManager.steppingHandle.lastUpdateChanged || systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains((int)seedBearingCharacter);
+            var seedBearingSymbol = lSystem.linkedFiles.GetSymbolFromRoot(seedBearingCharacter);
+            return IsMature(systemManager) || systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains(seedBearingSymbol);
         }
 
         public override bool IsMature(LSystemBehavior systemManager)
         {
-            return !systemManager.steppingHandle.lastUpdateChanged;
+            return !systemManager.steppingHandle.lastUpdateChanged || systemManager.steppingHandle.totalSteps >= systemManager.systemObject.iterations;
         }
 
         protected override int GetHarvestedSeedNumber(LSystemBehavior systemManager)
         {
-            return systemManager?.steppingHandle.currentState.currentSymbols.Data.symbols.Sum(symbol => symbol == seedBearingCharacter ? 1 : 0) ?? 0;
+            var seedBearingSymbol = lSystem.linkedFiles.GetSymbolFromRoot(seedBearingCharacter);
+            return systemManager?.steppingHandle.currentState.currentSymbols.Data.symbols.Sum(symbol => symbol == seedBearingSymbol ? 1 : 0) ?? 0;
         }
         public override IEnumerable<Seed> SimulateGrowthToHarvest(Seed seed)
         {

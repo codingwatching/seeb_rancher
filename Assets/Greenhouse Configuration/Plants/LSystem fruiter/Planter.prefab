@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantType: {fileID: 0}
   lSystemManager: {fileID: 5756600527171596922}
+  prefabRoot: {fileID: 7126020408499974555}
   selectedPlant: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}
   harvestEffect: {fileID: 5640146407145702974}
   plantedEffect: {fileID: 812564522285067007}

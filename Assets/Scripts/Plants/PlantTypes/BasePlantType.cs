@@ -45,14 +45,15 @@ namespace Assets.Scripts.Plants
 
         public GeneticDriver[] summaryDrivers;
 
-        public abstract PlantedLSystem SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed);
+        public abstract PlantedLSystem SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed, bool startWithSeedling);
 
         public abstract bool HasFlowers(LSystemBehavior systemManager);
 
         public abstract void ConfigureLSystemWithSeedling(
             LSystemBehavior lSystemContainer,
             CompiledGeneticDrivers geneticDrivers,
-            PollinationState pollination);
+            PollinationState pollination,
+            bool sproutSeed);
 
         public abstract bool CanHarvest(LSystemBehavior systemManager);
         public abstract bool IsMature(LSystemBehavior systemManager);

@@ -21,6 +21,7 @@ namespace Assets.Scripts.ContractEvaluator
 
 
         public List<Seed> seedPool;
+        public int totalPlantsGrown = 0;
         [SerializeField] private List<FarmedLSystem> tendedPlants;
         private HaltonSequenceGenerator sequenceGenerator;
 
@@ -33,6 +34,7 @@ namespace Assets.Scripts.ContractEvaluator
             seedPool = Enumerable.Range(0, 10)
                 .Select(x => farmedPlant.GenerateRandomSeed(randomProvider))
                 .ToList();
+            totalPlantsGrown = 0;
         }
         // Start is called before the first frame update
         void Start()
@@ -48,9 +50,16 @@ namespace Assets.Scripts.ContractEvaluator
                 this.SpawnPlant();
             }
 
-            foreach (var system in tendedPlants)
+            for (int i = 0; i < tendedPlants.Count; i++)
             {
-                system.TryStep();
+                var system = tendedPlants[i];
+                var seebs = system.TryStep();
+                if (seebs != null)
+                {
+                    tendedPlants.RemoveAt(i);
+                    i--;
+                    seedPool.AddRange(seebs);
+                }
             }
         }
 
@@ -70,7 +79,8 @@ namespace Assets.Scripts.ContractEvaluator
             var nextSeed = seedPool[nextSeedIndex];
             seedPool.RemoveAt(nextSeedIndex);
 
-            var newPlant = farmedPlant.SpawnNewPlant(hit.point, nextSeed);
+            var newPlant = farmedPlant.SpawnNewPlant(hit.point, nextSeed, false);
+            totalPlantsGrown++;
 
             this.tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, this));
         }
@@ -98,24 +108,26 @@ namespace Assets.Scripts.ContractEvaluator
                 this.parent = parent;
             }
 
-            public void TryStep()
+            public Seed[] TryStep()
             {
-                var maxUpdates = parent.farmedPlant.lSystem.iterations;
                 var stepper = plant.lSystemManager.steppingHandle;
-                if (!stepper.lastUpdateChanged || stepper.totalSteps >= maxUpdates)
+                if (plant.IsMature())
                 {
-                    return;
+                    // TODO: do actual breeding
+                    plant.pollinationState.SelfPollinateIfNotFertile();
+                    return plant.TryHarvest();
                 }
                 if (!stepTimer.Tick())
                 {
-                    return;
+                    return null;
                 }
                 if (!stepper.CanStep())
                 {
-                    return;
+                    return null;
                 }
 
                 plant.lSystemManager.StepSystem();
+                return null;
             }
         }
     }

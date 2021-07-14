@@ -29,6 +29,7 @@ namespace Assets.Scripts.Plants
     {
         public LSystemPlantType plantType;
         public LSystemBehavior lSystemManager;
+        public GameObject prefabRoot;
 
         public GameObjectVariable selectedPlant;
 
@@ -152,7 +153,7 @@ namespace Assets.Scripts.Plants
         }
 
 
-        public void InitializeWithSeed(Seed toBePlanted)
+        public void InitializeWithSeed(Seed toBePlanted, bool sproutSeed)
         {
             pollinationState = new PollinationState(toBePlanted);
             var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
@@ -160,7 +161,7 @@ namespace Assets.Scripts.Plants
             plantedEffect.Play();
 
             // sprout the seedling
-            plantType.ConfigureLSystemWithSeedling(lSystemManager, GeneticDrivers, pollinationState);
+            plantType.ConfigureLSystemWithSeedling(lSystemManager, GeneticDrivers, pollinationState, sproutSeed);
         }
         public Dictionary<string, string> GenerateCompileTimeParameters()
         {
@@ -266,7 +267,8 @@ namespace Assets.Scripts.Plants
         private Seed[] HarvestPlant()
         {
             var harvestedSeeds = plantType.HarvestSeeds(pollinationState, this.lSystemManager, GeneticDrivers);
-
+            
+            // TODO: destroyu the planty
             plantType = null;
             pollinationState = null;
             GeneticDrivers = null;
@@ -283,7 +285,7 @@ namespace Assets.Scripts.Plants
             harvestEffect.SetFloat("height", 10 * plantsParent.transform.localScale.x);
             harvestEffect.Play();
             yield return new WaitForSeconds(0.3f);
-            Destroy(this.gameObject);
+            Destroy(prefabRoot);
         }
 
         /// <summary>

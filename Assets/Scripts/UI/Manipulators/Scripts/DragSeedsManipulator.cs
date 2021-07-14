@@ -172,7 +172,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
             var seedType = plantTypeRegistry.GetUniqueObjectFromID(nextSeed.plantType);
 
-            var newPlant = seedType.SpawnNewPlant(plantLocation.point, nextSeed);
+            var newPlant = seedType.SpawnNewPlant(plantLocation.point, nextSeed, true);
 
             return !sourceSlot.dataModel.bucket.Empty;
         }
