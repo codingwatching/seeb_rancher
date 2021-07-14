@@ -19,9 +19,12 @@ namespace Assets.Scripts.UI.MarketContracts
 
         public FloatReference money;
 
+        public BooleanVariable areContractsEvaluating;
+
         public GameObject loadingSection;
         public GameObject evaluationResultsSection;
         public GameObject evaluationModal;
+
 
         public TMP_Text seedPercentageComplianceText;
         public TMP_Text rewardAmountText;
@@ -111,9 +114,11 @@ namespace Assets.Scripts.UI.MarketContracts
             farmer.BeginSimulation(seeds);
 
             SceneManager.SetActiveScene(farmerScene);
+            areContractsEvaluating.SetValue(true);
 
             yield return new WaitUntil(() => farmer.totalPlantsGrown >= targetSeedQuantity);// TODO: rename targetSeedQuanity
             SceneManager.SetActiveScene(mainScene);
+            areContractsEvaluating.SetValue(false);
 
             SceneManager.UnloadSceneAsync(farmerScene);
 

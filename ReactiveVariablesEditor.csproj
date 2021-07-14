@@ -8,11 +8,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</ProjectGuid>
+    <RootNamespace>Dman.ReactiveVariables</RootNamespace>
+    <ProjectGuid>{D3C344F2-4CAB-9A39-7532-349426063E50}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Narrative</AssemblyName>
+    <AssemblyName>ReactiveVariablesEditor</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -48,7 +48,7 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
     <UnityProjectGeneratorVersion>2.0.8</UnityProjectGeneratorVersion>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.11f1</UnityVersion>
   </PropertyGroup>
@@ -56,18 +56,14 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MyPackages\NarrativeSystem\ConversationTriggers\ConversationCompletedTrigger.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\Prompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\WaitForBooleanChangePrompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Conversation.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\DebugPrompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\PromptController.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\GameNarrative.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\ConversationTriggers\ConversationTrigger.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\PromptParentSingleton.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Editor\FloatReferenceDrawer.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Editor\BooleanReferenceDrawer.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Editor\IntReferenceDrawer.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Editor\GenericReferenceDrawer.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Editor\VariableInstantiatorInspector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\MyPackages\NarrativeSystem\NarrativeSystem.asmdef" />
+    <None Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Editor\ReactiveVariablesEditor.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -333,6 +329,9 @@
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.5.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.11f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -682,23 +681,17 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.11f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
-    <Reference Include="ObjectSets">
-      <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UniRx">
-      <HintPath>Library\ScriptAssemblies\UniRx.dll</HintPath>
-    </Reference>
-    <Reference Include="SceneSaveSystem">
-      <HintPath>Library\ScriptAssemblies\SceneSaveSystem.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

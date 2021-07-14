@@ -8,11 +8,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</ProjectGuid>
+    <RootNamespace>Dman.ReactiveVariables</RootNamespace>
+    <ProjectGuid>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Narrative</AssemblyName>
+    <AssemblyName>ReactiveVariables</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -56,18 +56,33 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MyPackages\NarrativeSystem\ConversationTriggers\ConversationCompletedTrigger.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\Prompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\WaitForBooleanChangePrompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Conversation.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\DebugPrompt.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\Prompts\PromptController.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\GameNarrative.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\ConversationTriggers\ConversationTrigger.cs" />
-    <Compile Include="Assets\MyPackages\NarrativeSystem\PromptParentSingleton.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\BooleanChangeToUnityEvent.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\GenericState.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\AssignSelfOnClick.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\GameObjectVariable.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\GenericReference.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\BooleanReference.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\GenericVariable.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\BooleanVariable.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\FloatVariable.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\GenericSelector.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\IntVariable.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\IntVariableChangedToUnityEvent.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\ScriptableObjectVariable.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableInstantiator.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\FloatState.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\EventGroup.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\BooleanToggle.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\BooleanState.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\ObjectAssigner.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\EventGroupToUnityEvent.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\ScriptableObjectAssigner.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\IntState.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\IntReference.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\FloatReference.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\MyPackages\NarrativeSystem\NarrativeSystem.asmdef" />
+    <None Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\ReactiveVariables.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -682,17 +697,8 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.11f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
-    <Reference Include="ObjectSets">
-      <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
     <Reference Include="UniRx">
       <HintPath>Library\ScriptAssemblies\UniRx.dll</HintPath>
-    </Reference>
-    <Reference Include="SceneSaveSystem">
-      <HintPath>Library\ScriptAssemblies\SceneSaveSystem.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -702,10 +708,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="ReactiveVariables.csproj">
-      <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
-      <Name>ReactiveVariables</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

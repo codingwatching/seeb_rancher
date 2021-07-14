@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\GreenhouseBuilder.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickSelectorManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketContractClaimTrigger.cs" />
+    <Compile Include="Assets\Scripts\ContractEvaluator\StochasticTimerFrequencyVaried.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\TargetContractDescriptor.cs" />
+    <Compile Include="Assets\Scripts\ContractEvaluator\HaltonSequenceGenerator.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryRow.cs" />
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\SelectionSpotlighter.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinMesh.cs" />
+    <Compile Include="Assets\Scripts\ContractEvaluator\FarmerSimulator.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlineSampler.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
@@ -148,9 +151,6 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\ContractEvaluator\FarmerSimulator.cs" />
-    <Compile Include="Assets\Scripts\ContractEvaluator\StochasticTimerFrequencyVaried.cs" />
-    <Compile Include="Assets\Scripts\ContractEvaluator\HaltonSequenceGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\External\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -828,12 +828,6 @@
     <Reference Include="Unity.Collections">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="ReactiveVariables">
-      <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
-    </Reference>
-    <Reference Include="ReactiveVariablesEditor">
-      <HintPath>Library\ScriptAssemblies\ReactiveVariablesEditor.dll</HintPath>
-    </Reference>
     <Reference Include="UtilitiesEditor">
       <HintPath>Library\ScriptAssemblies\UtilitiesEditor.dll</HintPath>
     </Reference>
@@ -918,6 +912,14 @@
     <ProjectReference Include="Narrative.csproj">
       <Project>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</Project>
       <Name>Narrative</Name>
+    </ProjectReference>
+    <ProjectReference Include="ReactiveVariables.csproj">
+      <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
+      <Name>ReactiveVariables</Name>
+    </ProjectReference>
+    <ProjectReference Include="ReactiveVariablesEditor.csproj">
+      <Project>{D3C344F2-4CAB-9A39-7532-349426063E50}</Project>
+      <Name>ReactiveVariablesEditor</Name>
     </ProjectReference>
     <ProjectReference Include="Tiling.csproj">
       <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
