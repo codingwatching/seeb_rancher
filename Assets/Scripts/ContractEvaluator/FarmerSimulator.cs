@@ -22,6 +22,7 @@ namespace Assets.Scripts.ContractEvaluator
 
 
         public List<Seed> seedPool;
+        public int seedPoolCap = 500;
         public int totalPlantsGrown = 0;
         [SerializeField] private List<FarmedLSystem> tendedPlants;
         private HaltonSequenceGenerator sequenceGenerator;
@@ -40,7 +41,7 @@ namespace Assets.Scripts.ContractEvaluator
 
             var randomProvider = new System.Random(Random.Range(1, int.MaxValue));
 
-            seedPool = Enumerable.Range(0, 10)
+            seedPool = Enumerable.Range(0, 100)
                 .Select(x => farmedPlant.GenerateRandomSeed(randomProvider))
                 .ToList();
             totalPlantsGrown = 0;
@@ -70,6 +71,11 @@ namespace Assets.Scripts.ContractEvaluator
                     seedPool.AddRange(seebs);
                 }
             }
+
+            if(seedPool.Count > seedPoolCap)
+            {
+                seedPool.RemoveRange(0, seedPool.Count - seedPoolCap);
+            }
         }
 
 
@@ -92,14 +98,6 @@ namespace Assets.Scripts.ContractEvaluator
             totalPlantsGrown++;
 
             this.tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, plantPollintateFrequency,this));
-        }
-
-        private void OnDrawGizmos()
-        {
-            var newColor = Color.green;
-            newColor.a = 0.2f;
-            Gizmos.color = newColor;
-            this.DrawGizmoBox();
         }
 
         private void OnDrawGizmosSelected()

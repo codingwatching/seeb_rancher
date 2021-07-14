@@ -55,6 +55,7 @@ namespace Assets.Scripts.GreenhouseLoader
                     //    true);
                 }
             }
+            builder = builder.Paint(new Color(0, 0, 0, 0));
             //for (int i = 0; i < builder.vertexCount; i++)
             //{
             //    var vertex = builder.vertices[i];
