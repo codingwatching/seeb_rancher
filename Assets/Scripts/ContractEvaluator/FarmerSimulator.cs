@@ -11,16 +11,17 @@ namespace Assets.Scripts.ContractEvaluator
 
     public class FarmerSimulator : MonoBehaviour
     {
-        public BasePlantType farmedPlant;
+        public LSystemPlantType farmedPlant;
         public Vector2 spawnExtent = Vector2.one;
 
         public LayerMask plantableThings;
         public int maxConcurrentPlants;
-        public StochasticTimer plantSpawnFrequency;
+        public StochasticTimerFrequencyVaried plantSpawnFrequency;
+        public StochasticTimerFrequencyVaried plantUpdateFrequency;
 
 
         public List<Seed> seedPool;
-        public List<PlantedLSystem> tendedPlants;
+        [SerializeField] private List<FarmedLSystem> tendedPlants;
         private HaltonSequenceGenerator sequenceGenerator;
 
         private void Awake()
@@ -47,7 +48,12 @@ namespace Assets.Scripts.ContractEvaluator
                 this.SpawnPlant();
             }
 
+            foreach (var system in tendedPlants)
+            {
+                system.TryStep();
+            }
         }
+
 
         private void SpawnPlant()
         {
@@ -66,7 +72,7 @@ namespace Assets.Scripts.ContractEvaluator
 
             var newPlant = farmedPlant.SpawnNewPlant(hit.point, nextSeed);
 
-            this.tendedPlants.Add(newPlant);
+            this.tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, this));
         }
 
         private void OnDrawGizmosSelected()
@@ -76,6 +82,41 @@ namespace Assets.Scripts.ContractEvaluator
             Gizmos.color = newColor;
             Gizmos.DrawCube(transform.position, new Vector3(spawnExtent.x * 2, 0.1f, spawnExtent.y * 2));
             DrawArrow.ForGizmo(transform.position, Vector3.down);
+        }
+
+        [System.Serializable]
+        class FarmedLSystem
+        {
+            public StochasticTimerFrequencyVaried stepTimer;
+            public PlantedLSystem plant;
+            public FarmerSimulator parent;
+
+            public FarmedLSystem(PlantedLSystem plant, StochasticTimerFrequencyVaried timerDefinition, FarmerSimulator parent)
+            {
+                this.plant = plant;
+                stepTimer = new StochasticTimerFrequencyVaried(timerDefinition);
+                this.parent = parent;
+            }
+
+            public void TryStep()
+            {
+                var maxUpdates = parent.farmedPlant.lSystem.iterations;
+                var stepper = plant.lSystemManager.steppingHandle;
+                if (!stepper.lastUpdateChanged || stepper.totalSteps >= maxUpdates)
+                {
+                    return;
+                }
+                if (!stepTimer.Tick())
+                {
+                    return;
+                }
+                if (!stepper.CanStep())
+                {
+                    return;
+                }
+
+                plant.lSystemManager.StepSystem();
+            }
         }
     }
 }

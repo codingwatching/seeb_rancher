@@ -149,7 +149,7 @@
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
     <Compile Include="Assets\Scripts\ContractEvaluator\FarmerSimulator.cs" />
-    <Compile Include="Assets\Scripts\ContractEvaluator\StochasticTimer.cs" />
+    <Compile Include="Assets\Scripts\ContractEvaluator\StochasticTimerFrequencyVaried.cs" />
     <Compile Include="Assets\Scripts\ContractEvaluator\HaltonSequenceGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
