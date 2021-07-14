@@ -104,7 +104,7 @@ namespace Assets.Scripts.UI.MarketContracts
             var farmerScene = SceneManager.GetSceneByBuildIndex(sceneBuildIndex);
             var rootObjs = farmerScene.GetRootGameObjects();
             var farmer = rootObjs
-                .Select(x => x.GetComponent<FarmerSimulator>())
+                .Select(x => x.GetComponentInChildren<FarmerSimulator>())
                 .Where(x => x != null)
                 .FirstOrDefault();
             if(farmer == null)

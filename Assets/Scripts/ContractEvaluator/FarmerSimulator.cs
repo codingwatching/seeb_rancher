@@ -93,11 +93,24 @@ namespace Assets.Scripts.ContractEvaluator
             this.tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, this));
         }
 
+        private void OnDrawGizmos()
+        {
+            var newColor = Color.green;
+            newColor.a = 0.2f;
+            Gizmos.color = newColor;
+            this.DrawGizmoBox();
+        }
+
         private void OnDrawGizmosSelected()
         {
             var newColor = Color.green;
             newColor.a = 0.4f;
             Gizmos.color = newColor;
+            this.DrawGizmoBox();
+        }
+
+        private void DrawGizmoBox()
+        {
             Gizmos.DrawCube(transform.position, new Vector3(spawnExtent.x * 2, 0.1f, spawnExtent.y * 2));
             DrawArrow.ForGizmo(transform.position, Vector3.down);
         }

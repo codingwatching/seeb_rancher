@@ -113,6 +113,9 @@ TextureImporter:
   - first:
       213: -7603772707215065969
     second: UI_Wood_Panel_Small_Border
+  - first:
+      213: -7629984844588438432
+    second: UI_Wood_Panel_Large_Transparent
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -145,7 +148,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -1010,6 +1013,27 @@ TextureImporter:
       bones: []
       spriteID: f8cb2a16209f97690800000000000000
       internalID: -7603772707215065969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Wood_Panel_Large_Transparent
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 32, y: 32, z: 32, w: 32}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06c21b09539dc1690800000000000000
+      internalID: -7629984844588438432
       vertices: []
       indices: 
       edges: []

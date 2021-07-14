@@ -327,9 +327,10 @@ namespace RTS_Cam
             if (!limitMap)
                 return;
                 
-            m_Transform.position = new Vector3(Mathf.Clamp(m_Transform.position.x, -limitX, limitX),
-                m_Transform.position.y,
-                Mathf.Clamp(m_Transform.position.z, -limitY, limitY));
+            m_Transform.localPosition = new Vector3(
+                Mathf.Clamp(m_Transform.localPosition.x, -limitX, limitX),
+                m_Transform.localPosition.y,
+                Mathf.Clamp(m_Transform.localPosition.z, -limitY, limitY));
         }
 
         /// <summary>
