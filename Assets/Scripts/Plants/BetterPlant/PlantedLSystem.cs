@@ -36,6 +36,7 @@ namespace Assets.Scripts.Plants
 
         public VisualEffect harvestEffect;
         public VisualEffect plantedEffect;
+        public VisualEffect pollinateEffect;
 
         private CompiledGeneticDrivers _drivers;
         public CompiledGeneticDrivers GeneticDrivers
@@ -73,6 +74,7 @@ namespace Assets.Scripts.Plants
 
         public EventGroup beginPhaseTransition;
         public StochasticTimerFrequencyVaried updateStepTiming;
+        public StochasticTimerFrequencyVaried pollinationSpreadTiming;
         private int stepsLeftInPhaseTransition = 0;
 
         public float PollinationRadius
@@ -102,7 +104,14 @@ namespace Assets.Scripts.Plants
             {
                 return;
             }
-            if (!updateStepTiming.Tick()){
+            StepSystemDuringPhaseChange();
+            PollinateOthersDuringPhaseChange();
+        }
+
+        private void StepSystemDuringPhaseChange()
+        {
+            if (!updateStepTiming.Tick())
+            {
                 return;
             }
             if (!lSystemManager.steppingHandle.CanStep())
@@ -113,6 +122,20 @@ namespace Assets.Scripts.Plants
             this.StepOnce();
             stepsLeftInPhaseTransition--;
             PhaseAdvancingCoordinator.instance.DelayPhaseComplete(updateStepTiming.TimeTillNextTrigger() + 0.1f);
+        }
+
+        private void PollinateOthersDuringPhaseChange()
+        {
+            if (!pollinationSpreadTiming.Tick())
+            {
+                return;
+            }
+            if (!plantType.HasFlowers(lSystemManager))
+            {
+                return;
+            }
+
+            this.SprayMySeed();
         }
 
         private void OnDestroy()
@@ -133,6 +156,7 @@ namespace Assets.Scripts.Plants
 
         private void SprayMySeed()
         {
+            pollinateEffect?.Play();
             var radius = PollinationRadius;
             var targetOtherPlants = Physics.OverlapCapsule(transform.position - Vector3.up * 5, transform.position + Vector3.up * 5, radius)
                 .Select(collider => collider.gameObject?.GetComponentInParent<PlantedLSystem>())
