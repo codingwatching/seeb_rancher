@@ -45,7 +45,7 @@ namespace Assets.Scripts.Plants
 
         public GeneticDriver[] summaryDrivers;
 
-        public abstract GameObject SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed);
+        public abstract PlantedLSystem SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed);
 
         public abstract bool HasFlowers(LSystemBehavior systemManager);
 

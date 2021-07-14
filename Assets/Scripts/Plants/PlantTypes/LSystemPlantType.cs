@@ -34,7 +34,7 @@ namespace Assets.Scripts.Plants
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
-        public override GameObject SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed)
+        public override PlantedLSystem SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed)
         {
             var plantParent = GameObject.FindObjectsOfType<SaveablePrefabParent>().Where(x => x.prefabParentName == "Global Plant Parent").FirstOrDefault();
             if(plantParent == null)
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Plants
             var plantController = newPlant.GetComponentInChildren<PlantedLSystem>();
             plantController.InitializeWithSeed(plantedSeed);
 
-            return newPlant;
+            return plantController;
         }
 
         public override void ConfigureLSystemWithSeedling(

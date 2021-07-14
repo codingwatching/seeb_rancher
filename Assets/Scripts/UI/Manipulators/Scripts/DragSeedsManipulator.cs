@@ -21,7 +21,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     {
         public bool IsActive { get; private set; }
 
-
         [SerializeField] public RaycastGroup plantableCaster;
         [SerializeField] private Sprite plantCursor;
 
