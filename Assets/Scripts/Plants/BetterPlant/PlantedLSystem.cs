@@ -130,7 +130,7 @@ namespace Assets.Scripts.Plants
             {
                 return;
             }
-            if (!plantType.HasFlowers(lSystemManager))
+            if (!CanPollinate())
             {
                 return;
             }
@@ -154,7 +154,7 @@ namespace Assets.Scripts.Plants
             this.lSystemManager.StepSystem();
         }
 
-        private void SprayMySeed()
+        public void SprayMySeed()
         {
             pollinateEffect?.Play();
             var radius = PollinationRadius;

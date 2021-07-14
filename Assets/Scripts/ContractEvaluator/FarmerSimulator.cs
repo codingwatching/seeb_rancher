@@ -18,6 +18,7 @@ namespace Assets.Scripts.ContractEvaluator
         public int maxConcurrentPlants;
         public StochasticTimerFrequencyVaried plantSpawnFrequency;
         public StochasticTimerFrequencyVaried plantUpdateFrequency;
+        public StochasticTimerFrequencyVaried plantPollintateFrequency;
 
 
         public List<Seed> seedPool;
@@ -90,7 +91,7 @@ namespace Assets.Scripts.ContractEvaluator
             var newPlant = farmedPlant.SpawnNewPlant(hit.point, nextSeed, false);
             totalPlantsGrown++;
 
-            this.tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, this));
+            this.tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, plantPollintateFrequency,this));
         }
 
         private void OnDrawGizmos()
@@ -119,13 +120,19 @@ namespace Assets.Scripts.ContractEvaluator
         class FarmedLSystem
         {
             public StochasticTimerFrequencyVaried stepTimer;
+            public StochasticTimerFrequencyVaried pollinateTimer;
             public PlantedLSystem plant;
             public FarmerSimulator parent;
 
-            public FarmedLSystem(PlantedLSystem plant, StochasticTimerFrequencyVaried timerDefinition, FarmerSimulator parent)
+            public FarmedLSystem(
+                PlantedLSystem plant,
+                StochasticTimerFrequencyVaried timerDefinition,
+                StochasticTimerFrequencyVaried pollinateTimerDefinition,
+                FarmerSimulator parent)
             {
                 this.plant = plant;
                 stepTimer = new StochasticTimerFrequencyVaried(timerDefinition);
+                pollinateTimer = new StochasticTimerFrequencyVaried(pollinateTimerDefinition);
                 this.parent = parent;
             }
 
@@ -138,18 +145,19 @@ namespace Assets.Scripts.ContractEvaluator
                     plant.pollinationState.SelfPollinateIfNotFertile();
                     return plant.TryHarvest();
                 }
-                if (!stepTimer.Tick())
+                if (stepTimer.Tick() && stepper.CanStep())
                 {
-                    return null;
+                    plant.lSystemManager.StepSystem();
                 }
-                if (!stepper.CanStep())
+                if(pollinateTimer.Tick() && plant.CanPollinate())
                 {
-                    return null;
+                    plant.SprayMySeed();
                 }
 
-                plant.lSystemManager.StepSystem();
                 return null;
             }
+
+
         }
     }
 }
