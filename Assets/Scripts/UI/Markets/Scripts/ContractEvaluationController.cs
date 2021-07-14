@@ -1,17 +1,22 @@
+using Assets.Scripts.ContractEvaluator;
 using Assets.Scripts.DataModels;
 using Assets.Scripts.Plants;
 using Dman.ObjectSets;
 using Dman.ReactiveVariables;
+using Dman.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI.MarketContracts
 {
     public class ContractEvaluationController : MonoBehaviour
     {
+        public SceneReference simulationScene;
+
         public FloatReference money;
 
         public GameObject loadingSection;
@@ -83,26 +88,38 @@ namespace Assets.Scripts.UI.MarketContracts
             }
 
             var contractData = contract.contract;
-
             var genome = contractData.plantType.genome;
-            var generationPhase = seeds.ToList();
-            // keep pollinating until there's at least 100 seeds
-            while (generationPhase.Count < targetSeedQuantity)
-            {
-                var previousGeneration = generationPhase;
-                generationPhase = new List<Seed>();
-                foreach (var seed in previousGeneration)
-                {
-                    yield return new WaitForEndOfFrame();
-                    generationPhase.AddRange(plantType.SimulateGrowthToHarvest(seed));
-                    if (generationPhase.Count >= targetSeedQuantity)
-                    {
-                        break;
-                    }
-                }
-            }
 
-            yield return StartCoroutine(contractData.EvaluateComplianceOfSeeds(generationPhase));
+            var mainScene = SceneManager.GetActiveScene();
+
+            var sceneBuildIndex = SceneUtility.GetBuildIndexByScenePath(simulationScene.scenePath);
+            var sceneLoader = SceneManager.LoadSceneAsync(sceneBuildIndex, LoadSceneMode.Additive);
+            yield return new WaitUntil(() => sceneLoader.isDone);
+
+            // TODO: hide the ui?
+
+            var farmerScene = SceneManager.GetSceneByBuildIndex(sceneBuildIndex);
+            var rootObjs = farmerScene.GetRootGameObjects();
+            var farmer = rootObjs
+                .Select(x => x.GetComponent<FarmerSimulator>())
+                .Where(x => x != null)
+                .FirstOrDefault();
+            if(farmer == null)
+            {
+                Debug.LogError("could not find a farmer in the new scene");
+            }
+            farmer.BeginSimulation(seeds);
+
+            SceneManager.SetActiveScene(farmerScene);
+
+            yield return new WaitUntil(() => farmer.totalPlantsGrown >= targetSeedQuantity);// TODO: rename targetSeedQuanity
+            SceneManager.SetActiveScene(mainScene);
+
+            SceneManager.UnloadSceneAsync(farmerScene);
+
+            var resultSeebs = farmer.seedPool;
+
+            yield return StartCoroutine(contractData.EvaluateComplianceOfSeeds(resultSeebs));
 
             var seedComplianceRatio = contractData.ComplianceResult;
 

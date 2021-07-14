@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TheGreenhouse.unity
     guid: 7515cc8f4f7c76b46a5c71340b74f0e5
+  - enabled: 1
+    path: Assets/Scenes/contract evaluator.unity
+    guid: 9cd7285e6b32c8f4ebc7e2c8f78f8c32
   m_configObjects: {}

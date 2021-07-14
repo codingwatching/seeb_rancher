@@ -38,14 +38,17 @@ namespace Assets.Scripts.UI.MarketContracts
         #region Seed Compliance
         public float ComplianceResult { get; set; }
 
-        public IEnumerator EvaluateComplianceOfSeeds(IEnumerable<Seed> seeds)
+        public IEnumerator EvaluateComplianceOfSeeds(IEnumerable<Seed> seeds, int seedsPerPause = 20)
         {
             var seedsSatisfyingDescriptors = 0;
             var totalSeeds = 0;
             foreach (var seed in seeds)
             {
                 totalSeeds++;
-                yield return new WaitForEndOfFrame();
+                if(totalSeeds % seedsPerPause == 0)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
                 if (Matches(seed))
                 {
                     seedsSatisfyingDescriptors++;

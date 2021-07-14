@@ -25,6 +25,14 @@ namespace Assets.Scripts.ContractEvaluator
         [SerializeField] private List<FarmedLSystem> tendedPlants;
         private HaltonSequenceGenerator sequenceGenerator;
 
+        public void BeginSimulation(IEnumerable<Seed> seeds)
+        {
+            sequenceGenerator = new HaltonSequenceGenerator(2, 3, Random.Range(0, 1000), -Vector2.one, Vector2.one);
+            seedPool = seeds
+                .ToList();
+            totalPlantsGrown = 0;
+        }
+
         private void Awake()
         {
             sequenceGenerator = new HaltonSequenceGenerator(2, 3, Random.Range(0, 1000), -Vector2.one, Vector2.one);
