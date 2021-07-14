@@ -28,7 +28,7 @@ namespace Assets.Scripts.ContractEvaluator
 
         public void Reset()
         {
-            nextTriggerTime = 0;
+            this.SetNextTriggerTime();
         }
 
         public bool Tick()
@@ -37,11 +37,20 @@ namespace Assets.Scripts.ContractEvaluator
             {
                 return false;
             }
+            this.SetNextTriggerTime();
+            return true;
+        }
 
+        private void SetNextTriggerTime()
+        {
             var nextFrequency = Random.Range(frequency * (1 - frequencyVariance), frequency * (1 + frequencyVariance));
 
             nextTriggerTime = Time.time + (1 / nextFrequency);
-            return true;
+        }
+
+        public float TimeTillNextTrigger()
+        {
+            return nextTriggerTime - Time.time;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.DataModels;
+﻿using Assets.Scripts.ContractEvaluator;
+using Assets.Scripts.DataModels;
 using Assets.Scripts.GreenhouseLoader;
 using Assets.Scripts.UI.Manipulators.Scripts;
 using Dman.LSystem.SystemRuntime.DOTSRenderer;
@@ -71,10 +72,8 @@ namespace Assets.Scripts.Plants
         public event Action OnHarvested;
 
         public EventGroup beginPhaseTransition;
-        public float maxTimeBetweenSteps;
-        public float minTimeBetweenSteps;
+        public StochasticTimerFrequencyVaried updateStepTiming;
         private int stepsLeftInPhaseTransition = 0;
-        private float timeTillNextStep;
 
         public float PollinationRadius
         {
@@ -103,21 +102,17 @@ namespace Assets.Scripts.Plants
             {
                 return;
             }
-
-            timeTillNextStep -= Time.deltaTime;
-
+            if (!updateStepTiming.Tick()){
+                return;
+            }
             if (!lSystemManager.steppingHandle.CanStep())
             {
                 return;
             }
 
-            if(timeTillNextStep <= 0)
-            {
-                this.StepOnce();
-                timeTillNextStep = UnityEngine.Random.Range(minTimeBetweenSteps, maxTimeBetweenSteps);
-                stepsLeftInPhaseTransition--;
-                PhaseAdvancingCoordinator.instance.DelayPhaseComplete(maxTimeBetweenSteps + 0.1f);
-            }
+            this.StepOnce();
+            stepsLeftInPhaseTransition--;
+            PhaseAdvancingCoordinator.instance.DelayPhaseComplete(updateStepTiming.TimeTillNextTrigger() + 0.1f);
         }
 
         private void OnDestroy()
@@ -128,7 +123,7 @@ namespace Assets.Scripts.Plants
         private void PhaseTransitionBegin()
         {
             this.stepsLeftInPhaseTransition = plantType.stepsPerPhase;
-            timeTillNextStep = UnityEngine.Random.Range(minTimeBetweenSteps, maxTimeBetweenSteps);
+            updateStepTiming.Reset();
         }
 
         private void StepOnce()
