@@ -1,0 +1,16 @@
+
+
+#symbols s
+#matches s
+#include sunlight (LightAmount->s)
+#symbols ra
+#matches r
+#include diffusion (Node->r) (Amount->a)
+
+#symbols l
+#export LeafController l
+
+#define sunlightMultiplier 5
+#define maxGlucoseFromLeaf 10
+
+r(a, water, c, glucose, d) < l > s(sunlight) : sunlight > 0 && (water >= sunlight * sunlightMultiplier / 2 && glucose <= maxGlucoseFromLeaf) -> a(-sunlight * sunlightMultiplier / 2, sunlight * sunlightMultiplier)l

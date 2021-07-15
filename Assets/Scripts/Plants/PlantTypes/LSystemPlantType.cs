@@ -31,6 +31,8 @@ namespace Assets.Scripts.Plants
 
         public char flowerCharacter = 'C';
         public char seedBearingCharacter = 'D';
+        [Tooltip("When these characters are present in the l-system, the plant will be considered immature")]
+        public string growthMarkCharacters = "TJ";
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
@@ -113,7 +115,39 @@ namespace Assets.Scripts.Plants
 
         public override bool IsMature(LSystemBehavior systemManager)
         {
-            return !systemManager.steppingHandle.lastUpdateChanged || systemManager.steppingHandle.totalSteps >= systemManager.systemObject.iterations;
+            if(!systemManager.steppingHandle.lastUpdateChanged || systemManager.steppingHandle.totalSteps >= systemManager.systemObject.iterations)
+            {
+                return true;
+            }
+
+
+            UnityEngine.Profiling.Profiler.BeginSample("Is Mature Check");
+            try
+            {
+                var growthSymbols = new int[growthMarkCharacters.Length];
+                for (int i = 0; i < growthMarkCharacters.Length; i++)
+                {
+                    growthSymbols[i] = lSystem.linkedFiles.GetSymbolFromRoot(growthMarkCharacters[i]);
+                }
+                var symbols = systemManager.steppingHandle.currentState.currentSymbols.Data.symbols;
+                for (int i = 0; i < symbols.Length; i++)
+                {
+                    for (int j = 0; j < growthSymbols.Length; j++)
+                    {
+                        if (symbols[i] == growthSymbols[j])
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            }
+            finally
+            {
+
+                UnityEngine.Profiling.Profiler.EndSample();
+            }
         }
 
         protected override int GetHarvestedSeedNumber(LSystemBehavior systemManager)
