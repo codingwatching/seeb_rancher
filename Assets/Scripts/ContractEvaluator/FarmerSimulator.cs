@@ -119,6 +119,7 @@ namespace Assets.Scripts.ContractEvaluator
         {
             public StochasticTimerFrequencyVaried stepTimer;
             public StochasticTimerFrequencyVaried pollinateTimer;
+            public float timeReachedMaturity = 0;
             public PlantedLSystem plant;
             public FarmerSimulator parent;
 
@@ -137,11 +138,14 @@ namespace Assets.Scripts.ContractEvaluator
             public Seed[] TryStep()
             {
                 var stepper = plant.lSystemManager.steppingHandle;
-                if (plant.IsMature())
+                if(timeReachedMaturity != 0 && timeReachedMaturity + 1 < Time.time)
                 {
-                    // TODO: do actual breeding
                     plant.pollinationState.SelfPollinateIfNotFertile();
                     return plant.TryHarvest();
+                }
+                if (plant.IsMature() && timeReachedMaturity == 0)
+                {
+                    timeReachedMaturity = Time.time;
                 }
                 if (stepTimer.Tick() && stepper.CanStep())
                 {

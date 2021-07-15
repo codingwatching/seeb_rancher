@@ -1,0 +1,65 @@
+#symbols /\&^+-!F$`@HM
+#global /\&^+-!F$`@HM
+#matches H
+
+#symbols ra
+#matches r
+#include diffusion (Node->r) (Amount->a)
+
+#define flowerMeshIndex (flowerColorOuterIndex + flowerColorInnerIndex * 3)
+
+## ranges from 0 to 2. 0 is least ripe, 2 is most ripe.
+#define fruitColorIndex 1
+#define flowerColorInnerIndex 1
+#define flowerColorOuterIndex 1
+
+
+#define flowerAge 7
+
+
+#define flowerStalkLength 6
+## V is a flowering bud
+#export FlowerBud V
+#symbols V
+#matches V
+P(flowerFailureChance)     | V -> []
+P(1 - flowerFailureChance) | V -> V(flowerStalkLength)
+
+
+ r(a, water, c, glucose, d) < V(x) : x >  0 && water > 1 && glucose > 1 -> a(-1, -1)$(0.1)FV(x - 1)
+Hr(a, water, c, glucose, d) < V(x) -> v(0)
+
+## v is a flowering bud that has been activated
+#symbols v
+#export FlowerProgress v
+r(a, water, c, glucose, d) < v(progress) : progress < 2 && water > 0.4 && glucose > 0.4 -> a(-glucose/5, -glucose/5)v(progress + glucose/5)
+                             v(progress) : progress >= 2 -> C(0)[K(flowerMeshIndex, 1)A(1)]
+
+## C is a fruiting controller. transitions to a fruit after waiting
+#symbols C
+#matches C
+r(a, water, c, glucose, d) < C(x) : x <= 0 && water > 3 && glucose > 3 -> C(1)[D(fruitColorIndex, 1)M]
+r(a, water, c, glucose, d) < $(y) > C(bit)D(z, x) : x < fruitSize && water > 1 && glucose > 1 -> $(y * 1.3)
+
+#define fruitSize 5
+## D is a fruiting body
+#export FruitOrgan D
+#symbols D
+#matches D
+r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && water > 1 && glucose > 1 -> a(-1, -1)D(y, x + 1)
+## remove the immaturaty symbol once the fruit is fully grown
+                                   D(y, x) < M : x >= fruitSize -> 
+
+## K is a flower
+#export Flower K
+#symbols K
+#matches K
+r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && water > 1 && glucose > 1 -> a(-1, -1)K(y, x + 1)
+                          C(bit) < K(y, x) : x >= flowerAge && bit >= 1 ->
+
+## A is an anther
+#export Anther A
+#symbols A
+#matches A
+K(a, fAge) < A(x) : (hasAnther > 0) -> A(fAge * stamenSize)
+A(x) ->
