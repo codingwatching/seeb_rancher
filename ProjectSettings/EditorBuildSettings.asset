@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/contract evaluator.unity
     guid: 9cd7285e6b32c8f4ebc7e2c8f78f8c32
+  - enabled: 0
+    path: Assets/Scenes/dev plant simulator.unity
+    guid: e5fb5fdc99a569544baa26e67fedb692
   m_configObjects: {}

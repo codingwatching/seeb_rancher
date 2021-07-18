@@ -17,6 +17,7 @@
 #define flowerAge 7
 
 
+#define flowerStalkLength 7
 ## V is a flowering bud
 #export FlowerBud V
 #symbols V
@@ -26,29 +27,29 @@ P(flowerFailureChance)     | V -> []
 P(1 - flowerFailureChance) | V -> V(flowerStalkLength)
 
 
- r(a, water, c, glucose, d) < V(x) : x >  0 && water > 1 && glucose > 1 -> a(-1, -1)$(0.2)FV(x - 1)
+ r(a, water, c, glucose, d) < V(x) : x >  0 && water > 1 && glucose > 1 -> a(-1, -1)$(0.1)FV(x - 1)
 Hr(a, water, c, glucose, d) < V(x) -> C(0)[K(flowerMeshIndex, 1)A(1)]
 
-#define fruitBendFactor 1.5
+#define fruitBendFactor 0.05
 ## C is a fruiting controller. transitions to a fruit after waiting
 #symbols C
 #matches C
-r(a, water, c, glucose, d) < C(x) : x <= 0 && water > 3 && glucose > 3 -> C(1)[D(fruitColorIndex, 1)M]
-r(a, water, c, glucose, d) < $(y) > C(bit)D(z, x) : x < fruitSize && water > 1 && glucose > 1 -> $(y * fruitBendFactor)
+r(a, water, c, glucose, d) < C(x) > K(e, age) : x <= 0 && water > 3 && glucose > 3 && age >= flowerAge -> C(1)[D(fruitColorIndex, 1)M]
 
 #define fruitSize 5
 ## D is a fruiting body
 #export FruitOrgan D
 #symbols D
 #matches D
+r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && water > 0.1 && glucose > 0.1 && water > glucose -> a(-glucose/2, -glucose/2)D(y, x + glucose/2)
+r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && water > 0.1 && glucose > 0.1 && glucose > water -> a(-water/2  , -water/2  )D(y, x + water/2  )
+
+$(a) > C(bit)D(y, x) -> $(x * fruitBendFactor)
+
 ## M is an immaturaty marker
-#symbols M
-#immature M
-r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && water > 1 && glucose > 1 -> a(-1, -1)D(y, x + 1)
 ## remove the immaturaty symbol once the fruit is fully grown
                                    D(y, x) < M : x >= fruitSize -> 
 
-#define flowerStalkLength 3
 ## K is a flower
 #export Flower K
 #symbols K
@@ -63,3 +64,5 @@ r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && water > 1 && gluc
 #matches A
 K(a, fAge) < A(x) : (hasAnther > 0) -> A(fAge * stamenSize)
 A(x) ->
+
+## huh?

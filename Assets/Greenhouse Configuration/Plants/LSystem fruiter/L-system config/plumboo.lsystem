@@ -14,7 +14,6 @@
 #matches s
 #include sunlight (LightAmount->s)
 
-
 #symbols ra
 #matches r
 #define diffusionStepsPerStep 10
@@ -37,6 +36,7 @@
 #define leavesPerPetiole 5
 
 
+
 #define primaryAngularSeparation 137
 
 
@@ -44,7 +44,6 @@
 #define shootHeight 5
 #define internodeHeight 3
 #define leafAge 3
-
 
 
 ## S is the Shoot symbol
