@@ -17,7 +17,7 @@
 
 #symbols ra
 #matches r
-#define diffusionStepsPerStep 5
+#define diffusionStepsPerStep 10
 #include diffusion (Node->r) (Amount->a)
 #define defaultMaxWater 1000
 #define defaultMaxGlucose 20
