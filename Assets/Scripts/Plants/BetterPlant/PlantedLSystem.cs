@@ -166,6 +166,7 @@ namespace Assets.Scripts.Plants
             {
                 pollinationTarget.PollinateFrom(this);
             }
+            //Debug.Log($"pollinating {targetOtherPlants.Count} other plants");
         }
 
 

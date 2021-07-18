@@ -1,23 +1,7 @@
-﻿using Genetics.GeneSummarization;
-using System;
+﻿using Dman.Utilities;
+using Genetics.GeneSummarization;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using Assets.Scripts.DataModels;
-using Assets.Scripts.GreenhouseLoader;
-using Assets.Scripts.UI.Manipulators.Scripts;
-using Dman.ReactiveVariables;
-using Dman.SceneSaveSystem;
-using Dman.Utilities;
-using Genetics.GeneticDrivers;
-using System;
-using System.Collections;
-using System.Linq;
-using UniRx;
-using UnityEngine;
-using UnityEngine.VFX;
 
 namespace Assets.Scripts.UI.SeedInventory
 {

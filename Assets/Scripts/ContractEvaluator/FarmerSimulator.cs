@@ -1,7 +1,5 @@
 using Assets.Scripts.DataModels;
 using Assets.Scripts.Plants;
-using Dman.LSystem.UnityObjects;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -57,7 +55,9 @@ namespace Assets.Scripts.ContractEvaluator
         {
             if (tendedPlants.Count < maxConcurrentPlants && seedPool.Count > 0 && plantSpawnFrequency.Tick())
             {
-                this.SpawnPlant();
+                UnityEngine.Profiling.Profiler.BeginSample("spawning a plant");
+                SpawnPlant();
+                UnityEngine.Profiling.Profiler.EndSample();
             }
 
             for (int i = 0; i < tendedPlants.Count; i++)
@@ -72,7 +72,7 @@ namespace Assets.Scripts.ContractEvaluator
                 }
             }
 
-            if(seedPool.Count > seedPoolCap)
+            if (seedPool.Count > seedPoolCap)
             {
                 seedPool.RemoveRange(0, seedPool.Count - seedPoolCap);
             }
@@ -86,18 +86,18 @@ namespace Assets.Scripts.ContractEvaluator
             rayPoint += new Vector2(transform.position.x, transform.position.z);
 
             var ray = new Ray(new Vector3(rayPoint.x, transform.position.y, rayPoint.y), Vector3.down);
-            if(!Physics.Raycast(ray, out var hit, 100f, plantableThings))
+            if (!Physics.Raycast(ray, out var hit, 100f, plantableThings))
             {
                 return;
             }
+
             var nextSeedIndex = Random.Range(0, seedPool.Count);
             var nextSeed = seedPool[nextSeedIndex];
             seedPool.RemoveAt(nextSeedIndex);
 
             var newPlant = farmedPlant.SpawnNewPlant(hit.point, nextSeed, false);
             totalPlantsGrown++;
-
-            this.tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, plantPollintateFrequency,this));
+            tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, plantPollintateFrequency, this));
         }
 
         private void OnDrawGizmosSelected()
@@ -105,7 +105,7 @@ namespace Assets.Scripts.ContractEvaluator
             var newColor = Color.green;
             newColor.a = 0.4f;
             Gizmos.color = newColor;
-            this.DrawGizmoBox();
+            DrawGizmoBox();
         }
 
         private void DrawGizmoBox()
@@ -137,26 +137,38 @@ namespace Assets.Scripts.ContractEvaluator
 
             public Seed[] TryStep()
             {
-                var stepper = plant.lSystemManager.steppingHandle;
-                if(timeReachedMaturity != 0 && timeReachedMaturity + 1 < Time.time)
+                UnityEngine.Profiling.Profiler.BeginSample("plant farming step");
+                try
                 {
-                    plant.pollinationState.SelfPollinateIfNotFertile();
-                    return plant.TryHarvest();
+                    var stepper = plant.lSystemManager.steppingHandle;
+                    if (timeReachedMaturity != 0 && timeReachedMaturity + 3 < Time.time)
+                    {
+                        plant.pollinationState.SelfPollinateIfNotFertile();
+                        return plant.TryHarvest();
+                    }
+                    if (plant.IsMature() && timeReachedMaturity == 0)
+                    {
+                        timeReachedMaturity = Time.time;
+                    }
+                    if (stepTimer.Tick() && stepper.CanStep())
+                    {
+                        plant.lSystemManager.StepSystem();
+                    }
+                    if (pollinateTimer.Tick() && plant.CanPollinate())
+                    {
+                        UnityEngine.Profiling.Profiler.BeginSample("pollination");
+                        plant.SprayMySeed();
+                        UnityEngine.Profiling.Profiler.EndSample();
+                    }
+
+                    return null;
                 }
-                if (plant.IsMature() && timeReachedMaturity == 0)
+                finally
                 {
-                    timeReachedMaturity = Time.time;
-                }
-                if (stepTimer.Tick() && stepper.CanStep())
-                {
-                    plant.lSystemManager.StepSystem();
-                }
-                if(pollinateTimer.Tick() && plant.CanPollinate())
-                {
-                    plant.SprayMySeed();
+
+                    UnityEngine.Profiling.Profiler.EndSample();
                 }
 
-                return null;
             }
 
 

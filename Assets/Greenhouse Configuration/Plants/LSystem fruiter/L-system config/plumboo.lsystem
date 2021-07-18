@@ -2,7 +2,7 @@
 #iterations 500
 
 #symbols /\&^+-!F$`@
-#global /\&^+-!F$`@HM
+#global /\&^+-!F$`@H
 #symbols R
 
 #symbols q
@@ -46,12 +46,11 @@
 #define leafAge 3
 
 
-## M is an immaturaty marker
-#symbols M
 
 ## S is the Shoot symbol
 #symbols S
 #matches S
+#immature S
 S(x) : x == 0 -> @FS(x + 1)leafExpressionT(-shootHeight)
 S(x) : x < shootHeight && x > 0-> FS(x+1)
 S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
@@ -63,6 +62,7 @@ b(x) -> a(x)b(x)
 ## T is the terminal bud
 #symbols T
 #matches T
+#immature T
 T(x) : x < 0 -> T(x + 1)
 r(a, water, c, glucose, d) < T(x) : x < primaryBranchInternodes && x >= 0 && water > 1 && glucose > 1 -> a(-1, -1)I(internodeHeight)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)[&(60)B(x + 1)][\(180)&(60)B(x + 1)]\(primaryAngularSeparation)T(x + 1)
 r(a, water, c, glucose, d) < T(x) : x >= primaryBranchInternodes -> J(internodeHeight)
@@ -73,13 +73,14 @@ r(a, water, c, glucose, d) < T(x) : x >= primaryBranchInternodes -> J(internodeH
 #matches B
 B(x) -> [^(50)V][qi(0)s(0)petiole(leavesPerPetiole)]
 
-#include plumboo-organs.lsyslib (FlowerBud->V) (FlowerProgress->v) (FruitOrgan->D) (Flower->K) (Anther->A)
-#symbols VvDKA
+#include plumboo-organs.lsyslib (FlowerBud->V) (FruitOrgan->D) (Anther->A) (Flower->K)
+#symbols VDKA
 
 
 ## J is a signal which propigates from the apex, signaling flowering.
 #symbols J
 #matches J
+#immature J
 J(x) : x > 0 -> J(x - 1)
 J(x) : x <= 0 -> J
 J ->

@@ -17,23 +17,17 @@
 #define flowerAge 7
 
 
-#define flowerStalkLength 6
 ## V is a flowering bud
 #export FlowerBud V
 #symbols V
 #matches V
+#immature V
 P(flowerFailureChance)     | V -> []
 P(1 - flowerFailureChance) | V -> V(flowerStalkLength)
 
 
  r(a, water, c, glucose, d) < V(x) : x >  0 && water > 1 && glucose > 1 -> a(-1, -1)$(0.1)FV(x - 1)
-Hr(a, water, c, glucose, d) < V(x) -> v(0)
-
-## v is a flowering bud that has been activated
-#symbols v
-#export FlowerProgress v
-r(a, water, c, glucose, d) < v(progress) : progress < 2 && water > 0.4 && glucose > 0.4 -> a(-glucose/5, -glucose/5)v(progress + glucose/5)
-                             v(progress) : progress >= 2 -> C(0)[K(flowerMeshIndex, 1)A(1)]
+Hr(a, water, c, glucose, d) < V(x) -> C(0)[K(flowerMeshIndex, 1)A(1)]
 
 ## C is a fruiting controller. transitions to a fruit after waiting
 #symbols C
@@ -46,14 +40,19 @@ r(a, water, c, glucose, d) < $(y) > C(bit)D(z, x) : x < fruitSize && water > 1 &
 #export FruitOrgan D
 #symbols D
 #matches D
+## M is an immaturaty marker
+#symbols M
+#immature M
 r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && water > 1 && glucose > 1 -> a(-1, -1)D(y, x + 1)
 ## remove the immaturaty symbol once the fruit is fully grown
                                    D(y, x) < M : x >= fruitSize -> 
 
+#define flowerStalkLength 3
 ## K is a flower
 #export Flower K
 #symbols K
 #matches K
+#immature K
 r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && water > 1 && glucose > 1 -> a(-1, -1)K(y, x + 1)
                           C(bit) < K(y, x) : x >= flowerAge && bit >= 1 ->
 

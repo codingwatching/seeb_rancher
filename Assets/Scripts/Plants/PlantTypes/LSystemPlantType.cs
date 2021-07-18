@@ -31,8 +31,6 @@ namespace Assets.Scripts.Plants
 
         public char flowerCharacter = 'C';
         public char seedBearingCharacter = 'D';
-        [Tooltip("When these characters are present in the l-system, the plant will be considered immature")]
-        public string growthMarkCharacters = "TJ";
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
@@ -115,39 +113,19 @@ namespace Assets.Scripts.Plants
 
         public override bool IsMature(LSystemBehavior systemManager)
         {
-            if(!systemManager.steppingHandle.lastUpdateChanged || systemManager.steppingHandle.totalSteps >= systemManager.systemObject.iterations)
-            {
-                return true;
-            }
-
-
-            UnityEngine.Profiling.Profiler.BeginSample("Is Mature Check");
-            try
-            {
-                var growthSymbols = new int[growthMarkCharacters.Length];
-                for (int i = 0; i < growthMarkCharacters.Length; i++)
-                {
-                    growthSymbols[i] = lSystem.linkedFiles.GetSymbolFromRoot(growthMarkCharacters[i]);
-                }
-                var symbols = systemManager.steppingHandle.currentState.currentSymbols.Data.symbols;
-                for (int i = 0; i < symbols.Length; i++)
-                {
-                    for (int j = 0; j < growthSymbols.Length; j++)
-                    {
-                        if (symbols[i] == growthSymbols[j])
-                        {
-                            return false;
-                        }
-                    }
-                }
+            if (!systemManager.steppingHandle.lastUpdateChanged) {
 
                 return true;
             }
-            finally
+            if(systemManager.steppingHandle.totalSteps >= systemManager.systemObject.iterations)
             {
-
-                UnityEngine.Profiling.Profiler.EndSample();
+                return true;
             }
+            if (systemManager.steppingHandle.currentState.hasImmatureSymbols)
+            {
+                return false;
+            }
+            return true;
         }
 
         protected override int GetHarvestedSeedNumber(LSystemBehavior systemManager)
