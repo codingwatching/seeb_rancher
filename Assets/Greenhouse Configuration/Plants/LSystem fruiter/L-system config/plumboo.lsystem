@@ -1,5 +1,5 @@
 #axiom r(0.1, 10, 1000, 10, 20)b(10)i(0)S(0)
-#iterations 500
+#iterations 100000
 
 #symbols /\&^+-!F$`@
 #global /\&^+-!F$`@H
@@ -75,7 +75,7 @@ T(progress, x) : x < 0 -> T(progress, x + 1)
 
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useGlucose -> a(-glucose/2, -glucose/2)T(progress + glucose/2, x)
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useWater   -> a(-  water/2, -  water/2)T(progress +   water/2, x)
-r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress >= 1 -> I(0, internodeHeight)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)[&(60)B][\(180)&(60)B]\(primaryAngularSeparation)T(progress - 1, x + 1)
+r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress >= 1 -> I(0, internodeHeight)[&(60)B][\(180)&(60)B]\(primaryAngularSeparation)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)T(progress - 1, x + 1)
 
 r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && progress <  2 && useWater   -> a(-glucose/2, -glucose/2)T(progress + glucose/2, x)
 r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && progress <  2 && useGlucose -> a(-  water/2, -  water/2)T(progress +   water/2, x)
@@ -93,11 +93,10 @@ r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && pr
 #include fruiting-organs.lsyslib (FlowerBud->V) (FruitOrgan->D) (Anther->A) (Flower->K)
 #symbols VDKA
 
-
 ## B is a bud which will grow a leaf structure and also a flower
 #symbols B
 #matches B
-B -> [^(50)V]I(0, petioleStalkLength)[qi(0)s(0)petiole(leavesPerPetiole)]
+B -> [r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)^(50)V]r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)I(0, petioleStalkLength)[qi(0)s(0)petiole(leavesPerPetiole)]
 
 
 

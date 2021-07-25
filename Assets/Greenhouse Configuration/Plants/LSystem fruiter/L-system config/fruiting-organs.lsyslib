@@ -37,7 +37,7 @@ Hr(a, water, c, glucose, d) < V(progress, x) -> C(0)[K(flowerMeshIndex, 1)A(1)]
 ## C is a fruiting controller. transitions to a fruit after waiting
 #symbols C
 #matches C
-r(a, water, c, glucose, d) < C(x) > K(e, age) : x <= 0 && water > 3 && glucose > 3 && age >= flowerAge -> C(1)[D(fruitColorIndex, 1)M]
+r(a, water, c, glucose, d) < C(x) > K(e, age) : x <= 0 && water > 2 && glucose > 2 && age >= flowerAge -> C(1)[D(fruitColorIndex, 1)M]
 
 #define fruitSize 5
 ## D is a fruiting body
