@@ -24,8 +24,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
   lSystemPlantPrefab: {fileID: 7126020408499974555, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
   lSystem: {fileID: 378491273550888993, guid: 50ec329eca2ebda45af2187f82130448, type: 3}
-  phaseFractionTillSprout: 1
-  stepsPerPhase: 10
+  phaseFractionTillSprout: 0.07
+  stepsPerPhase: 50
   flowerCharacter: 75
   seedBearingCharacter: 68
   geneticModifiers:

@@ -43,6 +43,7 @@
 ## variables defined for utility
 #define shootHeight 5
 #define internodeHeight 3
+#define leafOrgan l(1, leafAge)
 #define leafAge 3
 
 
@@ -50,7 +51,7 @@
 #symbols S
 #matches S
 #immature S
-S(x) : x == 0 -> @FS(x + 1)leafExpressionT(-shootHeight)
+S(x) : x == 0 -> @FS(x + 1)[i(0)[&&leafOrgan][/(180)&&leafOrgan]]T(-shootHeight)
 S(x) : x < shootHeight && x > 0-> FS(x+1)
 S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
@@ -58,22 +59,31 @@ S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 #symbols b
 b(x) -> a(x)b(x)
 
-## T is the terminal bud
+## T is a terminal bud
 #symbols T
 #matches T
 #immature T
 T(x) : x < 0 -> T(x + 1)
-r(a, water, c, glucose, d) < T(x) : x < primaryBranchInternodes && x >= 0 && water > 1 && glucose > 1 -> a(-1, -1)I(internodeHeight)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)[&(60)B(x + 1)][\(180)&(60)B(x + 1)]\(primaryAngularSeparation)T(x + 1)
-r(a, water, c, glucose, d) < T(x) : x >= primaryBranchInternodes -> J(internodeHeight)
+r(a, water, c, glucose, d) < T(x) : x < primaryBranchInternodes && x >= 0 && water > 1 && glucose > 1 -> a(-1, -1)I(0, internodeHeight)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)[&(60)B][\(180)&(60)B]\(primaryAngularSeparation)T(x + 1)
+r(a, water, c, glucose, d) < T(x) : x >= primaryBranchInternodes && water > 2 && glucose > 2 -> a(-2, -2)J(internodeHeight)
 
 
-## B is a bud off the main stem, and randomly chooses what it will become
+## Y is a a terminal bud of a flowering stalk
+## #symbols Y
+## #immature Y
+## r(a, water, c, glucose, d) < Y(x) : x < primaryBranchInternodes && x >= 0 && water > 1 && glucose > 1 -> a(-1, -1)I(internodeHeight)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)[&(60)N][\(180)&(60)N]\(primaryAngularSeparation)Y(x + 1)
+## r(a, water, c, glucose, d) < Y(x) : x >= primaryBranchInternodes -> J(internodeHeight)
+
+
+#include fruiting-organs.lsyslib (FlowerBud->V) (FruitOrgan->D) (Anther->A) (Flower->K)
+#symbols VDKA
+
+
+## B is a bud which will grow a leaf structure and also a flower
 #symbols B
 #matches B
-B(x) -> [^(50)V][qi(0)s(0)petiole(leavesPerPetiole)]
+B -> [^(50)V]I(0, 3)[qi(0)s(0)petiole(leavesPerPetiole)]
 
-#include plumboo-organs.lsyslib (FlowerBud->V) (FruitOrgan->D) (Anther->A) (Flower->K)
-#symbols VDKA
 
 
 ## J is a signal which propigates from the apex, signaling flowering.
@@ -92,25 +102,26 @@ H ->
 #symbols P
 #matches P
 #define petiole( P(
-petiole(x) : x >= 2 -> I(3)[O((x - 1) / 2, -petioleLeafAngularDist)]L[O((x - 1) / 2, petioleLeafAngularDist)]
-petiole(x) : x > 0 -> L
+petiole(x) : x >= 2 -> [O((x - 1) / 2, -petioleLeafAngularDist)][leafOrgan][O((x - 1) / 2, petioleLeafAngularDist)]
+petiole(x) : x > 0 -> [leafOrgan]
 
 ## O is a symbol which fans leaves out
 #symbols O
-O(x, t) : x > 0 -> +(t)L(x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
+O(x, t) : x > 0 -> +(t)l(1, x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
 
+#define useGlucose water > glucose && glucose > 0.1
+#define useWater glucose > water && water > 0.1
 ## I is an internode, used to just build length of certain size
 #symbols I
 #matches I
-I(x)                     : x > 0 -> I(x - 1)$(0.003)@F
-I(x) > r(a, b, c, d, e)J         -> JI(x)H
+r(a, water, b, glucose, c) < I(segmentProgress, x) : x > 0 && segmentProgress < 1 && useGlucose -> a(-glucose/2, -glucose/2)I(segmentProgress + glucose / 2, x)
+r(a, water, b, glucose, c) < I(segmentProgress, x) : x > 0 && segmentProgress < 1 && useWater   -> a(-  water/2, -  water/2)I(segmentProgress +   water / 2, x)
+
+I(segmentProgress, x) : x > 0 && segmentProgress >= 1 -> $(0.003)@FI(0, x - 1)
+I(segmentProgress, x) > r(a, b, c, d, e)J         -> JI(segmentProgress, x)H
 
 ## organs
 
-#define leafExpression [i(0)[&&L][/(180)&&L]]
 ## l is a leaf
-#symbols Ll
-#matches Ll
-L    -> l(1, leafAge)
-L(x) -> [l(1, x)]
+#symbols l
 l(x, y) : x < y -> l(x + 1, y)

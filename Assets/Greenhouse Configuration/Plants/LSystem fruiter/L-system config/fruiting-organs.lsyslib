@@ -24,11 +24,13 @@
 #matches V
 #immature V
 P(flowerFailureChance)     | V -> []
-P(1 - flowerFailureChance) | V -> V(flowerStalkLength)
+P(1 - flowerFailureChance) | V -> V(0, flowerStalkLength)
 
 
- r(a, water, c, glucose, d) < V(x) : x >  0 && water > 1 && glucose > 1 -> a(-1, -1)$(0.1)FV(x - 1)
-Hr(a, water, c, glucose, d) < V(x) -> C(0)[K(flowerMeshIndex, 1)A(1)]
+ r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 && useGlucose -> a(-glucose/2, -glucose/2)V(progress + glucose/2, x)
+ r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 &&   useWater -> a(-  water/2, -  water/2)V(progress +   water/2, x)
+ r(a, water, c, glucose, d) < V(progress, x) : progress >=1 && x >  0 -> $(0.1)FV(0, x - 1)
+Hr(a, water, c, glucose, d) < V(progress, x) -> C(0)[K(flowerMeshIndex, 1)A(1)]
 
 #define fruitBendFactor 0.05
 ## C is a fruiting controller. transitions to a fruit after waiting
@@ -65,4 +67,3 @@ r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && water > 1 && gluc
 K(a, fAge) < A(x) : (hasAnther > 0) -> A(fAge * stamenSize)
 A(x) ->
 
-## huh?
