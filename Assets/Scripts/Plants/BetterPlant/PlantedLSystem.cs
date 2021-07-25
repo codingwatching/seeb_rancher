@@ -153,6 +153,8 @@ namespace Assets.Scripts.Plants
         {
             var steppingHandle = this.lSystemManager.steppingHandle;
             steppingHandle.runtimeParameters.SetParameter(plantType.simulationSpeedRuntimeVariable, simulationSpeed.CurrentValue);
+            var stepper = steppingHandle.Stepper();
+            stepper.customSymbols.diffusionConstantRuntimeGlobalMultiplier = simulationSpeed.CurrentValue;
             this.lSystemManager.StepSystem();
         }
 
