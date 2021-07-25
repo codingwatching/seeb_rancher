@@ -17,6 +17,7 @@
 #symbols ra
 #matches r
 #define diffusionStepsPerStep 10
+#define independentDiffusionStep true
 #include diffusion (Node->r) (Amount->a)
 #define defaultMaxWater 1000
 #define defaultMaxGlucose 20
@@ -32,8 +33,12 @@
 #define primaryBranchInternodes 7
 #define flowerFailureChance 0.25
 #define stamenSize 0.6
+## ranges from 1 to 10
+#define kinkiness 2
 ## ranges from 1 to 5
 #define leavesPerPetiole 5
+#define internodeHeight 3
+#define petioleStalkLength 3
 
 
 
@@ -42,16 +47,17 @@
 
 ## variables defined for utility
 #define shootHeight 5
-#define internodeHeight 3
 #define leafOrgan l(1, leafAge)
 #define leafAge 3
 
+#define useGlucose water > glucose && glucose > 0.1
+#define useWater glucose > water && water > 0.1
 
 ## S is the Shoot symbol
 #symbols S
 #matches S
 #immature S
-S(x) : x == 0 -> @FS(x + 1)[i(0)[&&leafOrgan][/(180)&&leafOrgan]]T(-shootHeight)
+S(x) : x == 0 -> @FS(x + 1)[i(0)[&&leafOrgan][/(180)&&leafOrgan]]T(0, -shootHeight)
 S(x) : x < shootHeight && x > 0-> FS(x+1)
 S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
@@ -63,9 +69,16 @@ b(x) -> a(x)b(x)
 #symbols T
 #matches T
 #immature T
-T(x) : x < 0 -> T(x + 1)
-r(a, water, c, glucose, d) < T(x) : x < primaryBranchInternodes && x >= 0 && water > 1 && glucose > 1 -> a(-1, -1)I(0, internodeHeight)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)[&(60)B][\(180)&(60)B]\(primaryAngularSeparation)T(x + 1)
-r(a, water, c, glucose, d) < T(x) : x >= primaryBranchInternodes && water > 2 && glucose > 2 -> a(-2, -2)J(internodeHeight)
+T(progress, x) : x < 0 -> T(progress, x + 1)
+
+r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useGlucose -> a(-glucose/2, -glucose/2)T(progress + glucose/2, x)
+r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useWater   -> a(-  water/2, -  water/2)T(progress +   water/2, x)
+r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress >= 1 -> I(0, internodeHeight)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)[&(60)B][\(180)&(60)B]\(primaryAngularSeparation)T(progress - 1, x + 1)
+
+r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && progress <  2 && useWater   -> a(-glucose/2, -glucose/2)T(progress + glucose/2, x)
+r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && progress <  2 && useGlucose -> a(-  water/2, -  water/2)T(progress +   water/2, x)
+r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && progress >= 2 -> J(internodeHeight)
+
 
 
 ## Y is a a terminal bud of a flowering stalk
@@ -82,7 +95,7 @@ r(a, water, c, glucose, d) < T(x) : x >= primaryBranchInternodes && water > 2 &&
 ## B is a bud which will grow a leaf structure and also a flower
 #symbols B
 #matches B
-B -> [^(50)V]I(0, 3)[qi(0)s(0)petiole(leavesPerPetiole)]
+B -> [^(50)V]I(0, petioleStalkLength)[qi(0)s(0)petiole(leavesPerPetiole)]
 
 
 
@@ -109,16 +122,24 @@ petiole(x) : x > 0 -> [leafOrgan]
 #symbols O
 O(x, t) : x > 0 -> +(t)l(1, x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
 
-#define useGlucose water > glucose && glucose > 0.1
-#define useWater glucose > water && water > 0.1
 ## I is an internode, used to just build length of certain size
 #symbols I
 #matches I
-r(a, water, b, glucose, c) < I(segmentProgress, x) : x > 0 && segmentProgress < 1 && useGlucose -> a(-glucose/2, -glucose/2)I(segmentProgress + glucose / 2, x)
-r(a, water, b, glucose, c) < I(segmentProgress, x) : x > 0 && segmentProgress < 1 && useWater   -> a(-  water/2, -  water/2)I(segmentProgress +   water / 2, x)
+r(a, water, b, glucose, c) < I(progress, x) : x > 0 && progress < 1 && useGlucose -> a(-glucose/2, -glucose/2)I(progress + glucose / 2, x)
+r(a, water, b, glucose, c) < I(progress, x) : x > 0 && progress < 1 && useWater   -> a(-  water/2, -  water/2)I(progress +   water / 2, x)
 
-I(segmentProgress, x) : x > 0 && segmentProgress >= 1 -> $(0.003)@FI(0, x - 1)
-I(segmentProgress, x) > r(a, b, c, d, e)J         -> JI(segmentProgress, x)H
+I(progress, x) : x > 0 && progress >= 1 -> ~@FI(progress - 1, x - 1)
+I(progress, x) > r(a, b, c, d, e)J         -> JI(progress, x)H
+
+
+#define defaultBend 0.005
+## ~ is a random kink
+#symbols ~
+P(1/5) | ~ -> $(defaultBend)
+P(1/5) | ~ -> $(defaultBend)^(2 * kinkiness)
+P(1/5) | ~ -> $(defaultBend)&(2 * kinkiness)
+P(1/5) | ~ -> $(defaultBend)+(2 * kinkiness)
+P(1/5) | ~ -> $(defaultBend)-(2 * kinkiness)
 
 ## organs
 

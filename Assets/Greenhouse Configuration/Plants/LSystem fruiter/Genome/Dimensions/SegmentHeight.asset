@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dc4cb1ff26602446b671490bced4272, type: 3}
-  m_Name: PlantAngleDistribution
+  m_Name: SegmentHeight
   m_EditorClassIdentifier: 
-  myId: 14
-  DriverName: Angle Distribution
-  minValue: 0
-  maxValue: 0
+  myId: 1
+  DriverName: Segment Height
+  minValue: 2
+  maxValue: 5
   summaryBucketCount: 0

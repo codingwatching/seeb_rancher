@@ -15,4 +15,6 @@ MonoBehaviour:
   myId: 12
   DriverName: Outer Flower color regulator 2
   outcomeWhenTrue: Index+
+  trueColor: {r: 0, g: 0, b: 0, a: 1}
   outcomeWhenFalse: Index-
+  falseColor: {r: 0, g: 0, b: 0, a: 1}

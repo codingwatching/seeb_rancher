@@ -45,3 +45,7 @@ MonoBehaviour:
     lSystemDefineDirectiveName: primaryAngularSeparation
   - geneticDriver: {fileID: 11400000, guid: 48b44ffd308cac841a56dbb06d85ba6a, type: 2}
     lSystemDefineDirectiveName: leavesPerPetiole
+  - geneticDriver: {fileID: 11400000, guid: 476a491ae0887b6468260f704c39006b, type: 2}
+    lSystemDefineDirectiveName: petioleStalkLength
+  - geneticDriver: {fileID: 11400000, guid: 85c64de1bd72f2e498ce7f90682d14b2, type: 2}
+    lSystemDefineDirectiveName: internodeHeight

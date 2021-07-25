@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc4cb1ff26602446b671490bced4272, type: 3}
-  m_Name: PlantAngleDistribution
+  m_Script: {fileID: 11500000, guid: 0a076b4913a0118448c26c33edc6da83, type: 3}
+  m_Name: SegmentHeightGene
   m_EditorClassIdentifier: 
-  myId: 14
-  DriverName: Angle Distribution
-  minValue: 0
-  maxValue: 0
-  summaryBucketCount: 0
+  floatOutput: {fileID: 11400000, guid: 85c64de1bd72f2e498ce7f90682d14b2, type: 2}
+  relativeDominantRange: 0.4
+  rangeMin: 2
+  rangeMax: 5

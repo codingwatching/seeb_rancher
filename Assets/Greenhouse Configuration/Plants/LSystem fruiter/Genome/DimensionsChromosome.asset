@@ -18,4 +18,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10e55482082d8d848bb38958445085aa, type: 2}
   - {fileID: 11400000, guid: 0cdbc9805f21b2a4b9d08531c981daaa, type: 2}
   - {fileID: 11400000, guid: 018e57b49ddb9df4fbe6cce53b471ac2, type: 2}
+  - {fileID: 11400000, guid: e2d7b2c997d5ce040af568de6f5902ac, type: 2}
   chromosomeCopies: 2

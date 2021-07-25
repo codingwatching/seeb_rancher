@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myId: 3
   DriverName: FloweringChance
+  minValue: 0
+  maxValue: 0
+  summaryBucketCount: 0

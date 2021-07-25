@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myId: 15
   DriverName: Petiole Leaf Count
+  minValue: 0
+  maxValue: 0
+  summaryBucketCount: 0

@@ -6,6 +6,7 @@
 #matches r
 #include diffusion (Node->r) (Amount->a)
 
+## variables controlled by genes
 #define flowerMeshIndex (flowerColorOuterIndex + flowerColorInnerIndex * 3)
 
 ## ranges from 0 to 2. 0 is least ripe, 2 is most ripe.
@@ -29,7 +30,7 @@ P(1 - flowerFailureChance) | V -> V(0, flowerStalkLength)
 
  r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 && useGlucose -> a(-glucose/2, -glucose/2)V(progress + glucose/2, x)
  r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 &&   useWater -> a(-  water/2, -  water/2)V(progress +   water/2, x)
- r(a, water, c, glucose, d) < V(progress, x) : progress >=1 && x >  0 -> $(0.1)FV(0, x - 1)
+ r(a, water, c, glucose, d) < V(progress, x) : progress >=1 && x >  0 -> $(0.1)FV(progress - 1, x - 1)
 Hr(a, water, c, glucose, d) < V(progress, x) -> C(0)[K(flowerMeshIndex, 1)A(1)]
 
 #define fruitBendFactor 0.05
@@ -43,8 +44,8 @@ r(a, water, c, glucose, d) < C(x) > K(e, age) : x <= 0 && water > 3 && glucose >
 #export FruitOrgan D
 #symbols D
 #matches D
-r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && water > 0.1 && glucose > 0.1 && water > glucose -> a(-glucose/2, -glucose/2)D(y, x + glucose/2)
-r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && water > 0.1 && glucose > 0.1 && glucose > water -> a(-water/2  , -water/2  )D(y, x + water/2  )
+r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && useGlucose -> a(-glucose/2, -glucose/2)D(y, x + glucose/2)
+r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && useWater   -> a(-  water/2, -  water/2)D(y, x +   water/2)
 
 $(a) > C(bit)D(y, x) -> $(x * fruitBendFactor)
 
@@ -57,7 +58,8 @@ $(a) > C(bit)D(y, x) -> $(x * fruitBendFactor)
 #symbols K
 #matches K
 #immature K
-r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && water > 1 && glucose > 1 -> a(-1, -1)K(y, x + 1)
+r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge &&   useWater -> a(-  water/2, -  water/2)K(y, x +   water/2)
+r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && useGlucose -> a(-glucose/2, -glucose/2)K(y, x + glucose/2)
                           C(bit) < K(y, x) : x >= flowerAge && bit >= 1 ->
 
 ## A is an anther
