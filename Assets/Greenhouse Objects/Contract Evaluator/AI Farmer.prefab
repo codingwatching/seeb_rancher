@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158876661527577261}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farmedPlant: {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}
-  spawnExtent: {x: 9, y: 9}
+  spawnExtent: {x: 4, y: 4}
   plantableThings:
     serializedVersion: 2
     m_Bits: 2048

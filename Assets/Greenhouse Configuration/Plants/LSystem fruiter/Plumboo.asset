@@ -49,3 +49,5 @@ MonoBehaviour:
     lSystemDefineDirectiveName: petioleStalkLength
   - geneticDriver: {fileID: 11400000, guid: 85c64de1bd72f2e498ce7f90682d14b2, type: 2}
     lSystemDefineDirectiveName: internodeHeight
+  - geneticDriver: {fileID: 11400000, guid: e15b6efdad41b1946971a88f0814989d, type: 2}
+    lSystemDefineDirectiveName: kinkiness

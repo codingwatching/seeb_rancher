@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PetioleStalkLengthGene
   m_EditorClassIdentifier: 
   floatOutput: {fileID: 11400000, guid: 476a491ae0887b6468260f704c39006b, type: 2}
-  relativeDominantRange: 0.2
+  relativeDominantRange: 0.4
   rangeMin: 2
-  rangeMax: 8
+  rangeMax: 14

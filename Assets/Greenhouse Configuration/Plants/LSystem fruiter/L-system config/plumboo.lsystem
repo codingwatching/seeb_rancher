@@ -132,14 +132,14 @@ I(progress, x) : x > 0 && progress >= 1 -> ~@FI(progress - 1, x - 1)
 I(progress, x) > r(a, b, c, d, e)J         -> JI(progress, x)H
 
 
-#define defaultBend 0.005
+#define defaultBend 0.01
 ## ~ is a random kink
 #symbols ~
-P(1/5) | ~ -> $(defaultBend)
-P(1/5) | ~ -> $(defaultBend)^(2 * kinkiness)
-P(1/5) | ~ -> $(defaultBend)&(2 * kinkiness)
-P(1/5) | ~ -> $(defaultBend)+(2 * kinkiness)
-P(1/5) | ~ -> $(defaultBend)-(2 * kinkiness)
+P(1/5) | ~ -> $(defaultBend * kinkiness)
+P(1/5) | ~ -> $(defaultBend * kinkiness)^(2 * kinkiness)
+P(1/5) | ~ -> $(defaultBend * kinkiness)&(2 * kinkiness)
+P(1/5) | ~ -> $(defaultBend * kinkiness)+(2 * kinkiness)
+P(1/5) | ~ -> $(defaultBend * kinkiness)-(2 * kinkiness)
 
 ## organs
 

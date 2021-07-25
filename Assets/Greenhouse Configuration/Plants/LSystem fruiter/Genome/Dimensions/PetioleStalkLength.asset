@@ -15,5 +15,5 @@ MonoBehaviour:
   myId: 0
   DriverName: Petiole Stalk Length
   minValue: 2
-  maxValue: 8
+  maxValue: 14
   summaryBucketCount: 0
