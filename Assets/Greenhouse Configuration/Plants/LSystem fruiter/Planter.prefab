@@ -516,12 +516,12 @@ MonoBehaviour:
   minPollenSpreadRadius: 1
   maxPollenSpreadRadius: 4
   plantsParent: {fileID: 7643680841328762183}
-  updateStepTiming:
-    frequency: 4
-    frequencyVariance: 0.4
-  pollinationSpreadTiming:
-    frequency: 1
-    frequencyVariance: 0.5
+  simulationSpeed:
+    DataSource: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: d512f30a21eae634fb550d50df098065, type: 2}
+    Instancer: {fileID: 0}
+    NamePath: 
 --- !u!114 &5756600527171596922
 MonoBehaviour:
   m_ObjectHideFlags: 0

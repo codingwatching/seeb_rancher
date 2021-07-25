@@ -1,5 +1,7 @@
 using Assets.Scripts.DataModels;
 using Assets.Scripts.Plants;
+using Dman.ObjectSets;
+using Dman.ReactiveVariables;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,9 +16,8 @@ namespace Assets.Scripts.ContractEvaluator
 
         public LayerMask plantableThings;
         public int maxConcurrentPlants;
+        public FloatReference simulationSpeed;
         public StochasticTimerFrequencyVaried plantSpawnFrequency;
-        public StochasticTimerFrequencyVaried plantUpdateFrequency;
-        public StochasticTimerFrequencyVaried plantPollintateFrequency;
 
 
         public List<Seed> seedPool;
@@ -97,7 +98,7 @@ namespace Assets.Scripts.ContractEvaluator
 
             var newPlant = farmedPlant.SpawnNewPlant(hit.point, nextSeed, false);
             totalPlantsGrown++;
-            tendedPlants.Add(new FarmedLSystem(newPlant, plantUpdateFrequency, plantPollintateFrequency, this));
+            tendedPlants.Add(new FarmedLSystem(newPlant, this));
         }
 
         private void OnDrawGizmosSelected()
@@ -125,13 +126,11 @@ namespace Assets.Scripts.ContractEvaluator
 
             public FarmedLSystem(
                 PlantedLSystem plant,
-                StochasticTimerFrequencyVaried timerDefinition,
-                StochasticTimerFrequencyVaried pollinateTimerDefinition,
                 FarmerSimulator parent)
             {
                 this.plant = plant;
-                stepTimer = new StochasticTimerFrequencyVaried(timerDefinition);
-                pollinateTimer = new StochasticTimerFrequencyVaried(pollinateTimerDefinition);
+                stepTimer = new StochasticTimerFrequencyVaried(plant.plantType.updateStepTiming);
+                pollinateTimer = new StochasticTimerFrequencyVaried(plant.plantType.pollinationSpreadTiming);
                 this.parent = parent;
             }
 
@@ -152,9 +151,9 @@ namespace Assets.Scripts.ContractEvaluator
                     }
                     if (stepTimer.Tick() && stepper.CanStep())
                     {
-                        plant.lSystemManager.StepSystem();
+                        plant.StepOnce();
                     }
-                    if (pollinateTimer.Tick() && plant.CanPollinate())
+                    if (pollinateTimer.Tick(parent.simulationSpeed.CurrentValue) && plant.CanPollinate())
                     {
                         UnityEngine.Profiling.Profiler.BeginSample("pollination");
                         plant.SprayMySeed();
@@ -165,13 +164,9 @@ namespace Assets.Scripts.ContractEvaluator
                 }
                 finally
                 {
-
                     UnityEngine.Profiling.Profiler.EndSample();
                 }
-
             }
-
-
         }
     }
 }

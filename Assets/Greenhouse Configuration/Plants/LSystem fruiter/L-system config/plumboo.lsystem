@@ -26,6 +26,9 @@
 #runtime hasAnther 1
 #runtime isPollinated 0
 
+## floating variable which adjusts the simulation speed
+#runtime simSpeed 1
+
 ## composition definitions. define directives evaluate in-order, these directives rely on subsequent definitions to complete
 #define petioleLeafAngularDist (270 / leavesPerPetiole)
 
@@ -41,7 +44,6 @@
 #define petioleStalkLength 3
 
 
-
 #define primaryAngularSeparation 137
 
 
@@ -51,7 +53,7 @@
 #define leafAge 3
 
 #define useGlucose water > glucose && glucose > 0.1
-#define useWater glucose > water && water > 0.1
+#define useWater glucose >= water && water > 0.1
 
 ## S is the Shoot symbol
 #symbols S
@@ -63,7 +65,7 @@ S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
 ## b is the water producing root
 #symbols b
-b(x) -> a(x)b(x)
+b(x) -> a(x * simSpeed)b(x)
 
 ## T is a terminal bud
 #symbols T

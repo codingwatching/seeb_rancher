@@ -72,8 +72,9 @@ namespace Assets.Scripts.Plants
 
         public event Action OnHarvested;
 
-        public StochasticTimerFrequencyVaried updateStepTiming;
-        public StochasticTimerFrequencyVaried pollinationSpreadTiming;
+        public FloatReference simulationSpeed;
+        private StochasticTimerFrequencyVaried updateStepTiming;
+        private StochasticTimerFrequencyVaried pollinationSpreadTiming;
         private int stepsLeftInPhaseTransition = 0;
 
         public float PollinationRadius
@@ -94,6 +95,8 @@ namespace Assets.Scripts.Plants
 
         private void Start()
         {
+            updateStepTiming = new StochasticTimerFrequencyVaried(plantType.updateStepTiming);
+            pollinationSpreadTiming = new StochasticTimerFrequencyVaried(plantType.pollinationSpreadTiming);
         }
 
         private void Update()
@@ -146,8 +149,10 @@ namespace Assets.Scripts.Plants
             updateStepTiming.Reset();
         }
 
-        private void StepOnce()
+        public void StepOnce()
         {
+            var steppingHandle = this.lSystemManager.steppingHandle;
+            steppingHandle.runtimeParameters.SetParameter(plantType.simulationSpeedRuntimeVariable, simulationSpeed.CurrentValue);
             this.lSystemManager.StepSystem();
         }
 

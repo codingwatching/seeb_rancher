@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.DataModels;
+﻿using Assets.Scripts.ContractEvaluator;
+using Assets.Scripts.DataModels;
 using Dman.LSystem.SystemRuntime.DOTSRenderer;
 using Dman.LSystem.SystemRuntime.LSystemEvaluator;
 using Dman.LSystem.SystemRuntime.ThreadBouncer;
@@ -28,9 +29,13 @@ namespace Assets.Scripts.Plants
 
         public float phaseFractionTillSprout = 1f;
         public int stepsPerPhase = 3;
+        public StochasticTimerFrequencyVaried updateStepTiming;
+        public StochasticTimerFrequencyVaried pollinationSpreadTiming;
 
         public char flowerCharacter = 'C';
         public char seedBearingCharacter = 'D';
+
+        public string simulationSpeedRuntimeVariable;
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
 
@@ -113,8 +118,10 @@ namespace Assets.Scripts.Plants
 
         public override bool IsMature(LSystemBehavior systemManager)
         {
-            if (!systemManager.steppingHandle.lastUpdateChanged) {
-
+            var hasImmatureMarkers = systemManager.steppingHandle.systemObject.linkedFiles.immaturitySymbolMarkers.Length > 0;
+            if (!hasImmatureMarkers && !systemManager.steppingHandle.lastUpdateChanged)
+            {
+                // we only care if the last update changed the system if there are no immaturity markers defined
                 return true;
             }
             if(systemManager.steppingHandle.totalSteps >= systemManager.systemObject.iterations)

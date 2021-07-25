@@ -80,6 +80,9 @@
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\IntState.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\IntReference.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\FloatReference.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\FloatVariableChangedToUnityEvent.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\Bindings\AnimatorSpeedBinding.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\FloatVariableFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\ReactiveVariables.asmdef" />

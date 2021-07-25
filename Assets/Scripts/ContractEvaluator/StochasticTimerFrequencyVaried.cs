@@ -17,7 +17,8 @@ namespace Assets.Scripts.ContractEvaluator
         [Range(0, 1 - float.Epsilon)]
         public float frequencyVariance = 0.1f;
 
-        private float nextTriggerTime;
+        private float lastTriggerTime;
+        private float currentDelayTillNextTrigger;
 
         public StochasticTimerFrequencyVaried(StochasticTimerFrequencyVaried other)
         {
@@ -31,9 +32,10 @@ namespace Assets.Scripts.ContractEvaluator
             this.SetNextTriggerTime();
         }
 
-        public bool Tick()
+        public bool Tick(float tickSpeedMultiplier = 1)
         {
-            if (Time.time < nextTriggerTime)
+            var actualDelayTillNextTrigger = currentDelayTillNextTrigger / tickSpeedMultiplier;
+            if (Time.time < lastTriggerTime + actualDelayTillNextTrigger)
             {
                 return false;
             }
@@ -45,12 +47,13 @@ namespace Assets.Scripts.ContractEvaluator
         {
             var nextFrequency = Random.Range(frequency * (1 - frequencyVariance), frequency * (1 + frequencyVariance));
 
-            nextTriggerTime = Time.time + (1 / nextFrequency);
+            currentDelayTillNextTrigger = (1 / nextFrequency);
+            lastTriggerTime = Time.time;
         }
 
         public float TimeTillNextTrigger()
         {
-            return nextTriggerTime - Time.time;
+            return currentDelayTillNextTrigger;
         }
     }
 }
