@@ -25,9 +25,9 @@ MonoBehaviour:
   lSystemPlantPrefab: {fileID: 7126020408499974555, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
   lSystem: {fileID: 378491273550888993, guid: 50ec329eca2ebda45af2187f82130448, type: 3}
   phaseFractionTillSprout: 0.07
-  stepsPerPhase: 50
+  stepsPerPhase: 100
   updateStepTiming:
-    frequency: 4
+    frequency: 5
     frequencyVariance: 0.4
   pollinationSpreadTiming:
     frequency: 1

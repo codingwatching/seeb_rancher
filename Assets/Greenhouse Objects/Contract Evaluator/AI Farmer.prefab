@@ -49,16 +49,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   maxConcurrentPlants: 40
+  simulationSpeed:
+    DataSource: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: d512f30a21eae634fb550d50df098065, type: 2}
+    Instancer: {fileID: 0}
+    NamePath: 
   plantSpawnFrequency:
     frequency: 3
     frequencyVariance: 0.6
-  plantUpdateFrequency:
-    frequency: 2
-    frequencyVariance: 0.2
-  plantPollintateFrequency:
-    frequency: 1
-    frequencyVariance: 0.5
   seedPool: []
-  seedPoolCap: 500
+  seedPoolCap: 200
   totalPlantsGrown: 0
   tendedPlants: []
