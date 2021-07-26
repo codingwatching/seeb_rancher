@@ -61,6 +61,7 @@ namespace Assets.Scripts.ContractEvaluator
                 UnityEngine.Profiling.Profiler.EndSample();
             }
 
+            var seebsWereAdded = false;
             for (int i = 0; i < tendedPlants.Count; i++)
             {
                 var system = tendedPlants[i];
@@ -69,13 +70,20 @@ namespace Assets.Scripts.ContractEvaluator
                 {
                     tendedPlants.RemoveAt(i);
                     i--;
-                    seedPool.AddRange(seebs);
+                    if(seebs.Length > 0)
+                    {
+                        seebsWereAdded = true;
+                        seedPool.AddRange(seebs);
+                    }
                 }
             }
-
-            if (seedPool.Count > seedPoolCap)
+            if (seebsWereAdded)
             {
-                seedPool.RemoveRange(0, seedPool.Count - seedPoolCap);
+                seedPool.Shuffle();
+                if (seedPool.Count > seedPoolCap)
+                {
+                    seedPool.RemoveRange(0, seedPool.Count - seedPoolCap);
+                }
             }
         }
 
@@ -92,7 +100,7 @@ namespace Assets.Scripts.ContractEvaluator
                 return;
             }
 
-            var nextSeedIndex = Random.Range(0, seedPool.Count);
+            var nextSeedIndex = 0; // seed pool list is shuffled
             var nextSeed = seedPool[nextSeedIndex];
             seedPool.RemoveAt(nextSeedIndex);
 
