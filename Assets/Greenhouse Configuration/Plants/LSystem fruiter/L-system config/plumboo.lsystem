@@ -1,4 +1,4 @@
-#axiom r(0.1, 10, 1000, 10, 20)b(10)i(0)S(0)
+#axiom r(0.1, 10, 1000, 20, 20)b(10)i(0)S(0)
 #iterations 100000
 
 #symbols /\&^+-!F$`@
@@ -11,7 +11,6 @@
 #symbols i
 #include organIdentity (Identifier->i)
 #symbols s
-#matches s
 #include sunlight (LightAmount->s)
 
 #symbols ra
@@ -44,13 +43,12 @@
 #define petioleStalkLength 3
 
 
+
 #define primaryAngularSeparation 137
 
 
 ## variables defined for utility
 #define shootHeight 5
-#define leafOrgan l(1, leafAge)
-#define leafAge 3
 
 #define useGlucose water > glucose && glucose > 0.1
 #define useWater glucose >= water && water > 0.1
@@ -59,7 +57,7 @@
 #symbols S
 #matches S
 #immature S
-S(x) : x == 0 -> @FS(x + 1)[i(0)[&&leafOrgan][/(180)&&leafOrgan]]T(0, -shootHeight)
+S(x) : x == 0 -> @FS(x + 1)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)qi(0)s(0)[&&leafOrgan][/(180)&&leafOrgan]]T(0, -shootHeight)
 S(x) : x < shootHeight && x > 0-> FS(x+1)
 S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
@@ -96,7 +94,7 @@ r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && pr
 ## B is a bud which will grow a leaf structure and also a flower
 #symbols B
 #matches B
-B -> [r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)^(50)V]r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)I(0, petioleStalkLength)[qi(0)s(0)petiole(leavesPerPetiole)]
+B -> [r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)^(50)V]r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)I(0, petioleStalkLength)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)qi(0)s(0)petiole(leavesPerPetiole)]
 
 
 
@@ -121,7 +119,8 @@ petiole(x) : x > 0 -> [leafOrgan]
 
 ## O is a symbol which fans leaves out
 #symbols O
-O(x, t) : x > 0 -> +(t)l(1, x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
+#matches O
+r(a, water, b, glucose, c) < O(x, t) : x > 0 && water > 0.5 && glucose > 0.5 -> +(t)l(1, x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
 
 ## I is an internode, used to just build length of certain size
 #symbols I
@@ -144,6 +143,9 @@ P(1/5) | ~ -> $(defaultBend * kinkiness)-(2 * kinkiness)
 
 ## organs
 
+#define leafOrgan l(1, leafAge)
+#define leafAge 3
 ## l is a leaf
 #symbols l
-l(x, y) : x < y -> l(x + 1, y)
+r(a, water, b, glucose, c) < l(growth, maxSize) : growth < maxSize &&   useWater -> a(-  water/2, -  water/2)l(growth +   water/2, maxSize)
+r(a, water, b, glucose, c) < l(growth, maxSize) : growth < maxSize && useGlucose -> a(-glucose/2, -glucose/2)l(growth + glucose/2, maxSize)
