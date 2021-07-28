@@ -13,9 +13,10 @@ namespace Assets.Scripts.GreenhouseLoader
         public static PhaseAdvancingCoordinator instance;
 
         public BooleanVariable isPhaseTransitionActive;
+        public FloatReference simulationSpeed;
 
-        public float defaultTimeTillPhaseCompletion = 3f;
-        private float timeTillPhaseCompletion = -1;
+        public float secondTillPhaseCompletion = 32f;
+        private float timeRemainingTillPhaseCompletion = -1;
 
 
         public string UniqueSaveIdentifier => "PhaseAdvancingCoordinator";
@@ -42,35 +43,19 @@ namespace Assets.Scripts.GreenhouseLoader
 
         private void PhaseTransitionTriggered()
         {
-            this.timeTillPhaseCompletion = defaultTimeTillPhaseCompletion;
-        }
-
-        /// <summary>
-        /// called from the l-systems which are updating themselves
-        ///     will ensure that the phase will not complete advancing for the next
-        ///     <paramref name="delayTime"/> seconds
-        /// </summary>
-        public void DelayPhaseComplete(float delayTime)
-        {
-            if(timeTillPhaseCompletion <= -1)
-            {
-                Debug.LogError("trying to delay phase completion when phase is not transitioning");
-                return;
-            }
-
-            timeTillPhaseCompletion = Mathf.Max(timeTillPhaseCompletion, delayTime);
+            this.timeRemainingTillPhaseCompletion = secondTillPhaseCompletion;
         }
 
         private void Update()
         {
-            if(timeTillPhaseCompletion <= -1)
+            if(timeRemainingTillPhaseCompletion <= -1)
             {
                 return;
             }
-            timeTillPhaseCompletion -= Time.deltaTime;
-            if(timeTillPhaseCompletion <= 0)
+            timeRemainingTillPhaseCompletion -= Time.deltaTime * simulationSpeed.CurrentValue;
+            if(timeRemainingTillPhaseCompletion <= 0)
             {
-                timeTillPhaseCompletion = -1;
+                timeRemainingTillPhaseCompletion = -1;
                 isPhaseTransitionActive.SetValue(false);
             }
         }
@@ -82,12 +67,12 @@ namespace Assets.Scripts.GreenhouseLoader
             float timeTillPhaseCompletion;
             public LevelStateSaved(PhaseAdvancingCoordinator source)
             {
-                timeTillPhaseCompletion = source.timeTillPhaseCompletion;
+                timeTillPhaseCompletion = source.timeRemainingTillPhaseCompletion;
             }
 
             public void Apply(PhaseAdvancingCoordinator target)
             {
-                target.timeTillPhaseCompletion = timeTillPhaseCompletion;
+                target.timeRemainingTillPhaseCompletion = timeTillPhaseCompletion;
             }
         }
 

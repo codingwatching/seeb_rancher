@@ -27,8 +27,7 @@ namespace Assets.Scripts.Plants
         public GameObject lSystemPlantPrefab;
         public LSystemObject lSystem;
 
-        public float phaseFractionTillSprout = 1f;
-        public int stepsPerPhase = 3;
+        public int stepsTillSprout = 10;
         public StochasticTimerFrequencyVaried updateStepTiming;
         public StochasticTimerFrequencyVaried pollinationSpreadTiming;
 
@@ -71,8 +70,7 @@ namespace Assets.Scripts.Plants
             if (sproutSeed)
             {
                 // step the number of steps required for a seebling to show up immediately
-                var seeblingSteps = phaseFractionTillSprout * stepsPerPhase;
-                while (steppingHandle.totalSteps < seeblingSteps)
+                while (steppingHandle.totalSteps < this.stepsTillSprout)
                 {
                     steppingHandle.StepSystemImmediate();
                 }

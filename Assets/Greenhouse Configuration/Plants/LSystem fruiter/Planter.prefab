@@ -522,6 +522,12 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: d512f30a21eae634fb550d50df098065, type: 2}
     Instancer: {fileID: 0}
     NamePath: 
+  phaseSimulationActive:
+    DataSource: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 9caa366f59d66994b9b118049691ea8d, type: 2}
+    Instancer: {fileID: 0}
+    NamePath: 
 --- !u!114 &5756600527171596922
 MonoBehaviour:
   m_ObjectHideFlags: 0

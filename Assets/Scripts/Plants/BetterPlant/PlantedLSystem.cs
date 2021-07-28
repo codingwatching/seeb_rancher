@@ -73,9 +73,9 @@ namespace Assets.Scripts.Plants
         public event Action OnHarvested;
 
         public FloatReference simulationSpeed;
+        public BooleanReference phaseSimulationActive;
         private StochasticTimerFrequencyVaried updateStepTiming;
         private StochasticTimerFrequencyVaried pollinationSpreadTiming;
-        private int stepsLeftInPhaseTransition = 0;
 
         public float PollinationRadius
         {
@@ -101,7 +101,7 @@ namespace Assets.Scripts.Plants
 
         private void Update()
         {
-            if(stepsLeftInPhaseTransition <= 0)
+            if (!phaseSimulationActive.CurrentValue)
             {
                 return;
             }
@@ -124,8 +124,6 @@ namespace Assets.Scripts.Plants
             }
 
             this.StepOnce();
-            stepsLeftInPhaseTransition--;
-            PhaseAdvancingCoordinator.instance.DelayPhaseComplete(updateStepTiming.TimeTillNextTrigger() + 0.1f);
         }
 
         private void PollinateOthersDuringPhaseChange()
@@ -145,7 +143,6 @@ namespace Assets.Scripts.Plants
 
         public void PhaseTransitionBegin()
         {
-            this.stepsLeftInPhaseTransition = plantType.stepsPerPhase;
             updateStepTiming.Reset();
         }
 
