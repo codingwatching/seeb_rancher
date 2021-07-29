@@ -6,6 +6,9 @@
 #matches r
 #include diffusion (Node->r) (Amount->a)
 
+#symbols i
+#include organIdentity (Identifier->i)
+
 ## variables controlled by genes
 #define flowerMeshIndex (flowerColorOuterIndex + flowerColorInnerIndex * 3)
 
@@ -14,9 +17,7 @@
 #define flowerColorInnerIndex 1
 #define flowerColorOuterIndex 1
 
-
 #define flowerAge 7
-
 
 #define flowerStalkLength 7
 ## V is a flowering bud
@@ -31,7 +32,7 @@ P(1 - flowerFailureChance) | V -> V(0, flowerStalkLength)
  r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 && useGlucose -> a(-glucose/2, -glucose/2)V(progress + glucose/2, x)
  r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 &&   useWater -> a(-  water/2, -  water/2)V(progress +   water/2, x)
  r(a, water, c, glucose, d) < V(progress, x) : progress >=1 && x >  0 -> $(0.1)FV(progress - 1, x - 1)
-Hr(a, water, c, glucose, d) < V(progress, x) -> C(0)[K(flowerMeshIndex, 1)A(1)]
+Hr(a, water, c, glucose, d) < V(progress, x) -> i(0)C(0)[K(flowerMeshIndex, 1)A(1)]
 
 #define fruitBendFactor 0.05
 ## C is a fruiting controller. transitions to a fruit after waiting

@@ -7,7 +7,6 @@
 
 #symbols q
 #include plumboo-controllers.lsyslib (LeafController->q)
-
 #symbols i
 #include organIdentity (Identifier->i)
 #symbols s
@@ -47,6 +46,8 @@
 
 ## variables defined for utility
 #define shootHeight 5
+#define segmentCost 0.5
+
 
 #define useGlucose water > glucose && glucose > 0.1
 #define useWater glucose >= water && water > 0.1
@@ -55,7 +56,7 @@
 #symbols S
 #matches S
 #immature S
-S(x) : x == 0 -> @FS(x + 1)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)qi(0)s(0)[&&leafOrgan][/(180)&&leafOrgan]]T(0, -shootHeight)
+S(x) : x == 0 -> @FS(x + 1)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)qi(0)s(0)[&&leafOrgan][/(180)&&leafOrgan]]i(0)T(0, -shootHeight)
 S(x) : x < shootHeight && x > 0-> FS(x+1)
 S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
@@ -71,7 +72,7 @@ T(progress, x) : x < 0 -> T(progress, x + 1)
 
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useGlucose -> a(-glucose/2, -glucose/2)T(progress + glucose/2, x)
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useWater   -> a(-  water/2, -  water/2)T(progress +   water/2, x)
-r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress >= 1 -> I(0, internodeHeight)[&(60)B][\(180)&(60)B]\(primaryAngularSeparation)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)T(progress - 1, x + 1)
+r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress >= 1 -> I(0, internodeHeight)[&(60)B][\(180)&(60)B]\(primaryAngularSeparation)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)i(0)T(progress - 1, x + 1)
 
 r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && progress <  2 && useWater   -> a(-glucose/2, -glucose/2)T(progress + glucose/2, x)
 r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && progress <  2 && useGlucose -> a(-  water/2, -  water/2)T(progress +   water/2, x)
@@ -92,7 +93,7 @@ r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && pr
 ## B is a bud which will grow a leaf structure and also a flower
 #symbols B
 #matches B
-B -> [r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)^(50)V]r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)I(0, petioleStalkLength)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)qi(0)s(0)petiole(leavesPerPetiole)]
+B -> i(0)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)^(50)i(0)V]r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)I(0, petioleStalkLength)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)qi(0)s(0)petiole(leavesPerPetiole)]
 
 
 
@@ -123,10 +124,10 @@ r(a, water, b, glucose, c) < O(x, t) : x > 0 && water > 0.5 && glucose > 0.5 -> 
 ## I is an internode, used to just build length of certain size
 #symbols I
 #matches I
-r(a, water, b, glucose, c) < I(progress, x) : x > 0 && progress < 1 && useGlucose -> a(-glucose/2, -glucose/2)I(progress + glucose / 2, x)
-r(a, water, b, glucose, c) < I(progress, x) : x > 0 && progress < 1 && useWater   -> a(-  water/2, -  water/2)I(progress +   water / 2, x)
+r(a, water, b, glucose, c) < I(progress, x) : x > 0 && progress < segmentCost && useGlucose -> a(-glucose/2, -glucose/2)I(progress + glucose / 2, x)
+r(a, water, b, glucose, c) < I(progress, x) : x > 0 && progress < segmentCost && useWater   -> a(-  water/2, -  water/2)I(progress +   water / 2, x)
 
-I(progress, x) : x > 0 && progress >= 1 -> ~@FI(progress - 1, x - 1)
+I(progress, x) : x > 0 && progress >= segmentCost -> ~@FI(progress - segmentCost, x - 1)
 I(progress, x) > r(a, b, c, d, e)J         -> JI(progress, x)H
 
 

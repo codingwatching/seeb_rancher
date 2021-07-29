@@ -306,12 +306,31 @@ namespace Assets.Scripts.Plants
             return harvestedSeeds;
         }
 
+        public Material dissolveMaterial;
+        public float dissolveSpeed = 0.05f;
+
         private IEnumerator HarvestEffect()
         {
+            var renderer = this.plantsParent.GetComponent<MeshRenderer>();
+            renderer.materials = renderer.materials.Select(x => dissolveMaterial).ToArray();
+            var currentState = lSystemManager.steppingHandle.currentState;
+            dissolveMaterial.SetFloat("progress", 0);
+            dissolveMaterial.SetFloat("minId", currentState.firstUniqueOrganId);
+            dissolveMaterial.SetFloat("maxId", currentState.firstUniqueOrganId + currentState.maxUniqueOrganIds);
+
+            Debug.Log($"id range ({currentState.firstUniqueOrganId}, {currentState.firstUniqueOrganId + currentState.maxUniqueOrganIds})");
+
+
+            for (float progress = 0; progress <= 1; progress += dissolveSpeed)
+            {
+                dissolveMaterial.SetFloat("progress", progress);
+                yield return new WaitForEndOfFrame();
+            }
+
             // assuming the mesh has been rotated 90 degrees around z axis.
-            harvestEffect.SetFloat("height", 10 * plantsParent.transform.localScale.x);
-            harvestEffect.Play();
-            yield return new WaitForSeconds(0.3f);
+            //harvestEffect.SetFloat("height", 10 * plantsParent.transform.localScale.x);
+            //harvestEffect.Play();
+            //yield return new WaitForSeconds(0.3f);
             Destroy(prefabRoot);
         }
 
