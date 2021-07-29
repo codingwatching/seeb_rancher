@@ -529,7 +529,7 @@ MonoBehaviour:
     Instancer: {fileID: 0}
     NamePath: 
   dissolveMaterial: {fileID: 2100000, guid: 1719c21a049a7ac43b937e56b6c16eeb, type: 2}
-  dissolveSpeed: 0.001
+  dissolveSpeed: 0.02
 --- !u!114 &5756600527171596922
 MonoBehaviour:
   m_ObjectHideFlags: 0

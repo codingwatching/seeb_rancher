@@ -8,8 +8,8 @@ void ConvertToOrganId_float(float4 color, out float organId)
     organId =
         (color.r * 256.0) +
         (color.g * 256.0) * (256.0) +
-        (color.b * 256.0) * (256.0 * 256.0) +
-        (color.a * 255.0) * (256.0 * 256.0 * 256.0);
+        (color.b * 256.0) * (256.0 * 256.0);// +
+        //(color.a * 255.0) * (256.0 * 256.0 * 256.0);
 }
 
 #endif //MYHLSLINCLUDE_INCLUDED

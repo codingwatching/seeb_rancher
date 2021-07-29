@@ -321,16 +321,15 @@ namespace Assets.Scripts.Plants
             Debug.Log($"id range ({currentState.firstUniqueOrganId}, {currentState.firstUniqueOrganId + currentState.maxUniqueOrganIds})");
 
 
+            // assuming the mesh has been rotated 90 degrees around z axis.
+            harvestEffect.SetFloat("height", 10 * plantsParent.transform.localScale.x);
+            harvestEffect.Play();
             for (float progress = 0; progress <= 1; progress += dissolveSpeed)
             {
                 dissolveMaterial.SetFloat("progress", progress);
                 yield return new WaitForEndOfFrame();
             }
 
-            // assuming the mesh has been rotated 90 degrees around z axis.
-            //harvestEffect.SetFloat("height", 10 * plantsParent.transform.localScale.x);
-            //harvestEffect.Play();
-            //yield return new WaitForSeconds(0.3f);
             Destroy(prefabRoot);
         }
 
