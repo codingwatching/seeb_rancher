@@ -152,9 +152,10 @@ namespace Assets.Scripts.ContractEvaluator
                     if (timeReachedMaturity != 0 && timeReachedMaturity + 3 < Time.time)
                     {
                         plant.pollinationState.SelfPollinateIfNotFertile();
+                        parent.onPlantHarvested?.Invoke(plant);
                         return plant.TryHarvest();
                     }
-                    if (plant.IsMature() && timeReachedMaturity == 0)
+                    if (plant.IsMature() && plant.CanHarvest() && timeReachedMaturity == 0)
                     {
                         timeReachedMaturity = Time.time;
                     }

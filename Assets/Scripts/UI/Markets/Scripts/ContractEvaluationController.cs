@@ -75,10 +75,6 @@ namespace Assets.Scripts.UI.MarketContracts
 
             ClearHeadings();
             contractThinkingObject.SetActive(true);
-
-
-
-
             StartCoroutine(EvaluateSeebs(seeds, contract));
         }
 
@@ -96,7 +92,12 @@ namespace Assets.Scripts.UI.MarketContracts
                 simulationScene,
                 areContractsEvaluating,
                 targetPlantsTested,
-                this);
+                this)
+            {
+                successfulPlants = successfulPlants,
+                failedPlants = failedPlants,
+                successRatio = successRatio
+            };
 
             yield return StartCoroutine(evaluationSession.BeginSession());
 

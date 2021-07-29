@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ISeedHoldingManipulator.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Markets\Scripts\ContractEvaluationSession.cs" />
     <Compile Include="Assets\Scripts\UI\AppExit.cs" />
     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
@@ -112,7 +113,6 @@
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebPurchaseButton.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\ChildCycler\PhaseLifetimeExpiration.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreBinDescriptor.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\FormatFloat.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MovingOutlineHelper.cs" />
@@ -148,7 +148,6 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\ContractEvaluationSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\External\TextMesh Pro\Shaders\TMPro.cginc" />

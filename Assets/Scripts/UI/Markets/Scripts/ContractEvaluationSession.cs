@@ -24,6 +24,10 @@ namespace Assets.Scripts.UI.MarketContracts
         public float rewardResult = 0f;
         public float comlianceRatio = 0f;
 
+        public FloatReference successfulPlants;
+        public FloatReference failedPlants;
+        public FloatReference successRatio;
+
         public ContractEvaluationSession(
             Seed[] seeds,
             ContractContainer container,
@@ -44,6 +48,10 @@ namespace Assets.Scripts.UI.MarketContracts
 
         public IEnumerator BeginSession()
         {
+            successfulPlants.CurrentValue = 0;
+            failedPlants.CurrentValue = 0;
+            successRatio.CurrentValue = 0;
+
             var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
             var plantType = plantTypeRegistry.GetUniqueObjectFromID(seeds[0].plantType);
             if (seeds.Any(seed => seed.plantType != seeds[0].plantType))
@@ -60,8 +68,6 @@ namespace Assets.Scripts.UI.MarketContracts
             var sceneLoader = SceneManager.LoadSceneAsync(sceneBuildIndex, LoadSceneMode.Additive);
             yield return new WaitUntil(() => sceneLoader.isDone);
 
-            // TODO: hide the ui?
-
             var farmerScene = SceneManager.GetSceneByBuildIndex(sceneBuildIndex);
             var rootObjs = farmerScene.GetRootGameObjects();
             var farmer = rootObjs
@@ -73,6 +79,7 @@ namespace Assets.Scripts.UI.MarketContracts
                 Debug.LogError("could not find a farmer in the new scene");
             }
 
+
             farmer.onPlantHarvested += SimulatedPlantHarvested;
 
             farmer.BeginSimulation(seeds);
@@ -80,17 +87,13 @@ namespace Assets.Scripts.UI.MarketContracts
             SceneManager.SetActiveScene(farmerScene);
             areContractsEvaluating.SetValue(true);
 
-            yield return new WaitUntil(() => farmer.totalPlantsGrown >= totalPlantsToTest);
+            yield return new WaitUntil(() => failedPlants + successfulPlants >= totalPlantsToTest);
             SceneManager.SetActiveScene(mainScene);
             areContractsEvaluating.SetValue(false);
 
             SceneManager.UnloadSceneAsync(farmerScene);
 
-            var resultSeebs = farmer.seedPool;
-
-            yield return coroutineOwner.StartCoroutine(contractData.EvaluateComplianceOfSeeds(resultSeebs));
-
-            comlianceRatio = contractData.ComplianceResult;
+            comlianceRatio = successRatio.CurrentValue;
 
             if (comlianceRatio >= contractData.minimumComplianceRatio)
             {
@@ -105,7 +108,17 @@ namespace Assets.Scripts.UI.MarketContracts
 
         private void SimulatedPlantHarvested(PlantedLSystem obj)
         {
-            Debug.Log("plant harvested");
+            var matches = contract.contract.Matches(obj);
+            if (matches)
+            {
+                Debug.Log("plant succeeded");
+                successfulPlants.Increment();
+            }else
+            {
+                Debug.Log("plant failed");
+                failedPlants.Increment();
+            }
+            successRatio.CurrentValue = successfulPlants / (successfulPlants + failedPlants);
         }
     }
 }
