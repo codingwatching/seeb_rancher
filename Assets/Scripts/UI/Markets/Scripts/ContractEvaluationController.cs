@@ -35,10 +35,14 @@ namespace Assets.Scripts.UI.MarketContracts
 
         public static ContractEvaluationController Instance;
 
-        public int targetSeedQuantity = 100;
+        public int targetPlantsTested = 100;
 
         public bool IsEvaluating;
         public float rewardAmount;
+
+        public FloatReference successfulPlants;
+        public FloatReference failedPlants;
+        public FloatReference successRatio;
 
         private void Awake()
         {
@@ -72,6 +76,9 @@ namespace Assets.Scripts.UI.MarketContracts
             ClearHeadings();
             contractThinkingObject.SetActive(true);
 
+
+
+
             StartCoroutine(EvaluateSeebs(seeds, contract));
         }
 
@@ -83,62 +90,26 @@ namespace Assets.Scripts.UI.MarketContracts
         /// <returns></returns>
         IEnumerator EvaluateSeebs(Seed[] seeds, ContractContainer contract)
         {
-            var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
-            var plantType = plantTypeRegistry.GetUniqueObjectFromID(seeds[0].plantType);
-            if (seeds.Any(seed => seed.plantType != seeds[0].plantType))
+            var evaluationSession = new ContractEvaluationSession(
+                seeds,
+                contract,
+                simulationScene,
+                areContractsEvaluating,
+                targetPlantsTested,
+                this);
+
+            yield return StartCoroutine(evaluationSession.BeginSession());
+
+            rewardAmount = evaluationSession.rewardResult;
+            var seedComplianceRatio = evaluationSession.comlianceRatio;
+
+            ClearHeadings();
+            if (rewardAmount >= 0)
             {
-                throw new System.Exception("Cannot evaluate fitness of seeds of different species");
-            }
-
-            var contractData = contract.contract;
-            var genome = contractData.plantType.genome;
-
-            var mainScene = SceneManager.GetActiveScene();
-
-            var sceneBuildIndex = SceneUtility.GetBuildIndexByScenePath(simulationScene.scenePath);
-            var sceneLoader = SceneManager.LoadSceneAsync(sceneBuildIndex, LoadSceneMode.Additive);
-            yield return new WaitUntil(() => sceneLoader.isDone);
-
-            // TODO: hide the ui?
-
-            var farmerScene = SceneManager.GetSceneByBuildIndex(sceneBuildIndex);
-            var rootObjs = farmerScene.GetRootGameObjects();
-            var farmer = rootObjs
-                .Select(x => x.GetComponentInChildren<FarmerSimulator>())
-                .Where(x => x != null)
-                .FirstOrDefault();
-            if(farmer == null)
-            {
-                Debug.LogError("could not find a farmer in the new scene");
-            }
-            farmer.BeginSimulation(seeds);
-
-            SceneManager.SetActiveScene(farmerScene);
-            areContractsEvaluating.SetValue(true);
-
-            yield return new WaitUntil(() => farmer.totalPlantsGrown >= targetSeedQuantity);// TODO: rename targetSeedQuanity
-            SceneManager.SetActiveScene(mainScene);
-            areContractsEvaluating.SetValue(false);
-
-            SceneManager.UnloadSceneAsync(farmerScene);
-
-            var resultSeebs = farmer.seedPool;
-
-            yield return StartCoroutine(contractData.EvaluateComplianceOfSeeds(resultSeebs));
-
-            var seedComplianceRatio = contractData.ComplianceResult;
-
-            if (seedComplianceRatio >= contractData.minimumComplianceRatio)
-            {
-                Destroy(contract.gameObject);
-                rewardAmount = contractData.reward * seedComplianceRatio;
-                ClearHeadings();
                 contractSuccessObj.SetActive(true);
             }
             else
             {
-                rewardAmount = 0;
-                ClearHeadings();
                 contractRejectObj.SetActive(true);
             }
 

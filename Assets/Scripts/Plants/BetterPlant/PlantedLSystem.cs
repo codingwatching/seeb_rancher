@@ -285,6 +285,12 @@ namespace Assets.Scripts.Plants
             return null;
         }
 
+        public int ExpectedHarvestedSeeds()
+        {
+            return plantType.TotalNumberOfSeedsInState(lSystemManager);
+        }
+
+
         private Seed[] HarvestPlant()
         {
             var harvestedSeeds = plantType.HarvestSeeds(pollinationState, this.lSystemManager, GeneticDrivers);

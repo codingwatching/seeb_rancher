@@ -23,6 +23,7 @@ namespace Assets.Scripts.ContractEvaluator
         public List<Seed> seedPool;
         public int seedPoolCap = 500;
         public int totalPlantsGrown = 0;
+        public event System.Action<PlantedLSystem> onPlantHarvested;
         [SerializeField] private List<FarmedLSystem> tendedPlants;
         private HaltonSequenceGenerator sequenceGenerator;
 

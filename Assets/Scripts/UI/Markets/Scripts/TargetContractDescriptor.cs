@@ -61,6 +61,30 @@ namespace Assets.Scripts.UI.MarketContracts
             //return seedComplianceRatio;
         }
 
+        public bool Matches(PlantedLSystem planted)
+        {
+            var drivers = planted.GeneticDrivers;
+            if (!booleanTargets.All(boolTarget =>
+                     drivers.TryGetGeneticData(boolTarget.targetDriver, out var boolValue)
+                     && boolValue == boolTarget.targetValue))
+            {
+                return false;
+            }
+            if (!floatTargets.All(floatTarget => floatTarget.Matches(drivers)))
+            {
+                return false;
+            }
+            if (seedCountTarget.Length > 0)
+            {
+                var totalSeeds = planted.ExpectedHarvestedSeeds();
+                if (totalSeeds < seedCountTarget[0].minSeeds)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private bool Matches(Seed seed)
         {
             var drivers = plantType.genome.CompileGenome(seed.genes);
