@@ -111,13 +111,12 @@ namespace Assets.Scripts.UI.MarketContracts
             var matches = contract.contract.Matches(obj);
             if (matches)
             {
-                Debug.Log("plant succeeded");
                 successfulPlants.Increment();
             }else
             {
-                Debug.Log("plant failed");
                 failedPlants.Increment();
             }
+            obj.SetHarvestEffectColor(matches ? Color.green : Color.red);
             successRatio.CurrentValue = successfulPlants / (successfulPlants + failedPlants);
         }
     }

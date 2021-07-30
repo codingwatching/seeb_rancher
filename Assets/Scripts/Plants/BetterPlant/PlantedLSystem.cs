@@ -276,11 +276,11 @@ namespace Assets.Scripts.Plants
             }
             return plantType.TotalNumberOfSeedsInState(this.lSystemManager);
         }
-        public Seed[] TryHarvest()
+        public Seed[] TryHarvest(bool playEffect = true)
         {
             if (CanHarvest())
             {
-                return HarvestPlant();
+                return HarvestPlant(playEffect);
             }
             return null;
         }
@@ -291,17 +291,16 @@ namespace Assets.Scripts.Plants
         }
 
 
-        private Seed[] HarvestPlant()
+        private Seed[] HarvestPlant(bool playEffect)
         {
             var harvestedSeeds = plantType.HarvestSeeds(pollinationState, this.lSystemManager, GeneticDrivers);
             
-            // TODO: destroyu the planty
-            plantType = null;
-            pollinationState = null;
-            GeneticDrivers = null;
-
+            // destroyu the planty
             OnHarvested?.Invoke();
-            StartCoroutine(HarvestEffect());
+            if(playEffect)
+            {
+                StartCoroutine(HarvestEffect());
+            }
 
             return harvestedSeeds;
         }
@@ -309,16 +308,24 @@ namespace Assets.Scripts.Plants
         public Material dissolveMaterial;
         public float dissolveSpeed = 0.05f;
 
+        private MaterialPropertyBlock harvestEffectMaterialProperties;
+        public void SetHarvestEffectColor(Color color)
+        {
+            harvestEffectMaterialProperties.SetColor("EdgeColor", color);
+        }
+
         private IEnumerator HarvestEffect()
         {
             var renderer = this.plantsParent.GetComponent<MeshRenderer>();
-            renderer.materials = renderer.materials.Select(x => dissolveMaterial).ToArray();
+            renderer.material = dissolveMaterial;
             var currentState = lSystemManager.steppingHandle.currentState;
-            dissolveMaterial.SetFloat("progress", 0);
-            dissolveMaterial.SetFloat("minId", currentState.firstUniqueOrganId);
-            dissolveMaterial.SetFloat("maxId", currentState.firstUniqueOrganId + currentState.maxUniqueOrganIds);
 
-            Debug.Log($"id range ({currentState.firstUniqueOrganId}, {currentState.firstUniqueOrganId + currentState.maxUniqueOrganIds})");
+            harvestEffectMaterialProperties = new MaterialPropertyBlock();
+            renderer.GetPropertyBlock(harvestEffectMaterialProperties);
+
+            harvestEffectMaterialProperties.SetFloat("progress", 0);
+            harvestEffectMaterialProperties.SetFloat("minId", currentState.firstUniqueOrganId);
+            harvestEffectMaterialProperties.SetFloat("maxId", currentState.firstUniqueOrganId + currentState.maxUniqueOrganIds);
 
 
             // assuming the mesh has been rotated 90 degrees around z axis.
@@ -326,7 +333,8 @@ namespace Assets.Scripts.Plants
             harvestEffect.Play();
             for (float progress = 0; progress <= 1; progress += dissolveSpeed)
             {
-                dissolveMaterial.SetFloat("progress", progress);
+                harvestEffectMaterialProperties.SetFloat("progress", progress);
+                renderer.SetPropertyBlock(harvestEffectMaterialProperties);
                 yield return new WaitForEndOfFrame();
             }
 
