@@ -34,7 +34,7 @@ namespace Assets.Scripts.Plants
 
         public GameObjectVariable selectedPlant;
 
-        public VisualEffect harvestEffect;
+        public HarvestingPlant harvestObject;
         public VisualEffect plantedEffect;
         public VisualEffect pollinateEffect;
 
@@ -276,11 +276,11 @@ namespace Assets.Scripts.Plants
             }
             return plantType.TotalNumberOfSeedsInState(this.lSystemManager);
         }
-        public Seed[] TryHarvest(bool playEffect = true)
+        public Seed[] TryHarvest()
         {
             if (CanHarvest())
             {
-                return HarvestPlant(playEffect);
+                return HarvestPlant();
             }
             return null;
         }
@@ -291,55 +291,20 @@ namespace Assets.Scripts.Plants
         }
 
 
-        private Seed[] HarvestPlant(bool playEffect)
+        private Seed[] HarvestPlant()
         {
             var harvestedSeeds = plantType.HarvestSeeds(pollinationState, this.lSystemManager, GeneticDrivers);
             
-            // destroyu the planty
+            // destroyu the plantuy
             OnHarvested?.Invoke();
-            if(playEffect)
-            {
-                StartCoroutine(HarvestEffect());
-            }
+
+            harvestObject.StartHarvestEffect(plantsParent.transform.localScale.x, this);
+            Destroy(this.gameObject);
 
             return harvestedSeeds;
         }
 
-        public Material dissolveMaterial;
-        public float dissolveSpeed = 0.05f;
 
-        private MaterialPropertyBlock harvestEffectMaterialProperties;
-        public void SetHarvestEffectColor(Color color)
-        {
-            harvestEffectMaterialProperties.SetColor("EdgeColor", color);
-        }
-
-        private IEnumerator HarvestEffect()
-        {
-            var renderer = this.plantsParent.GetComponent<MeshRenderer>();
-            renderer.material = dissolveMaterial;
-            var currentState = lSystemManager.steppingHandle.currentState;
-
-            harvestEffectMaterialProperties = new MaterialPropertyBlock();
-            renderer.GetPropertyBlock(harvestEffectMaterialProperties);
-
-            harvestEffectMaterialProperties.SetFloat("progress", 0);
-            harvestEffectMaterialProperties.SetFloat("minId", currentState.firstUniqueOrganId);
-            harvestEffectMaterialProperties.SetFloat("maxId", currentState.firstUniqueOrganId + currentState.maxUniqueOrganIds);
-
-
-            // assuming the mesh has been rotated 90 degrees around z axis.
-            harvestEffect.SetFloat("height", 10 * plantsParent.transform.localScale.x);
-            harvestEffect.Play();
-            for (float progress = 0; progress <= 1; progress += dissolveSpeed)
-            {
-                harvestEffectMaterialProperties.SetFloat("progress", progress);
-                renderer.SetPropertyBlock(harvestEffectMaterialProperties);
-                yield return new WaitForEndOfFrame();
-            }
-
-            Destroy(prefabRoot);
-        }
 
         /// <summary>
         /// Handles clicks from the Click Manipulator

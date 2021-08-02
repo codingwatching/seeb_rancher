@@ -116,7 +116,7 @@ namespace Assets.Scripts.UI.MarketContracts
             {
                 failedPlants.Increment();
             }
-            obj.SetHarvestEffectColor(matches ? Color.green : Color.red);
+            obj.harvestObject.SetHarvestEffectColor(matches ? Color.green : Color.red);
             successRatio.CurrentValue = successfulPlants / (successfulPlants + failedPlants);
         }
     }

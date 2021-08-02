@@ -128,6 +128,8 @@ Material:
     - minId: 1857
     - minId_float: 0
     - progress: 0.9999996
+    - startTime: 0
+    - timeToDissolve: 5
     m_Colors:
     - EdgeColor: {r: 0.404, g: 0.16651449, b: 0.039996017, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
