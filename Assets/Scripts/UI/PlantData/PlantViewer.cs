@@ -10,7 +10,8 @@ namespace Assets.Scripts.UI.PlantData
     {
         public GameObjectVariable selectedPlant;
         public GameObject plantRenderer;
-
+        public float maxBoundSizeToOrthographicAdjustment = 1;
+        public Camera renderCamera;
 
         private void Awake()
         {
@@ -39,6 +40,16 @@ namespace Assets.Scripts.UI.PlantData
             var sourceRenderer = plantContainer.GetComponentInChildren<MeshRenderer>();
             var targetRenderer = plantRenderer.GetComponent<MeshRenderer>();
             targetRenderer.materials = sourceRenderer.materials;
+
+
+            var boundSize = targetMeshFilter.mesh.bounds.size;
+            boundSize.Scale(plantRenderer.transform.localScale);
+            var maxBound = Mathf.Max(boundSize.x, boundSize.y, boundSize.z);
+
+            targetRenderer.transform.localPosition = -Vector3.Scale(targetMeshFilter.mesh.bounds.center, plantRenderer.transform.localScale);
+
+            var newOrthoSize = maxBound * maxBoundSizeToOrthographicAdjustment;
+            renderCamera.orthographicSize = newOrthoSize;
         }
 
         private void ClearPlantViewer()
