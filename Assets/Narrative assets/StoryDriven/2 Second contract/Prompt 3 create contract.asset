@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: Here's my next offer! I need seebs that will always breed true to be
-    short with orange flower centers. I'll pay double since my scientists have been
-    having trouble isolating both properties at the same time.
+    short with yellow fruit I'll pay double since my scientists have been having
+    trouble isolating both properties at the same time.
   speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
   onOpened:
     m_PersistentCalls:
@@ -26,9 +26,9 @@ MonoBehaviour:
   contractToCreate:
     booleanTargets: []
     floatTargets:
-    - targetDriver: {fileID: 11400000, guid: 9ac9121ae6b59ed4895b1f9b010fff45, type: 2}
-      minValue: 0
-      maxValue: 0.1
+    - targetDriver: {fileID: 11400000, guid: a27f660603e361c4bb3611b86e2fa010, type: 2}
+      minValue: 1
+      maxValue: 1.1
     - targetDriver: {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
       minValue: 3
       maxValue: 7

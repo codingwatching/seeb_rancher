@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantedLSystem.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="Assets\Scripts\Plants\PlantTypes\BasePlantType.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\ContractEvaluationController.cs" />
     <Compile Include="Assets\Scripts\Plants\PollinationState.cs" />
+    <Compile Include="Assets\Scripts\Plants\BetterPlant\HarvestingPlant.cs" />
     <Compile Include="Assets\Scripts\Buildings\Door\DoorController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
     <Compile Include="Assets\Scripts\Plants\Specific plant implementations\GeneticLSystemParameterGenerator.cs" />
@@ -118,6 +122,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MovingOutlineHelper.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\HarvestMaturePlantPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\DiscreteClassificationCell.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\GameObjectVariableDestroyListener.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinMesh.cs" />
@@ -148,8 +153,6 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Scripts\Plants\BetterPlant\HarvestingPlant.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\GameObjectVariableDestroyListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\External\TextMesh Pro\Shaders\TMPro.cginc" />
