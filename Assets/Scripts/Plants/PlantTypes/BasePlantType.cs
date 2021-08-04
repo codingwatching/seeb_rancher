@@ -44,6 +44,8 @@ namespace Assets.Scripts.Plants
         public Sprite seedIcon;
 
         public GeneticDriver[] summaryDrivers;
+        [Tooltip("this driver is populated based on the generated mesh bounds")]
+        public FloatGeneticDriver plantHeightDriver;
 
         public abstract PlantedLSystem SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed, bool startWithSeedling);
 

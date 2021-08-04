@@ -51,6 +51,8 @@ namespace Assets.Scripts.Plants
                 {
                     _drivers = plantType.genome.CompileGenome(pollinationState.SelfGenes.genes);
                 }
+                var meshBounds = this.plantsParent.GetComponent<MeshFilter>().mesh.bounds;
+                _drivers.SetGeneticDriverData(plantType.plantHeightDriver, meshBounds.size.x * plantsParent.transform.localScale.x, true);
                 return _drivers;
             }
             private set

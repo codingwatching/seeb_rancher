@@ -29,13 +29,13 @@ MonoBehaviour:
     - targetDriver: {fileID: 11400000, guid: a27f660603e361c4bb3611b86e2fa010, type: 2}
       minValue: 1
       maxValue: 1.1
-    - targetDriver: {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
+    - targetDriver: {fileID: 11400000, guid: 5c43b1929cd5f3b43ad8003d3a25405f, type: 2}
       minValue: 3
-      maxValue: 7
+      maxValue: 4
     seedCountTarget: []
     reward: 1000
     plantType: {fileID: 11400000, guid: c211d122d1c85914490d16e1c0fdac7b, type: 2}
     seedRequirement: 20
-    minimumComplianceRatio: 0.6
+    minimumComplianceRatio: 0.5
     expirationTime: -1
   variableToPutContractIn: {fileID: 11400000, guid: d7087cadbc2596347936733088da4a07, type: 2}

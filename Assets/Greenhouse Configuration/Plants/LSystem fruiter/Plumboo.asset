@@ -22,10 +22,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ac9121ae6b59ed4895b1f9b010fff45, type: 2}
   - {fileID: 11400000, guid: bdb509912dfbf6349a5736ce9c4685a0, type: 2}
   - {fileID: 11400000, guid: e2d5b6f907af2804d85ca630f60a4434, type: 2}
+  - {fileID: 11400000, guid: 5c43b1929cd5f3b43ad8003d3a25405f, type: 2}
+  - {fileID: 11400000, guid: e15b6efdad41b1946971a88f0814989d, type: 2}
+  plantHeightDriver: {fileID: 11400000, guid: 5c43b1929cd5f3b43ad8003d3a25405f, type: 2}
   lSystemPlantPrefab: {fileID: 7126020408499974555, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
   lSystem: {fileID: 378491273550888993, guid: 50ec329eca2ebda45af2187f82130448, type: 3}
-  phaseFractionTillSprout: 0.07
-  stepsPerPhase: 100
+  stepsTillSprout: 10
   updateStepTiming:
     frequency: 5
     frequencyVariance: 0.4

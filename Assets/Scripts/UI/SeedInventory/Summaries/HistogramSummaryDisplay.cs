@@ -1,4 +1,6 @@
 using Genetics.GeneSummarization;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,13 +19,16 @@ namespace Assets.Scripts.UI.SeedInventory
             var myRect = GetComponent<RectTransform>().rect;
             var texture = new Texture2D((int)myRect.width, (int)myRect.height);
             texture.filterMode = FilterMode.Point;
-
+            var newSprite = Sprite.Create(texture, new Rect(Vector2.zero, myRect.size), Vector2.zero);
+            
             var image = histogramImage;
-            image.material.mainTexture = texture;
+            image.sprite = newSprite;
 
             var histogramResult = summary.RenderContinuousHistogram(
                 texture.width,
                 x => 1 - x);
+
+            //Debug.Log(string.Join(",", histogramResult.Select((x, i) => x > 0.5 ? i.ToString() : "")));
 
             for (int x = 0; x < histogramResult.Length; x++)
             {
@@ -36,18 +41,6 @@ namespace Assets.Scripts.UI.SeedInventory
             }
 
             texture.Apply();
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

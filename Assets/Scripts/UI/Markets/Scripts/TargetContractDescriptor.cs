@@ -38,28 +38,6 @@ namespace Assets.Scripts.UI.MarketContracts
         #region Seed Compliance
         public float ComplianceResult { get; set; }
 
-        public IEnumerator EvaluateComplianceOfSeeds(IEnumerable<Seed> seeds, int seedsPerPause = 20)
-        {
-            var seedsSatisfyingDescriptors = 0;
-            var totalSeeds = 0;
-            foreach (var seed in seeds)
-            {
-                totalSeeds++;
-                if(totalSeeds % seedsPerPause == 0)
-                {
-                    yield return new WaitForEndOfFrame();
-                }
-                if (Matches(seed))
-                {
-                    seedsSatisfyingDescriptors++;
-                }
-            }
-            yield return new WaitForEndOfFrame();
-
-            var seedComplianceRatio = ((float)seedsSatisfyingDescriptors) / totalSeeds;
-            ComplianceResult = seedComplianceRatio;
-            //return seedComplianceRatio;
-        }
 
         public bool Matches(PlantedLSystem planted)
         {
@@ -85,30 +63,6 @@ namespace Assets.Scripts.UI.MarketContracts
             return true;
         }
 
-        private bool Matches(Seed seed)
-        {
-            var drivers = plantType.genome.CompileGenome(seed.genes);
-
-            if (!booleanTargets.All(boolTarget =>
-                     drivers.TryGetGeneticData(boolTarget.targetDriver, out var boolValue)
-                     && boolValue == boolTarget.targetValue))
-            {
-                return false;
-            }
-            if (!floatTargets.All(floatTarget => floatTarget.Matches(drivers)))
-            {
-                return false;
-            }
-            if (seedCountTarget.Length > 0)
-            {
-                var generatedSeeds = plantType.SimulateGrowthToHarvest(seed).Count();
-                if (generatedSeeds < seedCountTarget[0].minSeeds)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
         #endregion
 
         #region Serialization

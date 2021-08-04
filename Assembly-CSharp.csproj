@@ -792,9 +792,6 @@
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Genetics">
-      <HintPath>Library\ScriptAssemblies\Genetics.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
@@ -908,6 +905,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Genetics.csproj">
+      <Project>{E8A52BDE-01ED-1E7E-E731-D4BCE65B3D4D}</Project>
+      <Name>Genetics</Name>
+    </ProjectReference>
     <ProjectReference Include="TilingEditor.csproj">
       <Project>{54CA7512-07AE-506F-0123-7EFBE4B7FCA6}</Project>
       <Name>TilingEditor</Name>

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.dman.genetics": "0.1.5",
+    "com.dman.genetics": "file:../../Genetics/Assets/GeneticsPackage",
     "com.dman.l-system": "file:../../Plant Creator/Packages/com.dman.l-system",
     "com.dman.reactive-variables": "file:../../UtilityPackages/Assets/UtilityScripts/com.dman.reactive-variables",
     "com.dman.scene-save-system": "0.1.4",
