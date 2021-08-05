@@ -27,8 +27,10 @@ namespace RTS_Cam
             Undo.RecordObject(camera, "RTS_CAmera");
             tabs.Draw();
             if (GUI.changed)
+            {
                 camera.lastTab = tabs.curMethodIndex;
-            EditorUtility.SetDirty(camera);
+                EditorUtility.SetDirty(camera);
+            }
             // Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
             serializedObject.ApplyModifiedProperties();
         }
@@ -73,12 +75,19 @@ namespace RTS_Cam
             using (new HorizontalBlock())
             {
                 GUILayout.Label("Limit movement: ", EditorStyles.boldLabel, GUILayout.Width(170f));
-                camera.limitMap = EditorGUILayout.Toggle(camera.limitMap);
+                camera.limitMap = (CameraLimit)EditorGUILayout.EnumPopup(camera.limitMap);
             }
-            if (camera.limitMap)
+            switch (camera.limitMap)
             {
-                camera.limitX = EditorGUILayout.FloatField("Limit X: ", camera.limitX);
-                camera.limitY = EditorGUILayout.FloatField("Limit Y: ", camera.limitY);
+                case CameraLimit.RECTANGLE:
+                    camera.limitX = EditorGUILayout.FloatField("Limit X: ", camera.limitX);
+                    camera.limitY = EditorGUILayout.FloatField("Limit Y: ", camera.limitY);
+                    break;
+                case CameraLimit.CIRCLE:
+                    camera.limitRadius = EditorGUILayout.FloatField("Limit Radius: ", camera.limitRadius);
+                    break;
+                default:
+                    break;
             }
 
             GUILayout.Label("Follow target", EditorStyles.boldLabel);

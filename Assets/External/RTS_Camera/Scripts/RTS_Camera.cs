@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace RTS_Cam
 {
@@ -59,9 +58,10 @@ namespace RTS_Cam
 
         #region MapLimits
 
-        public bool limitMap = true;
+        public CameraLimit limitMap = CameraLimit.RECTANGLE;
         public float limitX = 50f; //x limit of map
         public float limitY = 50f; //z limit of map
+        public float limitRadius = 50f;
 
         #endregion
 
@@ -141,7 +141,7 @@ namespace RTS_Cam
                     return 1;
                 else if (zoomIn && !zoomOut)
                     return -1;
-                else 
+                else
                     return 0;
             }
         }
@@ -152,13 +152,13 @@ namespace RTS_Cam
             {
                 bool rotateRight = Input.GetKey(rotateRightKey);
                 bool rotateLeft = Input.GetKey(rotateLeftKey);
-                if(rotateLeft && rotateRight)
+                if (rotateLeft && rotateRight)
                     return 0;
-                else if(rotateLeft && !rotateRight)
+                else if (rotateLeft && !rotateRight)
                     return -1;
-                else if(!rotateLeft && rotateRight)
+                else if (!rotateLeft && rotateRight)
                     return 1;
-                else 
+                else
                     return 0;
             }
         }
@@ -182,6 +182,32 @@ namespace RTS_Cam
         {
             if (useFixedUpdate)
                 CameraUpdate();
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            var center = new Vector3(0, (maxHeight + minHeight) / 2f, 0);
+            center += transform.parent?.position ?? Vector3.zero;
+            switch (limitMap)
+            {
+                case CameraLimit.RECTANGLE:
+                    Gizmos.color = new Color(.5f, .5f, .5f, .3f);
+                    Gizmos.DrawCube(
+                        center,
+                        new Vector3(limitX * 2, maxHeight - minHeight, limitY * 2));
+                    break;
+                case CameraLimit.CIRCLE:
+                    Gizmos.color = new Color(.5f, .5f, .5f, .3f);
+                    var cylinder = Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
+                    Gizmos.DrawMesh(
+                        cylinder,
+                        center,
+                        Quaternion.identity,
+                        new Vector3(limitRadius, (maxHeight - minHeight) / 2f, limitRadius));
+                    break;
+                default:
+                    break;
+            }
         }
 
         #endregion
@@ -238,9 +264,9 @@ namespace RTS_Cam
                 desiredMove = m_Transform.InverseTransformDirection(desiredMove);
 
                 m_Transform.Translate(desiredMove, Space.Self);
-            }       
-        
-            if(usePanning && Input.GetKey(panningKey) && MouseAxis != Vector2.zero)
+            }
+
+            if (usePanning && Input.GetKey(panningKey) && MouseAxis != Vector2.zero)
             {
                 Vector3 desiredMove = new Vector3(-MouseAxis.x, 0, -MouseAxis.y);
 
@@ -259,7 +285,7 @@ namespace RTS_Cam
         private void HeightCalculation()
         {
             float distanceToGround = DistanceToGround();
-            if(useScrollwheelZooming)
+            if (useScrollwheelZooming)
                 zoomPos += ScrollWheel * Time.deltaTime * scrollWheelZoomingSensitivity;
             if (useKeyboardZooming)
                 zoomPos += ZoomDirection * Time.deltaTime * keyboardZoomingSensitivity;
@@ -267,12 +293,12 @@ namespace RTS_Cam
             zoomPos = Mathf.Clamp01(zoomPos);
 
             float targetHeight = Mathf.Lerp(minHeight, maxHeight, zoomPos);
-            float difference = 0; 
+            float difference = 0;
 
-            if(distanceToGround != targetHeight)
+            if (distanceToGround != targetHeight)
                 difference = targetHeight - distanceToGround;
 
-            m_Transform.position = Vector3.Lerp(m_Transform.position, 
+            m_Transform.position = Vector3.Lerp(m_Transform.position,
                 new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z), Time.deltaTime * heightDampening);
 
             var heightRelativeInRange = (m_Transform.position.y - minHeight) / (maxHeight - minHeight);
@@ -294,7 +320,7 @@ namespace RTS_Cam
             if (useMouseRotation && Input.GetKey(mouseRotationKey))
                 netRotationInput += -MouseAxis.x * Time.deltaTime * mouseRotationSpeed;
 
-            if(Mathf.Abs(netRotationInput) < 1e-5)
+            if (Mathf.Abs(netRotationInput) < 1e-5)
             {
                 return;
             }
@@ -302,7 +328,7 @@ namespace RTS_Cam
             var centerLookRay = cam.ScreenPointToRay(new Vector3(cam.pixelWidth / 2f, cam.pixelHeight / 2f));
             var rotationAnchor = transform.position;
             Debug.DrawRay(centerLookRay.origin, centerLookRay.direction);
-            if(Physics.Raycast(centerLookRay, out var hit, maxRaycastDistance, groundMask))
+            if (Physics.Raycast(centerLookRay, out var hit, maxRaycastDistance, groundMask))
             {
                 rotationAnchor = hit.point;
             }
@@ -324,13 +350,26 @@ namespace RTS_Cam
         /// </summary>
         private void LimitPosition()
         {
-            if (!limitMap)
-                return;
-                
-            m_Transform.localPosition = new Vector3(
-                Mathf.Clamp(m_Transform.localPosition.x, -limitX, limitX),
-                m_Transform.localPosition.y,
-                Mathf.Clamp(m_Transform.localPosition.z, -limitY, limitY));
+            switch (limitMap)
+            {
+                case CameraLimit.RECTANGLE:
+                    m_Transform.localPosition = new Vector3(
+                        Mathf.Clamp(m_Transform.localPosition.x, -limitX, limitX),
+                        m_Transform.localPosition.y,
+                        Mathf.Clamp(m_Transform.localPosition.z, -limitY, limitY));
+                    break;
+                case CameraLimit.CIRCLE:
+                    var currentPos = new Vector2(transform.localPosition.x, transform.localPosition.z);
+                    var currentDistance = currentPos.magnitude;
+                    if(currentDistance <= limitRadius) break;
+
+                    var nextPos = currentPos.normalized * limitRadius;
+                    m_Transform.localPosition = new Vector3(nextPos.x, m_Transform.localPosition.y, nextPos.y);
+
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -365,5 +404,12 @@ namespace RTS_Cam
         }
 
         #endregion
+    }
+
+    public enum CameraLimit
+    {
+        NONE,
+        RECTANGLE,
+        CIRCLE
     }
 }
