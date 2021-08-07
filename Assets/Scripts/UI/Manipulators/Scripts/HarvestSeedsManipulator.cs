@@ -3,7 +3,6 @@ using Assets.Scripts.Plants;
 using Assets.Scripts.UI.SeedInventory;
 using Dman.LSystem.SystemRuntime.GlobalCoordinator;
 using Dman.ReactiveVariables;
-using Dman.Tiling;
 using Dman.Utilities;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +17,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public GameObjectVariable selectedGameObject;
         public RaycastGroup harvestCaster;
+        public LayerMask dirtMask;
+        public LayerMask haverstableMask;
 
         public Sprite harvestCursor;
 
@@ -130,7 +131,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         private bool TryHarvestPlant(PlantedLSystem planter)
         {
             var harvested = planter.TryHarvest();
-            if(harvested == null)
+            if (harvested == null)
             {
                 return false;
             }
@@ -173,20 +174,14 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             draggingSeedsInstance.DisplaySeedBucket(seeds);
         }
 
-        public void OnAreaSelected(UniversalCoordinateRange range)
+        public void OnAreaSelected(Vector2 origin, Vector2 size)
         {
             // TODO: make sure that the planted L system prefabs have a primitive collider that
             //  can interact with this system
             Debug.Log("Harvest inside range:");
-            Debug.Log(range);
-
-            range.rectangleDataView.ToBox(5, out var center, out var size);
-            var extent = size / 2;
-            Debug.Log(center);
-            Debug.Log(extent);
-            var allTargetPlanters = Physics.OverlapBox(center, extent);
-            var harvestablePlanters = allTargetPlanters
-                .Select(x => x.gameObject.GetComponentInParent<PlantedLSystem>())
+            Debug.Log(origin);
+            Debug.Log(size);
+            var harvestablePlanters = GetOverlappedPlanters(origin, size)
                 .Where(x => x?.CanHarvest() ?? false)
                 .ToList();
             foreach (var planter in harvestablePlanters)
@@ -198,13 +193,13 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             OnSeedsUpdated();
         }
-        public void OnDragAreaChanged(UniversalCoordinateRange range)
+
+        private Vector3 lastCenter;
+        private Vector3 lastExtents;
+        private Quaternion lastRotation;
+        public void OnDragAreaChanged(Vector2 origin, Vector2 size)
         {
-            range.rectangleDataView.ToBox(5, out var center, out var size);
-            var extent = size / 2;
-            var allTargetPlanters = Physics.OverlapBox(center, extent);
-            var harvestableSeeds = allTargetPlanters
-                .Select(x => x.gameObject.GetComponentInParent<PlantedLSystem>())
+            var harvestableSeeds = GetOverlappedPlanters(origin, size)
                 .Where(x => x?.CanHarvest() ?? false)
                 .Select(x => x.GetOutlineObject())
                 .Where(x => x != null)
@@ -212,6 +207,82 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var newHighlight = new HashSet<GameObject>(harvestableSeeds);
             singleOutlineHelper.UpdateOutlineObjectSet(newHighlight);
         }
+
+
+        private IEnumerable<PlantedLSystem> GetOverlappedPlanters(Vector2 mouseOrigin, Vector2 dragSize)
+        {
+            GetOverlappingBox(mouseOrigin, dragSize, out var center, out var halfExtents, out var rotation);
+
+            center.y += 1;
+            halfExtents.y += 1;
+
+            lastCenter = center;
+            lastExtents = halfExtents;
+            lastRotation = rotation;
+
+            var allTargetPlanters = Physics.OverlapBox(center, halfExtents, rotation, haverstableMask);
+            return allTargetPlanters
+                .Select(x => x.gameObject.GetComponentInParent<PlantedLSystem>());
+        }
+
+        private void GetOverlappingBox(Vector2 mouseOrigin, Vector2 dragSize, out Vector3 center, out Vector3 halfExtents, out Quaternion rotation)
+        {
+            var corners = new[]
+            {
+                mouseOrigin,
+                mouseOrigin + new Vector2(dragSize.x, 0),
+                mouseOrigin + new Vector2(dragSize.x, dragSize.y),
+                mouseOrigin + new Vector2(0, dragSize.y),
+            }.Select(
+                x =>
+                {
+                    var ray = Camera.main.ScreenPointToRay(new Vector3(x.x, x.y, 0));
+                    return ray;
+                })
+            .Select(x =>
+            {
+                if (Physics.Raycast(ray: x, hitInfo: out var hit, layerMask: dirtMask, maxDistance: 100f))
+                {
+                    return hit.point;
+                }
+                Debug.LogError("no raycast hit when dragging");
+                return default;
+            }).ToArray();
+
+            var side1 = corners[1] - corners[0];
+            side1.y = 0;
+            rotation = Quaternion.FromToRotation(Vector3.forward, side1);
+
+            var boxCenter = VectorUtils.Average(corners);
+
+            var boxSpace = Matrix4x4.TRS(boxCenter, rotation, Vector3.one);
+            var boxSpaceInverse = boxSpace.inverse;
+
+            var cornersInBoxSpace = corners.Select(x => boxSpaceInverse.MultiplyPoint(x)).ToArray();
+
+            var max = VectorUtils.VectorMax(cornersInBoxSpace);
+            var min = VectorUtils.VectorMin(cornersInBoxSpace);
+            center = ((max + min) / 2f) + boxCenter;
+            halfExtents = (max - min) / 2f;
+        }
+
+        public override void OnDrawGizmos()
+        {
+            Gizmos.color = new Color(1, 0, 0, 0.5f);
+
+            if(lastRotation == default)
+            {
+                return;
+            }
+
+            var cube = Resources.GetBuiltinResource<Mesh>("Cube.fbx");
+            Gizmos.DrawMesh(
+                cube,
+                lastCenter,
+                lastRotation,
+                lastExtents * 2);
+        }
+
         private bool isDragging;
         public void SetDragging(bool isDragging)
         {

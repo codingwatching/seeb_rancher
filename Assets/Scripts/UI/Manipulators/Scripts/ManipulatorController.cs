@@ -42,19 +42,24 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 manipulatorVariable.SetValue(null);
             }
         }
+        private void OnDrawGizmos()
+        {
+            activeManipulator?.OnDrawGizmos();
+        }
 
-        public void OnAreaSelected(UniversalCoordinateRange range)
+
+        public void OnAreaSelected(Vector2 origin, Vector2 size)
         {
             if (activeManipulator is IAreaSelectManipulator areaManipulator)
             {
-                areaManipulator.OnAreaSelected(range);
+                areaManipulator.OnAreaSelected(origin, size);
             }
         }
-        public void OnDragAreaChanged(UniversalCoordinateRange range)
+        public void OnDragAreaChanged(Vector2 origin, Vector2 size)
         {
             if (activeManipulator is IAreaSelectManipulator areaManipulator)
             {
-                areaManipulator.OnDragAreaChanged(range);
+                areaManipulator.OnDragAreaChanged(origin, size);
             }
         }
         public void SetDragging(bool isDragging)

@@ -17,7 +17,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     /// used to control seeds being moved by the cursor, when not harvesting.
     /// </summary>
     [CreateAssetMenu(fileName = "DragSeedsManipulator", menuName = "Tiling/Manipulators/DragSeedsManipulator", order = 3)]
-    public class DragSeedsManipulator : MapManipulator, ISeedHoldingManipulator, IAreaSelectManipulator
+    public class DragSeedsManipulator : MapManipulator, ISeedHoldingManipulator //, IAreaSelectManipulator
     {
         public bool IsActive { get; private set; }
 
@@ -126,12 +126,12 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return true;
             }
 
-            seedSproutGameObject.CurrentValue.SetActive(true);
-
+            
             if (!isDragging)
             {
                 // if draging is happening, don't update preview here.
                 seedSproutGameObject.CurrentValue.transform.position = hoveredSpot.Value.point;
+                seedSproutGameObject.CurrentValue.SetActive(true);
             }
 
 
@@ -188,41 +188,44 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             draggingSeedsInstance.DisplaySeedBucket(sourceSlot.dataModel.bucket);
             sourceSlot.MySeedsUpdated();
         }
-        public void OnAreaSelected(UniversalCoordinateRange range)
+        public void OnAreaSelected(Vector2 origin, Vector2 size)
         {
             Debug.Log("plant inside range:");
-            Debug.Log(range);
+            Debug.Log(origin);
+            Debug.Log(size);
 
-            range.rectangleDataView.ToBox(5, out var center, out var size);
-            var extent = size / 2;
-            Debug.Log(center);
-            Debug.Log(extent);
+            // TODO:
 
-            var plantDensity = 1f;
+            //range.rectangleDataView.ToBox(5, out var center, out var size);
+            //var extent = size / 2;
+            //Debug.Log(center);
+            //Debug.Log(extent);
 
-            var totalPlants = size.x * size.z * plantDensity;
+            //var plantDensity = 1f;
 
-            for (int i = 0; i < totalPlants; i++)
-            {
-                var plantPoint = 
-                    new Vector3(
-                        Random.Range(-extent.x, extent.x),
-                        0f,
-                        Random.Range(-extent.z, extent.z)) +
-                    center +
-                    Vector3.up * 10;
-                var ray = new Ray(plantPoint, Vector3.down);
-                if(Physics.Raycast(ray, out var hit, 100f, plantableCaster.layersToRaycastTo))
-                {
-                    if (!TryPlantSeed(hit))
-                    {
-                        break;
-                    }
-                }
-            }
-            OnSeedsUpdated();
+            //var totalPlants = size.x * size.z * plantDensity;
+
+            //for (int i = 0; i < totalPlants; i++)
+            //{
+            //    var plantPoint = 
+            //        new Vector3(
+            //            Random.Range(-extent.x, extent.x),
+            //            0f,
+            //            Random.Range(-extent.z, extent.z)) +
+            //        center +
+            //        Vector3.up * 10;
+            //    var ray = new Ray(plantPoint, Vector3.down);
+            //    if(Physics.Raycast(ray, out var hit, 100f, plantableCaster.layersToRaycastTo))
+            //    {
+            //        if (!TryPlantSeed(hit))
+            //        {
+            //            break;
+            //        }
+            //    }
+            //}
+            //OnSeedsUpdated();
         }
-        public void OnDragAreaChanged(UniversalCoordinateRange range)
+        public void OnDragAreaChanged(Vector2 origin, Vector2 size)
         {
             // noop
         }

@@ -30,6 +30,58 @@ namespace Assets
         }
     }
 
+    public static class VectorUtils
+    {
+        public static Vector3 VectorMax(params Vector3[] vectors)
+        {
+            if (vectors.Length <= 0)
+            {
+                return default;
+            }
+            var maxVector = vectors[0];
+
+            for (int i = 1; i < vectors.Length; i++)
+            {
+                var vect = vectors[i];
+                maxVector.x = Mathf.Max(maxVector.x, vect.x);
+                maxVector.y = Mathf.Max(maxVector.y, vect.y);
+                maxVector.z = Mathf.Max(maxVector.z, vect.z);
+            }
+            return maxVector;
+        }
+        public static Vector3 VectorMin(params Vector3[] vectors)
+        {
+            if (vectors.Length <= 0)
+            {
+                return default;
+            }
+            var minVector = vectors[0];
+
+            for (int i = 1; i < vectors.Length; i++)
+            {
+                var vect = vectors[i];
+                minVector.x = Mathf.Min(minVector.x, vect.x);
+                minVector.y = Mathf.Min(minVector.y, vect.y);
+                minVector.z = Mathf.Min(minVector.z, vect.z);
+            }
+            return minVector;
+        }
+        public static Vector3 Average(params Vector3[] vectors)
+        {
+            if (vectors.Length <= 0)
+            {
+                return default;
+            }
+            var sumVector = vectors[0];
+
+            for (int i = 1; i < vectors.Length; i++)
+            {
+                sumVector += vectors[i];
+            }
+            return sumVector / vectors.Length;
+        }
+    }
+
     public static class DrawArrow
     {
         public static void ForGizmo(Vector3 pos, Vector3 direction, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)

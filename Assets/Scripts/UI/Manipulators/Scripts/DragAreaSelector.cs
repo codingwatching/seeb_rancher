@@ -1,7 +1,4 @@
-﻿using Dman.Tiling;
-using Dman.Tiling.SquareCoords;
-using Dman.Utilities;
-using System.Linq;
+﻿using Dman.Utilities;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
@@ -16,119 +13,103 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public RaycastGroup targetCastGroup;
         public ManipulatorController manipulationController;
+        public RectTransform dragAreaRenderer;
 
 
-        private Vector3? mouseDownPosition = null;
+        public bool dragging = false;
 
-        private bool dragging = false;
-
-
-        private UniversalCoordinate originDragPoint = default;
-        private UniversalCoordinateRange lastDragRange = default;
-        public GameObject dragAreaRenderer;
+        private Vector3? originDragScreenPoint;
+        private Vector3 lastDragEndPosition;
 
         private void Start()
         {
-            dragAreaRenderer.SetActive(false);
+            dragAreaRenderer.gameObject.SetActive(false);
             manipulationController.SetDragging(false);
         }
 
         // Update is called once per frame
         void Update()
         {
-            var hoveredCoordinate = GetHoveredCoordinate();
-
-
-            if (Input.GetMouseButtonDown(0) && hoveredCoordinate != null && manipulationController.activeManipulator is IAreaSelectManipulator)
-            {
-                mouseDownPosition = Input.mousePosition;
-                originDragPoint = hoveredCoordinate.Value;
-                dragging = false;
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                mouseDownPosition = null;
-            }
-            if (Input.GetMouseButton(0) && mouseDownPosition.HasValue)
-            {
-                var mouseDistance = (Input.mousePosition - mouseDownPosition).Value.magnitude;
-                if (mouseDistance >= MouseMoveDragThreshold)
-                {
-                    dragging = true;
-                    mouseDownPosition = null;
-                }
-            }
             if (dragging)
             {
                 if (!Input.GetMouseButton(0))
                 {
-                    if (hoveredCoordinate != null)
-                    {
-                        var currentDraggingPoint = hoveredCoordinate.Value;
-                        lastDragRange = UniversalCoordinateRange.From(
-                            RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView),
-                            originDragPoint.CoordinatePlaneID);
-                    }
+                    lastDragEndPosition = Input.mousePosition;
                     this.ClearLastDragRange();
                 }
-                else if (hoveredCoordinate != null)
+                else
                 {
-                    var currentDraggingPoint = hoveredCoordinate.Value;
-                    var newDragRange = UniversalCoordinateRange.From(
-                        RectCoordinateRange.FromCoordsInclusive(currentDraggingPoint.squareDataView, originDragPoint.squareDataView),
-                        originDragPoint.CoordinatePlaneID);
-                    if (newDragRange.Equals(lastDragRange))
+                    if (lastDragEndPosition.Equals(Input.mousePosition))
                     {
                         return;
-                    }else
+                    }
+                    else
                     {
-                        lastDragRange = newDragRange;
+                        lastDragEndPosition = Input.mousePosition;
                     }
 
                     this.RenderLastDragRange();
                 }
-
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0) && manipulationController.activeManipulator is IAreaSelectManipulator)
+                {
+                    originDragScreenPoint = Input.mousePosition;
+                    dragging = false;
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    manipulationController.SetDragging(false);
+                    dragging = false;
+                    originDragScreenPoint = null;
+                    dragAreaRenderer.gameObject.SetActive(false);
+                }
+                if (Input.GetMouseButton(0) && originDragScreenPoint.HasValue)
+                {
+                    var mouseDistance = (Input.mousePosition - originDragScreenPoint).Value.magnitude;
+                    if (mouseDistance >= MouseMoveDragThreshold)
+                    {
+                        dragging = true;
+                    }
+                }
             }
         }
 
         private void RenderLastDragRange()
         {
-            var coords = lastDragRange.BoundingPolygon();
-            var vMin = coords.OrderBy(x => x.x + x.y).First();
-            var vMax = coords.OrderByDescending(x => x.x + x.y).First();
-            var vAvg = (vMin + vMax) / 2;
-            dragAreaRenderer.SetActive(true);
-            dragAreaRenderer.transform.localScale = new Vector3(vMax.x - vMin.x, 1, vMax.y - vMin.y);
-            dragAreaRenderer.transform.position = new Vector3(vAvg.x, dragAreaRenderer.transform.position.y, vAvg.y);
+            dragAreaRenderer.gameObject.SetActive(true);
+            var originX = Mathf.Min(originDragScreenPoint.Value.x, lastDragEndPosition.x);
+            var originY = Mathf.Min(originDragScreenPoint.Value.y, lastDragEndPosition.y);
+            var width = Mathf.Abs(originDragScreenPoint.Value.x - lastDragEndPosition.x);
+            var height = Mathf.Abs(originDragScreenPoint.Value.y - lastDragEndPosition.y);
+
+            dragAreaRenderer.sizeDelta = new Vector2(width, height);
+            var pos = dragAreaRenderer.position;
+            pos.x = originX;
+            pos.y = originY;
+            dragAreaRenderer.position = pos;
 
             manipulationController.SetDragging(true);
-            manipulationController.OnDragAreaChanged(lastDragRange);
+            manipulationController.OnDragAreaChanged(new Vector2(originX, originY), new Vector2(width, height));
         }
         private void ClearLastDragRange()
         {
-            manipulationController.OnAreaSelected(lastDragRange);
+            var originX = Mathf.Min(originDragScreenPoint.Value.x, lastDragEndPosition.x);
+            var originY = Mathf.Min(originDragScreenPoint.Value.y, lastDragEndPosition.y);
+            var width = Mathf.Abs(originDragScreenPoint.Value.x - lastDragEndPosition.x);
+            var height = Mathf.Abs(originDragScreenPoint.Value.y - lastDragEndPosition.y);
+
+            manipulationController.OnAreaSelected(new Vector2(originX, originY), new Vector2(width, height));
             manipulationController.SetDragging(false);
 
             dragging = false;
-            originDragPoint = default;
-            dragAreaRenderer.SetActive(false);
+            originDragScreenPoint = null;
+            dragAreaRenderer.gameObject.SetActive(false);
         }
 
         private void OnDrawGizmos()
         {
-            if (lastDragRange.IsValid)
-            {
-                lastDragRange.rectangleDataView.ToBox(3, out var center, out var size);
-                Gizmos.color = new Color(0.1f, 1f, 0.3f, 0.6f);
-                Gizmos.DrawCube(center, size);
-            }
-        }
-
-        private UniversalCoordinate? GetHoveredCoordinate()
-        {
-            var mouseOvered = targetCastGroup.CurrentlyHitObject;
-            var hoveredGameObject = mouseOvered.HasValue ? mouseOvered.Value.collider.gameObject : null;
-            return hoveredGameObject?.GetComponentInParent<TileMember>()?.CoordinatePosition;
         }
 
     }

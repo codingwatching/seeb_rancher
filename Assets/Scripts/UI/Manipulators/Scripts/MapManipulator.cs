@@ -16,12 +16,17 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         /// <returns>whether or not to keep the manipulator alive</returns>
         public abstract bool OnUpdate();
         public abstract void OnClose();
+
+        public virtual void OnDrawGizmos()
+        {
+
+        }
     }
 
     public interface IAreaSelectManipulator
     {
-        void OnAreaSelected(UniversalCoordinateRange range);
-        void OnDragAreaChanged(UniversalCoordinateRange range);
+        void OnAreaSelected(Vector2 origin, Vector2 size);
+        void OnDragAreaChanged(Vector2 origin, Vector2 size);
         void SetDragging(bool isDragging);
     }
 }
