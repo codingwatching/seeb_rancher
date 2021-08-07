@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StamenSize
   m_EditorClassIdentifier: 
   myId: 4
-  DriverName: Stamen size factor
+  DriverName: Stamen size
   minValue: 0
   maxValue: 0
   summaryBucketCount: 0

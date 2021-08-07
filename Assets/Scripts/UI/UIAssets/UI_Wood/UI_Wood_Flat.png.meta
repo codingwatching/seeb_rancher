@@ -116,6 +116,9 @@ TextureImporter:
   - first:
       213: -7629984844588438432
     second: UI_Wood_Panel_Large_Transparent
+  - first:
+      213: 1681267499249457814
+    second: UI_Wood_Filled_Panel_Small
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -727,13 +730,13 @@ TextureImporter:
       name: UI_Wood_Circle_Border
       rect:
         serializedVersion: 2
-        x: 193
+        x: 192
         y: 288
-        width: 30
+        width: 31
         height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 12, y: 12, z: 11, w: 11}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -964,7 +967,7 @@ TextureImporter:
         height: 159
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 1, z: 1, w: 0}
+      border: {x: 11, y: 15, z: 12, w: 9}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1026,7 +1029,7 @@ TextureImporter:
         width: 160
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 32, y: 32, z: 32, w: 32}
       outline: []
       physicsShape: []
@@ -1034,6 +1037,27 @@ TextureImporter:
       bones: []
       spriteID: 06c21b09539dc1690800000000000000
       internalID: -7629984844588438432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Wood_Filled_Panel_Small
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 9, w: 7}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69a5c2102ef055710800000000000000
+      internalID: 1681267499249457814
       vertices: []
       indices: 
       edges: []

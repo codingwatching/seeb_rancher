@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlantHeight
   m_EditorClassIdentifier: 
   myId: 17
-  DriverName: Plant Height
+  DriverName: Height
   minValue: 0.5
   maxValue: 4.5
   summaryBucketCount: 6

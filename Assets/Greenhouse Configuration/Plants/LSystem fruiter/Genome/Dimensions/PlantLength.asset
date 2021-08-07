@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlantLength
   m_EditorClassIdentifier: 
   myId: 2
-  DriverName: Plant Length
+  DriverName: Length
   minValue: 3
   maxValue: 13
   summaryBucketCount: 0

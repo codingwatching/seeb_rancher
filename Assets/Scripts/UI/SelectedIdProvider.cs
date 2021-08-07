@@ -20,15 +20,7 @@ namespace Assets.Scripts.UI
         {
             instance = this;
 
-            idTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 24, RenderTextureFormat.ARGB32, 0)
-            {
-                antiAliasing = 1,
-                filterMode = FilterMode.Point,
-                autoGenerateMips = false,
-                depth = 24,
-                graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_UNorm
-            };
-            idTexture.Create();
+            this.SetupIdTexture();
 
             idTextureTempSpace = new Texture2D(1, 1)
             {
@@ -36,7 +28,6 @@ namespace Assets.Scripts.UI
                 minimumMipmapLevel = 0,
             };
 
-            idCamera.targetTexture = idTexture;
         }
 
         // Start is called before the first frame update
@@ -48,6 +39,11 @@ namespace Assets.Scripts.UI
         // Update is called once per frame
         void Update()
         {
+            if(idTexture.width != mainCamera.pixelWidth || idTexture.height != mainCamera.pixelHeight)
+            {
+                Debug.Log("Detected screen resultion change");
+                SetupIdTexture();
+            }
             var mousePosition = new Vector2Int((int)Input.mousePosition.x, (int)Input.mousePosition.y);
             var nextHoveredId = ReadColorAtPixel(mousePosition.x, mousePosition.y, idTexture)?.UIntValue ?? HoveredId;
             if (HoveredId != nextHoveredId)
@@ -56,6 +52,24 @@ namespace Assets.Scripts.UI
             }
         }
 
+        private void SetupIdTexture()
+        {
+            if(idTexture != null)
+            {
+                idTexture.Release();
+                idTexture = null;
+            }
+            idTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 24, RenderTextureFormat.ARGB32, 0)
+            {
+                antiAliasing = 1,
+                filterMode = FilterMode.Point,
+                autoGenerateMips = false,
+                depth = 24,
+                graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_UNorm
+            };
+            idTexture.Create();
+            idCamera.targetTexture = idTexture;
+        }
 
         private static UIntFloatColor32? ReadColorAtPixel(int x, int y, RenderTexture renderTexture)
         {
