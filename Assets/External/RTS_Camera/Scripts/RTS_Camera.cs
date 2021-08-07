@@ -301,11 +301,11 @@ namespace RTS_Cam
             m_Transform.position = Vector3.Lerp(m_Transform.position,
                 new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z), Time.deltaTime * heightDampening);
 
-            var heightRelativeInRange = (m_Transform.position.y - minHeight) / (maxHeight - minHeight);
-            var newRotation = angleByRelativeHeight.Evaluate(heightRelativeInRange);
-            var angles = m_Transform.eulerAngles;
-            angles.x = newRotation;
-            m_Transform.eulerAngles = angles;
+
+            var targetAngle = angleByRelativeHeight.Evaluate(zoomPos);
+            var currentRotation = m_Transform.eulerAngles;
+            currentRotation.x = Mathf.LerpAngle(currentRotation.x, targetAngle, Time.deltaTime * heightDampening);
+            m_Transform.eulerAngles = currentRotation;
         }
 
         /// <summary>
