@@ -147,11 +147,14 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 mouseDownPosition = null;
                 if (mouseDistance < DragAreaSelector.MouseMoveDragThreshold)
                 {
-                    if (!TryPlantSeed(mouseDownRaycastHit.Value))
+                    var couldPlantSeed = TryPlantSeed(mouseDownRaycastHit.Value);
+
+                    OnSeedsUpdated();
+
+                    if (!couldPlantSeed)
                     {
                         return false;
                     }
-                    OnSeedsUpdated();
                 }
             }
             return true;
