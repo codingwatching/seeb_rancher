@@ -773,11 +773,11 @@
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="UnityFx.Outline.Editor">
       <HintPath>Library\ScriptAssemblies\UnityFx.Outline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
@@ -825,6 +825,10 @@
       <Project>{E8A52BDE-01ED-1E7E-E731-D4BCE65B3D4D}</Project>
       <Name>Genetics</Name>
     </ProjectReference>
+    <ProjectReference Include="Boxophobic.PolyverseSkies.Editor.csproj">
+      <Project>{D10ABD44-E58F-D54A-49EC-336B68228428}</Project>
+      <Name>Boxophobic.PolyverseSkies.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="TilingEditor.csproj">
       <Project>{54CA7512-07AE-506F-0123-7EFBE4B7FCA6}</Project>
       <Name>TilingEditor</Name>
@@ -832,6 +836,10 @@
     <ProjectReference Include="Narrative.csproj">
       <Project>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</Project>
       <Name>Narrative</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.PolyverseSkies.Scripts.csproj">
+      <Project>{5E7C3AD1-3AE2-6B3F-824F-18E8CD5517B3}</Project>
+      <Name>Boxophobic.PolyverseSkies.Scripts</Name>
     </ProjectReference>
     <ProjectReference Include="ReactiveVariables.csproj">
       <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
@@ -844,6 +852,18 @@
     <ProjectReference Include="Tiling.csproj">
       <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
       <Name>Tiling</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.PolyverseSkies.Runtime.csproj">
+      <Project>{E4911C40-4FB2-D2BC-584E-2A7CC5EFBFEB}</Project>
+      <Name>Boxophobic.PolyverseSkies.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Editor.csproj">
+      <Project>{570204B3-3619-D382-3F19-F9733D7F0718}</Project>
+      <Name>Boxophobic.Utils.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
+      <Project>{5FADB50E-40B4-6EE9-457D-6DB8B04208F3}</Project>
+      <Name>Boxophobic.Utils.Scripts</Name>
     </ProjectReference>
     <ProjectReference Include="com.dman.l-system.editor.csproj">
       <Project>{64660CD5-FA0A-67A9-375B-9B84960E0AC8}</Project>
