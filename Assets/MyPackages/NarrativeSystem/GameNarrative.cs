@@ -64,7 +64,8 @@ namespace Dman.NarrativeSystem
             {
                 currentlyActiveConvo = null;
             }
-            StartNextConvoIfExists();
+            // recheck all triggers after every conversation ends
+            CheckAllConversationTriggers();
         }
 
         #region Saving
