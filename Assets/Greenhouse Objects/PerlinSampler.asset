@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   octaves:
   - frequency: {x: 1, y: 1}
-    weight: 2
-  - frequency: {x: 4, y: 2}
+    weight: 1
+  - frequency: {x: 1, y: 2}
+    weight: 0.5
+  - frequency: {x: 2, y: 1}
+    weight: 0.5
+  - frequency: {x: 2, y: 2}
     weight: 1
   - frequency: {x: 0.5, y: 0.5}
     weight: 2
-  - frequency: {x: 2, y: 4}
-    weight: 1
-  randomSeed: 1028
+  - frequency: {x: 0.1, y: 0.1}
+    weight: 10
+  randomSeed: 1270

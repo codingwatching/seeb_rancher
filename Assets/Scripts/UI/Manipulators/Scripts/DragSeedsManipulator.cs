@@ -21,8 +21,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     {
         public bool IsActive { get; private set; }
 
+        public GameObjectVariable seedSproutGameObject;
+
         [SerializeField] public RaycastGroup plantableCaster;
         [SerializeField] private Sprite plantCursor;
+        [SerializeField] private float plantableRadius;
 
         private SeedBucketDisplay draggingSeedsInstance;
         private SeedInventoryDropSlot sourceSlot = null;
@@ -30,8 +33,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         [SerializeField] private GameObjectVariable selectedGameObject;
 
         private ManipulatorController controller;
-        private MovingOutlineHelper singleOutlineHelper;
-        public OutlineLayerCollection outlineCollection;
 
         public string SeedGroupName => sourceSlot?.dataModel.description;
 
@@ -87,7 +88,6 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             draggingSeedsInstance = draggingParentProvider.SpawnNewDraggingSeeds();
 
             IsActive = true;
-            singleOutlineHelper = new MovingOutlineHelper(outlineCollection);
         }
 
         public override void OnClose()
@@ -97,7 +97,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             draggingSeedsInstance = null;
             sourceSlot = null;
             IsActive = false;
-            singleOutlineHelper.ClearOutlinedObject();
+            seedSproutGameObject.CurrentValue.SetActive(false);
         }
 
         private Vector3? mouseDownPosition = null;
@@ -117,18 +117,21 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var hoveredSpot = plantableCaster.CurrentlyHitObject;
             var dirtPlanter = hoveredSpot.HasValue ? hoveredSpot.Value.collider.GetComponent<PlantableDirt>() : null;
 
-            var canPlantHere = dirtPlanter != null;
+            var hitPoint2D = hoveredSpot.HasValue ? new Vector2(hoveredSpot.Value.point.x, hoveredSpot.Value.point.z) : Vector2.zero;
+            var canPlantHere = dirtPlanter != null && hitPoint2D.magnitude <= plantableRadius;
 
             if (!canPlantHere)
             {
-                singleOutlineHelper.UpdateOutlineObject(null);
+                seedSproutGameObject.CurrentValue.SetActive(false);
                 return true;
             }
+
+            seedSproutGameObject.CurrentValue.SetActive(true);
 
             if (!isDragging)
             {
                 // if draging is happening, don't update preview here.
-                singleOutlineHelper.UpdateOutlineObject(dirtPlanter.GetOutlineObject());
+                seedSproutGameObject.CurrentValue.transform.position = hoveredSpot.Value.point;
             }
 
 

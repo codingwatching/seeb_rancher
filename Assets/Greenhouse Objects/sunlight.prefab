@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 473149580526537957}
   - component: {fileID: 473149580526537955}
   - component: {fileID: 1077866872399431033}
+  - component: {fileID: 3335437451672220140}
   m_Layer: 0
   m_Name: sunlight
   m_TagString: Untagged
@@ -116,6 +117,29 @@ MonoBehaviour:
     Instancer: {fileID: 0}
     NamePath: 
   speedMultiplier: 1
+--- !u!114 &3335437451672220140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473149580526537953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fdf5921ba9788546a0a1fb47a5f6f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  styledBanner: 0
+  categoryScene: 0
+  sunDirection: {fileID: 473149580769736638}
+  moonDirection: {fileID: 473149580769736638}
+  categoryTime: 0
+  categoryTimeMessage: 1
+  skyboxDay: {fileID: 2100000, guid: 188c8ae1d60a5e34faaf71d8ee55a065, type: 2}
+  skyboxNight: {fileID: 2100000, guid: d0523d8917957bb429a32997cb0e52b2, type: 2}
+  timeOfDay: 0
+  updateLighting: 0
+  styledSpace0: 0
 --- !u!1 &473149580769736638
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,10 +292,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sunlightPerSquareUnit: 1
-  uniqueSummationShader: {fileID: 7200000, guid: 1549cd601b32dbd43bce4432c0ed2bfd, type: 3}
-  uniqueOrgansInitialAllocation: 16
-  computeBufferResizeMultiplier: 2
-  computeBufferResizeThreshold: 0.9
 --- !u!114 &473149580769736611
 MonoBehaviour:
   m_ObjectHideFlags: 0

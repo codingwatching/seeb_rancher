@@ -31,6 +31,7 @@ namespace Assets.Scripts.GreenhouseLoader
 
         private void RegenMesh()
         {
+            var randSampler = new System.Random(Random.Range(1, int.MaxValue));
             var quadWidth = size.x / samplesPerTile.x;
             var quadHeight = size.y / samplesPerTile.y;
             var builder = new MeshDraft();
@@ -45,23 +46,19 @@ namespace Assets.Scripts.GreenhouseLoader
                     var x0y1 = VertexInPlane(quadX, quadY + quadHeight);
                     var x1y1 = VertexInPlane(quadX + quadWidth, quadY + quadHeight);
                     var center = VertexInPlane(quadX + quadWidth / 2, quadY + quadHeight / 2);
-                    builder.AddTriangle(x0y0, x0y1, x1y1, true);
-                    builder.AddTriangle(x1y1, x1y0, x0y0, true);
-                    //builder.AddQuad(
-                    //    VertexInPlane(quadX, quadY),
-                    //    VertexInPlane(quadX, quadY + quadHeight),
-                    //    VertexInPlane(quadX + quadWidth, quadY + quadHeight),
-                    //    VertexInPlane(quadX + quadWidth, quadY),
-                    //    true);
+                    if(randSampler.NextDouble() > 0.5f)
+                    {
+                        builder.AddTriangle(x0y0, x0y1, x1y1, true);
+                        builder.AddTriangle(x1y1, x1y0, x0y0, true);
+                    }
+                    else
+                    {
+                        builder.AddTriangle(x0y1, x1y1, x1y0, true);
+                        builder.AddTriangle(x1y0, x0y0, x0y1, true);
+                    }
                 }
             }
             builder = builder.Paint(new Color(0, 0, 0, 0));
-            //for (int i = 0; i < builder.vertexCount; i++)
-            //{
-            //    var vertex = builder.vertices[i];
-            //    vertex.y = sampler.SampleNoise(new Vector2(builder.vertices[i].x, builder.vertices[i].z)) * amplitude;
-            //    builder.vertices[i] = vertex;
-            //}
             var newMesh = builder.ToMesh(true, true);
             newMesh.RecalculateNormals();
             var meshfilter = GetComponent<MeshFilter>();
