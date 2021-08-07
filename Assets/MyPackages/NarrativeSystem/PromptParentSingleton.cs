@@ -10,11 +10,13 @@ namespace Dman.NarrativeSystem
     {
         public GameNarrative narrative;
         public IntVariable phaseVariable;
+        public EventGroup conversationCheckTrigger;
 
         public static PromptParentSingleton Instance;
 
         private void Awake()
         {
+            conversationCheckTrigger.OnEvent += ConversationCheckTriggered;
             narrative.Init();
             phaseVariable.Value
                 .TakeUntilDestroy(this)
@@ -25,16 +27,22 @@ namespace Dman.NarrativeSystem
                     {
                         return;
                     }
-                    StartCoroutine(CheckTriggersOnNextFrame());
+                    conversationCheckTrigger.TriggerEvent();
                 }).AddTo(this);
             Instance = this;
         }
         private void OnDestroy()
         {
+            conversationCheckTrigger.OnEvent -= ConversationCheckTriggered;
             if (Instance == this)
             {
                 Instance = null;
             }
+        }
+
+        private void ConversationCheckTriggered()
+        {
+            StartCoroutine(CheckTriggersOnNextFrame());
         }
 
         IEnumerator CheckTriggersOnNextFrame()

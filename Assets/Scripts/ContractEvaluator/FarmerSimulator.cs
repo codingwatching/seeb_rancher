@@ -35,6 +35,15 @@ namespace Assets.Scripts.ContractEvaluator
             totalPlantsGrown = 0;
         }
 
+        public void TerminateSimulation()
+        {
+            foreach (var plant in tendedPlants)
+            {
+                plant.Destroy();
+            }
+            tendedPlants.Clear();
+        }
+
         private void Awake()
         {
             sequenceGenerator = new HaltonSequenceGenerator(2, 3, Random.Range(0, 1000), -Vector2.one, Vector2.one);
@@ -88,7 +97,6 @@ namespace Assets.Scripts.ContractEvaluator
             }
         }
 
-
         private void SpawnPlant()
         {
             var rayPoint = sequenceGenerator.Sample();
@@ -141,6 +149,11 @@ namespace Assets.Scripts.ContractEvaluator
                 stepTimer = new StochasticTimerFrequencyVaried(plant.plantType.updateStepTiming);
                 pollinateTimer = new StochasticTimerFrequencyVaried(plant.plantType.pollinationSpreadTiming);
                 this.parent = parent;
+            }
+
+            public void Destroy()
+            {
+                GameObject.Destroy(plant.harvestObject.prefabRoot);
             }
 
             public Seed[] TryStep()

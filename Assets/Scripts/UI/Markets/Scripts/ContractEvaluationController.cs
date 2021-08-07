@@ -44,6 +44,8 @@ namespace Assets.Scripts.UI.MarketContracts
         public FloatReference failedPlants;
         public FloatReference successRatio;
 
+        public EventGroup narrativeUpdateTrigger;
+
         private void Awake()
         {
             Instance = this;
@@ -128,6 +130,7 @@ namespace Assets.Scripts.UI.MarketContracts
             evaluationModal.SetActive(false);
             IsEvaluating = false;
             money.SetValue(money.CurrentValue + rewardAmount);
+            narrativeUpdateTrigger.TriggerEvent();
         }
     }
 }

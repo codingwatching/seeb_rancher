@@ -88,8 +88,10 @@ namespace Assets.Scripts.UI.MarketContracts
             areContractsEvaluating.SetValue(true);
 
             yield return new WaitUntil(() => failedPlants + successfulPlants >= totalPlantsToTest);
+            farmer.TerminateSimulation();
             SceneManager.SetActiveScene(mainScene);
             areContractsEvaluating.SetValue(false);
+            yield return new WaitForEndOfFrame();
 
             SceneManager.UnloadSceneAsync(farmerScene);
 
