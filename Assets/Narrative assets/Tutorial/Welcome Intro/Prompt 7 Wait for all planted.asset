@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Prompt 7 Wait for all planted
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: Now back in the greenhouse you plant the seebs by clicking in the dirt,
-    or by clicking and dragging over an area
+  promptText: Plant the seebs by clicking in the dirt! Press Escape, or click on
+    another seed slot when you're done.
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   manipulatorVariable: {fileID: 11400000, guid: 1bab0bbceb6e9174a97b61869f921917, type: 2}
   manipulator: {fileID: 11400000, guid: 734200144025c4e4996becdd288ebbd9, type: 2}

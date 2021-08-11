@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Prompt 4
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: At the begining of every phase, every plant with flowers will spread
-    their pollen onto every other plant in range that has flowers that phase. Each
-    time pollen spreads to a plant, the chance that it fertilizes each seeb within
-    range increases.
+  promptText: Whenever plants are growing, every plant with flowers will spread their
+    pollen onto every other plant in range that has flowers. Each time pollen spreads
+    to a plant, the chance that it fertilizes each seeb within range increases.
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:

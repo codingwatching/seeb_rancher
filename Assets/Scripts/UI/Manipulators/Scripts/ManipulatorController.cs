@@ -15,6 +15,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public MapManipulator defaultManipulator;
 
+        public KeyCode escapeKey = KeyCode.Escape;
 
         private void Awake()
         {
@@ -33,7 +34,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown((int)MouseButton.RightMouse))
+            if (Input.GetKeyDown(escapeKey))
             {
                 manipulatorVariable.SetValue(null);
             }

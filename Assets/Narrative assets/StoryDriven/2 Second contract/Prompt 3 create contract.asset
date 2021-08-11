@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: Here's my next offer! I need seebs that will always breed true to be
-    short with yellow fruit I'll pay double since my scientists have been having
+    tall with yellow fruit, I'll pay double since my scientists have been having
     trouble isolating both properties at the same time.
   speakerSprite: {fileID: 21300000, guid: 1e18ac921ecbec74bb1b3f03b4c7b09a, type: 3}
   onOpened:
