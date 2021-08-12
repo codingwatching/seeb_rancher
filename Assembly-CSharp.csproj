@@ -322,7 +322,19 @@
       <HintPath>Library\PackageCache\com.unity.collections@0.15.0-preview.21\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.4.1\Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.5\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+      <HintPath>Library\PackageCache\com.unity.burst@1.5.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="System.Collections.Immutable">
       <HintPath>C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\Plugin\System.Collections.Immutable.dll</HintPath>
@@ -830,6 +842,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SeebRancherBaseAssembly.csproj">
+      <Project>{7239741A-F6EF-1B9D-03EF-22726D8C1824}</Project>
+      <Name>SeebRancherBaseAssembly</Name>
+    </ProjectReference>
     <ProjectReference Include="Genetics.csproj">
       <Project>{E8A52BDE-01ED-1E7E-E731-D4BCE65B3D4D}</Project>
       <Name>Genetics</Name>
@@ -881,10 +897,6 @@
     <ProjectReference Include="com.dman.LSystem.csproj">
       <Project>{DD72B859-1013-9260-F42D-99C160940558}</Project>
       <Name>com.dman.LSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="SeebRancherBaseAssembly.csproj">
-      <Project>{7239741A-F6EF-1B9D-03EF-22726D8C1824}</Project>
-      <Name>SeebRancherBaseAssembly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

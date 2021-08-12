@@ -56,6 +56,7 @@ public class TestPathFinding
 
 
         var frontNodes = new NativeQueue<int>(Allocator.TempJob);
+        var infiniteLoopCheck = new NativeArray<bool>(1, Allocator.TempJob);
         try
         {
             var dep = initializer.Schedule(parentNodePointers.Length, 100);
@@ -99,6 +100,11 @@ public class TestPathFinding
             }
             dep.Complete();
 
+            if (infiniteLoopCheck[0])
+            {
+                Assert.Fail("Pathing resuilted in an infinite loop");
+            }
+
             for (int i = 0; i < voxelLayout.totalVolumeDataSize; i++)
             {
                 var expectedNeighbor = expectedParentIndexes[i];
@@ -116,6 +122,7 @@ public class TestPathFinding
             parentNodePointers.Dispose();
             tmpPathingData.Dispose();
             frontNodes.Dispose();
+            infiniteLoopCheck.Dispose();
         }
     }
 

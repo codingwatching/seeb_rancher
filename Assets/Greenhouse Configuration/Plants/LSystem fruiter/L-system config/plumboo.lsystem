@@ -12,6 +12,10 @@
 #symbols s
 #include sunlight (LightAmount->s)
 
+#symbols n
+#include autophagy (Necrose->n)
+
+
 #symbols ra
 #matches r
 #define diffusionStepsPerStep 20

@@ -36,6 +36,8 @@ namespace Assets.Scripts.PlantPathing
         public Vector3Int targetVoxel;
         public float baseTravelWeight;
 
+        public NativeArray<bool> failedWithInfiniteLoop;
+
         public void Execute()
         {
             var firstIndex = voxelLayout.GetDataIndexFromCoordinates(targetVoxel);
@@ -45,8 +47,16 @@ namespace Assets.Scripts.PlantPathing
 
             frontNodes.Enqueue(firstIndex);
 
+            var safetyMaxIterationCheck = (int) Mathf.Pow(voxelLayout.totalVolumeDataSize, 1.5f);
+            var totalVisitations = 0;
             while (frontNodes.Count > 0)
             {
+                totalVisitations++;
+                if(totalVisitations > safetyMaxIterationCheck)
+                {
+                    failedWithInfiniteLoop[0] = true;
+                    return;
+                }
                 var nextNode = frontNodes.Dequeue();
                 Visit(nextNode);
             }
