@@ -24,6 +24,7 @@ namespace Assets.Scripts.PlantPathing
     public struct DijkstrasPathingSolverJob : IJob
     {
         public VolumetricWorldVoxelLayout voxelLayout;
+        [ReadOnly]
         public NativeArray<float> nodeCostAdjustmentVoxels;
 
         // working data
