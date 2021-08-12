@@ -51,6 +51,10 @@ namespace Assets.Scripts.PlantPathing
 
             volumeWorld.nativeVolumeData.RegisterReadingDependency(dep);
             pathingWorldPendingUpdate = dep;
+
+            tmpPathingData.Dispose(dep);
+            frontNodes.Dispose(dep);
+
         }
 
         private void Awake()
@@ -72,6 +76,7 @@ namespace Assets.Scripts.PlantPathing
         private void OnDestroy()
         {
             GetComponent<OrganVolumetricWorld>().volumeWorldChanged -= UpdatePathingWorld;
+            parentNodePointersSwapper.Dispose();
         }
 
         public void OnDrawGizmosSelected()
