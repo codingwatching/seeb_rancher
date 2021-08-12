@@ -17,6 +17,8 @@ namespace Assets.Scripts.GreenhouseLoader
         [SerializeField]
         private NoiseOctave[] octaves;
         [SerializeField]
+        private float scale = 1;
+        [SerializeField]
         private int randomSeed;
         [NonSerialized]
         private Vector2 noiseOffset = default;
@@ -53,7 +55,7 @@ namespace Assets.Scripts.GreenhouseLoader
                 sample += SamplePerlin(perlinVector, octave);
             }
 
-            return sample / octaves.Sum(octave => octave.weight);
+            return scale * sample / octaves.Sum(octave => octave.weight);
         }
         private void GenerateNoiseOffset()
         {

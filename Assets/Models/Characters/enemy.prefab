@@ -65,7 +65,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypointProximityRequirement: 0.1
   movementSpeed: 1
-  damageSpeed: 10
+  clampToGround: 1
+  terrainHeights: {fileID: 11400000, guid: 3bb4602eb1370a44384882c040592954, type: 2}
+  damageSpeed: 2
   ignorableDurability: 5
   animationDamageFlagName: Attacking
   animationMovementSpeedName: MovementSpeed

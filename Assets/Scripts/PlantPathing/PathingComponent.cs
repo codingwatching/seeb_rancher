@@ -1,3 +1,4 @@
+using Assets.Scripts.GreenhouseLoader;
 using Dman.LSystem.SystemRuntime.VolumetricData;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Assets.Scripts.PlantPathing
         public float waypointProximityRequirement = 0.1f;
 
         public float movementSpeed = 1f;
+        public bool clampToGround = true;
+        public PerlineSampler terrainHeights;
 
         public float damageSpeed = 10f;
         public float ignorableDurability = 5f;
@@ -87,7 +90,12 @@ namespace Assets.Scripts.PlantPathing
             {
                 return;
             }
-            nextWaypoint = volumeWorld.voxelLayout.GetWorldPositionFromDataIndex(nextVoxel);
+            var next3SpaceWaypoint = volumeWorld.voxelLayout.GetWorldPositionFromDataIndex(nextVoxel);
+            if (clampToGround)
+            {
+                next3SpaceWaypoint.y = terrainHeights.SampleNoise(next3SpaceWaypoint.x, next3SpaceWaypoint.z);
+            }
+            nextWaypoint = next3SpaceWaypoint;
         }
     }
 }

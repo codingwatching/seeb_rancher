@@ -27,4 +27,5 @@ MonoBehaviour:
     weight: 10
   - frequency: {x: 0.02, y: 0.02}
     weight: 20
+  scale: 6
   randomSeed: 1270

@@ -45,7 +45,6 @@ namespace Assets.Scripts.PlantPathing
 
             var dep = initializerJob.Schedule(parentNodePointers.Length, 1000);
             var frontNodes = new NativeQueue<int>(Allocator.TempJob);
-            failedWithInfiniteLoop = new NativeArray<bool>(1, Allocator.TempJob);
             var patherJob = new DijkstrasPathingSolverJob
             {
                 nodeCostAdjustmentVoxels = volumeWorld.nativeVolumeData.openReadData,
@@ -77,7 +76,6 @@ namespace Assets.Scripts.PlantPathing
             pathingWorldPendingUpdate = null;
 
             var infiniteLoopFail = failedWithInfiniteLoop[0];
-            failedWithInfiniteLoop.Dispose();
             if (infiniteLoopFail)
             {
                 Debug.LogError("Pathfinding failed with an infinite loop");
@@ -90,6 +88,7 @@ namespace Assets.Scripts.PlantPathing
         {
             parentNodePointersSwapper = new NativeDisposableHotSwap<NativeArrayNativeDisposableAdapter<int>>();
             volumeWorld.volumeWorldChanged += UpdatePathingWorld;
+            failedWithInfiniteLoop = new NativeArray<bool>(1, Allocator.TempJob);
         }
 
         private void Update()
