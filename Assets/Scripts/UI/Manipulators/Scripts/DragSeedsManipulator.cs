@@ -17,7 +17,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     /// used to control seeds being moved by the cursor, when not harvesting.
     /// </summary>
     [CreateAssetMenu(fileName = "DragSeedsManipulator", menuName = "Tiling/Manipulators/DragSeedsManipulator", order = 3)]
-    public class DragSeedsManipulator : MapManipulator, ISeedHoldingManipulator //, IAreaSelectManipulator
+    public class DragSeedsManipulator : MapManipulator, ISeedHoldingManipulator
     {
         public bool IsActive { get; private set; }
 

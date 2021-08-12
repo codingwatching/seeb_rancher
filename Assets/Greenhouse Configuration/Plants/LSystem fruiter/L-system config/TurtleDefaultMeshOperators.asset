@@ -24,6 +24,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 0, y: 0, z: 0}
     AlsoMove: 1
     UseThickness: 1
+    volumetricDurabilityValue: 1
   - Character: 108
     MeshRef: {fileID: -5966198621110897880, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
@@ -35,6 +36,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 1, y: 1, z: 1}
     AlsoMove: 0
     UseThickness: 0
+    volumetricDurabilityValue: 0
   - Character: 75
     MeshRef: {fileID: -8233340004779243719, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants:
@@ -54,6 +56,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 2, y: 0.5, z: 0.5}
     AlsoMove: 0
     UseThickness: 0
+    volumetricDurabilityValue: 0
   - Character: 66
     MeshRef: {fileID: -8117828432582735504, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
@@ -65,6 +68,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 0, y: 0, z: 0}
     AlsoMove: 0
     UseThickness: 0
+    volumetricDurabilityValue: 0
   - Character: 82
     MeshRef: {fileID: -8117828432582735504, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
@@ -76,6 +80,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 0, y: 0, z: 0}
     AlsoMove: 0
     UseThickness: 0
+    volumetricDurabilityValue: 0
   - Character: 86
     MeshRef: {fileID: -8117828432582735504, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
@@ -87,6 +92,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 0, y: 0, z: 0}
     AlsoMove: 0
     UseThickness: 0
+    volumetricDurabilityValue: 0
   - Character: 84
     MeshRef: {fileID: -8117828432582735504, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
@@ -98,6 +104,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 0, y: 0, z: 0}
     AlsoMove: 0
     UseThickness: 0
+    volumetricDurabilityValue: 0
   - Character: 68
     MeshRef: {fileID: -632565698310742879, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants:
@@ -111,6 +118,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 0.7, y: 0.7, z: 0.7}
     AlsoMove: 0
     UseThickness: 0
+    volumetricDurabilityValue: 0
   - Character: 65
     MeshRef: {fileID: -7056012562932372494, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
@@ -122,6 +130,7 @@ MonoBehaviour:
     ScalePerParameter: {x: 0.7, y: 0.7, z: 0.7}
     AlsoMove: 0
     UseThickness: 0
+    volumetricDurabilityValue: 0
   - Character: 73
     MeshRef: {fileID: 3557837105413461654, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
@@ -133,3 +142,4 @@ MonoBehaviour:
     ScalePerParameter: {x: 1, y: 0, z: 0}
     AlsoMove: 1
     UseThickness: 1
+    volumetricDurabilityValue: 1
