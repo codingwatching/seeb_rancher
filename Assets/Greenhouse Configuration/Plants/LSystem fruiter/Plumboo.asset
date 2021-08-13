@@ -60,3 +60,5 @@ MonoBehaviour:
     lSystemDefineDirectiveName: internodeHeight
   - geneticDriver: {fileID: 11400000, guid: e15b6efdad41b1946971a88f0814989d, type: 2}
     lSystemDefineDirectiveName: kinkiness
+  uniqueTutleOperations:
+  - {fileID: 11400000, guid: c934b5692a0cfc94a8e8481fcbb8a618, type: 2}

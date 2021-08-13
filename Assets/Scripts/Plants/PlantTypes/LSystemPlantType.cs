@@ -3,6 +3,7 @@ using Assets.Scripts.DataModels;
 using Dman.LSystem.SystemRuntime.DOTSRenderer;
 using Dman.LSystem.SystemRuntime.LSystemEvaluator;
 using Dman.LSystem.SystemRuntime.ThreadBouncer;
+using Dman.LSystem.SystemRuntime.Turtle;
 using Dman.LSystem.UnityObjects;
 using Dman.SceneSaveSystem;
 using Genetics.GeneticDrivers;
@@ -31,12 +32,16 @@ namespace Assets.Scripts.Plants
         public StochasticTimerFrequencyVaried updateStepTiming;
         public StochasticTimerFrequencyVaried pollinationSpreadTiming;
 
+        public bool doesPollinate = true;
         public char flowerCharacter = 'C';
+        public bool hasFruit = true;
         public char seedBearingCharacter = 'D';
 
         public string simulationSpeedRuntimeVariable;
 
         public FloatGeneticDriverToLSystemParameter[] geneticModifiers;
+
+        public TurtleOperationSet[] uniqueTutleOperations;
 
         public override PlantedLSystem SpawnNewPlant(Vector3 seedlingPosition, Seed plantedSeed, bool startWithSeedling)
         {
@@ -59,6 +64,9 @@ namespace Assets.Scripts.Plants
             PollinationState pollination,
             bool sproutSeed)
         {
+            var turtler = lSystemContainer.GetComponent<TurtleInterpreterBehavior>();
+            turtler.operationSets.AddRange(uniqueTutleOperations);
+
             // the reset will draw the global parameters from the planted L -system via ILSystemCompileTimeParameterGenerator
             lSystemContainer.SetSystem(lSystem);
 
@@ -104,14 +112,26 @@ namespace Assets.Scripts.Plants
 
         public override bool HasFlowers(LSystemBehavior systemManager)
         {
+            if (!doesPollinate)
+            {
+                return false;
+            }
             var flowerSymbol = lSystem.linkedFiles.GetSymbolFromRoot(flowerCharacter);
             return systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains(flowerSymbol);
         }
         public override bool CanHarvest(LSystemBehavior systemManager)
         {
             // if the plant is done growing always allow harvesting to avoid letting plants with no fruit hang around
-            var seedBearingSymbol = lSystem.linkedFiles.GetSymbolFromRoot(seedBearingCharacter);
-            return IsMature(systemManager) || systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains(seedBearingSymbol);
+            if (IsMature(systemManager))
+            {
+                return true;
+            }
+            if (hasFruit)
+            {
+                var seedBearingSymbol = lSystem.linkedFiles.GetSymbolFromRoot(seedBearingCharacter);
+                return systemManager.steppingHandle.currentState.currentSymbols.Data.symbols.Contains(seedBearingSymbol);
+            }
+            return false;
         }
 
         public override bool IsMature(LSystemBehavior systemManager)
@@ -135,6 +155,10 @@ namespace Assets.Scripts.Plants
 
         protected override int GetHarvestedSeedNumber(LSystemBehavior systemManager)
         {
+            if (!hasFruit)
+            {
+                return 0;
+            }
             var seedBearingSymbol = lSystem.linkedFiles.GetSymbolFromRoot(seedBearingCharacter);
             return systemManager?.steppingHandle.currentState.currentSymbols.Data.symbols.Sum(symbol => symbol == seedBearingSymbol ? 1 : 0) ?? 0;
         }

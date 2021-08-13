@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71da9d4550b647549b7f3bc1f543d3fd, type: 3}
+  m_Name: MotherTreePlantType
+  m_EditorClassIdentifier: 
+  myId: 1
+  genome: {fileID: 11400000, guid: 4e2c005e49a862243a1c2589e40e5314, type: 2}
+  selfPollinating: 0
+  plantName: Mother Tree
+  seedIcon: {fileID: -1036421240493666006, guid: 769e334be04f0c54ca1f4b6b5ef06835, type: 3}
+  summaryDrivers: []
+  plantHeightDriver: {fileID: 11400000, guid: 5c43b1929cd5f3b43ad8003d3a25405f, type: 2}
+  lSystemPlantPrefab: {fileID: 7126020408499974555, guid: b9b02da6181793949942adaa2d8106c8, type: 3}
+  lSystem: {fileID: 378491273550888993, guid: d7b5ad57016b7004b86ddef158be7b1e, type: 3}
+  stepsTillSprout: 1
+  updateStepTiming:
+    frequency: 5
+    frequencyVariance: 0.4
+  pollinationSpreadTiming:
+    frequency: 1
+    frequencyVariance: 0.5
+  doesPollinate: 0
+  flowerCharacter: 75
+  hasFruit: 0
+  seedBearingCharacter: 68
+  simulationSpeedRuntimeVariable: simSpeed
+  geneticModifiers: []
+  uniqueTutleOperations:
+  - {fileID: 11400000, guid: 0c820b22741abcb4584d454fcbf7d66e, type: 2}
+  - {fileID: 11400000, guid: c36189f09a3785c4e9e0d3cb5720969c, type: 2}

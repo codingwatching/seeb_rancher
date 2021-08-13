@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GreenhouseLoader;
 using Dman.LSystem.SystemRuntime.VolumetricData;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -9,6 +10,7 @@ using static Assets.Scripts.PlantPathing.DijkstrasPathingSolverJob;
 namespace Assets.Scripts.PlantPathing
 {
 
+    [BurstCompile]
     public struct DijkstrasPathingOverSurfaceSolverProprocessingJob : IJob
     {
         [ReadOnly]
@@ -51,6 +53,7 @@ namespace Assets.Scripts.PlantPathing
     /// <summary>
     /// solves and caches a pathing grid, which paths to a specific target voxel using Dijkstra's algorithm
     /// </summary>
+    [BurstCompile]
     public struct DijkstrasPathingOverSurfaceSolverJob : IJob
     {
         public VolumetricWorldVoxelLayout voxelLayout;

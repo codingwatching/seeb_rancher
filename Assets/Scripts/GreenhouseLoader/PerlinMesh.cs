@@ -18,7 +18,7 @@ namespace Assets.Scripts.GreenhouseLoader
 
         private void Start()
         {
-            RegenMesh();
+            //RegenMesh();
         }
         private void OnDestroy()
         {
@@ -26,7 +26,7 @@ namespace Assets.Scripts.GreenhouseLoader
         }
         private void OnValidate()
         {
-            RegenMesh();
+            //RegenMesh();
         }
 
         private void RegenMesh()

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2e3403c48e95548b41ed845c65ecb1, type: 3}
+  m_Name: MotherTreeBaseMeshOperations
+  m_EditorClassIdentifier: 
+  meshKeys:
+  - Character: 70
+    MeshRef: {fileID: 3557837105413461654, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    MeshVariants: []
+    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    IndividualScale: {x: 1, y: 0.5, z: 0.5}
+    ParameterScale: 0
+    ScaleIsAdditional: 0
+    VolumetricScale: 0
+    ScalePerParameter: {x: 0, y: 0, z: 0}
+    AlsoMove: 1
+    UseThickness: 1
+    volumetricDurabilityValue: 1
+  - Character: 102
+    MeshRef: {fileID: 3557837105413461654, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    MeshVariants: []
+    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    IndividualScale: {x: 1, y: 0.5, z: 0.5}
+    ParameterScale: 1
+    ScaleIsAdditional: 0
+    VolumetricScale: 0
+    ScalePerParameter: {x: 1, y: 1, z: 1}
+    AlsoMove: 0
+    UseThickness: 1
+    volumetricDurabilityValue: 1

@@ -1,5 +1,6 @@
 ﻿using Dman.LSystem.SystemRuntime.VolumetricData;
 using System.Collections;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine;
 namespace Assets.Scripts.PlantPathing
 {
 
+    [BurstCompile]
     public struct DijkstrasPathingSolverInitializerJob : IJobParallelFor
     {
         public NativeArray<int> parentNodePointers;
@@ -21,6 +23,7 @@ namespace Assets.Scripts.PlantPathing
     /// <summary>
     /// solves and caches a pathing grid, which paths to a specific target voxel using Dijkstra's algorithm
     /// </summary>
+    [BurstCompile]
     public struct DijkstrasPathingSolverJob : IJob
     {
         public VolumetricWorldVoxelLayout voxelLayout;

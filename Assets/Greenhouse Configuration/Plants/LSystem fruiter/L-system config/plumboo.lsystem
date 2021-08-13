@@ -16,6 +16,7 @@
 #include autophagy (Necrose->n)
 
 
+
 #symbols ra
 #matches r
 #define diffusionStepsPerStep 20
@@ -31,8 +32,6 @@
 ## floating variable which adjusts the simulation speed
 #runtime simSpeed 1
 
-## composition definitions. define directives evaluate in-order, these directives rely on subsequent definitions to complete
-#define petioleLeafAngularDist (270 / leavesPerPetiole)
 
 ## variables controlled by genes
 #define primaryBranchInternodes 7
@@ -52,6 +51,8 @@
 #define shootHeight 5
 #define segmentCost 0.5
 
+## composition definitions.
+#define petioleLeafAngularDist (270 / leavesPerPetiole)
 
 #define useGlucose water > glucose && glucose > 0.1
 #define useWater glucose >= water && water > 0.1
@@ -146,8 +147,8 @@ P(1/5) | ~ -> $(defaultBend)-(2 * kinkiness)
 
 ## organs
 
-#define leafOrgan l(1, leafAge)
 #define leafAge 3
+#define leafOrgan l(1, leafAge)
 ## l is a leaf
 #symbols l
 r(a, water, b, glucose, c) < l(growth, maxSize) : growth < maxSize &&   useWater -> a(-  water/2, -  water/2)l(growth +   water/2, maxSize)

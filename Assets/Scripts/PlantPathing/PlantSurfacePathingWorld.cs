@@ -122,6 +122,7 @@ namespace Assets.Scripts.PlantPathing
         private void OnDestroy()
         {
             volumeWorld.volumeWorldChanged -= UpdatePathingWorld;
+            pathingWorldPendingUpdate?.Complete();
             parentNodePointersSwapper.Dispose();
             failedWithInfiniteLoop.Dispose();
         }

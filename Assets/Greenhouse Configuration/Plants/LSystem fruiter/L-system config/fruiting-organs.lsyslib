@@ -9,9 +9,8 @@
 #symbols i
 #include organIdentity (Identifier->i)
 
-## variables controlled by genes
-#define flowerMeshIndex (flowerColorOuterIndex + flowerColorInnerIndex * 3)
 
+## variables controlled by genes
 ## ranges from 0 to 2. 0 is least ripe, 2 is most ripe.
 #define fruitColorIndex 1
 #define flowerColorInnerIndex 1
@@ -20,6 +19,9 @@
 #define flowerAge 7
 
 #define flowerStalkLength 7
+
+## composites
+#define flowerMeshIndex (flowerColorOuterIndex + flowerColorInnerIndex * 3)
 ## V is a flowering bud
 #export FlowerBud V
 #symbols V

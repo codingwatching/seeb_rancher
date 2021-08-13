@@ -83,6 +83,10 @@ namespace Assets.Scripts.Plants
         {
             get
             {
+                if (!plantType.doesPollinate)
+                {
+                    return 0;
+                }
                 if (!GeneticDrivers.TryGetGeneticData(pollenSpreadDriver, out var spreadFactor))
                 {
                     throw new System.Exception($"{pollenSpreadDriver.DriverName} does not exist in the plant's genome");
@@ -130,6 +134,10 @@ namespace Assets.Scripts.Plants
 
         private void PollinateOthersDuringPhaseChange()
         {
+            if (!plantType.doesPollinate)
+            {
+                return;
+            }
             if (!pollinationSpreadTiming.Tick())
             {
                 return;
@@ -222,6 +230,10 @@ namespace Assets.Scripts.Plants
         /// <returns></returns>
         public bool CanPollinateFrom(PlantedLSystem other)
         {
+            if (!plantType.doesPollinate)
+            {
+                return false;
+            }
             if (!other.CanPollinate())
             {
                 return false;
