@@ -4,6 +4,7 @@ using System.Collections;
 using Unity.Collections;
 using UnityEngine;
 using Unity.Jobs;
+using Assets.Scripts.GreenhouseLoader;
 
 namespace Assets.Scripts.PlantPathing
 {

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Assets.Scripts.GreenhouseLoader
@@ -61,15 +64,62 @@ namespace Assets.Scripts.GreenhouseLoader
         {
             var generator = new System.Random(randomSeed);
             noiseOffset = new Vector2(
-                (float)generator.NextDouble() * 1e6f,
-                (float)generator.NextDouble() * 1e6f
+                (float)generator.NextDouble() * 10000f,
+                (float)generator.NextDouble() * 10000f
                 );
         }
 
         private float SamplePerlin(Vector2 point, NoiseOctave octave)
         {
             var sampleVector = noiseOffset + Vector2.Scale(point, octave.frequency);
-            return Mathf.PerlinNoise(sampleVector.x, sampleVector.y) * octave.weight;
+            return (noise.srnoise(sampleVector, 0.6f) + 1)/2f * octave.weight;
+        }
+
+        public PerlinSamplerNativeCompatable AsNativeCompatible(Allocator allocator = Allocator.Persistent)
+        {
+            return new PerlinSamplerNativeCompatable
+            {
+                octaves = new NativeArray<NoiseOctave>(octaves, allocator),
+                scale = scale,
+                noiseOffset = noiseOffset
+            };
+        }
+    }
+
+    public struct PerlinSamplerNativeCompatable : IDisposable, INativeDisposable
+    {
+        [ReadOnly]
+        public NativeArray<NoiseOctave> octaves;
+        public float scale;
+        public Vector2 noiseOffset;
+
+        public float SampleNoise(Vector2 point)
+        {
+            var perlinVector = point + noiseOffset;
+
+            var sample = 0f;
+            for (int i = 0; i < octaves.Length; i++)
+            {
+                sample += SamplePerlin(perlinVector, octaves[i]);
+            }
+
+            return scale * sample / octaves.Sum(octave => octave.weight);
+        }
+
+        private float SamplePerlin(Vector2 point, NoiseOctave octave)
+        {
+            var sampleVector = noiseOffset + Vector2.Scale(point, octave.frequency);
+            return (noise.srnoise(sampleVector, 0.6f) + 1) / 2f * octave.weight;
+        }
+
+        public JobHandle Dispose(JobHandle inputDeps)
+        {
+            return octaves.Dispose(inputDeps);
+        }
+
+        public void Dispose()
+        {
+            octaves.Dispose();
         }
     }
 }

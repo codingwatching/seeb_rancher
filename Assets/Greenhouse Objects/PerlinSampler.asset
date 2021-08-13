@@ -13,19 +13,15 @@ MonoBehaviour:
   m_Name: PerlinSampler
   m_EditorClassIdentifier: 
   octaves:
+  - frequency: {x: 0.5, y: 0.5}
+    weight: 1
   - frequency: {x: 1, y: 1}
     weight: 1
-  - frequency: {x: 1, y: 2}
-    weight: 0.5
-  - frequency: {x: 2, y: 1}
-    weight: 0.5
-  - frequency: {x: 2, y: 2}
-    weight: 1
-  - frequency: {x: 0.5, y: 0.5}
+  - frequency: {x: 0.25, y: 0.25}
     weight: 2
-  - frequency: {x: 0.1, y: 0.1}
+  - frequency: {x: 0.05, y: 0.05}
     weight: 10
-  - frequency: {x: 0.02, y: 0.02}
+  - frequency: {x: 0.01, y: 0.01}
     weight: 20
   scale: 6
-  randomSeed: 1270
+  randomSeed: 1271
