@@ -73,6 +73,7 @@
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\FloatVariableFormatter.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\EventGroup.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\BooleanToggle.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\IntVariableFormatter.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\BooleanState.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\ObjectAssigner.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\EventGroupToUnityEvent.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\IntState.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\IntReference.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\FloatReference.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\VariableOperators\IntVariableFormatter.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\Bindings\TimeScaleBinding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.reactive-variables\Runtime\ReactiveVariables.asmdef" />

@@ -17,7 +17,7 @@ MonoBehaviour:
     MeshRef: {fileID: 3557837105413461654, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
     material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
-    IndividualScale: {x: 1, y: 0.5, z: 0.5}
+    IndividualScale: {x: 1.5, y: 1.5, z: 1.5}
     ParameterScale: 0
     ScaleIsAdditional: 0
     VolumetricScale: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     MeshRef: {fileID: 3557837105413461654, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
     material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
-    IndividualScale: {x: 1, y: 0.5, z: 0.5}
+    IndividualScale: {x: 1.5, y: 1.5, z: 1.5}
     ParameterScale: 1
     ScaleIsAdditional: 0
     VolumetricScale: 0

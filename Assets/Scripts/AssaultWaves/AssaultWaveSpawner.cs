@@ -16,10 +16,10 @@ namespace Assets.Scripts.GreenhouseLoader
         public StochasticTimerFrequencyVaried spawnRate;
         public AnimationCurve spawnRateAccelerationByWave;
 
-        public GameObject TrySpawn(int wave)
+        public GameObject TrySpawn(int wave, float simSpeed)
         {
             var spawnSpeed = spawnRateAccelerationByWave.Evaluate(wave);
-            if (spawnSpeed > 0 && spawnRate.Tick(spawnSpeed))
+            if (spawnSpeed > 0 && spawnRate.Tick(spawnSpeed * simSpeed))
             {
                 return GameObject.Instantiate(spawned);
             }
@@ -54,7 +54,7 @@ namespace Assets.Scripts.GreenhouseLoader
             }
             foreach (var spawnable in spawnables)
             {
-                var spawned = spawnable.TrySpawn(currentWave.CurrentValue);
+                var spawned = spawnable.TrySpawn(currentWave.CurrentValue, gameSpeed.CurrentValue);
                 if(spawned != null)
                 {
                     spawned.transform.position = GetRandomSpawnPosition();

@@ -1,8 +1,8 @@
-#axiom /(-50)@(1)r(0.3, 0, 1000, 10, 20, 0, 100000)t(40)R(0)bS(2)FFFF[p&(90)i(0)s(0)L(5)][+(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)][-(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)]
+#axiom /(-50)@(1)qr(0.3, 0, 1000, 1, 20, 0, 100000)t(50)R(0)bS(5)FFFF[pm(10)&(90)i(0)s(0)L(5)][+(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)][-(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)]
 #iterations 3000
 
 #symbols +-/\&^F$@!`
-#matches @!`
+#matches !`
 
 
 #define leafProbability 1
@@ -47,20 +47,26 @@
 #define useWater glucose >= water && water > 0.1
 
 
-S(x) -> a(x)S(x)
+S(x) -> a(x * simSpeed)S(x)
 ## t is a tuber that releases glucose slowly
 #symbols t
-t(x) : x > 0 -> a(0, 1)t(x - 1)
+t(x) : x > 0 -> a(0, simSpeed)t(x - simSpeed)
 t(x) : x <= 0 ->
 
 #symbols TFK
 #matches TK
-r(a, water, c, glucose, d, virility, e) < T(x) : water >= .1 && glucose >= .1 && x >  0 -> ~f(0)T(x - 1)
+r(a, water, c, glucose, d, virility, e) < T(x) : water >= .1 && glucose >= .1 && x >  0 -> ~@(0.93)f(0)T(x - 1)
 
-P(0.9) | r(a, water, c, glucose, d, virility, e) < T(x) : water >= .2 && glucose >= .2 && x <= 0 -> /(137)[\(180)&(90)l][&(90)l][+(35)f(0)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose, 0, defaultMaxVirility)o(0)R(0)T(5)][-(35)f(0)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose, virility * 2, defaultMaxVirility)o(0)R(0)T(5)]
+P(0.9) | r(a, water, c, glucose, d, virility, e) < T(x) : water >= .2 && glucose >= .2 && x <= 0 -> /(137)[\(180)&(90)l(0)][&(90)l(0)][+(35)f(0)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose, 0, defaultMaxVirility)o(0)R(0)T(5)][-(35)f(0)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose, virility * 2, defaultMaxVirility)o(0)R(0)T(5)]
 P(0.1) | r(a, water, c, glucose, d, virility, e) < T(x) : water >= .2 && glucose >= .2 && x <= 0 -> f(0)k(0)
 
+## 0.93^5 == .7 . roughly a 70% reduction per branch ends up with a pretty good looking branching reduction
 
+
+## q is a symbol used to regulate the root's scale
+#symbols q
+#matches q
+@(x) > qr(a, water, c, glucose, d, virility, e) -> @(virility / 25)
 
 ## L is a leaf. parameter is the size of the leaf, and also is is the health of the leaf which decreases when receiving a small amount of sunlight
 ## the leaf health decreases directly proportional the the difference between the actual sunlight and the min sunlight
@@ -74,7 +80,7 @@ P(leafProbability)     |     l -> l(0)
 P(1 - leafProbability) |     l -> 
 r(a, water, c, glucose, d, virility, e) < l(amt) : amt < leafCost && useGlucose -> a(-glucose/2, -glucose/2)l(amt + glucose/2)
 r(a, water, c, glucose, d, virility, e) < l(amt) : amt < leafCost && useWater -> a(-water/2, -water/2)l(amt + water/2)
-                                          l(amt) : amt >= leafCost -> m(leafVirilityProduction)pi(0)s(0)L(leafMaxHealth)
+                                          l(amt) : amt >= leafCost -> pm(leafVirilityProduction)i(0)s(0)L(leafMaxHealth)
 #define leafHealthWillDimishDueToSunlight (health >= leafMaxHealth && sunlight * perStepSunlightMultiplier - leafMinSunlight <= 0)
 #define leafHealthAffectedBySunlight ((health > 0 && health < leafMaxHealth) || leafHealthWillDimishDueToSunlight)
 #define leafCanProduceGlucose (water >= (sunlight * leafSunlightMultiplier / 2) && glucose <= maxGlucoseFromLeaf)
@@ -118,9 +124,9 @@ P(1/5) | ~ -> -(10)
 ## m is a life indicator. it produces a hormone from living, breathing branches
 ## b is a life root which consumes all of the life indicator hormone
 #symbols mb
-m(x) -> a(0, 0, x)m(x)
+m(x) -> a(0, 0, x * simSpeed)m(x)
 
-r(a, water, b, glucose, c, virility, d) < b -> a(0, 0, -virility)b
+r(a, water, b, glucose, c, virility, d) < b -> a(0, 0, -virility * simSpeed / 2 )b
 
 
 
@@ -128,9 +134,10 @@ r(a, water, b, glucose, c, virility, d) < b -> a(0, 0, -virility)b
 #symbols p
 p > s(a)L(health) : health <= 0 -> d(autophagicVirilityProduction)n
 
+## TODO: make this persist. maybe there is potential here.
 ## d is an autophagic organ which pumps out negative virility, to encourage this branch to die
 #symbols d
-d(x) -> a(0, 0, -x)
+d(x) -> a(0, 0, -x * simSpeed)
 
 ## o is an autophagic switch which will kill off a branch
 ## o looks for a decreasing virility gradient from the root towards the leaves

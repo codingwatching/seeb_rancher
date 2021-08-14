@@ -1,5 +1,6 @@
 using Assets.Scripts.GreenhouseLoader;
 using Dman.LSystem.SystemRuntime.VolumetricData;
+using Dman.ReactiveVariables;
 using UnityEngine;
 
 namespace Assets.Scripts.PlantPathing
@@ -14,6 +15,7 @@ namespace Assets.Scripts.PlantPathing
 
         public float damageSpeed = 10f;
         public float ignorableDurability = 5f;
+        public FloatReference gameSpeed;
 
         public string animationDamageFlagName = "damaging";
         public string animationMovementSpeedName = "moveSpeed";
@@ -56,7 +58,7 @@ namespace Assets.Scripts.PlantPathing
                     animator.SetBool(animationDeathName, true);
                     diedTime = Time.time;
                 }
-                if (diedTime + timeToDie < Time.time)
+                if (diedTime + (timeToDie / gameSpeed.CurrentValue) < Time.time)
                 {
                     Destroy(gameObject);
                 }
@@ -67,6 +69,8 @@ namespace Assets.Scripts.PlantPathing
             {
                 SetNextWaypoint(transform.position);
             }
+
+            var deltaTime = Time.fixedDeltaTime * gameSpeed.CurrentValue;
 
             if (nextVoxel >= 0)
             {
@@ -88,13 +92,13 @@ namespace Assets.Scripts.PlantPathing
                 {
                     // move forward
                     var movementDir = nextWaypoint - transform.position;
-                    transform.position += movementDir.normalized * movementSpeed * Time.fixedDeltaTime;
+                    transform.position += movementDir.normalized * movementSpeed * deltaTime;
                     animator.SetBool(animationDamageFlagName, false);
                     animator.SetFloat(animationMovementSpeedName, movementSpeed);
                 }
                 else
                 {
-                    var damagePerDurability = damageSpeed * Time.fixedDeltaTime / nextTileDurability;
+                    var damagePerDurability = damageSpeed * deltaTime / nextTileDurability;
                     for (int y = minVoxelHeight; y <= maxVoxelHeight; y++)
                     {
                         var voxel = new Vector3Int(tileCoordiante.x, y, tileCoordiante.y);
@@ -103,7 +107,7 @@ namespace Assets.Scripts.PlantPathing
 
                         damageWorld.ApplyDamage(id, durability * damagePerDurability);
                     }
-                    health -= damageDoneByAttacking * Time.fixedDeltaTime;
+                    health -= damageDoneByAttacking * deltaTime;
                     //do damage
                     animator.SetBool(animationDamageFlagName, true);
                     animator.SetFloat(animationMovementSpeedName, 0f);

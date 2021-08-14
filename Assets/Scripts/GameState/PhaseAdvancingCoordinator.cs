@@ -53,7 +53,7 @@ namespace Assets.Scripts.GreenhouseLoader
                 return;
             }
             timeRemainingTillPhaseCompletion -= Time.deltaTime * simulationSpeed.CurrentValue;
-            if(timeRemainingTillPhaseCompletion <= 0)
+            if (timeRemainingTillPhaseCompletion <= 0)
             {
                 timeRemainingTillPhaseCompletion = -1;
                 isPhaseTransitionActive.SetValue(false);
