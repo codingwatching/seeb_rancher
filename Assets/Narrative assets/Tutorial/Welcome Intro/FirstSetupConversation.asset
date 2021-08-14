@@ -16,12 +16,11 @@ MonoBehaviour:
   prompts:
   - {fileID: 11400000, guid: 2779c9a7ba2967f439334252152a4637, type: 2}
   - {fileID: 11400000, guid: 19c4b7b1efb221444b55b2b6c41014b0, type: 2}
-  - {fileID: 11400000, guid: 8eed8f0599c36694593ef65d2d02cbba, type: 2}
   - {fileID: 11400000, guid: 9b4f62031b931204f99ce3bbf0e100bb, type: 2}
   - {fileID: 11400000, guid: 259451adec9a96749ab2572a0c5889ac, type: 2}
   - {fileID: 11400000, guid: b92be9e80c4f652449f8a9e6b1d7cbfb, type: 2}
   - {fileID: 11400000, guid: b5154b598229f0a4f80ac21b15480e8b, type: 2}
   - {fileID: 11400000, guid: 866d911e28f161543852064dce94fd66, type: 2}
   - {fileID: 11400000, guid: f7637f35e0bd6d1428f7da102abe9963, type: 2}
-  currentPromptIndex: 7
+  currentPromptIndex: 9
   triggerAll: []

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Prompt 4.1
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: Here's your Mother Tree. plant it in the most defensible area
+  promptText: Here's a few Big Bush seeds. These can't be bred, but they never stop
+    growing
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
@@ -22,5 +23,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   plantType: {fileID: 11400000, guid: 0cd383bd8cd827141a9f20b6f3162986, type: 2}
-  seedNum: 10
-  seedBucketDescription: Mother Tree
+  seedNum: 3
+  seedBucketDescription: BUSH

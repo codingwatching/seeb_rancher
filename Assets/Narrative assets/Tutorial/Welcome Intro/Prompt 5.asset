@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: Every seeb is unique, grouped into piles in their own inventory slots.
-    Notice the paper slips underneath each slot, thece can be used to label each
-    seeb pile
+    Notice the paper slips underneath each slot, these can be used to label each
+    seeb pile if you like
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:

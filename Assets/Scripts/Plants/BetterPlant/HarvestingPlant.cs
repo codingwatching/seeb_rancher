@@ -20,8 +20,6 @@ namespace Assets.Scripts.Plants
             renderer.GetPropertyBlock(harvestEffectMaterialProperties);
 
             harvestEffectMaterialProperties.SetFloat("startTime", Time.time);
-            harvestEffectMaterialProperties.SetFloat("minId", currentState.firstUniqueOrganId);
-            harvestEffectMaterialProperties.SetFloat("maxId", currentState.firstUniqueOrganId + currentState.maxUniqueOrganIds);
             renderer.SetPropertyBlock(harvestEffectMaterialProperties);
 
 

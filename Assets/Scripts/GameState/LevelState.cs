@@ -5,12 +5,12 @@ namespace Assets.Scripts.GreenhouseLoader
     [System.Serializable]
     public class LevelState
     {
-        public IntReference currentPhase;
+        public IntReference currentWave;
         public FloatReference money;
 
-        public void AdvancePhase()
+        public void AdvanceWave()
         {
-            currentPhase.SetValue(currentPhase.CurrentValue + 1);
+            currentWave.SetValue(currentWave.CurrentValue + 1);
         }
     }
 }

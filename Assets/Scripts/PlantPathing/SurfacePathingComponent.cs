@@ -17,8 +17,13 @@ namespace Assets.Scripts.PlantPathing
 
         public string animationDamageFlagName = "damaging";
         public string animationMovementSpeedName = "moveSpeed";
+        public string animationDeathName = "dead";
         public Animator animator;
 
+        public float damageDoneByAttacking = 1f;
+        public float health = 10f;
+        public float timeToDie = 1f;
+        private float diedTime = 0;
 
         private Vector3 nextWaypoint;
         private int nextVoxel = -1;
@@ -44,27 +49,42 @@ namespace Assets.Scripts.PlantPathing
         // Update is called once per frame
         private void FixedUpdate()
         {
-            if(nextVoxel < 0 || (transform.position - nextWaypoint).magnitude < waypointProximityRequirement)
+            if (health <= 0)
+            {
+                if (diedTime <= 0)
+                {
+                    animator.SetBool(animationDeathName, true);
+                    diedTime = Time.time;
+                }
+                if (diedTime + timeToDie < Time.time)
+                {
+                    Destroy(gameObject);
+                }
+                return;
+            }
+
+            if (nextVoxel < 0 || (transform.position - nextWaypoint).magnitude < waypointProximityRequirement)
             {
                 SetNextWaypoint(transform.position);
             }
 
             if (nextVoxel >= 0)
             {
+                var layout = durabilityWorld.voxelLayout;
                 transform.LookAt(nextWaypoint, Vector3.up);
 
                 var durabilityData = durabilityWorld.nativeVolumeData.openReadData;
                 var nextTileDurability = 0f;
-                var tileCoordiante = durabilityWorld.voxelLayout.SurfaceGetCoordinatesFromDataIndex(nextVoxel);
+                var tileCoordiante = layout.SurfaceGetCoordinatesFromDataIndex(nextVoxel);
                 for (int y = minVoxelHeight; y <= maxVoxelHeight; y++)
                 {
                     var voxel = new Vector3Int(tileCoordiante.x, y, tileCoordiante.y);
-                    var id = durabilityWorld.voxelLayout.GetDataIndexFromCoordinates(voxel);
+                    var id = layout.GetDataIndexFromCoordinates(voxel);
                     var durability = durabilityData[id];
                     nextTileDurability += durability;
                 }
 
-                if(nextTileDurability <= ignorableDurability)
+                if (nextTileDurability <= ignorableDurability)
                 {
                     // move forward
                     var movementDir = nextWaypoint - transform.position;
@@ -74,17 +94,22 @@ namespace Assets.Scripts.PlantPathing
                 }
                 else
                 {
+                    var damagePerDurability = damageSpeed * Time.fixedDeltaTime / nextTileDurability;
                     for (int y = minVoxelHeight; y <= maxVoxelHeight; y++)
                     {
                         var voxel = new Vector3Int(tileCoordiante.x, y, tileCoordiante.y);
-                        var id = durabilityWorld.voxelLayout.GetDataIndexFromCoordinates(voxel);
-                        damageWorld.ApplyDamage(id, damageSpeed * Time.fixedDeltaTime / (maxVoxelHeight - minVoxelHeight));
+                        var id = layout.GetDataIndexFromCoordinates(voxel);
+                        var durability = durabilityData[id];
+
+                        damageWorld.ApplyDamage(id, durability * damagePerDurability);
                     }
+                    health -= damageDoneByAttacking * Time.fixedDeltaTime;
                     //do damage
                     animator.SetBool(animationDamageFlagName, true);
                     animator.SetFloat(animationMovementSpeedName, 0f);
                 }
             }
+
         }
 
         public void SetNextWaypoint(Vector3 currentPosition)

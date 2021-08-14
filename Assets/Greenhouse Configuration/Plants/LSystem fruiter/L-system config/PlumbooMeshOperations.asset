@@ -16,7 +16,7 @@ MonoBehaviour:
   - Character: 70
     MeshRef: {fileID: 3557837105413461654, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 1.5, y: 1.5, z: 1.5}
     ParameterScale: 0
     ScaleIsAdditional: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   - Character: 108
     MeshRef: {fileID: -5966198621110897880, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 1, y: 1, z: 1}
     ParameterScale: 1
     ScaleIsAdditional: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
     - {fileID: -6183008214913326418, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     - {fileID: -16920097807987086, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     - {fileID: -3366813454224735725, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 1, y: 1, z: 1}
     ParameterScale: 1
     ScaleIsAdditional: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   - Character: 66
     MeshRef: {fileID: -8117828432582735504, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 1, y: 1, z: 1}
     ParameterScale: 0
     ScaleIsAdditional: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   - Character: 82
     MeshRef: {fileID: -8117828432582735504, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 1, y: 1, z: 1}
     ParameterScale: 0
     ScaleIsAdditional: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   - Character: 86
     MeshRef: {fileID: -8117828432582735504, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 1, y: 1, z: 1}
     ParameterScale: 0
     ScaleIsAdditional: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   - Character: 84
     MeshRef: {fileID: -8117828432582735504, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 0.3, y: 0.3, z: 0.3}
     ParameterScale: 0
     ScaleIsAdditional: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
     MeshVariants:
     - {fileID: 5010122461826768861, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     - {fileID: 1569212055897181770, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 1, y: 1, z: 1}
     ParameterScale: 1
     ScaleIsAdditional: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   - Character: 65
     MeshRef: {fileID: -7056012562932372494, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 0.7, y: 0.7, z: 0.7}
     ParameterScale: 1
     ScaleIsAdditional: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   - Character: 73
     MeshRef: {fileID: 3557837105413461654, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
-    material: {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 0.75, y: 1.5, z: 1.5}
     ParameterScale: 1
     ScaleIsAdditional: 1

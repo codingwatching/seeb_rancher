@@ -15,7 +15,7 @@ MonoBehaviour:
   myId: 1
   genome: {fileID: 11400000, guid: 4e2c005e49a862243a1c2589e40e5314, type: 2}
   selfPollinating: 0
-  plantName: Mother Tree
+  plantName: BigBush
   seedIcon: {fileID: -1036421240493666006, guid: 769e334be04f0c54ca1f4b6b5ef06835, type: 3}
   summaryDrivers: []
   plantHeightDriver: {fileID: 11400000, guid: 5c43b1929cd5f3b43ad8003d3a25405f, type: 2}

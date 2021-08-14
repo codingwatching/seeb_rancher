@@ -25,7 +25,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         [SerializeField] public RaycastGroup plantableCaster;
         [SerializeField] private Sprite plantCursor;
-        [SerializeField] private float plantableRadius;
+        [SerializeField] private float plantableSquareSideSize;
 
         private SeedBucketDisplay draggingSeedsInstance;
         private SeedInventoryDropSlot sourceSlot = null;
@@ -118,7 +118,9 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var dirtPlanter = hoveredSpot.HasValue ? hoveredSpot.Value.collider.GetComponent<PlantableDirt>() : null;
 
             var hitPoint2D = hoveredSpot.HasValue ? new Vector2(hoveredSpot.Value.point.x, hoveredSpot.Value.point.z) : Vector2.zero;
-            var canPlantHere = dirtPlanter != null && hitPoint2D.magnitude <= plantableRadius;
+            var canPlantHere = dirtPlanter != null &&
+                Mathf.Abs(hitPoint2D.x) <= plantableSquareSideSize / 2 &&
+                Mathf.Abs(hitPoint2D.y) <= plantableSquareSideSize / 2;
 
             if (!canPlantHere)
             {

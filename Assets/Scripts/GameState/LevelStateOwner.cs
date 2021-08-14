@@ -13,9 +13,9 @@ namespace Assets.Scripts.GreenhouseLoader
 
         public string UniqueSaveIdentifier => "LevelState";
 
-        public void AdvancePhase()
+        public void AdvanceWave()
         {
-            levelState.AdvancePhase();
+            levelState.AdvanceWave();
         }
 
         #region Saving
@@ -27,14 +27,14 @@ namespace Assets.Scripts.GreenhouseLoader
             bool[] booleanSaved;
             public LevelStateSaved(LevelStateOwner source)
             {
-                phase = source.levelState.currentPhase.CurrentValue;
+                phase = source.levelState.currentWave.CurrentValue;
                 money = source.levelState.money.CurrentValue;
                 booleanSaved = source.savedBooleans.Select(x => x.CurrentValue).ToArray();
             }
 
             public void Apply(LevelStateOwner target)
             {
-                target.levelState.currentPhase.SetValue(phase);
+                target.levelState.currentWave.SetValue(phase);
                 target.levelState.money.SetValue(money);
                 if (target.savedBooleans.Length != booleanSaved.Length)
                 {

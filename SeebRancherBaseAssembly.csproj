@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,14 +53,17 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantedLSystem.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\Editor\FloorPlanEditor.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\BackdropUIGameObject.cs" />
     <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\SurfacePathingComponent.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragSeedsManipulator.cs" />
@@ -86,7 +89,8 @@
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
-    <Compile Include="Assets\Scripts\Editor\EditorObjectExporter.cs" />
+    <Compile Include="Assets\Scripts\AssaultWaves\AssaultWaveSpawner.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\DijkstrasPathingOverSurfaceSolverJob.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
     <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\OutlineIndividual.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ISeedHoldingManipulator.cs" />
@@ -109,6 +113,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketManager.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\FullyDiscreteSummaryDisplay.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\PlantSurfacePathingWorld.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\HistogramSummaryDisplay.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\PlantTypeRegistry.cs" />
@@ -117,6 +122,7 @@
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreBinDescriptor.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MovingOutlineHelper.cs" />
+    <Compile Include="Assets\Scripts\GameState\AssualtWaveCoordinator.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\DiscreteClassificationCell.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\GameObjectVariableDestroyListener.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
@@ -124,6 +130,7 @@
     <Compile Include="Assets\Scripts\ContractEvaluator\FarmerSimulator.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlineSampler.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\DamagedVoxelsVFXBinder.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebBinContainer.cs" />
     <Compile Include="Assets\Scripts\UI\SelectedIdProvider.cs" />
@@ -143,11 +150,8 @@
     <Compile Include="Assets\Scripts\Plants\PlantTypes\LSystemPlantType.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\DamageWhenVoxelTileReachedComponent.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\DamagedVoxelsVFXBinder.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\DijkstrasPathingOverSurfaceSolverJob.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PlantSurfacePathingWorld.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\SurfacePathingComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\UI\UIAssets\Icons34x34byAilsEnglish2013\Readme.txt" />

@@ -98,12 +98,14 @@ namespace Assets.Scripts.GreenhouseLoader
             var perlinVector = point + noiseOffset;
 
             var sample = 0f;
+            var totalWeight = 0f;
             for (int i = 0; i < octaves.Length; i++)
             {
-                sample += SamplePerlin(perlinVector, octaves[i]);
+                var octave = octaves[i];
+                sample += SamplePerlin(perlinVector, octave);
+                totalWeight += octave.weight;
             }
-
-            return scale * sample / octaves.Sum(octave => octave.weight);
+            return scale * sample / totalWeight;
         }
 
         private float SamplePerlin(Vector2 point, NoiseOctave octave)

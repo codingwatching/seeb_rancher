@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8098d1e33b3ab6b4fb996655e29a17c4, type: 3}
   m_Name: Harvest tutorial
   m_EditorClassIdentifier: 
-  myId: 5
+  myId: 1
   prompts:
   - {fileID: 11400000, guid: 48a7bf49934d9d4428ca0e4f503a5144, type: 2}
   - {fileID: 11400000, guid: 57bdecb49d7046d40bc8a39e84061762, type: 2}

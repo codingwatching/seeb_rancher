@@ -123,8 +123,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: DamageAmounts
-    path: DamageAmounts
+  - name: VoxelDamageAmounts
+    path: VoxelDamageAmounts
     tooltip: 
     sheetType: m_NamedObject
     realType: Texture3D
@@ -137,8 +137,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: DurabilityAmounts
-    path: DurabilityAmounts
+  - name: VoxelDurabilityAmounts
+    path: VoxelDurabilityAmounts
     tooltip: 
     sheetType: m_NamedObject
     realType: Texture3D
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_ImportDependencies: []
   m_GraphVersion: 6
   m_ResourceVersion: 1
-  m_saved: 0
+  m_saved: 1
   m_SubgraphDependencies: []
   m_CategoryPath: 
 --- !u!2058629511 &8926484042661614527
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -413,7 +413,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661614884}
     - outputSlot: {fileID: 8926484042661614605}
       inputSlot: {fileID: 8926484042661614886}
-    position: {x: 2162, y: -1233}
+    position: {x: 2654, y: -1280}
     expandedSlots:
     - {fileID: 8926484042661614602}
     expanded: 1
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -818,12 +818,12 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614612}
-  m_ExposedName: DamageAmounts
+  m_ExposedName: VoxelDamageAmounts
   m_Exposed: 1
   m_Order: 3
   m_Category: 
@@ -3740,7 +3740,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2391, y: -1213}
+  m_UIPosition: {x: 2883, y: -1260}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7974,7 +7974,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2907, y: -1085}
+  m_UIPosition: {x: 3173, y: -1122}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -8553,12 +8553,12 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661615234}
-  m_ExposedName: DurabilityAmounts
+  m_ExposedName: VoxelDurabilityAmounts
   m_Exposed: 1
   m_Order: 4
   m_Category: 

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Prompt 4
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
-  promptText: If you need more seebs, you can buy more at the Seeb Store once you
-    get your hands on some cash
+  promptText: Here's some regular seeds to start with. you should be able to harvest
+    and breed these plants
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
