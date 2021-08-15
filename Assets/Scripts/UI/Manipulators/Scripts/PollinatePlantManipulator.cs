@@ -12,7 +12,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     public class PollinatePlantManipulator : MapManipulator
     {
 
-        [SerializeField] public RaycastGroup targetCaster;
+        public RaycastGroup targetCaster;
         public LayerMask layersToHit;
         public GameObjectVariable selectedThing;
 

@@ -143,7 +143,7 @@ namespace Assets.Scripts.PlantPathing
             nextWaypoint = new Vector3(tileWaypoint.x, height, tileWaypoint.y);
 
             minVoxelHeight = Mathf.Max(Mathf.FloorToInt(height), 0);
-            maxVoxelHeight = Mathf.Min(Mathf.CeilToInt(height + patherHeight), layout.worldResolution.y);
+            maxVoxelHeight = Mathf.Min(Mathf.FloorToInt(height + patherHeight), layout.worldResolution.y);
         }
     }
 }

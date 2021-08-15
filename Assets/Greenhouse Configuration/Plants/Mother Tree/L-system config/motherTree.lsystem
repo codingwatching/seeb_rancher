@@ -1,4 +1,4 @@
-#axiom /(-50)@(1)qr(0.3, 0, 1000, 1, 20, 0, 100000)t(50)R(0)bS(5)FFFF[pm(10)&(90)i(0)s(0)L(5)][+(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)][-(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)]
+#axiom i(0)/(-50)@(1)qr(0.3, 0, 1000, 1, 20, 0, 100000)t(50)R(0)bS(3)FFFF[pm(10)&(90)i(0)s(0)L(5)][+(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)][-(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)]
 #iterations 3000
 
 #symbols +-/\&^F$@!`
@@ -84,10 +84,10 @@ r(a, water, c, glucose, d, virility, e) < l(amt) : amt < leafCost && useWater ->
 #define leafHealthWillDimishDueToSunlight (health >= leafMaxHealth && sunlight * perStepSunlightMultiplier - leafMinSunlight <= 0)
 #define leafHealthAffectedBySunlight ((health > 0 && health < leafMaxHealth) || leafHealthWillDimishDueToSunlight)
 #define leafCanProduceGlucose (water >= (sunlight * leafSunlightMultiplier / 2) && glucose <= maxGlucoseFromLeaf)
-r(a, water, c, glucose, d, virility, e)s(sunlight) < L(health) :  leafCanProduceGlucose && leafHealthAffectedBySunlight                                                            -> a(-sunlight * leafSunlightMultiplier / 2, sunlight * leafSunlightMultiplier)L(health + sunlight * perStepSunlightMultiplier - leafMinSunlight)
+r(a, water, c, glucose, d, virility, e)s(sunlight) < L(health) :  leafCanProduceGlucose && leafHealthAffectedBySunlight                                                            -> a(-sunlight * leafSunlightMultiplier / 2, sunlight * leafSunlightMultiplier)L(health + (sunlight * perStepSunlightMultiplier - leafMinSunlight) * simSpeed)
 r(a, water, c, glucose, d, virility, e)s(sunlight) < L(health) :  leafCanProduceGlucose && (health >= leafMaxHealth && sunlight * perStepSunlightMultiplier - leafMinSunlight > 0) -> a(-sunlight * leafSunlightMultiplier / 2, sunlight * leafSunlightMultiplier)L(health - 0.01)
 
-r(a, water, c, glucose, d, virility, e)s(sunlight) < L(health) : !leafCanProduceGlucose && leafHealthAffectedBySunlight                                                            -> L(health + sunlight * perStepSunlightMultiplier - leafMinSunlight)
+r(a, water, c, glucose, d, virility, e)s(sunlight) < L(health) : !leafCanProduceGlucose && leafHealthAffectedBySunlight                                                            -> L(health + (sunlight * perStepSunlightMultiplier - leafMinSunlight) * simSpeed)
 
 ## r(a, water, c, glucose, d)s(sunlight) < L(health) : health <= 0                                                                                                                                                                                    -> 
 
