@@ -13,6 +13,7 @@ namespace Assets.Scripts.PlantPathing
         public OrganDamageWorld damageWorld;
         public OrganVolumetricWorld durabilityWorld;
         public Material damageShaderMaterial;
+        public Material gridDisplayMaterial;
 
         public string damageTextureName;
         public string durabilityTextureName;
@@ -87,6 +88,11 @@ namespace Assets.Scripts.PlantPathing
             damageShaderMaterial.SetVector(voxelWorldSizeName, voxels.worldSize);
             damageShaderMaterial.SetVector(voxelResolutionName, (Vector3)voxels.worldResolution);
             damageShaderMaterial.SetVector(voxelWorldOriginName, voxels.voxelOrigin);
+
+
+            gridDisplayMaterial.SetVector(voxelWorldSizeName, voxels.worldSize);
+            gridDisplayMaterial.SetVector(voxelResolutionName, (Vector3)voxels.worldResolution);
+            gridDisplayMaterial.SetVector(voxelWorldOriginName, voxels.voxelOrigin);
         }
     }
 }

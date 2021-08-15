@@ -51,6 +51,15 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             }
             return resultSeeds;
         }
+        public SeedBucketUI SwapSeedsWithBucket(SeedBucketUI target)
+        {
+            // cannot swap with the harvest manipulator.
+            return null;
+        }
+        public int PlantIdOfSeebs()
+        {
+            return seeds?.PlantTypeId ?? -1;
+        }
 
         public override void OnOpen(ManipulatorController controller)
         {

@@ -5,6 +5,8 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
     public interface ISeedHoldingManipulator
     {
         bool AttemptTransferAllSeedsInto(SeedBucket target);
+        SeedBucketUI SwapSeedsWithBucket(SeedBucketUI target);
+        int PlantIdOfSeebs();
         string SeedGroupName { get; }
         /// <summary>
         /// will either take exactly <paramref name="seedCount"/> seeds, or take zero seeds.

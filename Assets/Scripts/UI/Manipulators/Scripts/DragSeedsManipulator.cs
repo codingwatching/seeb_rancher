@@ -41,6 +41,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             if (Object.ReferenceEquals(target, sourceSlot.dataModel.bucket))
             {
                 //if attempting to transfer into the bucket which is already the source for this manipulator, shit it all down.
+                if (IsActive)
+                {
+                    // if we're active, become inactive
+                    controller.manipulatorVariable.SetValue(null);
+                }
                 return false;
             }
             if (target.TryTransferSeedsIntoSelf(sourceSlot.dataModel.bucket))
@@ -49,6 +54,19 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return true;
             }
             return false;
+        }
+        public SeedBucketUI SwapSeedsWithBucket(SeedBucketUI target)
+        {
+            var oldui = sourceSlot?.dataModel;
+            sourceSlot.UpdateDataModel(target);
+            OnSeedsUpdated();
+            // if we're active, become inactive
+            controller.manipulatorVariable.SetValue(null);
+            return oldui;
+        }
+        public int PlantIdOfSeebs()
+        {
+            return sourceSlot?.dataModel.bucket.PlantTypeId ?? -1;
         }
         public Seed[] AttemptTakeSeeds(int seedCount)
         {

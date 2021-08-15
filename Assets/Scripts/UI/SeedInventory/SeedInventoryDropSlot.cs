@@ -62,7 +62,16 @@ namespace Assets.Scripts.UI.SeedInventory
         {
             if (activeManipulator.CurrentValue is ISeedHoldingManipulator seedHolder)
             {
-                AddSeedsFromManipulator(seedHolder);
+                if (canManipulatorsDespositSeeds.CurrentValue)
+                {
+                    if (dataModel.bucket.Empty || seedHolder.PlantIdOfSeebs() == dataModel.bucket.PlantTypeId)
+                    {
+                        AddSeedsFromManipulator(seedHolder);
+                    }else
+                    {
+                        SwapSeedsWithManipulator(seedHolder);
+                    }
+                }
             }
             else
             {
@@ -85,16 +94,22 @@ namespace Assets.Scripts.UI.SeedInventory
             draggingSeedsManipulator.InitializeSeedBucketFrom(this);
         }
 
+        protected void SwapSeedsWithManipulator(ISeedHoldingManipulator seedHolder)
+        {
+            var newBucket = seedHolder.SwapSeedsWithBucket(dataModel);
+            if(newBucket != null)
+            {
+                // seeb update is handled in caller function
+                dataModel = newBucket;
+            }
+        }
+
         /// <summary>
         /// Takes seeds from the manipulator and add it to this slot, if possible
         /// </summary>
         protected virtual void AddSeedsFromManipulator(ISeedHoldingManipulator seedHolder)
         {
-            if (!canManipulatorsDespositSeeds.CurrentValue)
-            {
-                return;
-            }
-            var emptyPreTransfer = dataModel?.bucket.Empty ?? true;
+            var emptyPreTransfer = dataModel.bucket.Empty;
             var seedsTransferred = seedHolder.AttemptTransferAllSeedsInto(dataModel.bucket);
             if (emptyPreTransfer && seedsTransferred)
             {
