@@ -75,7 +75,9 @@ namespace Assets.Scripts.PlantPathing
             if (nextVoxel >= 0)
             {
                 var layout = durabilityWorld.voxelLayout;
-                transform.LookAt(nextWaypoint, Vector3.up);
+                var lookDir = Quaternion.LookRotation(nextWaypoint - transform.position, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, lookDir, deltaTime * 2);
+                //transform.LookAt(nextWaypoint, Vector3.up);
 
                 var durabilityData = durabilityWorld.nativeVolumeData.openReadData;
                 var nextTileDurability = 0f;
