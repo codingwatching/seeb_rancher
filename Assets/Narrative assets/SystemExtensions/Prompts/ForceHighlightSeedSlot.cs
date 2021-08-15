@@ -36,6 +36,7 @@ namespace Dman.NarrativeSystem
             targetSlot = GameObject
                 .FindObjectsOfType<SeedInventoryDropSlot>()
                 .Where(slot => selectFilled && !slot.dataModel.bucket.Empty || !selectFilled && slot.dataModel.bucket.Empty)
+                .OrderByDescending(slot => selectFilled ? slot.dataModel.bucket.SeedCount : 0)
                 .FirstOrDefault();
             if (targetSlot != null)
             {

@@ -108,6 +108,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 // if draging is happening, don't update outline here.
                 singleOutlineHelper.UpdateOutlineObject(validTarget ? planter.GetOutlineObject() : null);
+                selectedGameObject.SetValue(validTarget ? planter.GetOutlineObject() : null);
             }
 
 
@@ -115,10 +116,10 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             {
                 return true;
             }
-            if (validTarget)
-            {
-                selectedGameObject.SetValue(planter.GetOutlineObject());
-            }
+            //if (validTarget)
+            //{
+            //    selectedGameObject.SetValue(planter.GetOutlineObject());
+            //}
 
             if (Input.GetMouseButtonDown(0))
             {

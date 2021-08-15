@@ -44,7 +44,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 if (IsActive)
                 {
                     // if we're active, become inactive
-                    controller.manipulatorVariable.SetValue(null);
+                    controller.CloseManipulator();
                 }
                 return false;
             }
@@ -60,8 +60,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
             var oldui = sourceSlot?.dataModel;
             sourceSlot.UpdateDataModel(target);
             OnSeedsUpdated();
-            // if we're active, become inactive
-            controller.manipulatorVariable.SetValue(null);
+            if (IsActive)
+            {
+                // if we're active, become inactive
+                controller.CloseManipulator();
+            }
             return oldui;
         }
         public int PlantIdOfSeebs()

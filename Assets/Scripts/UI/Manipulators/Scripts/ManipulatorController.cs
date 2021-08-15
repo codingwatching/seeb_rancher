@@ -17,6 +17,11 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
 
         public KeyCode escapeKey = KeyCode.Escape;
 
+        public void CloseManipulator()
+        {
+            manipulatorVariable.ClearToDefaultValue();
+        }
+
         private void Awake()
         {
             manipulatorVariable.SetValue(defaultManipulator);

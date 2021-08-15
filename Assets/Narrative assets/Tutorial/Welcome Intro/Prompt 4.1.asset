@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptPrefab: {fileID: 2189438536763083908, guid: 813f9fdce99405f488e25265de3138e7, type: 3}
   promptText: Here's a few Big Bush seeds. These can't be bred, but they never stop
-    growing
+    growing. I've heard they can cause "performance problems", although I don't see
+    how that could happen unless you eat them
   speakerSprite: {fileID: 21300000, guid: ed35b0528eae1984da6377def5244501, type: 3}
   onOpened:
     m_PersistentCalls:
