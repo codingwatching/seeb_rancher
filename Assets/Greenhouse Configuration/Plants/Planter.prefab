@@ -527,6 +527,7 @@ GameObject:
   - component: {fileID: 3616660833815421315}
   - component: {fileID: 1282153023010645922}
   - component: {fileID: 1743998931049911220}
+  - component: {fileID: 5702720060900007703}
   m_Layer: 8
   m_Name: Planter
   m_TagString: Untagged
@@ -705,3 +706,17 @@ MonoBehaviour:
   OnChangedToFalse:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5702720060900007703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7643680841328762183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ab1cfbbff198b408b9ab6a82fcb76c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabRoot: {fileID: 7126020408499974555}
+  maximumConsecutiveEmptyUpdates: 15
