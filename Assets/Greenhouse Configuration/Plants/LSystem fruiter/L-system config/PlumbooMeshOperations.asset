@@ -143,3 +143,15 @@ MonoBehaviour:
     AlsoMove: 1
     UseThickness: 1
     volumetricDurabilityValue: 1
+  - Character: 90
+    MeshRef: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+    MeshVariants: []
+    material: {fileID: 2100000, guid: 24c07864cdd338542b6b19644882e7a6, type: 2}
+    IndividualScale: {x: 1, y: 1, z: 1}
+    ParameterScale: 1
+    ScaleIsAdditional: 0
+    VolumetricScale: 0
+    ScalePerParameter: {x: 1, y: 1, z: 1}
+    AlsoMove: 0
+    UseThickness: 0
+    volumetricDurabilityValue: 0

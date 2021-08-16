@@ -27,14 +27,15 @@
 #symbols V
 #matches V
 #immature V
-P(flowerFailureChance)     | V -> []
-P(1 - flowerFailureChance) | V -> V(0, flowerStalkLength)
 
+V -> V(0, flowerStalkLength)
 
  r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 && useGlucose -> a(-glucose/2, -glucose/2)V(progress + glucose/2, x)
  r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 &&   useWater -> a(-  water/2, -  water/2)V(progress +   water/2, x)
  r(a, water, c, glucose, d) < V(progress, x) : progress >=1 && x >  0 -> $(0.1)FV(progress - 1, x - 1)
-Hr(a, water, c, glucose, d) < V(progress, x) -> i(0)C(0)[K(flowerMeshIndex, 1)A(1)]
+ 
+P(flowerFailureChance)     | Hr(a, water, c, glucose, d) < V(progress, x) -> i(0)B(0)
+P(1 - flowerFailureChance) | Hr(a, water, c, glucose, d) < V(progress, x) -> i(0)C(0)[K(flowerMeshIndex, 1)A(1)]
 
 #define fruitBendFactor 0.05
 ## C is a fruiting controller. transitions to a fruit after waiting
@@ -64,6 +65,17 @@ $(a) > C(bit)D(y, x) -> $(x * fruitBendFactor)
 r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge &&   useWater -> a(-  water/2, -  water/2)K(y, x +   water/2)
 r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && useGlucose -> a(-glucose/2, -glucose/2)K(y, x + glucose/2)
                           C(bit) < K(y, x) : x >= flowerAge && bit >= 1 ->
+
+#define bombCost 5
+
+## B is a Bomb Launcher, b is the launched bomb
+#export BombLauncher B
+#export Bomb b
+#symbols Bb
+r(a, water, c, glucose, d) < B(progress) : progress < bombCost &&   useWater -> a(-  water/2, -  water/2)B(progress +   water/2)
+r(a, water, c, glucose, d) < B(progress) : progress < bombCost && useGlucose -> a(-glucose/2, -glucose/2)B(progress + glucose/2)
+r(a, water, c, glucose, d) < B(progress) : progress >= bombCost -> bB(0)
+b -> 
 
 ## A is an anther
 #export Anther A

@@ -47,6 +47,7 @@
 #define primaryAngularSeparation 137
 
 
+
 ## variables defined for utility
 #define shootHeight 5
 #define segmentCost 0.5
@@ -92,8 +93,8 @@ r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && pr
 ## r(a, water, c, glucose, d) < Y(x) : x >= primaryBranchInternodes -> J(internodeHeight)
 
 
-#include fruiting-organs.lsyslib (FlowerBud->V) (FruitOrgan->D) (Anther->A) (Flower->K)
-#symbols VDKA
+#include fruiting-organs.lsyslib (FlowerBud->V) (FruitOrgan->D) (Anther->A) (Flower->K) (BombLauncher->Z) (Bomb->z)
+#symbols VDAKZz
 
 ## B is a bud which will grow a leaf structure and also a flower
 #symbols B

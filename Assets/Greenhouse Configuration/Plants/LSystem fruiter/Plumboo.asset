@@ -34,7 +34,9 @@ MonoBehaviour:
   pollinationSpreadTiming:
     frequency: 1
     frequencyVariance: 0.5
+  doesPollinate: 1
   flowerCharacter: 75
+  hasFruit: 1
   seedBearingCharacter: 68
   simulationSpeedRuntimeVariable: simSpeed
   geneticModifiers:
@@ -62,3 +64,4 @@ MonoBehaviour:
     lSystemDefineDirectiveName: kinkiness
   uniqueTutleOperations:
   - {fileID: 11400000, guid: c934b5692a0cfc94a8e8481fcbb8a618, type: 2}
+  - {fileID: 11400000, guid: 8318edcb3b3fd3e488538dcbb097baed, type: 2}
