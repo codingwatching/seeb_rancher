@@ -12,6 +12,7 @@ namespace Assets.Scripts.PlantWeapons.Enemies
             dstManager.AddComponentData(entity, new DamageOnCollisionTriggerComponent
             {
             });
+
         }
     }
 

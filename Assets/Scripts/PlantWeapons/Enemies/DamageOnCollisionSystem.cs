@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.PlantPathing;
 using Assets.Scripts.PlantPathing.PathNavigaton;
 using System.Collections;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -18,6 +19,7 @@ namespace Assets.Scripts.PlantWeapons.Enemies
     public class DamageOnCollisionSystem : SystemBase
     {
 
+        private EntityCommandBufferSystem commandBufferSystem;
         private SurfaceDefinitionSingleton surfaceDefinition;
         BuildPhysicsWorld m_BuildPhysicsWorldSystem;
         StepPhysicsWorld m_StepPhysicsWorldSystem;
@@ -27,6 +29,7 @@ namespace Assets.Scripts.PlantWeapons.Enemies
         {
             
             base.OnCreate();
+            commandBufferSystem = World.GetOrCreateSystem<BeginInitializationEntityCommandBufferSystem>();
             surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
             m_BuildPhysicsWorldSystem = World.GetOrCreateSystem<BuildPhysicsWorld>();
             m_StepPhysicsWorldSystem = World.GetOrCreateSystem<StepPhysicsWorld>();
@@ -40,15 +43,82 @@ namespace Assets.Scripts.PlantWeapons.Enemies
             {
                 All = new ComponentType[]
                 {
-                typeof(DamageOnCollisionTriggerComponent)
+                typeof(DamageOnCollisionTriggerComponent),
+                typeof(HealthComponent)
                 }
             });
         }
 
-        // TODO: this system scales acceleration by timescale, but velocity will still execute at a normal timescale
-        //  might have to just use global time.timeScale to set it up
+        [BurstCompile]
+        struct TriggerDamageCollisionJob : ITriggerEventsJob
+        {
+            [ReadOnly] public ComponentDataFromEntity<DamageOnCollisionTriggerComponent> TriggerDamageGroup;
+            [ReadOnly] public ComponentDataFromEntity<DamageSourceComponent> DamageSourceData;
+            [ReadOnly] public ComponentDataFromEntity<PhysicsVelocity> PhysicsVelocityGroup;
+            public ComponentDataFromEntity<HealthComponent> HealthComponentGroup;
+            public EntityCommandBuffer ecb;
+
+
+            public void Execute(TriggerEvent triggerEvent)
+            {
+                Entity entityA = triggerEvent.EntityA;
+                Entity entityB = triggerEvent.EntityB;
+
+                bool isBodyATrigger = TriggerDamageGroup.HasComponent(entityA);
+                bool isBodyBTrigger = TriggerDamageGroup.HasComponent(entityB);
+
+                // Ignoring Triggers overlapping other Triggers
+                if (isBodyATrigger && isBodyBTrigger)
+                    return;
+
+                bool isBodyADynamic = PhysicsVelocityGroup.HasComponent(entityA);
+                bool isBodyBDynamic = PhysicsVelocityGroup.HasComponent(entityB);
+
+                // Ignoring overlapping static bodies
+                if ((isBodyATrigger && !isBodyBDynamic) ||
+                    (isBodyBTrigger && !isBodyADynamic))
+                    return;
+
+                var damageReciever = isBodyATrigger ? entityA : entityB;
+                var damageGiver = isBodyATrigger ? entityB : entityA;
+
+                
+
+                var damageSource = DamageSourceData[damageGiver];
+                var damagedHealth = HealthComponentGroup[damageReciever];
+
+                // damage the trigger
+                {
+                    damagedHealth.currentHealth -= damageSource.baseDamage;
+                    HealthComponentGroup[damageReciever] = damagedHealth;
+                }
+                // destroy the damager
+                {
+                    ecb.DestroyEntity(damageGiver);
+                }
+            }
+        }
+
         protected override void OnUpdate()
         {
+            if (m_TriggerGravityGroup.CalculateEntityCount() == 0)
+            {
+                return;
+            }
+            var ecb = commandBufferSystem.CreateCommandBuffer();//.AsParallelWriter();
+
+            Dependency = new TriggerDamageCollisionJob
+            {
+                ecb = ecb,
+
+                TriggerDamageGroup = GetComponentDataFromEntity<DamageOnCollisionTriggerComponent>(true),
+                DamageSourceData = GetComponentDataFromEntity<DamageSourceComponent>(true),
+                PhysicsVelocityGroup = GetComponentDataFromEntity<PhysicsVelocity>(true),
+                HealthComponentGroup = GetComponentDataFromEntity<HealthComponent>(false),
+            }.Schedule(m_StepPhysicsWorldSystem.Simulation,
+                ref m_BuildPhysicsWorldSystem.PhysicsWorld, Dependency);
+
+            commandBufferSystem.AddJobHandleForProducer(this.Dependency);
         }
     }
 }
