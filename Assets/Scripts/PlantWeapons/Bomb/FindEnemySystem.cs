@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using Assets.Scripts.PlantWeapons.Enemies;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;

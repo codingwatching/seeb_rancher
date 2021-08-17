@@ -76,7 +76,7 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
 
                             damageData[id] += durability * damagePerDurability;
                         }
-                        health.currentHealth -= damageInfo.selfDamageDoneByAttacking;
+                        health.currentHealth -= damageInfo.selfDamageDoneByAttacking * deltaTime;
                     }
                 }).Schedule();
 

@@ -14,7 +14,6 @@ namespace Assets.Scripts.PlantWeapons.Bomb
             {
                 seekAcceleration = seekSpeed
             });
-            dstManager.AddComponent<VelocityComponent>(entity);
         }
     }
 
