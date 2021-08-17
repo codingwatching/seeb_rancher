@@ -90,6 +90,11 @@ namespace Assets.Scripts.PlantPathing
             nativePerlineSampler.Dispose(dep);
         }
 
+        public void RegisterJobHandleReaderOfActiveData(JobHandle reader)
+        {
+            parentNodePointersSwapper.ActiveData.RegisterDependencyOnData(reader);
+        }
+
         private void CompletePathingJob()
         {
             pathingWorldPendingUpdate.Value.Complete();
