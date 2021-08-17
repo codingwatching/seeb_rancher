@@ -41,6 +41,10 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
                 .ForEach((Entity entity, int entityInQueryIndex, ref Translation position, ref SurfaceWaypointFinder finder) =>
                 {
                     var currentId = voxelLayout.SurfaceGetDataIndexFromWorldPosition(position.Value);
+                    if(currentId < 0)
+                    {
+                        return;
+                    }
                     var nextId = parentPointers[currentId];
                     var nextCoordinate = voxelLayout.SurfaceGetTilePositionFromDataIndex(nextId);
                     var noiseSample = terrainSampler.SampleNoise(nextCoordinate);
@@ -51,12 +55,24 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
                     });
                 }).ScheduleParallel();
 
-            // todo: could actuall only check when its close to the next waypoint. but what if... not?
             Entities
                 .ForEach((Entity entity, int entityInQueryIndex, ref Translation position, ref SurfaceWaypointFinder finder, ref SurfaceWaypointTarget target) =>
                 {
+                    var dist = Vector3.Distance(target.target, position.Value);
+                    if(dist > finder.waypointProximityRequirement)
+                    {
+                        return;
+                    }
                     var currentId = voxelLayout.SurfaceGetDataIndexFromWorldPosition(position.Value);
+                    if (currentId < 0)
+                    {
+                        return;
+                    }
                     var nextId = parentPointers[currentId];
+                    if (nextId < 0)
+                    {
+                        return;
+                    }
                     var nextCoordinate = voxelLayout.SurfaceGetTilePositionFromDataIndex(nextId);
                     var noiseSample = terrainSampler.SampleNoise(nextCoordinate);
 

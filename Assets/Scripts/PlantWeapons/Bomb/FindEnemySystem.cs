@@ -1,10 +1,7 @@
-﻿using Assets.Scripts.PlantPathing;
-using System.Collections;
-using Unity.Collections;
+﻿using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace Assets.Scripts.PlantWeapons.Bomb
 {
@@ -12,68 +9,70 @@ namespace Assets.Scripts.PlantWeapons.Bomb
     {
         private EntityCommandBufferSystem commandBufferSystem;
         private Unity.Mathematics.Random random;
+        private EntityQuery enemies;
 
         protected override void OnCreate()
         {
             base.OnCreate();
             commandBufferSystem = World.GetOrCreateSystem<BeginInitializationEntityCommandBufferSystem>();
             random = new Unity.Mathematics.Random(1928437918);
+            enemies = GetEntityQuery(typeof(EnemyComponent), typeof(Translation));
         }
 
         protected override void OnUpdate()
         {
-            var enemies = GameObject.FindObjectsOfType<DamageWhenVoxelTileReachedComponent>();
-            var enemyPositions = new NativeArray<float3>(enemies.Length, Allocator.TempJob);
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemyPositions[i] = enemies[i].transform.position;
-            }
+            var enemyEntities = enemies.ToEntityArray(Allocator.TempJob);
 
             var ecb = commandBufferSystem.CreateCommandBuffer().AsParallelWriter();
-            if (enemyPositions.Length > 0)
+            if (enemyEntities.Length > 0)
             {
-                var enemyPositionsReadable = enemyPositions.AsReadOnly();
+                var enemyEntitiesReadable = enemyEntities.AsReadOnly();
                 Entities
                     .WithAll<SeekEnemyComponent>()
                     .WithNone<FoundTargetEntity>()
-                    .ForEach((Entity entity, int entityInQueryIndex, ref Translation position) =>
+                    .ForEach((Entity entity, int entityInQueryIndex, in Translation position) =>
                     {
-                        float3 targetPosition = enemyPositionsReadable[0];
-                        float distToTarget = math.distancesq(position.Value, targetPosition);
-                        for (int i = 1; i < enemyPositionsReadable.Length; i++)
+                        Entity targetEntity = enemyEntitiesReadable[0];
+                        float3 targetPosition = GetComponent<Translation>(targetEntity).Value;
+                        float distToTarget = math.distancesq(targetPosition, position.Value);
+
+                        for (int i = 1; i < enemyEntitiesReadable.Length; i++)
                         {
-                            var nextTargetPosition = enemyPositionsReadable[i];
-                            var dist = math.distancesq(position.Value, nextTargetPosition);
+                            var nextTarget = enemyEntitiesReadable[i];
+                            var nextTargetPosition = GetComponent<Translation>(nextTarget);
+                            var dist = math.distancesq(position.Value, nextTargetPosition.Value);
                             if (dist < distToTarget)
                             {
-                                targetPosition = nextTargetPosition;
+                                targetPosition = nextTargetPosition.Value;
                                 distToTarget = dist;
+                                targetEntity = nextTarget;
                             }
                         }
                         ecb.AddComponent(entityInQueryIndex, entity, new FoundTargetEntity
                         {
-                            target = targetPosition
+                            target = targetEntity
                         });
                     }).ScheduleParallel();
-            }else
+            }
+            else
             {
                 random.NextFloat();
                 var rand = random;
                 Entities
                     .WithAll<SeekEnemyComponent>()
-                    .WithNone<FoundTargetEntity>()
+                    .WithNone<FoundTargetEntity, NoTargetComponent>()
                     .ForEach((Entity entity, int entityInQueryIndex, ref Translation position) =>
                     {
                         var randLocal = Unity.Mathematics.Random.CreateFromIndex((uint)entityInQueryIndex);
                         randLocal.state = randLocal.state ^ rand.state;
-                        ecb.AddComponent(entityInQueryIndex, entity, new FoundTargetEntity
+                        ecb.AddComponent(entityInQueryIndex, entity, new NoTargetComponent
                         {
-                            target = position.Value + randLocal.NextFloat3(new float3(-3, -3, -3), new float3(3, 3, 3))
+                            randomTarget = position.Value + randLocal.NextFloat3(new float3(-3, -3, -3), new float3(3, 3, 3))
                         });
                     }).ScheduleParallel();
             }
             commandBufferSystem.AddJobHandleForProducer(this.Dependency);
-            enemyPositions.Dispose(this.Dependency);
+            enemyEntities.Dispose(this.Dependency);
         }
     }
 }

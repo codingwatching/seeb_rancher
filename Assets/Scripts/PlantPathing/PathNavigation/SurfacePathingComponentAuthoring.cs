@@ -31,11 +31,8 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
             dstManager.AddComponentData(entity, new BlockingVoxelDamageComponent
             {
                 damageSpeed = damageSpeed,
-                ignorableDurability = ignorableDurability
-            });
-            dstManager.AddComponentData(entity, new SelfDamagingComponent
-            {
-                selfDamageDoneByAttacking= selfDamageDoneByAttacking
+                ignorableDurability = ignorableDurability,
+                selfDamageDoneByAttacking = selfDamageDoneByAttacking
             });
             dstManager.AddComponentData(entity, new HealthComponent
             {
@@ -64,9 +61,6 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
     {
         public float damageSpeed;
         public float ignorableDurability;
-    }
-    public struct SelfDamagingComponent : IComponentData
-    {
         public float selfDamageDoneByAttacking;
     }
     public struct HealthComponent : IComponentData

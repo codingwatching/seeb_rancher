@@ -40,7 +40,7 @@ namespace Assets.Scripts.PlantPathing
             if (damageDataHasUpdate)
             {
                 damageDataHasUpdate = false;
-                var damageData = damageWorld.GetDamageValuesReadonly();
+                var damageData = damageWorld.GetDamageValuesReadSafe();
                 var durabilityData = durabilityWorld.nativeVolumeData.openReadData;
                 damageTexture.SetPixelData<float>(damageData, 0);
                 durabilityTexture.SetPixelData<float>(durabilityData, 0);

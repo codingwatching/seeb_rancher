@@ -19,12 +19,27 @@ namespace Assets.Scripts.PlantWeapons.Bomb
                 .ForEach((
                     Entity entity,
                     int entityInQueryIndex,
-                    ref Translation selfPosition,
-                    ref FoundTargetEntity target,
-                    ref SeekEnemyComponent seeker,
-                    ref VelocityComponent velocity) =>
+                    ref VelocityComponent velocity,
+                    in FoundTargetEntity target,
+                    in SeekEnemyComponent seeker,
+                    in Translation selfPosition) =>
                 {
-                    float3 diff = Vector3.Normalize(target.target - selfPosition.Value);
+                    var targetPos = GetComponent<Translation>(target.target);
+                    float3 diff = Vector3.Normalize(targetPos.Value - selfPosition.Value);
+                    velocity.velocity = velocity.velocity + diff * seeker.seekAcceleration * deltaTime;
+                }).ScheduleParallel();
+
+            Entities
+                .WithNone<FoundTargetEntity>()
+                .ForEach((
+                    Entity entity,
+                    int entityInQueryIndex,
+                    ref VelocityComponent velocity,
+                    in Translation selfPosition,
+                    in NoTargetComponent target,
+                    in SeekEnemyComponent seeker) =>
+                {
+                    float3 diff = Vector3.Normalize(target.randomTarget - selfPosition.Value);
                     velocity.velocity = velocity.velocity + diff * seeker.seekAcceleration * deltaTime;
                 }).ScheduleParallel();
         }

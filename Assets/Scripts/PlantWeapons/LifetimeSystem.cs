@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.PlantWeapons.Bomb
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class LifetimeSystem : SystemBase
     {
         private EntityCommandBufferSystem commandBufferSystem;
@@ -15,7 +16,7 @@ namespace Assets.Scripts.PlantWeapons.Bomb
         protected override void OnCreate()
         {
             base.OnCreate();
-            commandBufferSystem = World.GetOrCreateSystem<BeginInitializationEntityCommandBufferSystem>();
+            commandBufferSystem = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
         }
 
         protected override void OnUpdate()

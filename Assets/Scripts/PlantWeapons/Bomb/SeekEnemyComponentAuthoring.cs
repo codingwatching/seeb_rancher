@@ -20,7 +20,11 @@ namespace Assets.Scripts.PlantWeapons.Bomb
 
     public struct FoundTargetEntity : IComponentData
     {
-        public float3 target;
+        public Entity target;
+    }
+    public struct NoTargetComponent : IComponentData
+    {
+        public float3 randomTarget;
     }
 
     public struct SeekEnemyComponent : IComponentData

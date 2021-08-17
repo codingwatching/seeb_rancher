@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\PlantWeapons\LifetimeSystem.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
@@ -79,8 +82,10 @@
     <Compile Include="Assets\Scripts\PlantPathing\PathingComponent.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\TargetContractDescriptor.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\FindSurfaceWaypointSystem.cs" />
     <Compile Include="Assets\Scripts\ContractEvaluator\HaltonSequenceGenerator.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\ApproachWaypointOrDamageSystem.cs" />
     <Compile Include="Assets\Scripts\PlantWeapons\Bomb\FindEnemySystem.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\EvaluationTargets\SeedCountTarget.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\FullyDiscreteSummaryDisplay.cs" />
@@ -99,6 +104,7 @@
     <Compile Include="Assets\Scripts\UI\SelectedIdProvider.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragAreaSelector.cs" />
     <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\SurfaceDefinitionSingleton.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\ChildCycler\PhaseBasedChildCyclingManager.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
@@ -112,8 +118,10 @@
     <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
     <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\EnemyComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\ContractContainer.cs" />
     <Compile Include="Assets\Scripts\InitializationEvents.cs" />
+    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\SurfacePathingComponentAuthoring.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticMaterialSwitch.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
@@ -157,10 +165,6 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\DamageWhenVoxelTileReachedComponent.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\ApproachWaypointSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\SurfaceDefinitionSingleton.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\FindSurfaceWaypointSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\SurfacePathingComponentAuthoring.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\UI\UIAssets\Icons34x34byAilsEnglish2013\Readme.txt" />
