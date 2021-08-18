@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\AssaultWaves\AssaultWaveSpawner.cs" />
     <Compile Include="Assets\Scripts\PlantWeapons\SimpleVelocityComponent.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\DijkstrasPathingOverSurfaceSolverJob.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailSpawningAuthoring.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ISeedHoldingManipulator.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\ISpawnable.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\PathingComponent.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\PlantWeapons\Bomb\FindEnemySystem.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\EvaluationTargets\SeedCountTarget.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\FullyDiscreteSummaryDisplay.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailSpawnSystem.cs" />
     <Compile Include="Assets\Scripts\PlantWeapons\Bomb\SeekEnemyComponentAuthoring.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\PlantTypeRegistry.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebPurchaseButton.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinMesh.cs" />
     <Compile Include="Assets\Scripts\ContractEvaluator\FarmerSimulator.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\PerlineSampler.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\DamageOnCollisionSystem.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\DamagedVoxelsVFXBinder.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
@@ -114,6 +117,7 @@
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantedLSystem.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\ScaleWithLifetimeAuthoring.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
     <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorPlan.cs" />
@@ -131,6 +135,7 @@
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketContractClaimTrigger.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\DijkstrasPathingSolverJob.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\Bomb\UnityMathExtensions.cs" />
     <Compile Include="Assets\Scripts\PlantWeapons\DamageSourceComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
     <Compile Include="Assets\Scripts\PlantWeapons\Bomb\SeekEnemySystem.cs" />
@@ -146,6 +151,8 @@
     <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantableDirt.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\MarketManager.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\DieWhenLifeRunOutSystem.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailAuthoring.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\PlantSurfacePathingWorld.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\HistogramSummaryDisplay.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
@@ -167,13 +174,6 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\DamageWhenVoxelTileReachedComponent.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\DamageOnCollisionSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\DieWhenLifeRunOutSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailSpawnSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailAuthoring.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailSpawningAuthoring.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Bomb\UnityMathExtensions.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\ScaleWithLifetimeAuthoring.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\UI\UIAssets\Icons34x34byAilsEnglish2013\Readme.txt" />

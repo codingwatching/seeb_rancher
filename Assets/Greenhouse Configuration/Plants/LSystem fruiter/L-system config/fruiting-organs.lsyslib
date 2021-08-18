@@ -66,7 +66,7 @@ r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge &&   useWater -> a(-
 r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && useGlucose -> a(-glucose/2, -glucose/2)K(y, x + glucose/2)
                           C(bit) < K(y, x) : x >= flowerAge && bit >= 1 ->
 
-#define bombCost 5
+#define bombCost 20
 
 ## B is a Bomb Launcher, b is the launched bomb
 #export BombLauncher B

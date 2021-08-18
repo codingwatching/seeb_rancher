@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5decb3088395d46aeea5b81f58ee4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekSpeed: 1
+  seekSpeed: 3
   rotateSpeed: 20
 --- !u!114 &6585564911215012824
 MonoBehaviour:
@@ -347,5 +347,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeTrailPrefab: {fileID: 1697358222148059660, guid: baf140b2d897ad244af55d7f64eedb0e, type: 3}
-  timeToSpawn: 0.2
-  smokeVelocityMultiplier: -5
+  timeToSpawn: 0.1
+  smokeVelocityMultiplier: -3
