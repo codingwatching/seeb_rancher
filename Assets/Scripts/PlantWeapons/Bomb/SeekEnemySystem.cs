@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.PlantPathing;
-using Assets.Scripts.PlantPathing.PathNavigaton;
-using System.Collections;
-using Unity.Collections;
+﻿using Assets.Scripts.PlantPathing.PathNavigaton;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -24,51 +21,153 @@ namespace Assets.Scripts.PlantWeapons.Bomb
             surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
             commandBufferSystem = World.GetOrCreateSystem<BeginInitializationEntityCommandBufferSystem>();
         }
+        public static void ApplyForce(ref PhysicsVelocity pv, PhysicsMass pm,
+       Translation t, Rotation r, float3 force, float3 point, float deltaTime)
+        {
+            // Linear
+            pv.Linear += force * deltaTime;
+
+            // Angular
+            {
+                // Calculate point impulse
+                var worldFromEntity = new RigidTransform(r.Value, t.Value);
+                var worldFromMotion = math.mul(worldFromEntity, pm.Transform);
+                float3 angularImpulseWorldSpace = math.cross(point, force);
+                float3 angularImpulseInertiaSpace = math.rotate(math.inverse(worldFromMotion.rot), angularImpulseWorldSpace);
+
+                //var lerped = math.lerp()
+
+                pv.Angular = angularImpulseInertiaSpace * pm.InverseInertia * 0.1f;// * deltaTime;
+            }
+        }
+
+        public static void Seek(
+            float deltaTime,
+                    ref PhysicsVelocity velocity,
+                    in SeekEnemyComponent seeker,
+                    in Translation selfPosition,
+                    in PhysicsMass massData,
+                    in Rotation rot,
+                    float3 targetPos,
+                    out float3 resultForwardVector)
+        {
+            var worldFromEntity = new RigidTransform(rot.Value, selfPosition.Value);
+            var worldFromMotion = math.mul(worldFromEntity, massData.Transform);
+
+            float3 diff = Vector3.Normalize(targetPos - selfPosition.Value);
+
+            var velocityLocalSpace = new float3(-1, 0, 0);
+            var velocityWorldSpace = math.rotate(worldFromMotion, velocityLocalSpace);
+
+            velocity.Linear += velocityWorldSpace * deltaTime * seeker.seekAcceleration;
+            resultForwardVector = velocityWorldSpace;
+            // angular velocity
+            {
+                var toTargetLocalSpace = math.rotate(math.inverse(worldFromMotion), diff);
+
+                var lookDirectionLocalSpace = math.cross(toTargetLocalSpace, new float3(1, 0, 0));
+                velocity.Angular += lookDirectionLocalSpace * deltaTime * seeker.rotateAcceleration;
+            }
+        }
 
         // TODO: this system scales acceleration by timescale, but velocity will still execute at a normal timescale
         //  might have to just use global time.timeScale to set it up
         protected override void OnUpdate()
         {
-            var ecb = commandBufferSystem.CreateCommandBuffer().AsParallelWriter();
+            var ecb = commandBufferSystem.CreateCommandBuffer();
             var simSpeed = surfaceDefinition.gameSpeed.CurrentValue;
             var deltaTime = Time.DeltaTime * simSpeed;
+            var totalTime = Time.ElapsedTime;
             Entities
                 .ForEach((
                     Entity entity,
-                    int entityInQueryIndex,
                     ref PhysicsVelocity velocity,
+                    ref SmokeTrailSpawnerComponent spawner,
                     in FoundTargetEntity target,
                     in SeekEnemyComponent seeker,
                     in Translation selfPosition,
-                    in PhysicsMass massData) =>
+                    in PhysicsMass massData,
+                    in Rotation rot) =>
                 {
                     if (HasComponent<Translation>(target.target))
                     {
                         var targetPos = GetComponent<Translation>(target.target);
-                        float3 diff = Vector3.Normalize(targetPos.Value - selfPosition.Value);
-                        velocity.Linear += diff * seeker.seekAcceleration * massData.InverseMass * deltaTime;
-                        // TODO: do something to the angular velocity too. make it point towards the target probably.
-                    }else
-                    {
-                        ecb.RemoveComponent<FoundTargetEntity>(entityInQueryIndex, entity);
+
+                        Seek(deltaTime,
+                            ref velocity,
+                            seeker,
+                            selfPosition,
+                            massData,
+                            rot,
+                            targetPos.Value,
+                            out var forwardVector);
+
+                        // smoke emit
+                        {
+
+                            if (spawner.lastSpawnTime + spawner.timeToSpawn < totalTime)
+                            {
+                                spawner.lastSpawnTime = (float)totalTime;
+
+                                var newSmoke = ecb.Instantiate(spawner.prefab);
+                                ecb.SetComponent(newSmoke, new SimpleVelocityComponent
+                                {
+                                    velocity = velocity.Linear + forwardVector * spawner.timeToSpawn * spawner.smokeVelocity
+                                });
+                                ecb.SetComponent(newSmoke, new Translation
+                                {
+                                    Value = selfPosition.Value
+                                });
+                            }
+                        }
                     }
-                }).ScheduleParallel();
-            commandBufferSystem.AddJobHandleForProducer(this.Dependency);
+                    else
+                    {
+                        ecb.RemoveComponent<FoundTargetEntity>(entity);
+                    }
+                }).Schedule();
 
             Entities
                 .WithNone<FoundTargetEntity>()
                 .ForEach((
                     Entity entity,
-                    int entityInQueryIndex,
                     ref PhysicsVelocity velocity,
+                    ref SmokeTrailSpawnerComponent spawner,
                     in Translation selfPosition,
                     in NoTargetComponent target,
                     in SeekEnemyComponent seeker,
-                    in PhysicsMass massData) =>
+                    in PhysicsMass massData,
+                    in Rotation rot) =>
                 {
-                    float3 diff = Vector3.Normalize(target.randomTarget - selfPosition.Value);
-                    velocity.Linear += diff * seeker.seekAcceleration * massData.InverseMass * deltaTime;
-                }).ScheduleParallel();
+                    Seek(deltaTime,
+                        ref velocity,
+                        seeker,
+                        selfPosition,
+                        massData,
+                        rot,
+                        target.randomTarget,
+                        out var forwardVector);
+
+                    // smoke emit
+                    {
+
+                        if (spawner.lastSpawnTime + spawner.timeToSpawn < totalTime)
+                        {
+                            spawner.lastSpawnTime = (float)totalTime;
+
+                            var newSmoke = ecb.Instantiate(spawner.prefab);
+                            ecb.SetComponent(newSmoke, new SimpleVelocityComponent
+                            {
+                                velocity = velocity.Linear + forwardVector * spawner.timeToSpawn * spawner.smokeVelocity
+                            });
+                            ecb.SetComponent(newSmoke, new Translation
+                            {
+                                Value = selfPosition.Value
+                            });
+                        }
+                    }
+                }).Schedule();
+            commandBufferSystem.AddJobHandleForProducer(this.Dependency);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
             {
                 currentHealth = health
             });
-            dstManager.AddComponent<VelocityComponent>(entity);
+            dstManager.AddComponent<SimpleVelocityComponent>(entity);
         }
     }
 

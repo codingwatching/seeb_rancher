@@ -8,11 +8,13 @@ namespace Assets.Scripts.PlantWeapons.Bomb
     public class SeekEnemyComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
         public float seekSpeed;
+        public float rotateSpeed;
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             dstManager.AddComponentData(entity, new SeekEnemyComponent
             {
-                seekAcceleration = seekSpeed
+                seekAcceleration = seekSpeed,
+                rotateAcceleration = rotateSpeed
             });
         }
     }
@@ -29,5 +31,6 @@ namespace Assets.Scripts.PlantWeapons.Bomb
     public struct SeekEnemyComponent : IComponentData
     {
         public float seekAcceleration;
+        public float rotateAcceleration;
     }
 }

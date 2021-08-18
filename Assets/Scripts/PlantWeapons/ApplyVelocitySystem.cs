@@ -19,7 +19,7 @@ namespace Assets.Scripts.PlantWeapons.Bomb
                     Entity entity,
                     int entityInQueryIndex,
                     ref Translation selfPosition,
-                    ref VelocityComponent velocity,
+                    ref SimpleVelocityComponent velocity,
                     ref Rotation selfRotation) =>
                 {
                     selfPosition.Value = selfPosition.Value + velocity.velocity * deltaTime;

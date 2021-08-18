@@ -41,7 +41,7 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
                 ref Translation position,
                 ref SurfaceWaypointTarget target, 
                 ref WaypointFollowerComponent follower,
-                ref VelocityComponent velocity,
+                ref SimpleVelocityComponent velocity,
                 ref BlockingVoxelDamageComponent damageInfo,
                 ref HealthComponent health) =>
                 {

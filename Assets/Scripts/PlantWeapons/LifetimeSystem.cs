@@ -1,10 +1,6 @@
-﻿using Assets.Scripts.PlantPathing;
-using System.Collections;
-using Unity.Collections;
-using Unity.Entities;
+﻿using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace Assets.Scripts.PlantWeapons.Bomb
 {
@@ -30,12 +26,19 @@ namespace Assets.Scripts.PlantWeapons.Bomb
                     ref LifetimeComponent lifetime) =>
                 {
                     lifetime.currentLife += deltaTime;
-                    if(lifetime.currentLife > lifetime.maxLifetime)
+                    if (lifetime.currentLife > lifetime.maxLifetime)
                     {
                         ecb.DestroyEntity(entityInQueryIndex, entity);
                     }
                 }).ScheduleParallel();
             commandBufferSystem.AddJobHandleForProducer(this.Dependency);
+
+            Entities.ForEach((ref NonUniformScale scale, in LifetimeComponent life, in ScaleWithLifetimeComponent scaling) =>
+            {
+                var lifeLeftAsProportion = 1 - (life.currentLife / life.maxLifetime);
+                var resultScale = scaling.baseScale * math.pow(lifeLeftAsProportion, 1/3f);
+                scale.Value = new float3(resultScale, resultScale, resultScale);
+            }).ScheduleParallel();
         }
     }
 }

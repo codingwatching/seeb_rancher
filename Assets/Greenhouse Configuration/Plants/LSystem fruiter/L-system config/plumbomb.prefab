@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2793339360864255646}
   - component: {fileID: 2911429555214436592}
   - component: {fileID: 4203655717864028274}
+  - component: {fileID: 7100401936515878177}
   m_Layer: 0
   m_Name: plumbomb
   m_TagString: Untagged
@@ -32,8 +33,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7898664471586276096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0875, y: 0, z: 0}
-  m_LocalScale: {x: 0.175, y: 0.175, z: 0.175}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7898664471586276096}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2825627065030527267, guid: d51dc8d3d5fe7834b9c8d133f135b7c9, type: 3}
 --- !u!23 &7898664471586276110
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 24c07864cdd338542b6b19644882e7a6, type: 2}
+  - {fileID: -190583596190925916, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5decb3088395d46aeea5b81f58ee4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekSpeed: 0.5
+  seekSpeed: 1
+  rotateSpeed: 20
 --- !u!114 &6585564911215012824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,13 +155,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShapeType: 2
   m_PrimitiveCenter:
-    x: 0
+    x: -1
     y: 0
     z: 0
   m_PrimitiveSize:
-    x: 1
-    y: 1
-    z: 1
+    x: 2
+    y: 2
+    z: 2
   m_PrimitiveOrientation:
     Value:
       x: -0
@@ -167,15 +169,15 @@ MonoBehaviour:
       z: 0
     RotationOrder: 4
   m_Capsule:
-    Height: 1
-    Radius: 0.5
+    Height: 2
+    Radius: 1
     Axis: 2
   m_Cylinder:
-    Height: 1
-    Radius: 0.5
+    Height: 2
+    Radius: 1
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 0.5
+  m_SphereRadius: 1
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 0.015
@@ -297,8 +299,8 @@ MonoBehaviour:
   m_MotionType: 0
   m_Smoothing: 1
   m_Mass: 1
-  m_LinearDamping: 0.01
-  m_AngularDamping: 0.05
+  m_LinearDamping: 0.5
+  m_AngularDamping: 1
   m_InitialLinearVelocity:
     x: 0
     y: 0
@@ -332,3 +334,18 @@ MonoBehaviour:
     Tag05: 0
     Tag06: 0
     Tag07: 0
+--- !u!114 &7100401936515878177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898664471586276096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2620cc4c59a7c5c4788b983192a0e832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smokeTrailPrefab: {fileID: 1697358222148059660, guid: baf140b2d897ad244af55d7f64eedb0e, type: 3}
+  timeToSpawn: 0.2
+  smokeVelocityMultiplier: -5
