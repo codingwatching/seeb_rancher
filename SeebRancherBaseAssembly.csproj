@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\DebugModeSetup.cs" />
     <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
     <Compile Include="Assets\Scripts\Plants\PlantTypes\BasePlantType.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\TreatVoxelsAsSurfaceAuthoring.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\ContractEvaluationController.cs" />
     <Compile Include="Assets\Scripts\Plants\PollinationState.cs" />
     <Compile Include="Assets\Scripts\Plants\BetterPlant\HarvestingPlant.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\ContractEvaluator\HaltonSequenceGenerator.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\SerializeIntToText.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\ApproachWaypointOrDamageSystem.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\DamageOnVoxelOverlapSystem.cs" />
     <Compile Include="Assets\Scripts\PlantWeapons\Bomb\FindEnemySystem.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\EvaluationTargets\SeedCountTarget.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\FullyDiscreteSummaryDisplay.cs" />
@@ -104,11 +106,14 @@
     <Compile Include="Assets\Scripts\UI\SelectedIdProvider.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragAreaSelector.cs" />
     <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\HurtOnVoxelMatchAuthoring.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\SurfaceDefinitionSingleton.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\ChildCycler\PhaseBasedChildCyclingManager.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
+    <Compile Include="Assets\Scripts\DOTSDataBinders\HealthToFloatVariableBinder.cs" />
     <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\HealthAuthoring.cs" />
     <Compile Include="Assets\Scripts\TmpUtilities.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
@@ -151,6 +156,7 @@
     <Compile Include="Assets\Scripts\PlantWeapons\DieWhenLifeRunOutSystem.cs" />
     <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailAuthoring.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\PlantSurfacePathingWorld.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\AttackOnVoxelMatchAuthoring.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\HistogramSummaryDisplay.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\MemberSpawner.cs" />
     <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreBinDescriptor.cs" />
@@ -171,12 +177,6 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\DamageWhenVoxelTileReachedComponent.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\AttackOnVoxelMatchAuthoring.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\HurtOnVoxelMatchAuthoring.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\HealthAuthoring.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\DamageOnVoxelOverlapSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\TreatVoxelsAsSurfaceAuthoring.cs" />
-    <Compile Include="Assets\Scripts\DOTSDataBinders\HealthToFloatVariableBinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\UI\UIAssets\Icons34x34byAilsEnglish2013\Readme.txt" />
