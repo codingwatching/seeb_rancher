@@ -95,12 +95,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7513389675405803858}
+  - component: {fileID: 7574179509580919515}
   - component: {fileID: 1687225805103561437}
-  - component: {fileID: 3740131691403824582}
   - component: {fileID: 7317886879327251624}
   - component: {fileID: 4161405179588510278}
   - component: {fileID: 2792828211228218568}
   - component: {fileID: 7914769505186943597}
+  - component: {fileID: 4883893034910014838}
+  - component: {fileID: 3740131691403824582}
   m_Layer: 0
   m_Name: dotty enemy
   m_TagString: Untagged
@@ -123,6 +125,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7574179509580919515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513389675405803869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faeaf72e0bf216047a97ec5efa35962f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!114 &1687225805103561437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,20 +156,6 @@ MonoBehaviour:
   damageSpeed: 5
   ignorableDurability: 3
   selfDamageDoneByAttacking: 1
-  health: 10
---- !u!114 &3740131691403824582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7513389675405803869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 0
 --- !u!114 &7317886879327251624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,3 +373,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b248d5af15c5ed4b8da9ebd79e04a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4883893034910014838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513389675405803869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fc972837ba5c2479b878d877833598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageDealt: 1
+--- !u!114 &3740131691403824582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513389675405803869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0

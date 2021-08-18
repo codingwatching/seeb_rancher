@@ -1,10 +1,12 @@
 ﻿using Assets.Scripts.PlantWeapons;
+using Assets.Scripts.PlantWeapons.Enemies;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Assets.Scripts.PlantPathing.PathNavigaton
 {
+    [RequireComponent(typeof(HealthAuthoring))]
     public class SurfacePathingComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
         public float waypointProximityRequirement = 0.1f;
@@ -18,7 +20,6 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
 
 
         public float selfDamageDoneByAttacking = 1f;
-        public float health = 10f;
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             dstManager.AddComponentData(entity, new SurfaceWaypointFinder
@@ -36,13 +37,11 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
                 ignorableDurability = ignorableDurability,
                 selfDamageDoneByAttacking = selfDamageDoneByAttacking
             });
-            dstManager.AddComponentData(entity, new HealthComponent
-            {
-                currentHealth = health
-            });
             dstManager.AddComponent<SimpleVelocityComponent>(entity);
+            dstManager.AddComponent<TreatVoxelsAsSurface>(entity);
         }
     }
+
 
     public struct SurfaceWaypointFinder : IComponentData
     {
@@ -65,9 +64,5 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
         public float damageSpeed;
         public float ignorableDurability;
         public float selfDamageDoneByAttacking;
-    }
-    public struct HealthComponent : IComponentData
-    {
-        public float currentHealth;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.PlantPathing;
 using Assets.Scripts.PlantWeapons;
+using Assets.Scripts.PlantWeapons.Enemies;
 using Dman.LSystem.SystemRuntime.VolumetricData;
 using System.Collections;
 using Unity.Collections;
