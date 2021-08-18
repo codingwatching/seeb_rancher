@@ -51,7 +51,7 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
 
                     ecb.AddComponent(entityInQueryIndex, entity, new SurfaceWaypointTarget
                     {
-                        target = new float3(nextCoordinate.x, noiseSample, nextCoordinate.y)
+                        target = new float3(nextCoordinate.x, noiseSample + finder.waypointOffsetFromSurface, nextCoordinate.y)
                     });
                 }).ScheduleParallel();
 
@@ -76,7 +76,7 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
                     var nextCoordinate = voxelLayout.SurfaceGetTilePositionFromDataIndex(nextId);
                     var noiseSample = terrainSampler.SampleNoise(nextCoordinate);
 
-                    target.target = new float3(nextCoordinate.x, noiseSample, nextCoordinate.y);
+                    target.target = new float3(nextCoordinate.x, noiseSample + finder.waypointOffsetFromSurface, nextCoordinate.y);
                 }).ScheduleParallel();
 
             commandBufferSystem.AddJobHandleForProducer(this.Dependency);

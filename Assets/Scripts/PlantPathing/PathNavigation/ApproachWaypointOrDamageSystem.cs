@@ -43,11 +43,12 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
                 ref WaypointFollowerComponent follower,
                 ref SimpleVelocityComponent velocity,
                 ref BlockingVoxelDamageComponent damageInfo,
-                ref HealthComponent health) =>
+                ref HealthComponent health,
+                in SurfaceWaypointFinder waypointFinderParams) =>
                 {
                     var nextTile = layout.SurfaceGetSurfaceCoordinates(target.target);
-                    var minVoxelHeight = (int)math.max(math.floor(target.target.y), 0);
-                    var maxVoxelHeight = (int)math.min(math.floor(target.target.y + patherHeight), layout.worldResolution.y);
+                    var minVoxelHeight = (int)math.max(math.floor(target.target.y - waypointFinderParams.waypointOffsetFromSurface), 0);
+                    var maxVoxelHeight = (int)math.min(math.floor(target.target.y - waypointFinderParams.waypointOffsetFromSurface + patherHeight), layout.worldResolution.y);
 
                     var nextTileDurability = 0f;
                     for (int y = minVoxelHeight; y <= maxVoxelHeight; y++)

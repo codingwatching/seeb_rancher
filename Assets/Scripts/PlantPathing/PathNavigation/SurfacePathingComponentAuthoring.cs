@@ -8,6 +8,7 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
     public class SurfacePathingComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
         public float waypointProximityRequirement = 0.1f;
+        public float patherHeightOffsetFromGround = 0.5f;
 
         public float movementSpeed = 1f;
 
@@ -22,7 +23,8 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
         {
             dstManager.AddComponentData(entity, new SurfaceWaypointFinder
             {
-                waypointProximityRequirement = waypointProximityRequirement
+                waypointProximityRequirement = waypointProximityRequirement,
+                waypointOffsetFromSurface = patherHeightOffsetFromGround
             });
             dstManager.AddComponentData(entity, new WaypointFollowerComponent
             {
@@ -45,6 +47,7 @@ namespace Assets.Scripts.PlantPathing.PathNavigaton
     public struct SurfaceWaypointFinder : IComponentData
     {
         public float waypointProximityRequirement;
+        public float waypointOffsetFromSurface;
     }
 
     public struct SurfaceWaypointTarget : IComponentData
