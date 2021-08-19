@@ -47,7 +47,6 @@
 #define primaryAngularSeparation 137
 
 
-
 ## variables defined for utility
 #define shootHeight 5
 #define segmentCost 0.5

@@ -77,11 +77,9 @@ r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && useGlucose -> a(-
 #export BombLauncher B
 #export Bomb b
 #symbols Bb
-r(a, water, c, glucose, d) < B(progress) : progress < 1 &&   useWater && (1-progress) >= (  water/2)/bombCost -> a(-  water/2, -  water/2)B(progress + (  water/2)/bombCost)
-r(a, water, c, glucose, d) < B(progress) : progress < 1 && useGlucose && (1-progress) >= (glucose/2)/bombCost -> a(-glucose/2, -glucose/2)B(progress + (glucose/2)/bombCost)
+r(a, water, c, glucose, d) < B(progress) : progress < 1 &&   useWater -> a(-  water/2, -  water/2)B(progress + (  water/2)/bombCost)
+r(a, water, c, glucose, d) < B(progress) : progress < 1 && useGlucose -> a(-glucose/2, -glucose/2)B(progress + (glucose/2)/bombCost)
 
-r(a, water, c, glucose, d) < B(progress) : progress < 1 &&   useWater && (1-progress) <  (  water/2)/bombCost -> a(-(1-progress), -(1-progress))B(1)
-r(a, water, c, glucose, d) < B(progress) : progress < 1 && useGlucose && (1-progress) <  (glucose/2)/bombCost -> a(-(1-progress), -(1-progress))B(1)
 
 r(a, water, c, glucose, d) < B(progress) : progress >= 1 -> bB(0)
 b -> 
