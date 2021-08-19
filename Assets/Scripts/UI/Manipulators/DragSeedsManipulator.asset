@@ -15,5 +15,5 @@ MonoBehaviour:
   seedSproutGameObject: {fileID: 11400000, guid: f255a885b47bbf14fa9d41cc7c9abf59, type: 2}
   plantableCaster: {fileID: 11400000, guid: 19fe9ec4d02889e44bb766bcd6bd9665, type: 2}
   plantCursor: {fileID: 21300000, guid: 84d08c9c60f7aff4c8f8e6690ac463dc, type: 3}
-  plantableSquareSideSize: 15
+  plantableSquareSideSize: 9
   selectedGameObject: {fileID: 11400000, guid: cfaf086100afe854fac9175b11b005e0, type: 2}

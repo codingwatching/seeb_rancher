@@ -117,6 +117,7 @@
     <Compile Include="Assets\Scripts\TmpUtilities.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
     <Compile Include="Assets\Scripts\Plants\GeneticDrivenModifier.cs" />
+    <Compile Include="Assets\Scripts\PlantWeapons\Health\HealthBarAuthoring.cs" />
     <Compile Include="Assets\Scripts\GreenhouseLoader\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\Plants\BetterPlant\PlantedLSystem.cs" />
     <Compile Include="Assets\Scripts\PlantWeapons\ScaleWithLifetimeAuthoring.cs" />
@@ -177,7 +178,7 @@
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\BuildPlacementManipulator.cs" />
     <Compile Include="Assets\Scripts\PlantPathing\DamageWhenVoxelTileReachedComponent.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Health\HealthBarAuthoring.cs" />
+    <Compile Include="Assets\Scripts\UI\FloatVariableTriggerWhenLessThanMet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\UI\UIAssets\Icons34x34byAilsEnglish2013\Readme.txt" />

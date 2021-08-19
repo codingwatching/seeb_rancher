@@ -5,6 +5,7 @@
 #global /\&^+-!F$`@H
 #symbols R
 
+
 #symbols q
 #include plumboo-controllers.lsyslib (LeafController->q)
 #symbols i
@@ -14,8 +15,6 @@
 
 #symbols n
 #include autophagy (Necrose->n)
-
-
 
 #symbols ra
 #matches r
@@ -74,6 +73,8 @@ b(x) -> a(x * simSpeed)b(x)
 #matches T
 #immature T
 T(progress, x) : x < 0 -> T(progress, x + 1)
+
+
 
 
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useGlucose -> a(-glucose/2, -glucose/2)T(progress + glucose/2, x)

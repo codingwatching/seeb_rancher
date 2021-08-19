@@ -15,7 +15,7 @@ namespace Assets.Scripts.PlantWeapons.Bomb
         protected override void OnCreate()
         {
             base.OnCreate();
-            commandBufferSystem = World.GetOrCreateSystem<BeginInitializationEntityCommandBufferSystem>();
+            commandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
             random = new Unity.Mathematics.Random(1928437918);
             enemies = GetEntityQuery(typeof(EnemyComponent), typeof(Translation));
         }

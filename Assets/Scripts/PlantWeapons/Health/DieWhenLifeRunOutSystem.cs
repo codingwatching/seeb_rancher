@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.PlantWeapons.Health
 {
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public class DieWhenLifeRunOutSystem : SystemBase
     {
         private EntityCommandBufferSystem commandBufferSystem;
@@ -17,7 +17,7 @@ namespace Assets.Scripts.PlantWeapons.Health
         protected override void OnCreate()
         {
             base.OnCreate();
-            commandBufferSystem = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
+            commandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
         }
 
         protected override void OnUpdate()
@@ -25,6 +25,7 @@ namespace Assets.Scripts.PlantWeapons.Health
             var deltaTime = Time.DeltaTime;
             var ecb = commandBufferSystem.CreateCommandBuffer().AsParallelWriter();
             Entities
+                .WithAll<DestroyWhenHealthOut>()
                 .ForEach((
                     Entity entity,
                     int entityInQueryIndex,

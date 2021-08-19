@@ -113,7 +113,7 @@ namespace Assets.Scripts.PlantPathing
         {
             parentNodePointersSwapper = new NativeDisposableHotSwap<NativeArrayNativeDisposableAdapter<int>>();
             volumeWorld.volumeWorldChanged += UpdatePathingWorld;
-            failedWithInfiniteLoop = new NativeArray<bool>(1, Allocator.TempJob);
+            failedWithInfiniteLoop = new NativeArray<bool>(1, Allocator.Persistent);
         }
 
         private void Update()

@@ -4,7 +4,7 @@ using Unity.Transforms;
 
 namespace Assets.Scripts.PlantWeapons.Bomb
 {
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public class LifetimeSystem : SystemBase
     {
         private EntityCommandBufferSystem commandBufferSystem;
@@ -12,7 +12,7 @@ namespace Assets.Scripts.PlantWeapons.Bomb
         protected override void OnCreate()
         {
             base.OnCreate();
-            commandBufferSystem = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
+            commandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
         }
 
         protected override void OnUpdate()

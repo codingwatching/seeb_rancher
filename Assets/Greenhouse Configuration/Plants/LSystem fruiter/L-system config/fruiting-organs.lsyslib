@@ -34,7 +34,7 @@ V -> V(0, flowerStalkLength)
  r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 &&   useWater -> a(-  water/2, -  water/2)V(progress +   water/2, x)
  r(a, water, c, glucose, d) < V(progress, x) : progress >=1 && x >  0 -> $(0.1)FV(progress - 1, x - 1)
  
-P(flowerFailureChance)     | Hr(a, water, c, glucose, d) < V(progress, x) -> i(0)B(0)
+P(flowerFailureChance)     | Hr(a, water, c, glucose, d) < V(progress, x) -> i(0)cB(0)
 P(1 - flowerFailureChance) | Hr(a, water, c, glucose, d) < V(progress, x) -> i(0)C(0)[K(flowerMeshIndex, 1)A(1)]
 
 #define fruitBendFactor 0.05
@@ -42,6 +42,12 @@ P(1 - flowerFailureChance) | Hr(a, water, c, glucose, d) < V(progress, x) -> i(0
 #symbols C
 #matches C
 r(a, water, c, glucose, d) < C(x) > K(e, age) : x <= 0 && water > 2 && glucose > 2 && age >= flowerAge -> C(1)[D(fruitColorIndex, 1)M]
+
+## c is a bomb blocker. prevents bomb growth until it dissapears
+#symbols c
+#matches c
+r(a, water, c, glucose, d) < c : water > 3 && glucose > 3 ->
+r(a, water, c, glucose, d) < c -> c
 
 #define fruitSize 5
 ## D is a fruiting body
@@ -52,6 +58,8 @@ r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && useGlucose ->
 r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && useWater   -> a(-  water/2, -  water/2)D(y, x +   water/2)
 
 $(a) > C(bit)D(y, x) -> $(x * fruitBendFactor)
+#define missileBendFactor 0.1
+$(a) > B(progress) -> $(0.1 + progress * missileBendFactor)
 
 ## M is an immaturaty marker
 ## remove the immaturaty symbol once the fruit is fully grown
@@ -66,18 +74,16 @@ r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge &&   useWater -> a(-
 r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && useGlucose -> a(-glucose/2, -glucose/2)K(y, x + glucose/2)
                           C(bit) < K(y, x) : x >= flowerAge && bit >= 1 ->
 
-#define bombCost 20
+#define bombCost 100
 
 
-#define useGlucoseP water > glucose && glucose > 0.1 && (1 - progress) < (glucose/2)/bombCost
-#define useWaterP glucose >= water && water > 0.1 && (1 - progress) < (water/2)/bombCost
-#define useProgress glucose >= water && water > 0.1
 
 ## B is a Bomb Launcher, b is the launched bomb, n is the mesh placeholder for the launched bomb
 #export BombLauncher B
 #export Bomb b
 #export BombPlaceholder n
 #symbols Bbn
+#matches B
 r(a, water, c, glucose, d) < B(progress) : progress < 1 &&   useWater -> a(-  water/2, -  water/2)B(progress + (  water/2)/bombCost)
 r(a, water, c, glucose, d) < B(progress) : progress < 1 && useGlucose -> a(-glucose/2, -glucose/2)B(progress + (glucose/2)/bombCost)
 

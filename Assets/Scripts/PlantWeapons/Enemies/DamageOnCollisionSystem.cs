@@ -30,7 +30,7 @@ namespace Assets.Scripts.PlantWeapons.Enemies
         {
             
             base.OnCreate();
-            commandBufferSystem = World.GetOrCreateSystem<BeginInitializationEntityCommandBufferSystem>();
+            commandBufferSystem = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
             surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
             m_BuildPhysicsWorldSystem = World.GetOrCreateSystem<BuildPhysicsWorld>();
             m_StepPhysicsWorldSystem = World.GetOrCreateSystem<StepPhysicsWorld>();
@@ -95,6 +95,7 @@ namespace Assets.Scripts.PlantWeapons.Enemies
                 }
                 // destroy the damager
                 {
+                    // TODO: should this force a sync? destroying an entity which other systems may be operating on.
                     ecb.DestroyEntity(damageGiver);
                 }
             }

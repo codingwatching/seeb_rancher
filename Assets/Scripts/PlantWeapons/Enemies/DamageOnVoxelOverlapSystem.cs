@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.PlantWeapons.Bomb
 {
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public class DamageOnVoxelOverlapSystem : SystemBase
     {
         private SurfaceDefinitionSingleton surfaceDefinition;
@@ -24,7 +24,7 @@ namespace Assets.Scripts.PlantWeapons.Bomb
             base.OnCreate();
             surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
             durabilityWorld = GameObject.FindObjectOfType<OrganVolumetricWorld>();
-            commandBufferSystem = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
+            commandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
 
             surfaceTargets = GetEntityQuery(typeof(HurtOnVoxelMatch), typeof(Translation), typeof(HealthComponent), typeof(TreatVoxelsAsSurface));
         }
