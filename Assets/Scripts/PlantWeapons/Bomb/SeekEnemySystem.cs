@@ -48,24 +48,22 @@ namespace Assets.Scripts.PlantWeapons.Bomb
                     in Translation selfPosition,
                     in PhysicsMass massData,
                     in Rotation rot,
-                    float3 targetPos,
+                    float3 unityVectorToTarget,
                     out float3 resultForwardVector)
         {
             var worldFromEntity = new RigidTransform(rot.Value, selfPosition.Value);
             var worldFromMotion = math.mul(worldFromEntity, massData.Transform);
 
-            float3 diff = Vector3.Normalize(targetPos - selfPosition.Value);
-
-            var velocityLocalSpace = new float3(-1, 0, 0);
+            var velocityLocalSpace = new float3(1, 0, 0);
             var velocityWorldSpace = math.rotate(worldFromMotion, velocityLocalSpace);
 
             velocity.Linear += velocityWorldSpace * deltaTime * seeker.seekAcceleration;
             resultForwardVector = velocityWorldSpace;
             // angular velocity
             {
-                var toTargetLocalSpace = math.rotate(math.inverse(worldFromMotion), diff);
+                var toTargetLocalSpace = math.rotate(math.inverse(worldFromMotion), unityVectorToTarget);
 
-                var lookDirectionLocalSpace = math.cross(toTargetLocalSpace, new float3(1, 0, 0));
+                var lookDirectionLocalSpace = math.cross(toTargetLocalSpace, new float3(-1, 0, 0));
                 velocity.Angular += lookDirectionLocalSpace * deltaTime * seeker.rotateAcceleration;
             }
         }
@@ -92,6 +90,15 @@ namespace Assets.Scripts.PlantWeapons.Bomb
                     if (HasComponent<Translation>(target.target))
                     {
                         var targetPos = GetComponent<Translation>(target.target);
+                        var vectorToTarget = targetPos.Value - selfPosition.Value;
+                        if (HasComponent<SimpleVelocityComponent>(target.target))
+                        {
+                            var distToTarget = math.length(vectorToTarget);
+                            var leadMagnitude = distToTarget * seeker.targetLeadDistancePerDisplacement;
+                            var targetVelocity = GetComponent<SimpleVelocityComponent>(target.target);
+                            var leadVector = targetVelocity.velocity * leadMagnitude;
+                            vectorToTarget += leadVector;
+                        }
 
                         Seek(deltaTime,
                             ref velocity,
@@ -99,7 +106,7 @@ namespace Assets.Scripts.PlantWeapons.Bomb
                             selfPosition,
                             massData,
                             rot,
-                            targetPos.Value,
+                            math.normalize(vectorToTarget),
                             out var forwardVector);
 
                         // smoke emit
@@ -145,7 +152,7 @@ namespace Assets.Scripts.PlantWeapons.Bomb
                         selfPosition,
                         massData,
                         rot,
-                        target.randomTarget,
+                        Vector3.Normalize(target.randomTarget - selfPosition.Value),
                         out var forwardVector);
 
                     // smoke emit

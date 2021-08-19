@@ -9,12 +9,15 @@ namespace Assets.Scripts.PlantWeapons.Bomb
     {
         public float seekSpeed;
         public float rotateSpeed;
+        [Tooltip("In ideal cases, would be set to roughly how many seconds it takes this seeker to traverse 1 unit")]
+        public float leadDistanceEstimate = 1;
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             dstManager.AddComponentData(entity, new SeekEnemyComponent
             {
                 seekAcceleration = seekSpeed,
-                rotateAcceleration = rotateSpeed
+                rotateAcceleration = rotateSpeed,
+                targetLeadDistancePerDisplacement = leadDistanceEstimate
             });
         }
     }
@@ -32,5 +35,6 @@ namespace Assets.Scripts.PlantWeapons.Bomb
     {
         public float seekAcceleration;
         public float rotateAcceleration;
+        public float targetLeadDistancePerDisplacement;
     }
 }
