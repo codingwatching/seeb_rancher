@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.PlantPathing;
 using Assets.Scripts.PlantPathing.PathNavigaton;
+using Assets.Scripts.PlantWeapons.Health;
 using System.Collections;
 using Unity.Burst;
 using Unity.Collections;

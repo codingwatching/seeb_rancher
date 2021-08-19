@@ -3,7 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons
+namespace Assets.Scripts.PlantWeapons.Health
 {
     public class HealthAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
@@ -22,5 +22,4 @@ namespace Assets.Scripts.PlantWeapons
     {
         public float currentHealth;
     }
-
 }

@@ -7,7 +7,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Assets.Scripts.PlantWeapons.Health
 {
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class DieWhenLifeRunOutSystem : SystemBase

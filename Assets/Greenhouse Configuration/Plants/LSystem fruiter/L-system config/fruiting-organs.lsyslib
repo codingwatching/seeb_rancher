@@ -73,16 +73,18 @@ r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && useGlucose -> a(-
 #define useWaterP glucose >= water && water > 0.1 && (1 - progress) < (water/2)/bombCost
 #define useProgress glucose >= water && water > 0.1
 
-## B is a Bomb Launcher, b is the launched bomb
+## B is a Bomb Launcher, b is the launched bomb, n is the mesh placeholder for the launched bomb
 #export BombLauncher B
 #export Bomb b
-#symbols Bb
+#export BombPlaceholder n
+#symbols Bbn
 r(a, water, c, glucose, d) < B(progress) : progress < 1 &&   useWater -> a(-  water/2, -  water/2)B(progress + (  water/2)/bombCost)
 r(a, water, c, glucose, d) < B(progress) : progress < 1 && useGlucose -> a(-glucose/2, -glucose/2)B(progress + (glucose/2)/bombCost)
 
 
-r(a, water, c, glucose, d) < B(progress) : progress >= 1 -> bB(0)
+r(a, water, c, glucose, d) < B(progress) : progress >= 1 -> bn(progress)B(0)
 b -> 
+n(x) -> 
 
 ## A is an anther
 #export Anther A

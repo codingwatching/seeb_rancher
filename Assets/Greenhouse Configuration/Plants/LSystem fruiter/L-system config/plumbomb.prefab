@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seekSpeed: 3
   rotateSpeed: 20
-  leadDistanceEstimate: 0.25
+  leadDistanceEstimate: 0.33333334
 --- !u!114 &6585564911215012824
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.PlantWeapons;
+using Assets.Scripts.PlantWeapons.Health;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;

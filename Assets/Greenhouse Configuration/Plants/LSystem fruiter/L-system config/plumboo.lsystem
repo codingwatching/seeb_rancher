@@ -75,6 +75,7 @@ b(x) -> a(x * simSpeed)b(x)
 #immature T
 T(progress, x) : x < 0 -> T(progress, x + 1)
 
+
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useGlucose -> a(-glucose/2, -glucose/2)T(progress + glucose/2, x)
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && useWater   -> a(-  water/2, -  water/2)T(progress +   water/2, x)
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress >= 1 -> I(0, internodeHeight)[&(60)B][\(180)&(60)B]\(primaryAngularSeparation)r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)i(0)T(progress - 1, x + 1)
@@ -84,7 +85,6 @@ r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && pr
 r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && progress >= 2 -> J(internodeHeight)
 
 
-
 ## Y is a a terminal bud of a flowering stalk
 ## #symbols Y
 ## #immature Y
@@ -92,8 +92,8 @@ r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && pr
 ## r(a, water, c, glucose, d) < Y(x) : x >= primaryBranchInternodes -> J(internodeHeight)
 
 
-#include fruiting-organs.lsyslib (FlowerBud->V) (FruitOrgan->D) (Anther->A) (Flower->K) (BombLauncher->Z) (Bomb->z)
-#symbols VDAKZz
+#include fruiting-organs.lsyslib (FlowerBud->V) (FruitOrgan->D) (Anther->A) (Flower->K) (BombLauncher->Z) (Bomb->z) (BombPlaceholder->x)
+#symbols VDAKZzx
 
 ## B is a bud which will grow a leaf structure and also a flower
 #symbols B
