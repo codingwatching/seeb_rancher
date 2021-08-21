@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Health
+namespace Simulation.DOTS.PlantWeapons.Health
 {
     public class HealthAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {

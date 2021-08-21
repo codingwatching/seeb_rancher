@@ -984,10 +984,6 @@
       <Project>{37559713-CA7C-C360-8061-F926A34967A2}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
-    <ProjectReference Include="SeebRancherBaseAssembly.csproj">
-      <Project>{7239741A-F6EF-1B9D-03EF-22726D8C1824}</Project>
-      <Name>SeebRancherBaseAssembly</Name>
-    </ProjectReference>
     <ProjectReference Include="TilingEditor.csproj">
       <Project>{54CA7512-07AE-506F-0123-7EFBE4B7FCA6}</Project>
       <Name>TilingEditor</Name>
@@ -996,10 +992,6 @@
       <Project>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</Project>
       <Name>Narrative</Name>
     </ProjectReference>
-    <ProjectReference Include="Boxophobic.PolyverseSkies.Scripts.csproj">
-      <Project>{5E7C3AD1-3AE2-6B3F-824F-18E8CD5517B3}</Project>
-      <Name>Boxophobic.PolyverseSkies.Scripts</Name>
-    </ProjectReference>
     <ProjectReference Include="Tiling.csproj">
       <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
       <Name>Tiling</Name>
@@ -1007,22 +999,6 @@
     <ProjectReference Include="DefaultEditorScripts.csproj">
       <Project>{F4433834-85A1-FB7C-72C6-FBB4329017A7}</Project>
       <Name>DefaultEditorScripts</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.PolyverseSkies.Runtime.csproj">
-      <Project>{E4911C40-4FB2-D2BC-584E-2A7CC5EFBFEB}</Project>
-      <Name>Boxophobic.PolyverseSkies.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.Utils.Editor.csproj">
-      <Project>{570204B3-3619-D382-3F19-F9733D7F0718}</Project>
-      <Name>Boxophobic.Utils.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
-      <Project>{5FADB50E-40B4-6EE9-457D-6DB8B04208F3}</Project>
-      <Name>Boxophobic.Utils.Scripts</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.PolyverseSkies.Editor.csproj">
-      <Project>{D10ABD44-E58F-D54A-49EC-336B68228428}</Project>
-      <Name>Boxophobic.PolyverseSkies.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Environment.csproj">
       <Project>{9877AD0A-C978-449C-C62E-F870F0B89B68}</Project>
@@ -1039,6 +1015,30 @@
     <ProjectReference Include="UI.csproj">
       <Project>{69626DAD-A904-807A-17B9-86085DFFE5F3}</Project>
       <Name>UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Interfaces.csproj">
+      <Project>{B8DA60C1-E8E9-30EA-2FAD-1F14130622C2}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
+      <Project>{5FADB50E-40B4-6EE9-457D-6DB8B04208F3}</Project>
+      <Name>Boxophobic.Utils.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.PolyverseSkies.Runtime.csproj">
+      <Project>{E4911C40-4FB2-D2BC-584E-2A7CC5EFBFEB}</Project>
+      <Name>Boxophobic.PolyverseSkies.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.PolyverseSkies.Scripts.csproj">
+      <Project>{5E7C3AD1-3AE2-6B3F-824F-18E8CD5517B3}</Project>
+      <Name>Boxophobic.PolyverseSkies.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.PolyverseSkies.Editor.csproj">
+      <Project>{D10ABD44-E58F-D54A-49EC-336B68228428}</Project>
+      <Name>Boxophobic.PolyverseSkies.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Editor.csproj">
+      <Project>{570204B3-3619-D382-3F19-F9733D7F0718}</Project>
+      <Name>Boxophobic.Utils.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="MyUtilities.csproj">
       <Project>{AD9F49D9-D383-9DA2-9019-4B99B1FDD48F}</Project>

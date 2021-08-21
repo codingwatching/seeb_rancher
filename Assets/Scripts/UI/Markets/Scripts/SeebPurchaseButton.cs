@@ -1,9 +1,9 @@
-using Assets.Scripts.UI.SeedInventory;
 using Dman.ReactiveVariables;
 using System.Collections;
+using UI.SeedInventory;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.MarketContracts
+namespace UI.Markets
 {
     public class SeebPurchaseButton : MonoBehaviour
     {

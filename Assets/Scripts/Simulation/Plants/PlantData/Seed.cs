@@ -1,8 +1,9 @@
 ﻿using Genetics;
 using Genetics.GeneticDrivers;
+using Simulation.Plants.PlantTypes;
 using System;
 
-namespace Assets.Scripts.DataModels
+namespace Simulation.Plants.PlantData
 {
     [Serializable]
     public class Seed
@@ -10,7 +11,7 @@ namespace Assets.Scripts.DataModels
         public int plantType;
         public Genome genes;
         public CompiledGeneticDrivers parentAttributes;
-        public Seed(Genome genes, Plants.BasePlantType plantType, CompiledGeneticDrivers parentAttributes) : this(genes, plantType.myId, parentAttributes)
+        public Seed(Genome genes, BasePlantType plantType, CompiledGeneticDrivers parentAttributes) : this(genes, plantType.myId, parentAttributes)
         {
         }
         public Seed(Genome genes, int plantType, CompiledGeneticDrivers parentAttributes)

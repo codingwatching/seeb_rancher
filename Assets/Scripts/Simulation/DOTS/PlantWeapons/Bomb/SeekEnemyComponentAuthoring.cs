@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons.Bomb
 {
     public class SeekEnemyComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {

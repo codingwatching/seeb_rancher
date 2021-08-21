@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons
+namespace Simulation.DOTS.PlantWeapons
 {
     public class ScaleWithLifetimeAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {

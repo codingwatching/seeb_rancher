@@ -361,7 +361,7 @@ namespace RTS_Cam
                 case CameraLimit.CIRCLE:
                     var currentPos = new Vector2(transform.localPosition.x, transform.localPosition.z);
                     var currentDistance = currentPos.magnitude;
-                    if(currentDistance <= limitRadius) break;
+                    if (currentDistance <= limitRadius) break;
 
                     var nextPos = currentPos.normalized * limitRadius;
                     m_Transform.localPosition = new Vector3(nextPos.x, m_Transform.localPosition.y, nextPos.y);

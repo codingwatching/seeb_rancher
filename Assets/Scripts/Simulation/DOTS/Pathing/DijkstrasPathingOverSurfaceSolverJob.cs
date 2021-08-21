@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.GreenhouseLoader;
-using Dman.LSystem.SystemRuntime.VolumetricData;
+﻿using Dman.LSystem.SystemRuntime.VolumetricData;
+using Environment;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
-using static Assets.Scripts.PlantPathing.DijkstrasPathingSolverJob;
+using static Simulation.DOTS.Pathing.DijkstrasPathingSolverJob;
 
-namespace Assets.Scripts.PlantPathing
+namespace Simulation.DOTS.Pathing
 {
 
     [BurstCompile]

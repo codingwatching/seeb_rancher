@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.UI.SeedInventory;
-using Dman.ReactiveVariables;
+﻿using Dman.ReactiveVariables;
 using System.Linq;
+using UI.SeedInventory;
 using UnityEngine;
 using UnityEngine.Events;
 

@@ -1,6 +1,6 @@
 {
     "name": "Interfaces",
-    "rootNamespace": "",
+    "rootNamespace": "Interfaces",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

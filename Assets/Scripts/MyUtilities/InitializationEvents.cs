@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts
+namespace MyUtilities
 {
     public class InitializationEvents : MonoBehaviour
     {

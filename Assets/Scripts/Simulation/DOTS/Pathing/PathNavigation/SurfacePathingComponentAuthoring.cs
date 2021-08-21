@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.PlantWeapons;
-using Assets.Scripts.PlantWeapons.Enemies;
-using Assets.Scripts.PlantWeapons.Health;
+﻿using Simulation.DOTS.PlantWeapons;
+using Simulation.DOTS.PlantWeapons.Enemies;
+using Simulation.DOTS.PlantWeapons.Health;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantPathing.PathNavigaton
+namespace Simulation.DOTS.Pathing.PathNavigaton
 {
     [RequireComponent(typeof(HealthAuthoring))]
     public class SurfacePathingComponentAuthoring : MonoBehaviour, IConvertGameObjectToEntity

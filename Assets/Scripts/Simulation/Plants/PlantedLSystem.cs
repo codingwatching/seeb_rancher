@@ -1,19 +1,20 @@
-﻿using Assets.Scripts.ContractEvaluator;
-using Assets.Scripts.DataModels;
-using Assets.Scripts.UI.Manipulators.Scripts;
-using Dman.LSystem.UnityObjects;
+﻿using Dman.LSystem.UnityObjects;
 using Dman.ObjectSets;
 using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
+using Environment;
 using Genetics.GeneticDrivers;
+using Simulation.Plants.PlantData;
+using Simulation.Plants.PlantTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UI.Manipulators;
 using UniRx;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace Assets.Scripts.Plants
+namespace Simulation.Plants
 {
     /// <summary>
     /// handles the breeding and planting of an l-system

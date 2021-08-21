@@ -1,7 +1,7 @@
 using Dman.LSystem.SystemRuntime.Turtle;
 using UnityEngine;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public class SelectedIdProvider : MonoBehaviour
     {

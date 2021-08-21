@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.PlantWeapons.Enemies;
+﻿using Simulation.DOTS.PlantWeapons.Enemies;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons.Bomb
 {
     public class FindEnemySystem : SystemBase
     {

@@ -1,7 +1,7 @@
 ﻿using ProceduralToolkit;
 using UnityEngine;
 
-namespace Assets.Scripts.GreenhouseLoader
+namespace Environment
 {
     [RequireComponent(typeof(MeshFilter))]
     [ExecuteInEditMode]
@@ -46,7 +46,7 @@ namespace Assets.Scripts.GreenhouseLoader
                     var x0y1 = VertexInPlane(quadX, quadY + quadHeight);
                     var x1y1 = VertexInPlane(quadX + quadWidth, quadY + quadHeight);
                     var center = VertexInPlane(quadX + quadWidth / 2, quadY + quadHeight / 2);
-                    if(randSampler.NextDouble() > 0.5f)
+                    if (randSampler.NextDouble() > 0.5f)
                     {
                         builder.AddTriangle(x0y0, x0y1, x1y1, true);
                         builder.AddTriangle(x1y1, x1y0, x0y0, true);

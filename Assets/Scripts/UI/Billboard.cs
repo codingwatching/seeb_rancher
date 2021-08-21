@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public class Billboard : MonoBehaviour
     {

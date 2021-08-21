@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace UI.SeedInventory
 {
     public class DraggingSeedSingletonProvider : MonoBehaviour
     {

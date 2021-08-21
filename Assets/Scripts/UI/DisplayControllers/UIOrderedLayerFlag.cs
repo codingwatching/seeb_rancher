@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.DisplayControllers
+namespace UI.DisplayControllers
 {
     [RequireComponent(typeof(RectTransform))]
     public class UIOrderedLayerFlag : MonoBehaviour

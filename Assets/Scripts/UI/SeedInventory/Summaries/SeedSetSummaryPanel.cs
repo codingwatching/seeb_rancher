@@ -3,7 +3,7 @@ using Genetics.GeneSummarization;
 using UniRx;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace UI.SeedInventory.Summaries
 {
     public class SeedSetSummaryPanel : MonoBehaviour
     {

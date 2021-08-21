@@ -1,12 +1,13 @@
-﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Plants;
-using Assets.Scripts.UI.SeedInventory;
-using Dman.ObjectSets;
+﻿using Dman.ObjectSets;
 using Dman.ReactiveVariables;
 using Dman.Utilities;
+using Gameplay;
+using Simulation.Plants.PlantData;
+using Simulation.Plants.PlantTypes;
+using UI.SeedInventory;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Manipulators.Scripts
+namespace UI.Manipulators
 {
 
     /// <summary>

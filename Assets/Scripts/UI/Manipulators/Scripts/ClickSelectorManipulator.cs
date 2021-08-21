@@ -4,7 +4,7 @@ using Dman.Utilities;
 using UnityEngine;
 using UnityFx.Outline;
 
-namespace Assets.Scripts.UI.Manipulators.Scripts
+namespace UI.Manipulators
 {
     [CreateAssetMenu(fileName = "ClickSelectorManipulator", menuName = "Tiling/Manipulators/ClickSelectorManipulator", order = 2)]
     public class ClickSelectorManipulator : MapManipulator

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace Assets.Scripts.PlantPathing
+namespace Simulation
 {
     [RequireComponent(typeof(VisualEffect))]
     public class DamagedVoxelsVFXBinder : MonoBehaviour

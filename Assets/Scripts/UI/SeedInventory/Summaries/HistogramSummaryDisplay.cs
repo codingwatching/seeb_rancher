@@ -2,7 +2,7 @@ using Genetics.GeneSummarization;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace UI.SeedInventory.Summaries
 {
     public class HistogramSummaryDisplay : MonoBehaviour
     {

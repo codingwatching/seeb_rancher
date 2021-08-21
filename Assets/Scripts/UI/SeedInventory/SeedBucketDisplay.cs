@@ -1,10 +1,9 @@
-﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Plants;
+﻿using Simulation.Plants.PlantTypes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace UI.SeedInventory
 {
     /// <summary>
     /// used to display a seed sprite and count, based on the data inside a <see cref="SeedBucket"/>

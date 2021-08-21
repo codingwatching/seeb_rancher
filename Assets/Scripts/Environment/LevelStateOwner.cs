@@ -1,10 +1,9 @@
 ﻿using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
-using System;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.GreenhouseLoader
+namespace Environment
 {
     public class LevelStateOwner : MonoBehaviour, ISaveableData
     {

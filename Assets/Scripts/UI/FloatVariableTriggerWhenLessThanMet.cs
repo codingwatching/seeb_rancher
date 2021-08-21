@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public class FloatVariableTriggerWhenLessThanMet : MonoBehaviour
     {

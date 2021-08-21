@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public class CursorTracker : MonoBehaviour
     {

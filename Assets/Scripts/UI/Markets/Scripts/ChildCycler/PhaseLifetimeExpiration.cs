@@ -4,7 +4,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.MarketContracts.ChildCycler
+namespace UI.Markets.ChildCycler
 {
 
     public class PhaseLifetimeExpiration : MonoBehaviour, ISaveableData

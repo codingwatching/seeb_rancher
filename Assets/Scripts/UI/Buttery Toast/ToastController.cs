@@ -1,46 +1,50 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class ToastController : MonoBehaviour
+namespace UI.Buttery_Toast
 {
-    public float lifetime;
-    public float raiseMultiplier = 1;
-    public AnimationCurve raise;
-    public AnimationCurve fadeout;
 
-    public TextMeshProUGUI textComponent;
-
-    private float spawnTime;
-
-    public GameObject destroyWhenDone;
-
-    // Start is called before the first frame update
-    void Start()
+    public class ToastController : MonoBehaviour
     {
-        spawnTime = Time.time;
-    }
+        public float lifetime;
+        public float raiseMultiplier = 1;
+        public AnimationCurve raise;
+        public AnimationCurve fadeout;
 
-    // Update is called once per frame
-    void Update()
-    {
-        var factor = (Time.time - spawnTime) / lifetime;
-        if (factor > 1)
+        public TextMeshProUGUI textComponent;
+
+        private float spawnTime;
+
+        public GameObject destroyWhenDone;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            Destroy(destroyWhenDone);
-            return;
+            spawnTime = Time.time;
         }
-        var raiseAmt = raise.Evaluate(factor);
-        var fadeAmt = 1 - fadeout.Evaluate(factor);
 
-        textComponent.alpha = fadeAmt;
+        // Update is called once per frame
+        void Update()
+        {
+            var factor = (Time.time - spawnTime) / lifetime;
+            if (factor > 1)
+            {
+                Destroy(destroyWhenDone);
+                return;
+            }
+            var raiseAmt = raise.Evaluate(factor);
+            var fadeAmt = 1 - fadeout.Evaluate(factor);
 
-        transform.localPosition = Vector3.up * (raiseAmt * raiseMultiplier);
-    }
+            textComponent.alpha = fadeAmt;
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.black;
-        var maxPoint = transform.parent.TransformPoint(Vector3.up * raiseMultiplier);
-        Gizmos.DrawCube(maxPoint, (Vector3.right + Vector3.forward) * 2 + Vector3.up * .2f);
+            transform.localPosition = Vector3.up * (raiseAmt * raiseMultiplier);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.black;
+            var maxPoint = transform.parent.TransformPoint(Vector3.up * raiseMultiplier);
+            Gizmos.DrawCube(maxPoint, (Vector3.right + Vector3.forward) * 2 + Vector3.up * .2f);
+        }
     }
 }

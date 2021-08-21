@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Plants;
-using Dman.ReactiveVariables;
+﻿using Dman.ReactiveVariables;
+using Simulation.Plants;
 using System.Linq;
 using UniRx;
 using UnityEngine;

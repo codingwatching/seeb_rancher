@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantPathing.PathNavigaton
+namespace Simulation.DOTS.Pathing.PathNavigaton
 {
     public class FindSurfaceWaypointSystem : SystemBase
     {

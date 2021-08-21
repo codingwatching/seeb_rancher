@@ -1,6 +1,6 @@
 ﻿using Dman.ReactiveVariables;
 
-namespace Assets.Scripts.GreenhouseLoader
+namespace Environment
 {
     [System.Serializable]
     public class LevelState

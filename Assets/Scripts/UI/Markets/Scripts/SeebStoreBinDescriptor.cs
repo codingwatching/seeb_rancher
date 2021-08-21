@@ -1,13 +1,14 @@
-﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Plants;
-using Dman.ObjectSets;
+﻿using Dman.ObjectSets;
 using Genetics.ParameterizedGenomeGenerator;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using MyUtilities;
+using Simulation.Plants.PlantTypes;
+using Simulation.Plants.PlantData;
 
-namespace Assets.Scripts.UI.MarketContracts
+namespace UI.Markets
 {
     /// <summary>
     /// class used during runtime to describe a bin which will provide seebs

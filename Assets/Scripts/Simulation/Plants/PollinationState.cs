@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.DataModels;
-using Genetics.GeneticDrivers;
+﻿using Genetics.GeneticDrivers;
+using Simulation.Plants.PlantData;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Plants
+namespace Simulation.Plants
 {
 
     [System.Serializable]

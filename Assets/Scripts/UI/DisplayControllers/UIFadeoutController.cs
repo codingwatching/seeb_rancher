@@ -1,7 +1,7 @@
 ﻿using Dman.ReactiveVariables;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.DisplayControllers
+namespace UI.DisplayControllers
 {
     public class UIFadeoutController : MonoBehaviour
     {

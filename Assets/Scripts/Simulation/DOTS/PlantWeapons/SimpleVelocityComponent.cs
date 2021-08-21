@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace Assets.Scripts.PlantWeapons
+namespace Simulation.DOTS.PlantWeapons
 {
     /// <summary>
     /// custom simple velocity component 

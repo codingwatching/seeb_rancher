@@ -1,13 +1,9 @@
 ﻿using Dman.ReactiveVariables;
-using Dman.SceneSaveSystem;
+using Environment;
 using System;
-using System.Linq;
 using UnityEngine;
 
-using UniRx;
-using Assets.Scripts.ContractEvaluator;
-
-namespace Assets.Scripts.GreenhouseLoader
+namespace Gameplay
 {
     [Serializable]
     public class SpawnableConfiguration
@@ -25,7 +21,7 @@ namespace Assets.Scripts.GreenhouseLoader
             }
             return null;
         }
-        
+
     }
 
     public class AssaultWaveSpawner : MonoBehaviour
@@ -55,7 +51,7 @@ namespace Assets.Scripts.GreenhouseLoader
             foreach (var spawnable in spawnables)
             {
                 var spawned = spawnable.TrySpawn(currentWave.CurrentValue, gameSpeed.CurrentValue);
-                if(spawned != null)
+                if (spawned != null)
                 {
                     spawned.transform.position = GetRandomSpawnPosition();
                 }

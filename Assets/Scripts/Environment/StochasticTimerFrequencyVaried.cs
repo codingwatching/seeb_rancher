@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace Assets.Scripts.ContractEvaluator
+namespace Environment
 {
     [System.Serializable]
     public class StochasticTimerFrequencyVaried

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityFx.Outline;
 
-namespace Assets.Scripts.Buildings.Selection_Spotlight
+namespace Gameplay.Selection_Spotlight
 {
     [ExecuteInEditMode]
     public class OutlineIndividual : MonoBehaviour

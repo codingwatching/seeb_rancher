@@ -1,8 +1,9 @@
 ﻿using Dman.LSystem.UnityObjects;
+using Simulation.Plants.PlantTypes;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Plants
+namespace Simulation.Plants
 {
     /// <summary>
     /// this is used when developing l-systems, to render plants in realtime. not during gameplay

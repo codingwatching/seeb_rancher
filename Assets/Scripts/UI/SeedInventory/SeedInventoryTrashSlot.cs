@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.UI.Manipulators.Scripts;
+﻿using UI.Manipulators;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace UI.SeedInventory
 {
     [RequireComponent(typeof(SeedBucketDisplay))]
     public class SeedInventoryTrashSlot : SeedInventoryDropSlot

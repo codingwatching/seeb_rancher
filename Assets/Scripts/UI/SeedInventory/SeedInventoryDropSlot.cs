@@ -1,16 +1,15 @@
-﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.UI.Manipulators.Scripts;
-using Dman.ReactiveVariables;
+﻿using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
 using Genetics.GeneSummarization;
 using System.Collections;
 using TMPro;
+using UI.Manipulators;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace UI.SeedInventory
 {
     [RequireComponent(typeof(SeedBucketDisplay))]
     public class SeedInventoryDropSlot : MonoBehaviour, ISaveableData, IPointerEnterHandler, IPointerExitHandler

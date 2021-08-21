@@ -721,10 +721,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="SeebRancherBaseAssembly.csproj">
-      <Project>{7239741A-F6EF-1B9D-03EF-22726D8C1824}</Project>
-      <Name>SeebRancherBaseAssembly</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

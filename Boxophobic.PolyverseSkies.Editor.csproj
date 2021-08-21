@@ -56,13 +56,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BOXOPHOBIC\Polyverse Skies\Core\Editor\PolyverseSkiesShaderGUI.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Polyverse Skies\Core\Editor\PolyverseSkiesWindows.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Polyverse Skies\Core\Editor\PolyverseSkiesCreate.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Polyverse Skies\Core\Editor\PolyverseSkiesHub.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Polyverse Skies\Core\Editor\PolyverseSkiesShaderGUI.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Polyverse Skies\Core\Editor\PolyverseSkiesWindows.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Polyverse Skies\Core\Editor\PolyverseSkiesCreate.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Polyverse Skies\Core\Editor\PolyverseSkiesHub.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\BOXOPHOBIC\Polyverse Skies\Core\Editor\Boxophobic.PolyverseSkies.Editor.asmdef" />
+    <None Include="Assets\External\BOXOPHOBIC\Polyverse Skies\Core\Editor\Boxophobic.PolyverseSkies.Editor.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

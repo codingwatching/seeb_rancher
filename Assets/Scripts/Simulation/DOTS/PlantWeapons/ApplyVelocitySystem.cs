@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons
 {
     [UpdateBefore(typeof(TransformSystemGroup))]
     public class ApplyVelocitySystem : SystemBase

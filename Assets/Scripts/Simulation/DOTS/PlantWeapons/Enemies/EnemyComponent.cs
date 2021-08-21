@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace Assets.Scripts.PlantWeapons.Enemies
+namespace Simulation.DOTS.PlantWeapons.Enemies
 {
     [GenerateAuthoringComponent]
     public struct EnemyComponent : IComponentData

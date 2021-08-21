@@ -1,12 +1,9 @@
 ﻿using Dman.ReactiveVariables;
 using Dman.SceneSaveSystem;
-using System;
-using System.Linq;
+using UniRx;
 using UnityEngine;
 
-using UniRx;
-
-namespace Assets.Scripts.GreenhouseLoader
+namespace Gameplay
 {
     public class AssualtWaveCoordinator : MonoBehaviour, ISaveableData
     {
@@ -48,12 +45,12 @@ namespace Assets.Scripts.GreenhouseLoader
 
         private void Update()
         {
-            if(timeRemainingTillPhaseCompletion <= -1)
+            if (timeRemainingTillPhaseCompletion <= -1)
             {
                 return;
             }
             timeRemainingTillPhaseCompletion -= Time.deltaTime * simulationSpeed.CurrentValue;
-            if(timeRemainingTillPhaseCompletion <= 0)
+            if (timeRemainingTillPhaseCompletion <= 0)
             {
                 timeRemainingTillPhaseCompletion = -1;
                 isWaveActive.SetValue(false);

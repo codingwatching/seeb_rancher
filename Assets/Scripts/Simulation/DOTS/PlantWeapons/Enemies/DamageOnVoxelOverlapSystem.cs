@@ -1,14 +1,14 @@
-﻿using Assets.Scripts.PlantPathing.PathNavigaton;
-using Assets.Scripts.PlantWeapons.Enemies;
-using Assets.Scripts.PlantWeapons.Health;
-using Dman.LSystem.SystemRuntime.VolumetricData;
+﻿using Dman.LSystem.SystemRuntime.VolumetricData;
+using Simulation.DOTS.Pathing.PathNavigaton;
+using Simulation.DOTS.PlantWeapons.Enemies;
+using Simulation.DOTS.PlantWeapons.Health;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons.Bomb
 {
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public class DamageOnVoxelOverlapSystem : SystemBase

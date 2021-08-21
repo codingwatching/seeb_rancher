@@ -2,7 +2,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons.SmokeTrail
 {
     public class SmokeTrailSpawningAuthoring : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
     {

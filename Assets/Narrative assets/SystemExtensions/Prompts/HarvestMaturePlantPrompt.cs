@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Plants;
-using Dman.ReactiveVariables;
+﻿using Simulation.Plants;
 using System.Linq;
 using UniRx;
 using UnityEngine;
@@ -17,7 +16,7 @@ namespace Dman.NarrativeSystem
         private Conversation currentParentConvo;
         public override void OpenPrompt(Conversation conversation)
         {
-            if(targetPlant != null || currentParentConvo != null)
+            if (targetPlant != null || currentParentConvo != null)
             {
                 Debug.LogError("scriptable object prompt already in open state. could lead to unpredictable behavior.");
             }

@@ -1,14 +1,14 @@
-﻿using Assets.Scripts.DataModels;
-using Dman.LSystem.UnityObjects;
+﻿using Dman.LSystem.UnityObjects;
 using Dman.ObjectSets;
 using Genetics;
 using Genetics.GeneticDrivers;
+using Simulation.Plants.PlantData;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 
-namespace Assets.Scripts.Plants
+namespace Simulation.Plants.PlantTypes
 {
     [System.Serializable]
     public class PlantState : INativeDisposable

@@ -1,10 +1,7 @@
-﻿using Assets.Scripts.Plants;
-using Assets.Scripts.UI.Manipulators.Scripts;
-using Dman.ReactiveVariables;
-using System.Linq;
+﻿using Dman.ReactiveVariables;
+using UI.Manipulators;
 using UniRx;
 using UnityEngine;
-using UnityFx.Outline;
 
 namespace Dman.NarrativeSystem
 {

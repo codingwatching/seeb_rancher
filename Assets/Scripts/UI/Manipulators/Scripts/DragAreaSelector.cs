@@ -1,7 +1,7 @@
 ﻿using Dman.Utilities;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Manipulators.Scripts
+namespace UI.Manipulators
 {
     /// <summary>
     /// provider for drag-selecting

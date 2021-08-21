@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Enemies
+namespace Simulation.DOTS.PlantWeapons.Enemies
 {
     public class AttackOnVoxelMatchAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {

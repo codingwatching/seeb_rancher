@@ -1,11 +1,9 @@
-﻿using Assets.Scripts.PlantWeapons;
-using Assets.Scripts.PlantWeapons.Health;
-using Dman.ReactiveVariables;
-using System.Collections;
+﻿using Dman.ReactiveVariables;
+using Simulation.DOTS.PlantWeapons.Health;
 using Unity.Entities;
 using UnityEngine;
 
-namespace Assets.Scripts.DOTSDataBinders
+namespace Gameplay.DOTSDataBinders
 {
     [RequireComponent(typeof(HealthComponent))]
     public class HealthToFloatVariableBinder : MonoBehaviour, IConvertGameObjectToEntity

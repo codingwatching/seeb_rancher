@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.UI.PlantData
+namespace UI.PlantData
 {
     public class Turntable : MonoBehaviour
     {

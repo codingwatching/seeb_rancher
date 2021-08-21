@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons
 {
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public class LifetimeSystem : SystemBase

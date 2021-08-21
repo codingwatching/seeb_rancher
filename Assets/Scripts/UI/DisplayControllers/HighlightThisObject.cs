@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.DisplayControllers
+namespace UI.DisplayControllers
 {
     [RequireComponent(typeof(RectTransform))]
     public class HighlightThisObject : MonoBehaviour

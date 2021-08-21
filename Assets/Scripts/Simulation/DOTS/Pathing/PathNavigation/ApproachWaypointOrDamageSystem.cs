@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.PlantWeapons;
-using Assets.Scripts.PlantWeapons.Health;
-using Dman.LSystem.SystemRuntime.VolumetricData;
+﻿using Dman.LSystem.SystemRuntime.VolumetricData;
+using Simulation.DOTS.PlantWeapons;
+using Simulation.DOTS.PlantWeapons.Health;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantPathing.PathNavigaton
+namespace Simulation.DOTS.Pathing.PathNavigaton
 {
     [UpdateAfter(typeof(FindSurfaceWaypointSystem))]
     public class ApproachWaypointOrDamageSystem : SystemBase

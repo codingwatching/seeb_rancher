@@ -1,7 +1,6 @@
-﻿using Assets.Scripts.DataModels;
-using System;
+﻿using System;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace UI.SeedInventory
 {
     [Serializable]
     public class SeedInventoryDataModel

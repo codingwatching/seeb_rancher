@@ -1,14 +1,14 @@
-using Assets.Scripts.Plants;
-using Assets.Scripts.UI.Manipulators.Scripts;
 using Dman.ReactiveVariables;
 using Genetics.GeneticDrivers;
+using Simulation.Plants;
 using System.Text;
 using TMPro;
+using UI.Manipulators;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.PlantData
+namespace UI.PlantData
 {
     public class PlantData : MonoBehaviour
     {

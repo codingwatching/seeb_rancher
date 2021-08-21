@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace Assets.Scripts.Plants
+namespace Simulation.Plants
 {
     public class HarvestingPlant : MonoBehaviour
     {

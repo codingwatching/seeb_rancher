@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Plants;
-using Dman.ObjectSets;
+﻿using Dman.ObjectSets;
 using Genetics.GeneSummarization;
+using Simulation.Plants.PlantData;
+using Simulation.Plants.PlantTypes;
 using System;
 using System.Linq;
 
-namespace Assets.Scripts.DataModels
+namespace UI.SeedInventory
 {
     [Serializable]
     public class SeedBucketUI

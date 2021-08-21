@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Assets.UI.Buttery_Toast
+namespace UI.Buttery_Toast
 {
     public class ToastProvider : MonoBehaviour
     {

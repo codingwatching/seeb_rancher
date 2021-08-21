@@ -1,8 +1,8 @@
-using Assets.Scripts.GreenhouseLoader;
 using Dman.LSystem.SystemRuntime.VolumetricData;
+using Environment;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantPathing
+namespace Simulation.DOTS.Pathing
 {
     public class PathingComponent : MonoBehaviour
     {

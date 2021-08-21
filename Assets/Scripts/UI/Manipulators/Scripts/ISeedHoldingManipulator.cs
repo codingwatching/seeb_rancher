@@ -1,6 +1,7 @@
-﻿using Assets.Scripts.DataModels;
+﻿using Simulation.Plants.PlantData;
+using UI.SeedInventory;
 
-namespace Assets.Scripts.UI.Manipulators.Scripts
+namespace UI.Manipulators
 {
     public interface ISeedHoldingManipulator
     {

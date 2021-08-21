@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.UI.SeedInventory;
-using Dman.SceneSaveSystem;
+﻿using Dman.SceneSaveSystem;
 using Genetics.ParameterizedGenomeGenerator;
 using System.Linq;
 using TMPro;
+using UI.SeedInventory;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.MarketContracts
+namespace UI.Markets
 {
     public class SeebBinContainer : MonoBehaviour, ISaveableData
     {

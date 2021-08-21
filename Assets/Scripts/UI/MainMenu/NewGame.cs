@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.UI.MainMenu
+namespace UI.MainMenu
 {
     public class NewGame : MonoBehaviour
     {

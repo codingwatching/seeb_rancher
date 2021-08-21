@@ -1,7 +1,7 @@
 ﻿using Dman.LSystem.UnityObjects;
 using UnityEngine;
 
-namespace Assets.Scripts.Plants
+namespace Simulation.Plants
 {
     [RequireComponent(typeof(LSystemBehavior))]
     [RequireComponent(typeof(MeshFilter))]

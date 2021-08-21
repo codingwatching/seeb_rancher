@@ -1,11 +1,12 @@
-﻿using Assets.Scripts.PlantPathing.PathNavigaton;
+﻿using Simulation.DOTS.Pathing.PathNavigaton;
+using Simulation.DOTS.PlantWeapons.SmokeTrail;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons.Bomb
 {
     [UpdateBefore(typeof(ApplyVelocitySystem))]
     [UpdateAfter(typeof(FindEnemySystem))]

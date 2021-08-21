@@ -3,7 +3,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.DisplayControllers
+namespace UI.DisplayControllers
 {
     public class GameObjectVariableDestroyListener : MonoBehaviour
     {

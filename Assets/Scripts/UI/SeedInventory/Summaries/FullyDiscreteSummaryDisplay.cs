@@ -4,7 +4,7 @@ using Genetics.GeneticDrivers;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.SeedInventory
+namespace UI.SeedInventory.Summaries
 {
     public class FullyDiscreteSummaryDisplay : MonoBehaviour
     {

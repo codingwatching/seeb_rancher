@@ -1,15 +1,16 @@
-﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Plants;
-using Assets.Scripts.UI.SeedInventory;
-using Dman.LSystem.SystemRuntime.GlobalCoordinator;
+﻿using Dman.LSystem.SystemRuntime.GlobalCoordinator;
 using Dman.ReactiveVariables;
 using Dman.Utilities;
+using MyUtilities;
+using Simulation.Plants;
+using Simulation.Plants.PlantData;
 using System.Collections.Generic;
 using System.Linq;
+using UI.SeedInventory;
 using UnityEngine;
 using UnityFx.Outline;
 
-namespace Assets.Scripts.UI.Manipulators.Scripts
+namespace UI.Manipulators
 {
     [CreateAssetMenu(fileName = "HarvestSeedsManipulator", menuName = "Tiling/Manipulators/HarvestSeedsManipulator", order = 2)]
     public class HarvestSeedsManipulator : MapManipulator, ISeedHoldingManipulator, IAreaSelectManipulator

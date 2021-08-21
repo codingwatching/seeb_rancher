@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace Assets.Scripts.PlantWeapons
+namespace Simulation.DOTS.PlantWeapons
 {
     [GenerateAuthoringComponent]
     public struct LifetimeComponent : IComponentData

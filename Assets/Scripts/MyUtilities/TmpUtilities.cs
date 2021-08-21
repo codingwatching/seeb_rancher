@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using UnityEngine;
 
-namespace Assets
+namespace MyUtilities
 {
     public static class SerializationInfoExtensions
     {

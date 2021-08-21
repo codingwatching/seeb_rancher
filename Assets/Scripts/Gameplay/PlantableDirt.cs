@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.UI.Manipulators.Scripts;
+﻿using UI.Manipulators;
 using UnityEngine;
 
-namespace Assets.Scripts.Plants
+namespace Gameplay
 {
     /// <summary>
     /// marks a mesh with a collider as something which can be planted onto

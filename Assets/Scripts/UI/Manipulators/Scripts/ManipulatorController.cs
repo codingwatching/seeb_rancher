@@ -3,7 +3,7 @@ using System;
 using UniRx;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Manipulators.Scripts
+namespace UI.Manipulators
 {
     public class ManipulatorController : MonoBehaviour
     {

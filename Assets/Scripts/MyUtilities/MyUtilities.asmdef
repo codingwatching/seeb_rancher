@@ -1,6 +1,6 @@
 {
     "name": "MyUtilities",
-    "rootNamespace": "",
+    "rootNamespace": "MyUtilities",
     "references": [
         "GUID:808c07051cb3a39498de49e96a1c8ec4",
         "GUID:e0cd26848372d4e5c891c569017e11f1",

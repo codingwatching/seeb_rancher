@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.PlantPathing.PathNavigaton;
-using Assets.Scripts.PlantWeapons.Health;
+﻿using Simulation.DOTS.Pathing.PathNavigaton;
+using Simulation.DOTS.PlantWeapons.Health;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -7,7 +7,7 @@ using Unity.Physics;
 using Unity.Physics.Systems;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Enemies
+namespace Simulation.DOTS.PlantWeapons.Enemies
 {
     // This system sets the PhysicsGravityFactor of any dynamic body that enters a Trigger Volume.
     // A Trigger Volume is defined by a PhysicsShapeAuthoring with the `Is Trigger` flag ticked and a

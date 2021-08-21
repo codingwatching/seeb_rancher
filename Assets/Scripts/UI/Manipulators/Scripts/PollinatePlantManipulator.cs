@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.Plants;
-using Assets.UI.Buttery_Toast;
-using Dman.LSystem.SystemRuntime.GlobalCoordinator;
+﻿using Dman.LSystem.SystemRuntime.GlobalCoordinator;
 using Dman.ReactiveVariables;
 using Dman.Utilities;
+using Simulation.Plants;
+using UI.Buttery_Toast;
 using UnityEngine;
 using UnityFx.Outline;
 
-namespace Assets.Scripts.UI.Manipulators.Scripts
+namespace UI.Manipulators
 {
     [CreateAssetMenu(fileName = "PollinatePlantManipulator", menuName = "Tiling/Manipulators/PollinatePlantManipulator", order = 2)]
     public class PollinatePlantManipulator : MapManipulator

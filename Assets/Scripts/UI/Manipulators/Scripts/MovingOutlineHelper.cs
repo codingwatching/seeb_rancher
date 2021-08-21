@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityFx.Outline;
 
-namespace Assets.Scripts.UI.Manipulators.Scripts
+namespace UI.Manipulators
 {
     public class MovingOutlineHelper
     {

@@ -3,7 +3,7 @@ using Dman.SceneSaveSystem;
 using UniRx;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.MarketContracts.ChildCycler
+namespace UI.Markets.ChildCycler
 {
     public interface IChildBuilder
     {

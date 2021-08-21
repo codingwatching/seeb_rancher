@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.DataModels;
-using Assets.Scripts.Plants;
-using Assets.Scripts.UI.SeedInventory;
+﻿using Simulation.Plants.PlantData;
+using Simulation.Plants.PlantTypes;
+using UI.SeedInventory;
 using UnityEngine;
 using UnityEngine.Events;
 

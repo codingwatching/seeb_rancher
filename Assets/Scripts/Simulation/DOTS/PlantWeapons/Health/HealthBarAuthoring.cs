@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Health
+namespace Simulation.DOTS.PlantWeapons.Health
 {
     [RequireComponent(typeof(HealthAuthoring))]
     public class HealthBarAuthoring : MonoBehaviour, IConvertGameObjectToEntity

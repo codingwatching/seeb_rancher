@@ -5,7 +5,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets.Scripts.GreenhouseLoader
+namespace Environment
 {
     [Serializable]
     public struct NoiseOctave
@@ -72,7 +72,7 @@ namespace Assets.Scripts.GreenhouseLoader
         private float SamplePerlin(Vector2 point, NoiseOctave octave)
         {
             var sampleVector = noiseOffset + Vector2.Scale(point, octave.frequency);
-            return (noise.srnoise(sampleVector, 0.6f) + 1)/2f * octave.weight;
+            return (noise.srnoise(sampleVector, 0.6f) + 1) / 2f * octave.weight;
         }
 
         public PerlinSamplerNativeCompatable AsNativeCompatible(Allocator allocator = Allocator.Persistent)

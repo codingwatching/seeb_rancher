@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.PlantWeapons.Health;
+﻿using Simulation.DOTS.PlantWeapons.Health;
 using Unity.Entities;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantWeapons.Enemies
+namespace Simulation.DOTS.PlantWeapons.Enemies
 {
     [RequireComponent(typeof(HealthAuthoring))]
     public class TreatVoxelsAsSurfaceAuthoring : MonoBehaviour, IConvertGameObjectToEntity

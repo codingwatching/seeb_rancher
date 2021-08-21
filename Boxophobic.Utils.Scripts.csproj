@@ -56,26 +56,26 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledSpace.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledMask.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledIndent.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoBehaviour.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\SettingsUtils\SettingsData.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledScriptableObject.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledRangeOptions.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupLayers.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledTexturePreview.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledMessage.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledEnum.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledCategory.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledButton.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledText.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledBanner.cs" />
-    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupArray.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledSpace.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledMask.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledIndent.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoBehaviour.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\SettingsUtils\SettingsData.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledScriptableObject.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledRangeOptions.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupLayers.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledTexturePreview.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledMessage.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledEnum.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledCategory.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledButton.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledText.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledBanner.cs" />
+    <Compile Include="Assets\External\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupArray.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\BOXOPHOBIC\Utils\Scripts\Boxophobic.Utils.Scripts.asmdef" />
+    <None Include="Assets\External\BOXOPHOBIC\Utils\Scripts\Boxophobic.Utils.Scripts.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

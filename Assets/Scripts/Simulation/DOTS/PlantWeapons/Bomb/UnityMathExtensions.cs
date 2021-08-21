@@ -1,6 +1,6 @@
 ﻿using Unity.Mathematics;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons.Bomb
 {
     // unity math extensions put here b/c unity is too much of a coward to give them to us
     public static class UnityMathExtensions

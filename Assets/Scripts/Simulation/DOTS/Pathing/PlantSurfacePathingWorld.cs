@@ -1,11 +1,12 @@
-﻿using Assets.Scripts.GreenhouseLoader;
-using Dman.LSystem.SystemRuntime.ThreadBouncer;
+﻿using Dman.LSystem.SystemRuntime.ThreadBouncer;
 using Dman.LSystem.SystemRuntime.VolumetricData;
+using Environment;
+using MyUtilities;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantPathing
+namespace Simulation.DOTS.Pathing
 {
     [RequireComponent(typeof(OrganVolumetricWorld))]
     public class PlantSurfacePathingWorld : MonoBehaviour

@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.GreenhouseLoader;
-using Dman.ReactiveVariables;
+﻿using Dman.ReactiveVariables;
+using Environment;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantPathing.PathNavigaton
+namespace Simulation.DOTS.Pathing.PathNavigaton
 {
     public class SurfaceDefinitionSingleton : MonoBehaviour
     {

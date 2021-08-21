@@ -4,7 +4,7 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 
-namespace Assets.Scripts.PlantPathing
+namespace Simulation.DOTS.Pathing
 {
 
     [BurstCompile]

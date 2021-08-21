@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Plants;
-using Dman.ReactiveVariables;
+﻿using Dman.ReactiveVariables;
+using Simulation.Plants;
 using UniRx;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.PlantData
+namespace UI.PlantData
 {
     public class PlantViewer : MonoBehaviour
     {

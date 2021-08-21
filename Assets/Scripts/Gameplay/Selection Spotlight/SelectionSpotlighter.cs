@@ -1,9 +1,9 @@
-using Assets.Scripts.Plants;
 using Dman.ReactiveVariables;
+using Simulation.Plants;
 using UniRx;
 using UnityEngine;
 
-namespace Assets.Scripts.Buildings
+namespace Gameplay.Selection_Spotlight
 {
     public class SelectionSpotlighter : MonoBehaviour
     {

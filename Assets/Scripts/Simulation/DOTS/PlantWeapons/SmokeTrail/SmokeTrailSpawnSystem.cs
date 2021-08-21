@@ -1,9 +1,10 @@
-﻿using Assets.Scripts.PlantWeapons.Enemies;
+﻿using Simulation.DOTS.PlantWeapons.Bomb;
+using Simulation.DOTS.PlantWeapons.Enemies;
 using Unity.Entities;
 using Unity.Physics;
 using Unity.Transforms;
 
-namespace Assets.Scripts.PlantWeapons.Bomb
+namespace Simulation.DOTS.PlantWeapons.SmokeTrail
 {
     public class SmokeTrailSpawnSystem : SystemBase
     {

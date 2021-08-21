@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace Assets.Scripts.PlantWeapons.Health
+namespace Simulation.DOTS.PlantWeapons.Health
 {
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public class DieWhenLifeRunOutSystem : SystemBase
