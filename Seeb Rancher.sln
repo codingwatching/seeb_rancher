@@ -23,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxophobic.PolyverseSkies.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxophobic.Utils.Editor", "Boxophobic.Utils.Editor.csproj", "{570204B3-3619-D382-3F19-F9733D7F0718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultEditorScripts", "DefaultEditorScripts.csproj", "{F4433834-85A1-FB7C-72C6-FBB4329017A7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{38CF1524-4D58-BC9D-2A1A-1011480D6192}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.dman.l-system.editor", "com.dman.l-system.editor.csproj", "{64660CD5-FA0A-67A9-375B-9B84960E0AC8}"
@@ -32,6 +30,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxophobic.PolyverseSkies.Editor", "Boxophobic.PolyverseSkies.Editor.csproj", "{D10ABD44-E58F-D54A-49EC-336B68228428}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveVariablesEditor", "ReactiveVariablesEditor.csproj", "{D3C344F2-4CAB-9A39-7532-349426063E50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultEditorScripts", "DefaultEditorScripts.csproj", "{F4433834-85A1-FB7C-72C6-FBB4329017A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditModeTests", "EditModeTests.csproj", "{1F1E13BF-34F7-E506-90A9-2A380E57088F}"
 EndProject
@@ -87,10 +87,6 @@ Global
 		{570204B3-3619-D382-3F19-F9733D7F0718}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{570204B3-3619-D382-3F19-F9733D7F0718}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{570204B3-3619-D382-3F19-F9733D7F0718}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38CF1524-4D58-BC9D-2A1A-1011480D6192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38CF1524-4D58-BC9D-2A1A-1011480D6192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38CF1524-4D58-BC9D-2A1A-1011480D6192}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -107,6 +103,10 @@ Global
 		{D3C344F2-4CAB-9A39-7532-349426063E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3C344F2-4CAB-9A39-7532-349426063E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3C344F2-4CAB-9A39-7532-349426063E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F1E13BF-34F7-E506-90A9-2A380E57088F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F1E13BF-34F7-E506-90A9-2A380E57088F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F1E13BF-34F7-E506-90A9-2A380E57088F}.Release|Any CPU.ActiveCfg = Release|Any CPU

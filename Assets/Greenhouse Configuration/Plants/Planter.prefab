@@ -526,7 +526,6 @@ GameObject:
   - component: {fileID: 3264437631373378232}
   - component: {fileID: 3616660833815421315}
   - component: {fileID: 1282153023010645922}
-  - component: {fileID: 1743998931049911220}
   - component: {fileID: 5702720060900007703}
   m_Layer: 8
   m_Name: Planter
@@ -589,9 +588,9 @@ MonoBehaviour:
     Instancer: {fileID: 0}
     NamePath: 
   phaseSimulationActive:
-    DataSource: 1
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 9caa366f59d66994b9b118049691ea8d, type: 2}
+    DataSource: 0
+    ConstantValue: 1
+    Variable: {fileID: 0}
     Instancer: {fileID: 0}
     NamePath: 
 --- !u!114 &5756600527171596922
@@ -675,37 +674,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e89a5e47dd1ddce42a5b7b537f2feed2, type: 2}
   initialScale: {x: 1, y: 1, z: 1}
   submeshIndexIncrementor: 96
---- !u!114 &1743998931049911220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7643680841328762183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469cdb3c1c445474695e2e28e748ab7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  booleanToWatch: {fileID: 11400000, guid: 9caa366f59d66994b9b118049691ea8d, type: 2}
-  OnChangedToTrue:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5247614895902558156}
-        m_TargetAssemblyTypeName: Assets.Scripts.Plants.PlantedLSystem, Assembly-CSharp
-        m_MethodName: PhaseTransitionBegin
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnChangedToFalse:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &5702720060900007703
 MonoBehaviour:
   m_ObjectHideFlags: 0

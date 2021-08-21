@@ -59,10 +59,7 @@
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\ForceHighlightSeedSlot.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
-    <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateContractPrompt.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\MatureHarvestablePlantExistsTrigger.cs" />
-    <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\GenerateMarketContractPrompt.cs" />
-    <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\ClaimedContractsClearedTrigger.cs" />
     <Compile Include="Assets\External\RTS_Camera\Scripts\RTS_Camera.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\PollinatingPlantExistsTrigger.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\HarvestMaturePlantPrompt.cs" />

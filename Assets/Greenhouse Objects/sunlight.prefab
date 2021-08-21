@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 473149580526537952}
   - component: {fileID: 473149580526537957}
-  - component: {fileID: 473149580526537955}
   - component: {fileID: 3512617409385937664}
   - component: {fileID: 3335437451672220140}
   m_Layer: 0
@@ -55,49 +54,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &473149580526537955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473149580526537953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469cdb3c1c445474695e2e28e748ab7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  booleanToWatch: {fileID: 11400000, guid: 9caa366f59d66994b9b118049691ea8d, type: 2}
-  OnChangedToTrue:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 473149580526537957}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Begin Day Cycle
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnChangedToFalse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 473149580526537957}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Stop Day Cycle
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3512617409385937664
 MonoBehaviour:
   m_ObjectHideFlags: 0
