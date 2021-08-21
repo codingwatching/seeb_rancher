@@ -1,8 +1,8 @@
-using Genetics.GeneSummarization;
-using UnityEngine;
 using Dman.Utilities;
+using Genetics.GeneSummarization;
 using Genetics.GeneticDrivers;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
@@ -22,13 +22,15 @@ namespace Assets.Scripts.UI.SeedInventory
             {
                 var bucket = summary.allClassifications[i];
                 Color color;
-                if(summary.sourceDriver is BooleanGeneticDriver boolDriver)
+                if (summary.sourceDriver is BooleanGeneticDriver boolDriver)
                 {
                     color = i == 1 ? boolDriver.trueColor : boolDriver.falseColor;
-                }else if (summary.sourceDriver is DiscreteFloatGeneticDriver floatDriver)
+                }
+                else if (summary.sourceDriver is DiscreteFloatGeneticDriver floatDriver)
                 {
                     color = i < floatDriver.possibleColors.Length ? floatDriver.possibleColors[i] : Color.black;
-                }else
+                }
+                else
                 {
                     Debug.LogError("Trying to summarize a summary with no associated driver");
                     return;

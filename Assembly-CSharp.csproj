@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,13 +53,11 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\ForceHighlightSeedSlot.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\MatureHarvestablePlantExistsTrigger.cs" />
+    <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\External\RTS_Camera\Scripts\RTS_Camera.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\PollinatingPlantExistsTrigger.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\HarvestMaturePlantPrompt.cs" />
@@ -744,6 +742,9 @@
     <Reference Include="Unity.Collections">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="ReactiveVariablesEditor">
+      <HintPath>Library\ScriptAssemblies\ReactiveVariablesEditor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Animation.Graph">
       <HintPath>Library\ScriptAssemblies\Unity.Animation.Graph.dll</HintPath>
     </Reference>
@@ -840,6 +841,9 @@
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Genetics">
+      <HintPath>Library\ScriptAssemblies\Genetics.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
@@ -869,6 +873,9 @@
     </Reference>
     <Reference Include="Unity.Animation.DefaultGraphPipeline">
       <HintPath>Library\ScriptAssemblies\Unity.Animation.DefaultGraphPipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveVariables">
+      <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Scenes.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Scenes.Editor.dll</HintPath>
@@ -915,6 +922,9 @@
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.dman.l-system.editor">
+      <HintPath>Library\ScriptAssemblies\com.dman.l-system.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Jobs">
       <HintPath>Library\ScriptAssemblies\Unity.Jobs.dll</HintPath>
     </Reference>
@@ -930,15 +940,14 @@
     <Reference Include="Unity.ScriptableBuildPipeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.dman.LSystem">
+      <HintPath>Library\ScriptAssemblies\com.dman.LSystem.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="SeebRancherBaseAssembly.csproj">
-      <Project>{7239741A-F6EF-1B9D-03EF-22726D8C1824}</Project>
-      <Name>SeebRancherBaseAssembly</Name>
-    </ProjectReference>
     <ProjectReference Include="TilingEditor.csproj">
       <Project>{54CA7512-07AE-506F-0123-7EFBE4B7FCA6}</Project>
       <Name>TilingEditor</Name>
@@ -950,10 +959,6 @@
     <ProjectReference Include="Boxophobic.PolyverseSkies.Scripts.csproj">
       <Project>{5E7C3AD1-3AE2-6B3F-824F-18E8CD5517B3}</Project>
       <Name>Boxophobic.PolyverseSkies.Scripts</Name>
-    </ProjectReference>
-    <ProjectReference Include="ReactiveVariablesEditor.csproj">
-      <Project>{D3C344F2-4CAB-9A39-7532-349426063E50}</Project>
-      <Name>ReactiveVariablesEditor</Name>
     </ProjectReference>
     <ProjectReference Include="Tiling.csproj">
       <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
@@ -975,25 +980,33 @@
       <Project>{5FADB50E-40B4-6EE9-457D-6DB8B04208F3}</Project>
       <Name>Boxophobic.Utils.Scripts</Name>
     </ProjectReference>
-    <ProjectReference Include="Genetics.csproj">
-      <Project>{E8A52BDE-01ED-1E7E-E731-D4BCE65B3D4D}</Project>
-      <Name>Genetics</Name>
-    </ProjectReference>
     <ProjectReference Include="Boxophobic.PolyverseSkies.Editor.csproj">
       <Project>{D10ABD44-E58F-D54A-49EC-336B68228428}</Project>
       <Name>Boxophobic.PolyverseSkies.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="ReactiveVariables.csproj">
-      <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
-      <Name>ReactiveVariables</Name>
+    <ProjectReference Include="Environment.csproj">
+      <Project>{9877AD0A-C978-449C-C62E-F870F0B89B68}</Project>
+      <Name>Environment</Name>
     </ProjectReference>
-    <ProjectReference Include="com.dman.l-system.editor.csproj">
-      <Project>{64660CD5-FA0A-67A9-375B-9B84960E0AC8}</Project>
-      <Name>com.dman.l-system.editor</Name>
+    <ProjectReference Include="Gameplay.csproj">
+      <Project>{1D6ABFC0-A725-6116-09D8-0BA0900A989C}</Project>
+      <Name>Gameplay</Name>
     </ProjectReference>
-    <ProjectReference Include="com.dman.LSystem.csproj">
-      <Project>{DD72B859-1013-9260-F42D-99C160940558}</Project>
-      <Name>com.dman.LSystem</Name>
+    <ProjectReference Include="Simulation.csproj">
+      <Project>{E72381E0-56A9-8DED-43FF-076B18583E9F}</Project>
+      <Name>Simulation</Name>
+    </ProjectReference>
+    <ProjectReference Include="UI.csproj">
+      <Project>{69626DAD-A904-807A-17B9-86085DFFE5F3}</Project>
+      <Name>UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="MyUtilities.csproj">
+      <Project>{AD9F49D9-D383-9DA2-9019-4B99B1FDD48F}</Project>
+      <Name>MyUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="Interfaces.csproj">
+      <Project>{B8DA60C1-E8E9-30EA-2FAD-1F14130622C2}</Project>
+      <Name>Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

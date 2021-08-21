@@ -280,7 +280,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
         {
             Gizmos.color = new Color(1, 0, 0, 0.5f);
 
-            if(lastRotation == default || lastCenter == default || lastExtents == default)
+            if (lastRotation == default || lastCenter == default || lastExtents == default)
             {
                 return;
             }

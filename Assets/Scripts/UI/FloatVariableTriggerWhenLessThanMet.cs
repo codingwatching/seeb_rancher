@@ -1,5 +1,4 @@
 ﻿using Dman.ReactiveVariables;
-using System.Collections;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,7 +21,8 @@ namespace Assets.Scripts.UI
                     if (nextValue <= boundaryTrigger)
                     {
                         lessThanEqualTrigger?.Invoke();
-                    }else
+                    }
+                    else
                     {
                         greaterThanTrigger?.Invoke();
                     }

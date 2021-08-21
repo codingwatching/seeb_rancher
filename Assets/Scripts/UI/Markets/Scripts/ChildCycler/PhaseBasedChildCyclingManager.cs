@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.MarketContracts.ChildCycler
 {
-    public interface IChildBuilder {
+    public interface IChildBuilder
+    {
         public GameObject InstantiateUnderParent(GameObject parent);
     }
 
@@ -51,10 +52,11 @@ namespace Assets.Scripts.UI.MarketContracts.ChildCycler
         public void TriggerNewChild()
         {
             var totalChildren = targetParent.transform.childCount;
-            if(totalChildren < maxChildren)
+            if (totalChildren < maxChildren)
             {
                 this.builder.InstantiateUnderParent(targetParent.gameObject);
-            }else
+            }
+            else
             {
                 var indexToReplace = Random.Range(0, maxChildren);
                 var transformToReplace = targetParent.transform.GetChild(indexToReplace);

@@ -6,8 +6,8 @@
         "UnityEditor.TestRunner",
         "com.dman.LSystem",
         "Unity.Collections",
-        "SeebRancherBaseAssembly",
-        "Unity.Burst"
+        "Unity.Burst",
+        "Simulation"
     ],
     "includePlatforms": [
         "Editor"

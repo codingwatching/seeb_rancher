@@ -67,7 +67,8 @@ namespace Assets.Scripts.UI.SeedInventory
                     if (dataModel.bucket.Empty || seedHolder.PlantIdOfSeebs() == dataModel.bucket.PlantTypeId)
                     {
                         AddSeedsFromManipulator(seedHolder);
-                    }else
+                    }
+                    else
                     {
                         SwapSeedsWithManipulator(seedHolder);
                     }
@@ -97,7 +98,7 @@ namespace Assets.Scripts.UI.SeedInventory
         protected void SwapSeedsWithManipulator(ISeedHoldingManipulator seedHolder)
         {
             var newBucket = seedHolder.SwapSeedsWithBucket(dataModel);
-            if(newBucket != null)
+            if (newBucket != null)
             {
                 // seeb update is handled in caller function
                 dataModel = newBucket;
@@ -135,13 +136,13 @@ namespace Assets.Scripts.UI.SeedInventory
                 lastSeedCount = dataModel.bucket.SeedCount;
             }
             Displayer.DisplaySeedBucket(dataModel.bucket);
-            if(labelInputField != null)
+            if (labelInputField != null)
             {
                 labelInputField.text = dataModel.description;
             }
 
             summarization = dataModel.bucket.SummarizeSeeds();
-            if(summarization != null) Debug.Log(summarization.ToString());
+            if (summarization != null) Debug.Log(summarization.ToString());
         }
 
         public void UpdateDataModel(SeedBucketUI model)

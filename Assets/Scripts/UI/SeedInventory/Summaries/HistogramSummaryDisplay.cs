@@ -1,6 +1,4 @@
 using Genetics.GeneSummarization;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +18,7 @@ namespace Assets.Scripts.UI.SeedInventory
             var texture = new Texture2D((int)myRect.width, (int)myRect.height);
             texture.filterMode = FilterMode.Point;
             var newSprite = Sprite.Create(texture, new Rect(Vector2.zero, myRect.size), Vector2.zero);
-            
+
             var image = histogramImage;
             image.sprite = newSprite;
 
@@ -33,7 +31,7 @@ namespace Assets.Scripts.UI.SeedInventory
             for (int x = 0; x < histogramResult.Length; x++)
             {
                 var histogramIntensity = histogramResult[x];
-                var color = new Color(1,1,1, histogramIntensity);
+                var color = new Color(1, 1, 1, histogramIntensity);
                 for (int y = 0; y < texture.height; y++)
                 {
                     texture.SetPixel(x, y, color);

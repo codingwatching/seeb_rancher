@@ -20,7 +20,7 @@ namespace Assets.Scripts.UI.MarketContracts
             }
 
             var cost = seebBin.binDescriptor.price;
-            if(money.CurrentValue < cost)
+            if (money.CurrentValue < cost)
             {
                 // not enough money
                 return;
@@ -41,7 +41,7 @@ namespace Assets.Scripts.UI.MarketContracts
             purchaseSpot.MySeedsUpdated();
             if (success)
             {
-                if(seebBin.binDescriptor.seedCount != -1)
+                if (seebBin.binDescriptor.seedCount != -1)
                 {
                     seebBin.binDescriptor.seedCount -= seeds.Count;
                 }

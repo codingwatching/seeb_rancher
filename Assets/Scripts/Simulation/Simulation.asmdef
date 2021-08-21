@@ -1,0 +1,32 @@
+{
+    "name": "Simulation",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:8819f35a0fc84499b990e90a4ca1911f",
+        "GUID:a5baed0c9693541a5bd947d336ec7659",
+        "GUID:63afb046c8423dd448ae7aba042ea63d",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:808c07051cb3a39498de49e96a1c8ec4",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:231dcea1322ac47488adf40ff102ddba",
+        "GUID:c89e1c2639f65d549a075aac1877b9a1",
+        "GUID:ff50d47ef97a24449a1188472acff677",
+        "GUID:4a1d88944df5d5647af4143f0eae8620",
+        "GUID:1443ffc4440e91543959320083d7a4ba",
+        "GUID:30c0d99a4ae3e414282d9a2edb9cf800",
+        "GUID:59e83f50c45b3c04faa860925fdf2547",
+        "GUID:898fac0797bcdfe49be9be3dc25a9bcb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

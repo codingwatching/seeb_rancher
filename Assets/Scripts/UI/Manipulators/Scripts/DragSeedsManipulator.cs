@@ -3,12 +3,8 @@ using Assets.Scripts.Plants;
 using Assets.Scripts.UI.SeedInventory;
 using Dman.ObjectSets;
 using Dman.ReactiveVariables;
-using Dman.Tiling;
 using Dman.Utilities;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityFx.Outline;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
 {
@@ -149,7 +145,7 @@ namespace Assets.Scripts.UI.Manipulators.Scripts
                 return true;
             }
 
-            
+
             if (!isDragging)
             {
                 // if draging is happening, don't update preview here.

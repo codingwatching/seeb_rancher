@@ -1,16 +1,11 @@
-﻿using Genetics.GeneSummarization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Dman.ReactiveVariables;
+﻿using Dman.ReactiveVariables;
+using Genetics.GeneSummarization;
 using UniRx;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.SeedInventory
 {
-    public class SeedSetSummaryPanel: MonoBehaviour
+    public class SeedSetSummaryPanel : MonoBehaviour
     {
         public GameObjectVariable hoveredDropSlot;
 
@@ -27,10 +22,11 @@ namespace Assets.Scripts.UI.SeedInventory
                 {
                     if (x == null) x = null;
                     var summary = x?.GetComponent<SeedInventoryDropSlot>()?.summarization;
-                    if(summary == null)
+                    if (summary == null)
                     {
                         summaryRowParent.SetActive(false);
-                    }else
+                    }
+                    else
                     {
                         summaryRowParent.SetActive(true);
                         this.DisplaySummary(summary);

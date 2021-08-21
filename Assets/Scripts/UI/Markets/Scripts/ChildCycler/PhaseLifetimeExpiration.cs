@@ -34,7 +34,7 @@ namespace Assets.Scripts.UI.MarketContracts.ChildCycler
 
         private void DetractPhase()
         {
-            if(timeTillExpiration == -1)
+            if (timeTillExpiration == -1)
             {
                 UpdateText();
                 return;
@@ -43,7 +43,8 @@ namespace Assets.Scripts.UI.MarketContracts.ChildCycler
             if (timeTillExpiration < 0)
             {
                 Destroy(gameObject);
-            }else
+            }
+            else
             {
                 UpdateText();
             }

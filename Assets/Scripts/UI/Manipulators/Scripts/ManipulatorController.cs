@@ -1,9 +1,7 @@
 ﻿using Dman.ReactiveVariables;
-using Dman.Tiling;
 using System;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
 {

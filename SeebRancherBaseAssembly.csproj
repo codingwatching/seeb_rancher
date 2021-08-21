@@ -56,113 +56,10 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\PlantWeapons\LifetimeSystem.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
-    <Compile Include="Assets\Scripts\GameState\LevelState.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\BackdropUIGameObject.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\SurfacePathingComponent.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragSeedsManipulator.cs" />
-    <Compile Include="Assets\Scripts\DebugModeSetup.cs" />
-    <Compile Include="Assets\Scripts\UI\CursorTracker.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantTypes\BasePlantType.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\TreatVoxelsAsSurfaceAuthoring.cs" />
-    <Compile Include="Assets\Scripts\Plants\PollinationState.cs" />
-    <Compile Include="Assets\Scripts\Plants\HarvestingPlant.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ClickSelectorManipulator.cs" />
-    <Compile Include="Assets\Scripts\ContractEvaluator\StochasticTimerFrequencyVaried.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedBucketDisplay.cs" />
-    <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastController.cs" />
-    <Compile Include="Assets\Scripts\AssaultWaves\AssaultWaveSpawner.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\SimpleVelocityComponent.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\DijkstrasPathingOverSurfaceSolverJob.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailSpawningAuthoring.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ISeedHoldingManipulator.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathingComponent.cs" />
-    <Compile Include="Assets\Scripts\UI\PlantData\PlantViewer.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\FindSurfaceWaypointSystem.cs" />
-    <Compile Include="Assets\Scripts\ContractEvaluator\HaltonSequenceGenerator.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\ApproachWaypointOrDamageSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\DamageOnVoxelOverlapSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Bomb\FindEnemySystem.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\FullyDiscreteSummaryDisplay.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailSpawnSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Bomb\SeekEnemyComponentAuthoring.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantTypes\PlantTypeRegistry.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebPurchaseButton.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\ChildCycler\PhaseLifetimeExpiration.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\GameObjectVariableDestroyListener.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinMesh.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\PerlineSampler.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\DamageOnCollisionSystem.cs" />
-    <Compile Include="Assets\Scripts\UI\PlantData\Turntable.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\DamagedVoxelsVFXBinder.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\UIFadeoutController.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebBinContainer.cs" />
-    <Compile Include="Assets\Scripts\UI\SelectedIdProvider.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragAreaSelector.cs" />
-    <Compile Include="Assets\Scripts\DataModels\SeedBucket.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\HurtOnVoxelMatchAuthoring.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\SurfaceDefinitionSingleton.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\HarvestSeedsManipulator.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\ChildCycler\PhaseBasedChildCyclingManager.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDataModel.cs" />
-    <Compile Include="Assets\Scripts\DOTSDataBinders\HealthToFloatVariableBinder.cs" />
-    <Compile Include="Assets\Scripts\UI\PlantData\PlantData.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Health\HealthAuthoring.cs" />
-    <Compile Include="Assets\Scripts\TmpUtilities.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\UIOrderedLayerFlag.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Health\HealthBarAuthoring.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantedLSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\ScaleWithLifetimeAuthoring.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\ManipulatorController.cs" />
-    <Compile Include="Assets\Scripts\DataModels\Seed.cs" />
-    <Compile Include="Assets\Scripts\GameState\LevelStateOwner.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\EnemyComponent.cs" />
-    <Compile Include="Assets\Scripts\InitializationEvents.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PathNavigation\SurfacePathingComponentAuthoring.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\DamageOnCollisionTriggerAuthoring.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\DraggingSeedSingletonProvider.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryController.cs" />
-    <Compile Include="Assets\Scripts\Plants\GeneticLSystemParameterGenerator.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\DijkstrasPathingSolverJob.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Bomb\UnityMathExtensions.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\DamageSourceComponent.cs" />
-    <Compile Include="Assets\Scripts\UI\Buttery Toast\ToastProvider.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Bomb\SeekEnemySystem.cs" />
-    <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\OutlineIndividual.cs" />
-    <Compile Include="Assets\Scripts\UI\AppExit.cs" />
-    <Compile Include="Assets\Scripts\UI\Billboard.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryRow.cs" />
-    <Compile Include="Assets\Scripts\Buildings\Selection Spotlight\SelectionSpotlighter.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\PollinatePlantManipulator.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PlantPathingWorld.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantableDirt.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\IManipulatorClickReciever.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Health\DieWhenLifeRunOutSystem.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\SmokeTrail\SmokeTrailAuthoring.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\PlantSurfacePathingWorld.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\Enemies\AttackOnVoxelMatchAuthoring.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\HistogramSummaryDisplay.cs" />
-    <Compile Include="Assets\Scripts\UI\Markets\Scripts\SeebStoreBinDescriptor.cs" />
-    <Compile Include="Assets\Scripts\Plants\DestroyLSystemWhenEmpty.cs" />
-    <Compile Include="Assets\Scripts\UI\MainMenu\NewGame.cs" />
-    <Compile Include="Assets\Scripts\UI\FloatVariableTriggerWhenLessThanMet.cs" />
-    <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MovingOutlineHelper.cs" />
-    <Compile Include="Assets\Scripts\GameState\AssualtWaveCoordinator.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\DiscreteClassificationCell.cs" />
-    <Compile Include="Assets\Scripts\UI\DisplayControllers\HighlightThisObject.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\ApplyVelocitySystem.cs" />
-    <Compile Include="Assets\Scripts\GreenhouseLoader\PerlinPositioner.cs" />
-    <Compile Include="Assets\Scripts\PlantWeapons\LifetimeComponent.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryTrashSlot.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
-    <Compile Include="Assets\Scripts\Plants\PlantTypes\LSystemPlantType.cs" />
-    <Compile Include="Assets\Scripts\PlantPathing\DamageWhenVoxelTileReachedComponent.cs" />
-    <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\UI\UIAssets\Icons34x34byAilsEnglish2013\Readme.txt" />
+    <None Include="Assets\Scripts\Interfaces\Interfaces.asmdef" />
     <None Include="Assets\Scripts\SeebRancherBaseAssembly.asmdef" />
   </ItemGroup>
   <ItemGroup>
@@ -805,6 +702,9 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Users\Dan Miller\Documents\Unity Editor Installs\2020.3.15f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
+    <Reference Include="com.dman.LSystem">
+      <HintPath>Library\ScriptAssemblies\com.dman.LSystem.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Collections">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
@@ -814,11 +714,17 @@
     <Reference Include="UniRx">
       <HintPath>Library\ScriptAssemblies\UniRx.dll</HintPath>
     </Reference>
+    <Reference Include="ReactiveVariables">
+      <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
+    </Reference>
     <Reference Include="UnityFx.Outline">
       <HintPath>Library\ScriptAssemblies\UnityFx.Outline.dll</HintPath>
     </Reference>
     <Reference Include="ObjectSets">
       <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
+    </Reference>
+    <Reference Include="Genetics">
+      <HintPath>Library\ScriptAssemblies\Genetics.dll</HintPath>
     </Reference>
     <Reference Include="SceneSaveSystem">
       <HintPath>Library\ScriptAssemblies\SceneSaveSystem.dll</HintPath>
@@ -858,18 +764,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="com.dman.LSystem.csproj">
-      <Project>{DD72B859-1013-9260-F42D-99C160940558}</Project>
-      <Name>com.dman.LSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="ReactiveVariables.csproj">
-      <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
-      <Name>ReactiveVariables</Name>
-    </ProjectReference>
-    <ProjectReference Include="Genetics.csproj">
-      <Project>{E8A52BDE-01ED-1E7E-E731-D4BCE65B3D4D}</Project>
-      <Name>Genetics</Name>
-    </ProjectReference>
     <ProjectReference Include="Tiling.csproj">
       <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
       <Name>Tiling</Name>

@@ -1,5 +1,4 @@
-﻿using Dman.Tiling;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.UI.Manipulators.Scripts
 {

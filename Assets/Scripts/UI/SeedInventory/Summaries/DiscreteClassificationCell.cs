@@ -1,6 +1,5 @@
 ﻿using Dman.ReactiveVariables;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.SeedInventory
@@ -30,7 +29,8 @@ namespace Assets.Scripts.UI.SeedInventory
                 descriptionLabel.text = description;
                 labelWidth = descriptionLabel.preferredWidth;
                 descriptionLabel.rectTransform.sizeDelta = new Vector2(labelWidth, descriptionLabel.rectTransform.sizeDelta.y);
-            }else
+            }
+            else
             {
                 descriptionLabel.gameObject.SetActive(false);
                 labelWidth = 0;

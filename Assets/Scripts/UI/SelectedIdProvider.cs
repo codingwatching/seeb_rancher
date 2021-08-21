@@ -39,7 +39,7 @@ namespace Assets.Scripts.UI
         // Update is called once per frame
         void Update()
         {
-            if(idTexture.width != mainCamera.pixelWidth || idTexture.height != mainCamera.pixelHeight)
+            if (idTexture.width != mainCamera.pixelWidth || idTexture.height != mainCamera.pixelHeight)
             {
                 Debug.Log("Detected screen resultion change");
                 SetupIdTexture();
@@ -54,7 +54,7 @@ namespace Assets.Scripts.UI
 
         private void SetupIdTexture()
         {
-            if(idTexture != null)
+            if (idTexture != null)
             {
                 idTexture.Release();
                 idTexture = null;
