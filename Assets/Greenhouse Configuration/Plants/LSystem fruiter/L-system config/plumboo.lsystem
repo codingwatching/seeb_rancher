@@ -66,7 +66,7 @@ S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
 ## b is the water producing root
 #symbols b
-b(x) -> a(x * simSpeed)b(x)g(x)
+b(x) -> a(x * simSpeed)b(x)g(x/100)
 
 ## g is the debugging water-producing signal
 #symbols g

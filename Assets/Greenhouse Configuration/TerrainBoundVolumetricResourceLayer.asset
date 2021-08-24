@@ -15,8 +15,12 @@ MonoBehaviour:
   voxelLayerId: 1
   description: water. confined to the dirt, mostly
   diffuse: 1
-  globalDiffusionConstant: 0.1
+  globalDiffusionConstant: 0.2
   terrainSampler: {fileID: 11400000, guid: 3bb4602eb1370a44384882c040592954, type: 2}
   underTerrainDiffusion: 1
   intersectTerrainDiffusion: 1
   aboveTerrainDiffusion: 0.1
+  disperse: 1
+  underTerrainDispersal: 0
+  intersectTerrainDispersal: 0
+  aboveTerrainDispersal: 0.001
