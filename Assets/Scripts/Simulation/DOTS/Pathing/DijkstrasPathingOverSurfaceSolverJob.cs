@@ -1,4 +1,5 @@
 ﻿using Dman.LSystem.SystemRuntime.VolumetricData;
+using Dman.LSystem.SystemRuntime.VolumetricData.NativeVoxels;
 using Environment;
 using Unity.Burst;
 using Unity.Collections;
@@ -14,7 +15,8 @@ namespace Simulation.DOTS.Pathing
     public struct DijkstrasPathingOverSurfaceSolverProprocessingJob : IJob
     {
         [ReadOnly]
-        public NativeArray<float> nodeCostAdjustmentVoxels;
+        public VoxelWorldVolumetricLayerData layerData;
+        public int costAdjustmentLayer;
         public NativeArray<float> calculatedSurfaceWeights;
 
         public PerlinSamplerNativeCompatable terrainSampler;
@@ -37,14 +39,14 @@ namespace Simulation.DOTS.Pathing
                     var surfaceCost = 0f;
                     for (int y = minVoxel; y <= maxVoxel && y < voxelLayout.worldResolution.y; y++)
                     {
-                        var voxelId = voxelLayout.GetDataIndexFromCoordinates(new Vector3Int(x, y, z));
-                        var voxelCost = nodeCostAdjustmentVoxels[voxelId];
+                        var voxelId = voxelLayout.GetVoxelIndexFromCoordinates(new Vector3Int(x, y, z));
+                        var voxelCost = layerData[voxelId, 0];
                         surfaceCost += voxelCost;
                     }
 
                     var surfaceCoordinate = new Vector2Int(x, z);
-                    var surfaceId = voxelLayout.SurfaceGetDataIndexFromCoordinates(surfaceCoordinate);
-                    calculatedSurfaceWeights[surfaceId] = surfaceCost;
+                    var surfaceId = voxelLayout.SurfaceGetTileIndexFromCoordinates(surfaceCoordinate);
+                    calculatedSurfaceWeights[surfaceId.Value] = surfaceCost;
                 }
             }
         }
@@ -64,7 +66,7 @@ namespace Simulation.DOTS.Pathing
         public NativeArray<int> parentNodePointers;
         public NativeArray<PathingNodeTmpData> tmpPathingData;
 
-        public NativeQueue<int> frontNodes;
+        public NativeQueue<TileIndex> frontNodes;
 
         public Vector2Int targetSurface;
         public float baseTravelWeight;
@@ -73,10 +75,10 @@ namespace Simulation.DOTS.Pathing
 
         public void Execute()
         {
-            var firstIndex = voxelLayout.SurfaceGetDataIndexFromCoordinates(targetSurface);
-            var firstData = tmpPathingData[firstIndex];
+            var firstIndex = voxelLayout.SurfaceGetTileIndexFromCoordinates(targetSurface);
+            var firstData = tmpPathingData[firstIndex.Value];
             firstData.totalTravelCost = 0;
-            tmpPathingData[firstIndex] = firstData;
+            tmpPathingData[firstIndex.Value] = firstData;
 
             frontNodes.Enqueue(firstIndex);
 
@@ -95,10 +97,10 @@ namespace Simulation.DOTS.Pathing
             }
         }
 
-        private void Visit(int index)
+        private void Visit(TileIndex index)
         {
-            var data = tmpPathingData[index];
-            var coordinate = voxelLayout.SurfaceGetCoordinatesFromDataIndex(index);
+            var data = tmpPathingData[index.Value];
+            var coordinate = voxelLayout.SurfaceGetCoordinatesFromTileIndex(index);
 
             CheckNeighbor(data, index, coordinate + new Vector2Int(1, 0));
             CheckNeighbor(data, index, coordinate + new Vector2Int(-1, 0));
@@ -106,21 +108,21 @@ namespace Simulation.DOTS.Pathing
             CheckNeighbor(data, index, coordinate + new Vector2Int(0, -1));
         }
 
-        private void CheckNeighbor(PathingNodeTmpData sourceNode, int sourceIndex, Vector2Int targetCoordinate)
+        private void CheckNeighbor(PathingNodeTmpData sourceNode, TileIndex sourceIndex, Vector2Int targetCoordinate)
         {
-            var neighborIndex = this.voxelLayout.SurfaceGetDataIndexFromCoordinates(targetCoordinate);
-            if (neighborIndex < 0)
+            var neighborIndex = this.voxelLayout.SurfaceGetTileIndexFromCoordinates(targetCoordinate);
+            if (!neighborIndex.IsValid)
             {
                 return;
             }
-            var neighborNode = tmpPathingData[neighborIndex];
-            var travelCost = calculatedSurfaceWeights[neighborIndex] + baseTravelWeight;
+            var neighborNode = tmpPathingData[neighborIndex.Value];
+            var travelCost = calculatedSurfaceWeights[neighborIndex.Value] + baseTravelWeight;
             var newWeight = travelCost + sourceNode.totalTravelCost;
             if (newWeight < neighborNode.totalTravelCost)
             {
                 neighborNode.totalTravelCost = newWeight;
-                tmpPathingData[neighborIndex] = neighborNode;
-                parentNodePointers[neighborIndex] = sourceIndex;
+                tmpPathingData[neighborIndex.Value] = neighborNode;
+                parentNodePointers[neighborIndex.Value] = sourceIndex.Value;
                 frontNodes.Enqueue(neighborIndex);
             }
         }

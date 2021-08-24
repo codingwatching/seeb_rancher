@@ -28,9 +28,9 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
         {
             var simSpeed = surfaceDefinition.gameSpeed.CurrentValue;
             var deltaTime = simSpeed * Time.DeltaTime;
-            var durabilityData = durabilityWorld.nativeVolumeData.openReadData.AsReadOnly();
+            var voxelLayers = durabilityWorld.NativeVolumeData.openReadData.AsReadOnly();
             var patherHeight = surfaceDefinition.patherHeight;
-            var layout = durabilityWorld.voxelLayout;
+            var layout = durabilityWorld.VoxelLayout;
 
             var damageData = damageWorld.GetDamageValuesReadSafe();
 
@@ -52,8 +52,8 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
                     for (int y = minVoxelHeight; y <= maxVoxelHeight; y++)
                     {
                         var voxel = new Vector3Int(nextTile.x, y, nextTile.y);
-                        var id = layout.GetDataIndexFromCoordinates(voxel);
-                        var durability = durabilityData[id];
+                        var voxelIndex = layout.GetVoxelIndexFromCoordinates(voxel);
+                        var durability = voxelLayers[voxelIndex, 0];
                         nextTileDurability += durability;
                     }
 
@@ -71,17 +71,17 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
                         for (int y = minVoxelHeight; y <= maxVoxelHeight; y++)
                         {
                             var voxel = new Vector3Int(nextTile.x, y, nextTile.y);
-                            var id = layout.GetDataIndexFromCoordinates(voxel);
-                            var durability = durabilityData[id];
+                            var voxelIndex = layout.GetVoxelIndexFromCoordinates(voxel);
+                            var durability = voxelLayers[voxelIndex, 0];
 
-                            damageData[id] += durability * damagePerDurability;
+                            damageData[voxelIndex.Value] += durability * damagePerDurability;
                         }
                         health.currentHealth -= damageInfo.selfDamageDoneByAttacking * deltaTime;
                     }
                 }).Schedule();
 
             damageWorld.RegisterDamageValuesWriter(this.Dependency);
-            durabilityWorld.nativeVolumeData.RegisterReadingDependency(this.Dependency);
+            durabilityWorld.NativeVolumeData.RegisterReadingDependency(this.Dependency);
         }
     }
 }

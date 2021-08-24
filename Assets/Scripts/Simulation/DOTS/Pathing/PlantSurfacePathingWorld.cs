@@ -35,11 +35,11 @@ namespace Simulation.DOTS.Pathing
             }
 
             var volumeWorld = GetComponent<OrganVolumetricWorld>();
-            var voxelLayout = volumeWorld.voxelLayout;
+            var voxelLayout = volumeWorld.VoxelLayout;
 
             // TODO: don't recyle memory, reuse!
-            var parentNodePointers = new NativeArray<int>(voxelLayout.totalSurfaceDataSize, Allocator.Persistent);
-            var tmpPathingData = new NativeArray<DijkstrasPathingSolverJob.PathingNodeTmpData>(voxelLayout.totalSurfaceDataSize, Allocator.TempJob);
+            var parentNodePointers = new NativeArray<int>(voxelLayout.totalTiles, Allocator.Persistent);
+            var tmpPathingData = new NativeArray<DijkstrasPathingSolverJob.PathingNodeTmpData>(voxelLayout.totalTiles, Allocator.TempJob);
 
             var initializerJob = new DijkstrasPathingSolverInitializerJob
             {
@@ -48,12 +48,12 @@ namespace Simulation.DOTS.Pathing
             };
             var dep = initializerJob.Schedule(parentNodePointers.Length, 1000);
 
-            var caluclatedSurfaceWeights = new NativeArray<float>(voxelLayout.totalSurfaceDataSize, Allocator.TempJob);
+            var caluclatedSurfaceWeights = new NativeArray<float>(voxelLayout.totalTiles, Allocator.TempJob);
             var nativePerlineSampler = terrainSampler.AsNativeCompatible(Allocator.TempJob);
 
             var surfaceWeightCalculator = new DijkstrasPathingOverSurfaceSolverProprocessingJob
             {
-                nodeCostAdjustmentVoxels = volumeWorld.nativeVolumeData.openReadData,
+                layerData = volumeWorld.NativeVolumeData.openReadData,
                 calculatedSurfaceWeights = caluclatedSurfaceWeights,
                 terrainSampler = nativePerlineSampler,
                 voxelLayout = voxelLayout,
@@ -62,9 +62,9 @@ namespace Simulation.DOTS.Pathing
 
             dep = surfaceWeightCalculator.Schedule(dep);
 
-            volumeWorld.nativeVolumeData.RegisterReadingDependency(dep);
+            volumeWorld.NativeVolumeData.RegisterReadingDependency(dep);
 
-            var frontNodes = new NativeQueue<int>(Allocator.TempJob);
+            var frontNodes = new NativeQueue<TileIndex>(Allocator.TempJob);
             var patherJob = new DijkstrasPathingOverSurfaceSolverJob
             {
                 calculatedSurfaceWeights = caluclatedSurfaceWeights,
@@ -146,15 +146,15 @@ namespace Simulation.DOTS.Pathing
             NativeArray<int> parentIndexes = dataTracker.Data;
 
             var volumeWorld = GetComponent<OrganVolumetricWorld>();
-            var voxelLayout = volumeWorld.voxelLayout;
+            var voxelLayout = volumeWorld.VoxelLayout;
 
             Gizmos.color = new Color(1, 0, 0, 1);
-            for (int i = 0; i < voxelLayout.totalSurfaceDataSize; i++)
+            for (TileIndex i = TileIndex.Zero; i.Value < voxelLayout.totalTiles; i.Value++)
             {
-                var parentIndex = parentIndexes[i];
+                var parentIndex = new TileIndex(parentIndexes[i.Value]);
 
-                var arrowOrigin = voxelLayout.SurfaceGetTilePositionFromDataIndex(i);
-                var arrowDestination = voxelLayout.SurfaceGetTilePositionFromDataIndex(parentIndex);
+                var arrowOrigin = voxelLayout.SurfaceGetTilePositionFromTileIndex(i);
+                var arrowDestination = voxelLayout.SurfaceGetTilePositionFromTileIndex(parentIndex);
 
                 var originWithTerrain = new Vector3(arrowOrigin.x, terrainSampler.SampleNoise(arrowOrigin) + 1, arrowOrigin.y);
                 var destinationWithTerrain = new Vector3(arrowDestination.x, terrainSampler.SampleNoise(arrowDestination) + 1, arrowDestination.y);

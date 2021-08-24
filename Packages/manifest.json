@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.dman.genetics": "0.1.7",
-    "com.dman.l-system": "0.5.2",
+    "com.dman.l-system": "file:../../Plant Creator/Packages/com.dman.l-system",
     "com.dman.reactive-variables": "0.1.5",
     "com.dman.scene-save-system": "0.1.4",
     "com.dman.utilities": "0.3.11",

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,11 +53,8 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Token.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\VolumetricWorldVoxelLayout.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\NativeVoxels\VolumetricWorldVoxelLayout.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\ErroredCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleMeshBuildingCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\SymbolRemap.cs" />
@@ -95,7 +92,7 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\CompletableExtensions.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\DynamicExpressions\StructExpression.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeStack.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\VolumetricWorldWritableHandle.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\VolumetricWorldModifierHandle.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\CompleteCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ParsedRule.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\InMemoryFileProvider.cs" />
@@ -151,7 +148,7 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\ISymbolString.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\BitMixer.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemDeveloper.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeVolumetricSpace\NativeArrayAddSubtractJob.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeVolumetricSpace\VoxelMarkerConsolidation.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SerializationExtension.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\NativeOrderedMultiDictionary.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ParsedRuleEqualityComparer.cs" />
@@ -166,6 +163,16 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\EntityInstantiator\TurtleSpawnEntitiesInstantiator.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\ArrayParameterRepresenation.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\TurtleBendTowardsOperationSet.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\LayerModificationCommand.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VolumetricResourceLayer.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\NativeVoxels\VoxelWorldVolumetricLayerData.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelKernelDiffuser.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelAdjacencyDiffuser.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\LayerModificationCommandPlaybackJob.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelDataCopyJob.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelAdjacencyByVoxelConstantDiffuser.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\NativeVoxels\VoxelWorldIndexes.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\VolumetricResource\TurtleVolumetricResourceDiffusionOperationSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\com.dman.l-system.asmdef" />
@@ -836,6 +843,9 @@
     <Reference Include="ObjectSets">
       <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
     </Reference>
+    <Reference Include="ReactiveVariables">
+      <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Entities">
       <HintPath>Library\ScriptAssemblies\Unity.Entities.dll</HintPath>
     </Reference>
@@ -853,10 +863,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="ReactiveVariables.csproj">
-      <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
-      <Name>ReactiveVariables</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

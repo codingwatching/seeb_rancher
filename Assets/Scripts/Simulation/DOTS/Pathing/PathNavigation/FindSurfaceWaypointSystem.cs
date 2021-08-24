@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using Dman.LSystem.SystemRuntime.VolumetricData;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -31,20 +32,20 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
             var parentPointers = waypoints.Value.AsReadOnly();
 
             var ecb = commandBufferSystem.CreateCommandBuffer().AsParallelWriter();
-            var voxelLayout = pathingWorld.volumeWorld.voxelLayout;
+            var voxelLayout = pathingWorld.volumeWorld.VoxelLayout;
             var terrainSampler = pathingWorld.terrainSampler.AsNativeCompatible(Allocator.TempJob);
 
             Entities
                 .WithNone<SurfaceWaypointTarget>()
                 .ForEach((Entity entity, int entityInQueryIndex, ref Translation position, ref SurfaceWaypointFinder finder) =>
                 {
-                    var currentId = voxelLayout.SurfaceGetDataIndexFromWorldPosition(position.Value);
-                    if (currentId < 0)
+                    var currentId = voxelLayout.SurfaceGetTileIndexFromWorldPosition(position.Value);
+                    if (!currentId.IsValid)
                     {
                         return;
                     }
-                    var nextId = parentPointers[currentId];
-                    var nextCoordinate = voxelLayout.SurfaceGetTilePositionFromDataIndex(nextId);
+                    var nextId = new TileIndex(parentPointers[currentId.Value]);
+                    var nextCoordinate = voxelLayout.SurfaceGetTilePositionFromTileIndex(nextId);
                     var noiseSample = terrainSampler.SampleNoise(nextCoordinate);
 
                     ecb.AddComponent(entityInQueryIndex, entity, new SurfaceWaypointTarget
@@ -61,17 +62,17 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
                     {
                         return;
                     }
-                    var currentId = voxelLayout.SurfaceGetDataIndexFromWorldPosition(position.Value);
-                    if (currentId < 0)
+                    var currentId = voxelLayout.SurfaceGetTileIndexFromWorldPosition(position.Value);
+                    if (!currentId.IsValid)
                     {
                         return;
                     }
-                    var nextId = parentPointers[currentId];
-                    if (nextId < 0)
+                    var nextId = new TileIndex(parentPointers[currentId.Value]);
+                    if (!nextId.IsValid)
                     {
                         return;
                     }
-                    var nextCoordinate = voxelLayout.SurfaceGetTilePositionFromDataIndex(nextId);
+                    var nextCoordinate = voxelLayout.SurfaceGetTilePositionFromTileIndex(nextId);
                     var noiseSample = terrainSampler.SampleNoise(nextCoordinate);
 
                     target.target = new float3(nextCoordinate.x, noiseSample + finder.waypointOffsetFromSurface, nextCoordinate.y);

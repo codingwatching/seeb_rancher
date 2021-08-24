@@ -1,4 +1,5 @@
 using Dman.LSystem.SystemRuntime.VolumetricData;
+using Dman.LSystem.SystemRuntime.VolumetricData.NativeVoxels;
 using NUnit.Framework;
 using Simulation.DOTS.Pathing;
 using Unity.Collections;
@@ -30,17 +31,18 @@ public class TestPathFinding
                 weights.GetLength(0),
                 weights.GetLength(1),
                 weights.GetLength(2)),
-            worldSize = Vector3.one
+            worldSize = Vector3.one,
+            dataLayerCount = 1
         };
-        var nativeNodeCosts = new NativeArray<float>(voxelLayout.totalVolumeDataSize, Allocator.Persistent);
+        var nativeNodeCosts = new VoxelWorldVolumetricLayerData(voxelLayout, Allocator.Persistent);
         for (int x = 0; x < voxelLayout.worldResolution.x; x++)
         {
             for (int y = 0; y < voxelLayout.worldResolution.y; y++)
             {
                 for (int z = 0; z < voxelLayout.worldResolution.z; z++)
                 {
-                    var index = voxelLayout.GetDataIndexFromCoordinates(new Vector3Int(x, y, z));
-                    nativeNodeCosts[index] = weights[x, y, z];
+                    var index = voxelLayout.GetVoxelIndexFromCoordinates(new Vector3Int(x, y, z));
+                    nativeNodeCosts[index, 0] = weights[x, y, z];
                 }
             }
         }
@@ -55,26 +57,30 @@ public class TestPathFinding
         };
 
 
-        var frontNodes = new NativeQueue<int>(Allocator.TempJob);
+        var frontNodes = new NativeQueue<VoxelIndex>(Allocator.TempJob);
         var infiniteLoopCheck = new NativeArray<bool>(1, Allocator.TempJob);
+        JobHandle dep = default;
         try
         {
-            var dep = initializer.Schedule(parentNodePointers.Length, 100);
+            dep = initializer.Schedule(parentNodePointers.Length, 100);
             var pather = new DijkstrasPathingSolverJob
             {
-                nodeCostAdjustmentVoxels = nativeNodeCosts,
+                layerData = nativeNodeCosts,
+                costAdjustmentLayer = 0,
                 parentNodePointers = parentNodePointers,
                 tmpPathingData = tmpPathingData,
                 frontNodes = frontNodes,
 
                 voxelLayout = voxelLayout,
                 targetVoxel = targetVector,
-                baseTravelWeight = baseCost
+                baseTravelWeight = baseCost,
+
+                failedWithInfiniteLoop = infiniteLoopCheck
             };
 
             dep = pather.Schedule(dep);
 
-            var expectedParentIndexes = new int[voxelLayout.totalVolumeDataSize];
+            var expectedParentIndexes = new VoxelIndex[voxelLayout.totalVoxels];
             for (int x = 0; x < voxelLayout.worldResolution.x; x++)
             {
                 for (int y = 0; y < voxelLayout.worldResolution.y; y++)
@@ -82,19 +88,19 @@ public class TestPathFinding
                     for (int z = 0; z < voxelLayout.worldResolution.z; z++)
                     {
                         var baseCoordinate = new Vector3Int(x, y, z);
-                        var baseIndex = voxelLayout.GetDataIndexFromCoordinates(baseCoordinate);
+                        var baseIndex = voxelLayout.GetVoxelIndexFromCoordinates(baseCoordinate);
                         var indicatingChar = expectedParents[x, y][z];
                         var offset = IndicatorCharToOffset(indicatingChar);
                         if (!offset.HasValue)
                         {
-                            expectedParentIndexes[baseIndex] = -1;
+                            expectedParentIndexes[baseIndex.Value] = VoxelIndex.Invalid;
                             continue;
                         }
 
                         var neighborCoord = baseCoordinate + offset.Value;
-                        var neighborIndex = voxelLayout.GetDataIndexFromCoordinates(neighborCoord);
+                        var neighborIndex = voxelLayout.GetVoxelIndexFromCoordinates(neighborCoord);
 
-                        expectedParentIndexes[baseIndex] = neighborIndex;
+                        expectedParentIndexes[baseIndex.Value] = neighborIndex;
                     }
                 }
             }
@@ -105,19 +111,22 @@ public class TestPathFinding
                 Assert.Fail("Pathing resuilted in an infinite loop");
             }
 
-            for (int i = 0; i < voxelLayout.totalVolumeDataSize; i++)
+            for (int i = 0; i < voxelLayout.totalVoxels; i++)
             {
                 var expectedNeighbor = expectedParentIndexes[i];
                 var actualNeighborIndex = parentNodePointers[i];
 
-                if (expectedNeighbor != actualNeighborIndex)
+                if (expectedNeighbor.Value != actualNeighborIndex)
                 {
-                    Assert.Fail($"Expected parent at {voxelLayout.GetCoordinatesFromDataIndex(i)} to be {voxelLayout.GetCoordinatesFromDataIndex(expectedNeighbor)}, but was {voxelLayout.GetCoordinatesFromDataIndex(actualNeighborIndex)}");
+                    Assert.Fail($"Expected parent at {voxelLayout.GetCoordinatesFromVoxelIndex(new VoxelIndex(i))}" +
+                        $" to be {voxelLayout.GetCoordinatesFromVoxelIndex(expectedNeighbor)}," +
+                        $" but was {voxelLayout.GetCoordinatesFromVoxelIndex(new VoxelIndex(actualNeighborIndex))}");
                 }
             }
         }
         finally
         {
+            dep.Complete();
             nativeNodeCosts.Dispose();
             parentNodePointers.Dispose();
             tmpPathingData.Dispose();

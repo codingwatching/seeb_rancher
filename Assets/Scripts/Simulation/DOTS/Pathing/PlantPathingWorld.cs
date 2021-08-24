@@ -31,11 +31,11 @@ namespace Simulation.DOTS.Pathing
             }
 
             var volumeWorld = GetComponent<OrganVolumetricWorld>();
-            var voxelLayout = volumeWorld.voxelLayout;
+            var voxelLayout = volumeWorld.VoxelLayout;
 
             // TODO: don't recyle memory, reuse!
-            var parentNodePointers = new NativeArray<int>(voxelLayout.totalVolumeDataSize, Allocator.Persistent);
-            var tmpPathingData = new NativeArray<DijkstrasPathingSolverJob.PathingNodeTmpData>(voxelLayout.totalVolumeDataSize, Allocator.TempJob);
+            var parentNodePointers = new NativeArray<int>(voxelLayout.totalVoxels, Allocator.Persistent);
+            var tmpPathingData = new NativeArray<DijkstrasPathingSolverJob.PathingNodeTmpData>(voxelLayout.totalVoxels, Allocator.TempJob);
 
             var initializerJob = new DijkstrasPathingSolverInitializerJob
             {
@@ -44,10 +44,11 @@ namespace Simulation.DOTS.Pathing
             };
 
             var dep = initializerJob.Schedule(parentNodePointers.Length, 1000);
-            var frontNodes = new NativeQueue<int>(Allocator.TempJob);
+            var frontNodes = new NativeQueue<VoxelIndex>(Allocator.TempJob);
             var patherJob = new DijkstrasPathingSolverJob
             {
-                nodeCostAdjustmentVoxels = volumeWorld.nativeVolumeData.openReadData,
+                layerData = volumeWorld.NativeVolumeData.openReadData,
+                costAdjustmentLayer = 0,
                 parentNodePointers = parentNodePointers,
                 tmpPathingData = tmpPathingData,
                 frontNodes = frontNodes,
@@ -62,7 +63,7 @@ namespace Simulation.DOTS.Pathing
 
             parentNodePointersSwapper.AssignPending(parentNodePointers);
 
-            volumeWorld.nativeVolumeData.RegisterReadingDependency(dep);
+            volumeWorld.NativeVolumeData.RegisterReadingDependency(dep);
             pathingWorldPendingUpdate = dep;
 
             tmpPathingData.Dispose(dep);
@@ -120,17 +121,15 @@ namespace Simulation.DOTS.Pathing
             NativeArray<int> parentIndexes = dataTracker.Data;
 
             var volumeWorld = GetComponent<OrganVolumetricWorld>();
-            var voxelLayout = volumeWorld.voxelLayout;
+            var voxelLayout = volumeWorld.VoxelLayout;
 
             Gizmos.color = new Color(1, 0, 0, 1);
-            for (int i = 0; i < voxelLayout.totalVolumeDataSize; i++)
+            for (VoxelIndex i = VoxelIndex.Zero; i.Value < voxelLayout.totalVoxels; i.Value++)
             {
-                var parentIndex = parentIndexes[i];
-                var targetCoordinate = voxelLayout.GetCoordinatesFromDataIndex(i);
-                var parentCoordinate = voxelLayout.GetCoordinatesFromDataIndex(parentIndex);
+                var parentIndex = new VoxelIndex(parentIndexes[i.Value]);
 
-                var arrowOrigin = voxelLayout.CoordinateToCenterOfVoxel(targetCoordinate);
-                var arrowDestination = voxelLayout.CoordinateToCenterOfVoxel(parentCoordinate);
+                var arrowOrigin = voxelLayout.GetWorldPositionFromVoxelIndex(i);
+                var arrowDestination = voxelLayout.GetWorldPositionFromVoxelIndex(parentIndex);
 
                 var diff = arrowDestination - arrowOrigin;
                 DrawArrow.ForGizmo(arrowOrigin, diff * 0.9f);
