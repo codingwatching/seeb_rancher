@@ -1,4 +1,4 @@
-#axiom r(0.1, 10, 1000, 20, 20)b(10)i(0)S(0)
+#axiom r(0.1, 10, 1000, 20, 20)Ri(0)S(0)
 #iterations 100000
 
 #symbols /\&^+-!F$`@
@@ -66,7 +66,15 @@ S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
 ## b is the water producing root
 #symbols b
-b(x) -> a(x * simSpeed)b(x)
+b(x) -> a(x * simSpeed)b(x)g(x)
+
+## g is the debugging water-producing signal
+#symbols g
+g(x) -> 
+## R is the root
+#symbols R
+R -> [i(0)+(180)~F~F~F~F~F~F~Fb(10)]
+
 
 ## T is a terminal bud
 #symbols T
