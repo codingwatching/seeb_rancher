@@ -15,7 +15,7 @@ namespace Simulation.DOTS.Pathing
         public float baseTravelWeight;
         public bool drawGizmos = true;
 
-        public PerlineSampler terrainSampler;
+        public PerlinSampler terrainSampler;
         public float patherHeight = 1.9f;
 
         private NativeDisposableHotSwap<NativeArrayNativeDisposableAdapter<int>> parentNodePointersSwapper;

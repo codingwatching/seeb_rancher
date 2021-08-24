@@ -5,7 +5,7 @@ namespace Environment
     [ExecuteInEditMode]
     public class PerlinPositioner : MonoBehaviour
     {
-        public PerlineSampler sampler;
+        public PerlinSampler sampler;
         public Vector2 sampleOffsetFromTransformCenter = Vector2.zero;
         public float yOffset = 0f;
         private void Awake()

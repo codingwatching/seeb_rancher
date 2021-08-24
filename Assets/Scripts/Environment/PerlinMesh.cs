@@ -7,7 +7,7 @@ namespace Environment
     [ExecuteInEditMode]
     public class PerlinMesh : MonoBehaviour
     {
-        public PerlineSampler sampler;
+        public PerlinSampler sampler;
         public Vector2Int samplesPerTile = 5 * Vector2Int.one;
         public Vector2 size = Vector2.one;
 

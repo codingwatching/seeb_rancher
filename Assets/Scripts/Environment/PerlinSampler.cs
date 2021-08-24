@@ -15,7 +15,7 @@ namespace Environment
     }
     [CreateAssetMenu(fileName = "PerlinSampler", menuName = "Greenhouse/PerlinSampler", order = 2)]
     [ExecuteInEditMode]
-    public class PerlineSampler : ScriptableObject
+    public class PerlinSampler : ScriptableObject
     {
         [SerializeField]
         private NoiseOctave[] octaves;
