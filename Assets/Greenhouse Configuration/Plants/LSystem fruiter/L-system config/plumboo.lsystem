@@ -1,4 +1,4 @@
-#axiom r(0.1, 10, 1000, 20, 20)Ri(0)S(0)
+#axiom r(0.1, 20, 1000, 20, 20)Ri(0)S(0)
 #iterations 100000
 
 #symbols /\&^+-!F$`@
@@ -64,17 +64,24 @@ S(x) : x == 0 -> @FS(x + 1)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)qi(0)
 S(x) : x < shootHeight && x > 0-> FS(x+1)
 S(x) : x == shootHeight -> r(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
+
+## R is the root
+#symbols R
+R -> [i(0)+(180)~F~F~F~F~F~F~Fb(0)h(0)]
+
 ## b is the water producing root
 #symbols b
-b(x) -> a(x * simSpeed)b(x)g(x/100)
+b(x) -> a(x * simSpeed)b(x)
 
 ## g is the debugging water-producing signal
 #symbols g
 g(x) -> 
-## R is the root
-#symbols R
-R -> [i(0)+(180)~F~F~F~F~F~F~Fb(10)]
 
+#define waterDiffusionInMultiplier 100
+#define diffuseInAmount ((rootWater * waterDiffusionInMultiplier - water)/2)
+## h is the water consuming symbol in the root which transfers water via commands to the resource nodes
+#symbols h
+r(a, water, c, glucose, d) < h(rootWater) : diffuseInAmount > 0 -> a(diffuseInAmount, 0)h(rootWater - diffuseInAmount / waterDiffusionInMultiplier)
 
 ## T is a terminal bud
 #symbols T

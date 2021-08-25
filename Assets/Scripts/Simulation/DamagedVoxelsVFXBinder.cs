@@ -13,10 +13,13 @@ namespace Simulation
         public OrganDamageWorld damageWorld;
         public OrganVolumetricWorld durabilityWorld;
         public Material damageShaderMaterial;
-        public Material gridDisplayMaterial;
+        public Material dirtDisplayMaterial;
+
+        public VolumetricResourceLayer wetnessLayer;
 
         public string damageTextureName;
         public string durabilityTextureName;
+        public string wetnessTextureName;
 
         public string voxelWorldSizeName;
         public string voxelResolutionName;
@@ -27,6 +30,7 @@ namespace Simulation
 
         private Texture3D damageTexture;
         private Texture3D durabilityTexture;
+        private Texture3D wetnessTexture;
 
         private void Awake()
         {
@@ -45,23 +49,37 @@ namespace Simulation
                 var voxelLayout = durabilityWorld.VoxelLayout;
 
                 var durabilityData = new NativeArray<float>(voxelLayout.totalVoxels, Allocator.TempJob);
-                var copyJob = new CopyVoxelToWorkingDataJob
+                var durabilityCopyJob = new CopyVoxelToWorkingDataJob
                 {
                     layerData = layerData,
                     layerId = 0,
                     targetData = durabilityData
                 };
-                var dep = copyJob.Schedule(voxelLayout.totalVoxels, 1000);
-                
+                var durabilityDep = durabilityCopyJob.Schedule(voxelLayout.totalVoxels, 1000);
+
+                var wetnessData = new NativeArray<float>(voxelLayout.totalVoxels, Allocator.TempJob);
+                var wetnessCopyJob = new CopyVoxelToWorkingDataJob
+                {
+                    layerData = layerData,
+                    layerId = wetnessLayer.voxelLayerId,
+                    targetData = wetnessData
+                };
+                var wetnessDep = wetnessCopyJob.Schedule(voxelLayout.totalVoxels, 1000);
+
                 damageTexture.SetPixelData<float>(damageData, 0);
+                damageTexture.Apply();
 
                 // TODO: make this async
-                dep.Complete();
+                durabilityDep.Complete();
                 durabilityTexture.SetPixelData<float>(durabilityData, 0);
+                durabilityTexture.Apply();
                 durabilityData.Dispose();
 
-                damageTexture.Apply();
-                durabilityTexture.Apply();
+                wetnessDep.Complete();
+                wetnessTexture.SetPixelData<float>(wetnessData, 0);
+                wetnessTexture.Apply();
+                wetnessData.Dispose();
+
             }
         }
 
@@ -94,6 +112,10 @@ namespace Simulation
             durabilityTexture.filterMode = FilterMode.Point;
             effect.SetTexture(durabilityTextureName, durabilityTexture);
 
+            wetnessTexture = new Texture3D(textureSize.x, textureSize.y, textureSize.z, TextureFormat.RFloat, 0);
+            wetnessTexture.filterMode = FilterMode.Point;
+            dirtDisplayMaterial.SetTexture(wetnessTextureName, wetnessTexture);
+
 
             effect.SetVector3(voxelWorldSizeName, voxels.worldSize);
             effect.SetVector3(voxelResolutionName, voxels.worldResolution);
@@ -106,9 +128,9 @@ namespace Simulation
             damageShaderMaterial.SetVector(voxelWorldOriginName, voxels.voxelOrigin);
 
 
-            gridDisplayMaterial.SetVector(voxelWorldSizeName, voxels.worldSize);
-            gridDisplayMaterial.SetVector(voxelResolutionName, (Vector3)voxels.worldResolution);
-            gridDisplayMaterial.SetVector(voxelWorldOriginName, voxels.voxelOrigin);
+            dirtDisplayMaterial.SetVector(voxelWorldSizeName, voxels.worldSize);
+            dirtDisplayMaterial.SetVector(voxelResolutionName, (Vector3)voxels.worldResolution);
+            dirtDisplayMaterial.SetVector(voxelWorldOriginName, voxels.voxelOrigin);
         }
     }
 }

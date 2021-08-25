@@ -19,6 +19,9 @@ namespace Simulation.VoxelLayers
         public float aboveTerrainDiffusion = 0.1f;
 
         public bool disperse = false;
+        [Range(0,1)]
+        [Tooltip("this value can be adjusted at runtime to globally adjust the dispersal happening throughout the system. All other dispersal factors are baked once per play session.")]
+        public float dispersalAdjustmentFactor = 1f;
         [Range(0, 1)]
         public float underTerrainDispersal = 0f;
         [Range(0, 1)]
@@ -182,7 +185,7 @@ namespace Simulation.VoxelLayers
             {
                 reductionByVoxelIndex = dispersalFactorByVoxelIndex,
                 resourceData = workingData,
-                expReduction = math.min(math.exp(deltaTime) / math.exp(1), 1f) // safeguard against bad behavior if framerate gets too low
+                expReduction = math.min(math.exp(deltaTime * dispersalAdjustmentFactor) / math.exp(1), 1f) // safeguard against bad behavior if framerate gets too low
             };
             dependency = dispersal.Schedule(workingData.Length, 10000, dependency);
         }

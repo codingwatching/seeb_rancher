@@ -14,5 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumetricInteractors:
   - indicatorCharacter: 103
-    diffusionDirection: 2
+    diffusionConstant: 0
+    diffusionDirection: 3
+    resourceLayer: {fileID: 11400000, guid: 7d1c86b62cef69f4f9387ab6884a109b, type: 2}
+  - indicatorCharacter: 104
+    diffusionConstant: 0.3
+    diffusionDirection: 1
     resourceLayer: {fileID: 11400000, guid: 7d1c86b62cef69f4f9387ab6884a109b, type: 2}

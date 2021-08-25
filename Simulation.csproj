@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Simulation\Plants\PlantData\Seed.cs" />
     <Compile Include="Assets\Scripts\Simulation\DOTS\PlantWeapons\DamageSourceComponent.cs" />
     <Compile Include="Assets\Scripts\Simulation\DOTS\PlantWeapons\Bomb\SeekEnemySystem.cs" />
+    <Compile Include="Assets\Scripts\Simulation\VoxelLayers\TerrainBoundVolumetricResourceLayer.cs" />
     <Compile Include="Assets\Scripts\Simulation\DOTS\Pathing\PlantPathingWorld.cs" />
     <Compile Include="Assets\Scripts\Simulation\DOTS\PlantWeapons\Health\DieWhenLifeRunOutSystem.cs" />
     <Compile Include="Assets\Scripts\Simulation\DOTS\PlantWeapons\SmokeTrail\SmokeTrailAuthoring.cs" />
@@ -94,7 +95,7 @@
     <Compile Include="Assets\Scripts\Simulation\DOTS\PlantWeapons\ApplyVelocitySystem.cs" />
     <Compile Include="Assets\Scripts\Simulation\DOTS\PlantWeapons\LifetimeComponent.cs" />
     <Compile Include="Assets\Scripts\Simulation\Plants\PlantTypes\LSystemPlantType.cs" />
-    <Compile Include="Assets\Scripts\Simulation\VoxelLayers\TerrainBoundVolumetricResourceLayer.cs" />
+    <Compile Include="Assets\Scripts\Simulation\VoxelLayers\DispersalValueBinding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Simulation\Simulation.asmdef" />
