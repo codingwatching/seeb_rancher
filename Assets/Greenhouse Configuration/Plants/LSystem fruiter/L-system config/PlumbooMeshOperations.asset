@@ -27,8 +27,11 @@ MonoBehaviour:
     UseThickness: 1
     volumetricDurabilityValue: 1
   - Character: 108
-    MeshRef: {fileID: -5966198621110897880, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
-    MeshVariants: []
+    MeshRef: {fileID: -1093522428328684715, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    MeshVariants:
+    - {fileID: 4530578241249004568, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    - {fileID: 4421985128818438648, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    - {fileID: 2042079279535638571, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 1, y: 1, z: 1}
     UseMeshOrigin: 0

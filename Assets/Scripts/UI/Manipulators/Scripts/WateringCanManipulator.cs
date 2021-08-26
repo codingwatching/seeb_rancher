@@ -43,11 +43,11 @@ namespace UI.Manipulators
 
         public override bool OnUpdate()
         {
-            if(waterInventory.CurrentValue < wateringCan.waterFlowRate * 0.3f)
+            if(waterInventory.CurrentValue < wateringCan.waterFlowRate * Time.deltaTime)
             {
                 wateringCan.gameObject.SetActive(false);
                 wateringCan.wateringCanRenderer.gameObject.SetActive(false);
-                return true;
+                return false;
             }
 
             var hoveredSpot = dirtCaster.CurrentlyHitObject;

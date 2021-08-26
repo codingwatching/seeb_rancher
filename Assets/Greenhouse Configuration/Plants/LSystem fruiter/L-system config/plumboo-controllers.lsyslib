@@ -14,4 +14,7 @@
 #define sunlightMultiplier 40 * simSpeed
 #define maxGlucoseFromLeaf 4
 
-r(a, water, c, glucose, d) < l > s(sunlight) : sunlight > 0 && (water >= sunlight * sunlightMultiplier / 2 && glucose <= maxGlucoseFromLeaf) -> a(-sunlight * sunlightMultiplier / 2, sunlight * sunlightMultiplier)l
+
+#define leafWaterUpkeep 0.05
+
+r(a, water, c, glucose, d) < l > s(sunlight) : sunlight > 0 && (water >= sunlight * sunlightMultiplier / 2 && glucose <= maxGlucoseFromLeaf) -> a(-sunlight * sunlightMultiplier / 2 -leafWaterUpkeep, sunlight * sunlightMultiplier)l

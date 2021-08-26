@@ -117,7 +117,6 @@ r(a, water, c, glucose, d) < T(progress, x) : x >= primaryBranchInternodes && pr
 B -> i(0)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)^(50)i(0)V]r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)I(0, petioleStalkLength)[r(.1, 0, defaultMaxWater, 0, defaultMaxGlucose)qi(0)s(0)petiole(leavesPerPetiole)]
 
 
-
 ## J is a signal which propigates from the apex, signaling flowering.
 #symbols J
 #matches J
@@ -140,7 +139,7 @@ petiole(x) : x > 0 -> [leafOrgan]
 ## O is a symbol which fans leaves out
 #symbols O
 #matches O
-r(a, water, b, glucose, c) < O(x, t) : x > 0 && water > 0.5 && glucose > 0.5 -> +(t)l(1, x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
+r(a, water, b, glucose, c) < O(x, t) : x > 0 && water > 0.5 && glucose > 0.5 -> +(t)l(upkeepWaterRange, 1, x/(leavesPerPetiole/2) * leafAge)O(x - 1, t)
 
 ## I is an internode, used to just build length of certain size
 #symbols I
@@ -164,8 +163,13 @@ P(1/5) | ~ -> $(defaultBend)-(2 * kinkiness)
 ## organs
 
 #define leafAge 3
-#define leafOrgan l(1, leafAge)
+#define upkeepWaterRange 25
+#define leafMeshNum 4
+#define leafHydration ((water / upkeepWaterRange)^0.5) * leafMeshNum
+#define leafOrgan l(upkeepWaterRange, 1, leafAge)
+
 ## l is a leaf
 #symbols l
-r(a, water, b, glucose, c) < l(growth, maxSize) : growth < maxSize &&   useWater -> a(-  water/2, -  water/2)l(growth +   water/2, maxSize)
-r(a, water, b, glucose, c) < l(growth, maxSize) : growth < maxSize && useGlucose -> a(-glucose/2, -glucose/2)l(growth + glucose/2, maxSize)
+r(a, water, b, glucose, c) < l(d, growth, maxSize) : growth < maxSize &&   useWater -> a(-  water/2, -  water/2)l(leafHydration, growth +   water/2, maxSize)
+r(a, water, b, glucose, c) < l(d, growth, maxSize) : growth < maxSize && useGlucose -> a(-glucose/2, -glucose/2)l(leafHydration, growth + glucose/2, maxSize)
+r(a, water, b, glucose, c) < l(d, growth, maxSize) -> l(leafHydration, growth, maxSize)
