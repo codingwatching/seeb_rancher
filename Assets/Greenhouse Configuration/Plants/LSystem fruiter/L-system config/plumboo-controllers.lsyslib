@@ -15,6 +15,26 @@
 #define maxGlucoseFromLeaf 4
 
 
-#define leafWaterUpkeep 0.05
+r(a, water, c, glucose, d) < l > s(sunlight) : sunlight > 0 && (water >= sunlight * sunlightMultiplier * 2 && waterIsPlentiful && glucose <= maxGlucoseFromLeaf) -> a(-sunlight * sunlightMultiplier, sunlight * sunlightMultiplier)l
 
-r(a, water, c, glucose, d) < l > s(sunlight) : sunlight > 0 && (water >= sunlight * sunlightMultiplier / 2 && glucose <= maxGlucoseFromLeaf) -> a(-sunlight * sunlightMultiplier / 2 -leafWaterUpkeep, sunlight * sunlightMultiplier)l
+
+r(a, water, c, glucose, d) < l > s(sunlight) : water > 0 -> a(organSunlightDehydration, 0)l
+
+#symbols n
+#include autophagy (Necrose->n)
+
+#define dehydrationBufferSteps 3
+## D is an autophagy switch, which triggers death based on dehydration
+#symbols D
+D(bufferLeft) > r(a, water, c, glucose, d) : waterStarved  && bufferLeft <= 0 -> a(water, glucose)n
+D(bufferLeft) > r(a, water, c, glucose, d) : waterStarved  && bufferLeft >  0 -> a(organFlatWaterUpkeep, 0)D(bufferLeft - 1)
+D(bufferLeft) > r(a, water, c, glucose, d) : !waterStarved && bufferLeft < dehydrationBufferSteps -> a(organFlatWaterUpkeep, 0)D(bufferLeft + 1)
+D(bufferLeft) > r(a, water, c, glucose, d) : !waterStarved && bufferLeft >= dehydrationBufferSteps -> a(organFlatWaterUpkeep, 0)D(dehydrationBufferSteps)
+
+## d is a precursor to the dehydration switch, which will wait a bit before triggering death
+#define stepsTillDehydration 5
+#export DehydrationController d
+#symbols d
+d -> d(stepsTillDehydration)
+d(x) : x > 0 -> d(x - 1)
+d(x) : x <= 0 -> D(dehydrationBufferSteps)

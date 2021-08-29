@@ -702,9 +702,6 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Users\Dan Miller\Documents\Unity Editor Installs\2020.3.15f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
-    <Reference Include="com.dman.LSystem">
-      <HintPath>Library\ScriptAssemblies\com.dman.LSystem.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Collections">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
@@ -713,9 +710,6 @@
     </Reference>
     <Reference Include="UniRx">
       <HintPath>Library\ScriptAssemblies\UniRx.dll</HintPath>
-    </Reference>
-    <Reference Include="ReactiveVariables">
-      <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
     </Reference>
     <Reference Include="UnityFx.Outline">
       <HintPath>Library\ScriptAssemblies\UnityFx.Outline.dll</HintPath>
@@ -764,6 +758,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="com.dman.LSystem.csproj">
+      <Project>{DD72B859-1013-9260-F42D-99C160940558}</Project>
+      <Name>com.dman.LSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="ReactiveVariables.csproj">
+      <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
+      <Name>ReactiveVariables</Name>
+    </ProjectReference>
     <ProjectReference Include="Tiling.csproj">
       <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
       <Name>Tiling</Name>

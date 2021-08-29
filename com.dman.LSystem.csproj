@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,10 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelKernelDiffuser.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Token.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\NativeVoxels\VolumetricWorldVoxelLayout.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\ErroredCompletable.cs" />
@@ -78,6 +82,7 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\TurtleMeshOperations.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemBehavior.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\FileLinker.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\LayerModificationCommandPlaybackJob.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\CompletableHandle.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleOrganTemplate.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\BasicRule.cs" />
@@ -97,6 +102,7 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\ParsedRule.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\InMemoryFileProvider.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\IncludeLink.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelDataCopyJob.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\InputSymbol.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Sunlight\SunlightCamera.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleState.cs" />
@@ -106,13 +112,17 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\StringSegment.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\CustomRules\SunlightExposurePreProcessRule.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\RuleParser.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VolumetricResourceLayer.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\IFileProvider.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\GlobalCoordinator\GlobalLSystemCoordinator.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelAdjacencyDiffuser.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\NativeVertexDatum.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\JaggedNativeArray.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleOperationSet.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\NativeVoxels\VoxelWorldIndexes.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemEvaluator\LSystemStepper.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\Builtin\OrganIdentifyingLibrary.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\NativeVoxels\VoxelWorldVolumetricLayerData.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\VolumetricWorldNativeWritableHandle.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\LinkedFileSet.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\TurtleRotateOperations.cs" />
@@ -123,10 +133,12 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\NativeCollections\CountByDistinct.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ReplacementSymbolGenerator.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemRuntimeException.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelAdjacencyByVoxelConstantDiffuser.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\RuleOutcome.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\Builtin\DiffusionLibrary.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\LSystemEvaluator\LSystemSymbolReplacementCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\RuntimeParameterAndDefault.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\LayerModificationCommand.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\LSystemObjectRegistry.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\Turtles\TurtleStringReadingCompletable.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\TurtleScaleOperations.cs" />
@@ -135,6 +147,7 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\Builtin\BuiltinLibraries.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\CustomRules\NativeArrayMultiContainsJob.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\Linker\ParsedFile.cs" />
+    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\VolumetricResource\TurtleVolumetricResourceDiffusionOperationSet.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemCompiler\TokenExpression.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\ThreadBouncer\NativeArrayNativeDisposableAdapter.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\CustomRules\AutophagyPostProcess.cs" />
@@ -163,16 +176,6 @@
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\EntityInstantiator\TurtleSpawnEntitiesInstantiator.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\ArrayParameterRepresenation.cs" />
     <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\TurtleBendTowardsOperationSet.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\LayerModificationCommand.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VolumetricResourceLayer.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\NativeVoxels\VoxelWorldVolumetricLayerData.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelKernelDiffuser.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelAdjacencyDiffuser.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\LayerModificationCommandPlaybackJob.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelDataCopyJob.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\Layers\VoxelAdjacencyByVoxelConstantDiffuser.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\SystemRuntime\VolumetricData\NativeVoxels\VoxelWorldIndexes.cs" />
-    <Compile Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\UnityObjects\TurtleOperations\VolumetricResource\TurtleVolumetricResourceDiffusionOperationSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\source\Game-Dev\Plant Creator\Packages\com.dman.l-system\Runtime\com.dman.l-system.asmdef" />
@@ -843,9 +846,6 @@
     <Reference Include="ObjectSets">
       <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
     </Reference>
-    <Reference Include="ReactiveVariables">
-      <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Entities">
       <HintPath>Library\ScriptAssemblies\Unity.Entities.dll</HintPath>
     </Reference>
@@ -863,6 +863,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="ReactiveVariables.csproj">
+      <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
+      <Name>ReactiveVariables</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

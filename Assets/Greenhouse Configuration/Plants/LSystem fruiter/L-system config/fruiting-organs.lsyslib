@@ -30,8 +30,7 @@
 
 V -> V(0, flowerStalkLength)
 
- r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 && useGlucose -> a(-glucose/2, -glucose/2)V(progress + glucose/2, x)
- r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 &&   useWater -> a(-  water/2, -  water/2)V(progress +   water/2, x)
+ r(a, water, c, glucose, d) < V(progress, x) : progress < 1 && x >  0 && glucose > 0.1 -> a(0, -glucose/2)V(progress + glucose/2, x)
  r(a, water, c, glucose, d) < V(progress, x) : progress >=1 && x >  0 -> $(0.1)FV(progress - 1, x - 1)
  
 P(flowerFailureChance)     | Hr(a, water, c, glucose, d) < V(progress, x) -> i(0)cB(0)
@@ -54,8 +53,7 @@ r(a, water, c, glucose, d) < c -> c
 #export FruitOrgan D
 #symbols D
 #matches D
-r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && useGlucose -> a(-glucose/2, -glucose/2)D(y, x + glucose/2)
-r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && useWater   -> a(-  water/2, -  water/2)D(y, x +   water/2)
+r(a, water, c, glucose, d)C(bit) < D(y, x)     : x <  fruitSize && glucose > 0.1 -> a(0, -glucose/2)D(y, x + glucose/2)
 
 $(a) > C(bit)D(y, x) -> $(x * fruitBendFactor)
 #define missileBendFactor 0.1
@@ -70,8 +68,7 @@ $(a) > B(progress) -> $(0.1 + progress * missileBendFactor)
 #symbols K
 #matches K
 #immature K
-r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge &&   useWater -> a(-  water/2, -  water/2)K(y, x +   water/2)
-r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && useGlucose -> a(-glucose/2, -glucose/2)K(y, x + glucose/2)
+r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && glucose > 0.1 -> a(0, -glucose/2)K(y, x + glucose/2)
                           C(bit) < K(y, x) : x >= flowerAge && bit >= 1 ->
 
 #define bombCost 100
@@ -84,8 +81,7 @@ r(a, water, c, glucose, d)C(bit) < K(y, x) : x <  flowerAge && useGlucose -> a(-
 #export BombPlaceholder n
 #symbols Bbn
 #matches B
-r(a, water, c, glucose, d) < B(progress) : progress < 1 &&   useWater -> a(-  water/2, -  water/2)B(progress + (  water/2)/bombCost)
-r(a, water, c, glucose, d) < B(progress) : progress < 1 && useGlucose -> a(-glucose/2, -glucose/2)B(progress + (glucose/2)/bombCost)
+r(a, water, c, glucose, d) < B(progress) : progress < 1 && glucose > 0.1 -> a(0, -glucose/2)B(progress + (glucose/2)/bombCost)
 
 
 r(a, water, c, glucose, d) < B(progress) : progress >= 1 -> bn(progress)B(0)

@@ -10,6 +10,7 @@ namespace Simulation.Plants
         public GameObject prefabRoot;
 
         public int maximumConsecutiveEmptyUpdates = 10;
+        public int minimumVertexCountRequiredToBeEmpty = 5;
 
         private int numberOfEmptyUpdates = 0;
 
@@ -26,7 +27,7 @@ namespace Simulation.Plants
         private void SystemWasUpdated()
         {
             var mesh = GetComponent<MeshFilter>();
-            if (mesh.mesh.vertexCount < 5)
+            if (mesh.mesh.vertexCount < minimumVertexCountRequiredToBeEmpty)
             {
                 numberOfEmptyUpdates++;
             }
