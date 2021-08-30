@@ -16,8 +16,8 @@ MonoBehaviour:
   - indicatorCharacter: 103
     diffusionConstant: 0
     diffusionDirection: 3
-    resourceLayer: {fileID: 11400000, guid: 7d1c86b62cef69f4f9387ab6884a109b, type: 2}
+    resourceLayer: {fileID: 11400000, guid: 3c759f00a41e5ac429a309b9a3c06c32, type: 2}
   - indicatorCharacter: 104
     diffusionConstant: 0.3
     diffusionDirection: 1
-    resourceLayer: {fileID: 11400000, guid: 7d1c86b62cef69f4f9387ab6884a109b, type: 2}
+    resourceLayer: {fileID: 11400000, guid: 3c759f00a41e5ac429a309b9a3c06c32, type: 2}

@@ -14,13 +14,11 @@ namespace Simulation.VoxelLayers
     {
         [Range(0, 1)]
         public float dispersalFactor;
-        public TerrainBoundVolumetricResourceLayer resourceLayerToAdjust;
+        public TerrainBoundDispersalEffect dispersalEffect;
 
         private void Update()
         {
-            resourceLayerToAdjust.dispersalAdjustmentFactor = dispersalFactor;
+            dispersalEffect.dispersalAdjustmentFactor = dispersalFactor;
         }
-
-
     }
 }
