@@ -1,42 +1,76 @@
 ﻿using Dman.LSystem.SystemRuntime.VolumetricData;
 using Dman.LSystem.SystemRuntime.VolumetricData.Layers;
+using Dman.LSystem.SystemRuntime.VolumetricData.NativeVoxels;
+using Environment;
+using Simulation.VoxelLayers;
 using Unity.Collections;
 using Unity.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.VFX;
 
 namespace Simulation
 {
-    [RequireComponent(typeof(VisualEffect))]
     public class DamagedVoxelsVFXBinder : MonoBehaviour
     {
         public OrganDamageWorld damageWorld;
         public OrganVolumetricWorld durabilityWorld;
-        public Material damageShaderMaterial;
-        public Material dirtDisplayMaterial;
 
         public VolumetricResourceLayer wetnessLayer;
+
 
         public string damageTextureName;
         public string durabilityTextureName;
         public string wetnessTextureName;
 
+        public string rainTextureName;
+        public RainToTerrainEffect rainEffect;
+
+        public string terrainHeightTextureName;
+        public PerlinSampler terrainHeights;
+
         public string voxelWorldSizeName;
         public string voxelResolutionName;
         public string voxelWorldOriginName;
 
-        private VisualEffect effect => this.GetComponent<VisualEffect>();
+        public Material damageShaderMaterial;
+        public Material dirtDisplayMaterial;
+        public VisualEffect volumetricEffect;
+        public VisualEffect surfaceEffect;
 
 
         private Texture3D damageTexture;
         private Texture3D durabilityTexture;
         private Texture3D wetnessTexture;
+        private Texture2D surfaceRainTexture;
+        private Texture2D surfaceTerrainHeightTexture;
 
         private void Awake()
         {
             SetupVoxelTexture();
             damageWorld.onDamageDataUpdated += DamageDataChanged;
             durabilityWorld.volumeWorldChanged += DamageDataChanged;
+        }
+
+        private void Start()
+        {
+            var voxelLayout = durabilityWorld.VoxelLayout;
+            var heightData = new NativeArray<float>(voxelLayout.totalTiles, Allocator.TempJob);
+            var sampler = terrainHeights.AsNativeCompatible();
+            var heightCalculator = new SamplePerlinToData
+            {
+                surfaceDataOutput = heightData,
+                layout = voxelLayout,
+                sampler = sampler,
+            };
+
+            var heightCalcDep = heightCalculator.Schedule(voxelLayout.totalTiles, 100);
+            heightCalcDep.Complete();
+            surfaceTerrainHeightTexture.SetPixelData<float>(heightData, 0);
+            surfaceTerrainHeightTexture.Apply();
+
+            heightData.Dispose();
+            sampler.Dispose();
         }
 
         private void Update()
@@ -66,10 +100,11 @@ namespace Simulation
                 };
                 var wetnessDep = wetnessCopyJob.Schedule(voxelLayout.totalVoxels, 1000);
 
+
                 damageTexture.SetPixelData<float>(damageData, 0);
                 damageTexture.Apply();
 
-                // TODO: make this async
+                // TODO: make this async?
                 durabilityDep.Complete();
                 durabilityTexture.SetPixelData<float>(durabilityData, 0);
                 durabilityTexture.Apply();
@@ -79,6 +114,17 @@ namespace Simulation
                 wetnessTexture.SetPixelData<float>(wetnessData, 0);
                 wetnessTexture.Apply();
                 wetnessData.Dispose();
+
+                var rainAmount = rainEffect.GetRainAmountArrayWritable();
+                rainEffect.GetDependencyNeededToRead().Complete();
+                float max = 0;
+                foreach (var rainDot in rainAmount)
+                {
+                    max = math.max(rainDot, max);
+                }
+                Debug.Log("max rain: " + max);
+                surfaceRainTexture.SetPixelData(rainAmount, 0);
+                surfaceRainTexture.Apply();
 
             }
         }
@@ -106,20 +152,31 @@ namespace Simulation
             }
             damageTexture = new Texture3D(textureSize.x, textureSize.y, textureSize.z, TextureFormat.RFloat, 0);
             damageTexture.filterMode = FilterMode.Point;
-            effect.SetTexture(damageTextureName, damageTexture);
 
             durabilityTexture = new Texture3D(textureSize.x, textureSize.y, textureSize.z, TextureFormat.RFloat, 0);
             durabilityTexture.filterMode = FilterMode.Point;
-            effect.SetTexture(durabilityTextureName, durabilityTexture);
 
             wetnessTexture = new Texture3D(textureSize.x, textureSize.y, textureSize.z, TextureFormat.RFloat, 0);
             wetnessTexture.filterMode = FilterMode.Point;
-            dirtDisplayMaterial.SetTexture(wetnessTextureName, wetnessTexture);
+
+            surfaceRainTexture = new Texture2D(textureSize.x, textureSize.z, TextureFormat.RFloat, false);
+            surfaceRainTexture.filterMode = FilterMode.Point;
+
+            surfaceTerrainHeightTexture = new Texture2D(textureSize.x, textureSize.z, TextureFormat.RFloat, false);
+            surfaceTerrainHeightTexture.filterMode = FilterMode.Bilinear;
 
 
-            effect.SetVector3(voxelWorldSizeName, voxels.worldSize);
-            effect.SetVector3(voxelResolutionName, voxels.worldResolution);
-            effect.SetVector3(voxelWorldOriginName, voxels.voxelOrigin);
+            volumetricEffect.SetTexture(durabilityTextureName, durabilityTexture);
+            volumetricEffect.SetTexture(damageTextureName, damageTexture);
+            volumetricEffect.SetVector3(voxelWorldSizeName, voxels.worldSize);
+            volumetricEffect.SetVector3(voxelResolutionName, voxels.worldResolution);
+            volumetricEffect.SetVector3(voxelWorldOriginName, voxels.voxelOrigin);
+
+            surfaceEffect.SetTexture(rainTextureName, surfaceRainTexture);
+            surfaceEffect.SetTexture(terrainHeightTextureName, surfaceTerrainHeightTexture);
+            surfaceEffect.SetVector3(voxelWorldSizeName, voxels.worldSize);
+            surfaceEffect.SetVector3(voxelResolutionName, voxels.worldResolution);
+            surfaceEffect.SetVector3(voxelWorldOriginName, voxels.voxelOrigin);
 
             damageShaderMaterial.SetTexture(damageTextureName, damageTexture);
             damageShaderMaterial.SetTexture(durabilityTextureName, durabilityTexture);
@@ -131,6 +188,25 @@ namespace Simulation
             dirtDisplayMaterial.SetVector(voxelWorldSizeName, voxels.worldSize);
             dirtDisplayMaterial.SetVector(voxelResolutionName, (Vector3)voxels.worldResolution);
             dirtDisplayMaterial.SetVector(voxelWorldOriginName, voxels.voxelOrigin);
+            dirtDisplayMaterial.SetTexture(wetnessTextureName, wetnessTexture);
+        }
+
+        struct SamplePerlinToData : IJobParallelFor
+        {
+            public NativeArray<float> surfaceDataOutput;
+            [ReadOnly]
+            public PerlinSamplerNativeCompatable sampler;
+            public VolumetricWorldVoxelLayout layout;
+
+            public void Execute(int index)
+            {
+                var tileIndex = new TileIndex(index);
+                var tileCoordinate = layout.SurfaceGetCoordinatesFromTileIndex(tileIndex);
+                var tilePosition = layout.SurfaceToCenterOfTile(tileCoordinate);
+                var sampleHeight = sampler.SampleNoise(tilePosition);
+
+                surfaceDataOutput[tileIndex.Value] = sampleHeight;
+            }
         }
     }
 }

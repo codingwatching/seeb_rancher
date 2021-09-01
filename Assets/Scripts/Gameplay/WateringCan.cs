@@ -3,6 +3,7 @@ using Dman.LSystem.SystemRuntime.VolumetricData.Layers;
 using Dman.LSystem.SystemRuntime.VolumetricData.NativeVoxels;
 using Dman.ReactiveVariables;
 using Environment;
+using Simulation.VoxelLayers;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -14,32 +15,29 @@ namespace Gameplay
 {
     public class WateringCan : MonoBehaviour
     {
-        public VolumetricResourceLayer waterLayer;
-        public OrganVolumetricWorld volumeWorld;
+        public RainToTerrainEffect rainEffect;
         public PerlinSampler terrainSampler;
+        public OrganVolumetricWorld volumeWorld;
 
         public float waterFlowRate;
-        public float maximumWaterAmount;
         public Vector2Int voxelWaterSize;
-        public int wateringDepth = 1;
         public Transform wateringCanRenderer;
         public bool isWatering = true;
 
         public FloatVariable waterLeft;
 
-        private NativeArray<float> actualAmountWatered;
         private JobHandle? wateringDep;
+
+        private WateringCanEffect lastEffect;
 
         private void Awake()
         {
-            actualAmountWatered = new NativeArray<float>(1, Allocator.Persistent);
         }
 
         private void OnDestroy()
         {
             wateringDep?.Complete();
             wateringDep = null;
-            actualAmountWatered.Dispose();
         }
 
         // Update is called once per frame
@@ -52,36 +50,23 @@ namespace Gameplay
             {
                 wateringDep.Value.Complete();
                 wateringDep = null;
-                waterLeft?.Add(-actualAmountWatered[0]);
             }
-
+            WateringCanEffect nextEffect;
             if (isWatering)
             {
-                var voxelData = volumeWorld.NativeVolumeData.data;
-                var nativeSampler = terrainSampler.AsNativeCompatible();
-
-                actualAmountWatered[0] = 0;
-
-                var addJob = new SurfaceAddJob
+                nextEffect = new WateringCanEffect
                 {
-                    voxelData = voxelData,
-                    totalAmountAdded = actualAmountWatered,
-
-                    sampler = nativeSampler,
-                    extraWateringDepth = wateringDepth - 1,
-
-                    layout = layout,
-                    addLayer = waterLayer.voxelLayerId,
                     minTile = minTilePosition,
-                    tileRectSize = voxelWaterSize,
-                    amountPerTile = waterFlowRate * Time.deltaTime / (voxelWaterSize.x * voxelWaterSize.y * wateringDepth),
-                    capPerTile = maximumWaterAmount,
+                    maxTile = minTilePosition + voxelWaterSize,
+                    waterAmountPerTile = waterFlowRate / (voxelWaterSize.x * voxelWaterSize.y)
                 };
-                wateringDep = addJob.Schedule(volumeWorld.NativeVolumeData.dataWriterDependencies);
-                volumeWorld.NativeVolumeData.RegisterWritingDependency(wateringDep.Value);
-
-                nativeSampler.Dispose(wateringDep.Value);
             }
+            else
+            {
+                nextEffect = WateringCanEffect.Empty;
+            }
+
+            ApplyWateringCanEffect(nextEffect);
 
             var tileCenter = minTilePosition + (voxelWaterSize / 2);
             var tilePos = layout.SurfaceToCenterOfTile(tileCenter);
@@ -89,6 +74,39 @@ namespace Gameplay
             var pointInSpace = new Vector3(tilePos.x, sampleAtPoint, tilePos.y);
 
             wateringCanRenderer.position = pointInSpace;
+        }
+
+        private void OnDisable()
+        {
+            isWatering = false;
+            ApplyWateringCanEffect(WateringCanEffect.Empty);
+        }
+
+        private void ApplyWateringCanEffect(WateringCanEffect nextEffect)
+        {
+            var layout = volumeWorld.VoxelLayout;
+
+            if (lastEffect.waterAmountPerTile != 0 || nextEffect.waterAmountPerTile != 0)
+            {
+                var nativeSampler = terrainSampler.AsNativeCompatible();
+                var rainData = rainEffect.GetRainAmountArrayWritable();
+
+                var rainJob = new SquareWateringCanTileAssignmentJob
+                {
+                    rainFactorPerTile = rainData,
+                    layout = layout,
+                    lastEffect = lastEffect,
+                    currentEffect = nextEffect,
+                };
+                wateringDep = rainJob.Schedule(layout.totalTiles, 100, rainEffect.GetDependencyNeededToWrite());
+
+                rainEffect.RegisterWritingDependencyOnRainAmount(wateringDep.Value);
+                nativeSampler.Dispose(wateringDep.Value);
+
+                waterLeft?.Add(-nextEffect.TotalWaterAmount() * Time.deltaTime);
+
+                lastEffect = nextEffect;
+            }
         }
 
         private void OnDrawGizmosSelected()
@@ -124,58 +142,53 @@ namespace Gameplay
         }
 
 
-        struct SurfaceAddJob : IJob
+        struct WateringCanEffect
         {
-            public VoxelWorldVolumetricLayerData voxelData;
-            public NativeArray<float> totalAmountAdded;
-
-            [ReadOnly]
-            public PerlinSamplerNativeCompatable sampler;
-
-            public VolumetricWorldVoxelLayout layout;
-            public int addLayer;
+            public static readonly WateringCanEffect Empty = new WateringCanEffect
+            {
+                minTile = new Vector2Int(0, 0),
+                maxTile = new Vector2Int(0, 0),
+                waterAmountPerTile = 0
+            };
 
             public Vector2Int minTile;
-            public Vector2Int tileRectSize;
-            public int extraWateringDepth;
-            public float amountPerTile;
-            public float capPerTile;
-            public void Execute()
+            public Vector2Int maxTile;
+            public float waterAmountPerTile;
+            public bool ContainsTile(Vector2Int tileCoordiante)
             {
-                float totalAdded = 0;
-                for (int x = 0; x < tileRectSize.x; x++)
+                return (tileCoordiante.x >= minTile.x && tileCoordiante.x < maxTile.x) &&
+                    (tileCoordiante.y >= minTile.y && tileCoordiante.y < maxTile.y);
+            }
+
+            public float TotalWaterAmount()
+            {
+                var size = maxTile - minTile;
+                return (size.x * size.y * waterAmountPerTile);
+            }
+        }
+
+        struct SquareWateringCanTileAssignmentJob : IJobParallelFor
+        {
+            public NativeArray<float> rainFactorPerTile;
+
+            public VolumetricWorldVoxelLayout layout;
+
+            public WateringCanEffect currentEffect;
+            public WateringCanEffect lastEffect;
+
+            public void Execute(int index)
+            {
+                var tileIndex = new TileIndex(index);
+                var tileCoordinate = layout.SurfaceGetCoordinatesFromTileIndex(tileIndex);
+
+                if (currentEffect.ContainsTile(tileCoordinate))
                 {
-                    for (int y = 0; y < tileRectSize.y; y++)
-                    {
-                        var tileCoord = minTile + new Vector2Int(x, y);
-                        var tilePos = layout.SurfaceToCenterOfTile(tileCoord);
-                        var sampleAtPoint = sampler.SampleNoise(tilePos);
-
-                        var pointInSpace = new Vector3(tilePos.x, sampleAtPoint, tilePos.y);
-                        var rootVoxelCoord = layout.GetVoxelCoordinates(pointInSpace);
-
-                        var minHeight = math.max(0, rootVoxelCoord.y - extraWateringDepth);
-                        var maxHeight = rootVoxelCoord.y;
-                        for (int height = minHeight; height <= maxHeight; height++)
-                        {
-                            var currentVoxelCoord = new Vector3Int(rootVoxelCoord.x, height, rootVoxelCoord.z);
-
-                            var voxelIndex = layout.GetVoxelIndexFromCoordinates(currentVoxelCoord);
-
-                            var currentVoxelAmount = voxelData[voxelIndex, addLayer];
-                            var nextAmount = math.min(currentVoxelAmount + amountPerTile, capPerTile);
-                            if (nextAmount <= currentVoxelAmount)
-                            {
-                                continue;
-                            }
-
-                            voxelData[voxelIndex, addLayer] = nextAmount;
-                            totalAdded += nextAmount - currentVoxelAmount;
-                        }
-
-                    }
+                    rainFactorPerTile[tileIndex.Value] += currentEffect.waterAmountPerTile;
                 }
-                totalAmountAdded[0] = totalAdded;
+                if (lastEffect.ContainsTile(tileCoordinate))
+                {
+                    rainFactorPerTile[tileIndex.Value] -= lastEffect.waterAmountPerTile;
+                }
             }
         }
     }

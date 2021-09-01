@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\Simulation\VoxelLayers\TerrainBoundDispersalEffect.cs" />
     <Compile Include="Assets\Scripts\Simulation\VoxelLayers\TerrainBoundDiffusionEffect.cs" />
     <Compile Include="Assets\Scripts\Simulation\VoxelLayers\PerlinSampledVoxelAssignment.cs" />
+    <Compile Include="Assets\Scripts\Simulation\VoxelLayers\RainToTerrainEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Simulation\Simulation.asmdef" />
