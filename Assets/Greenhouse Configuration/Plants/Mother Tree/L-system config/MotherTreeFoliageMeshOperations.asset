@@ -18,6 +18,7 @@ MonoBehaviour:
     MeshVariants: []
     material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 2, y: 2, z: 2}
+    UseMeshOrigin: 0
     ParameterScale: 0
     ScaleIsAdditional: 0
     VolumetricScale: 0
@@ -26,10 +27,11 @@ MonoBehaviour:
     UseThickness: 0
     volumetricDurabilityValue: 0
   - Character: 76
-    MeshRef: {fileID: -5966198621110897880, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    MeshRef: {fileID: 2042079279535638571, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
     material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 3, y: 3, z: 3}
+    UseMeshOrigin: 0
     ParameterScale: 1
     ScaleIsAdditional: 1
     VolumetricScale: 0
@@ -38,10 +40,11 @@ MonoBehaviour:
     UseThickness: 0
     volumetricDurabilityValue: 0
   - Character: 108
-    MeshRef: {fileID: -5966198621110897880, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
+    MeshRef: {fileID: 2042079279535638571, guid: 5d000e0cba9032d4badb3af29f4d056f, type: 3}
     MeshVariants: []
     material: {fileID: 2100000, guid: 18f549c68959f5c469ce8ec897e18086, type: 2}
     IndividualScale: {x: 4, y: 4, z: 4}
+    UseMeshOrigin: 0
     ParameterScale: 1
     ScaleIsAdditional: 0
     VolumetricScale: 0

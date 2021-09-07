@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dirtCaster: {fileID: 11400000, guid: 19fe9ec4d02889e44bb766bcd6bd9665, type: 2}
   waterInventory: {fileID: 11400000, guid: 05bd41aecb0f4e5499145ba305447ba5, type: 2}
+  wateringCursor: {fileID: 21300000, guid: 2b96f73757c57654ca580427ea07af00, type: 3}

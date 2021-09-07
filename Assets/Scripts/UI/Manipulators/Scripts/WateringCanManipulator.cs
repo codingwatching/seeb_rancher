@@ -17,6 +17,8 @@ namespace UI.Manipulators
         [SerializeField] public RaycastGroup dirtCaster;
         public FloatVariable waterInventory;
 
+        public Sprite wateringCursor;
+
         private ManipulatorController controller;
 
         private WateringCan wateringCan;
@@ -27,6 +29,7 @@ namespace UI.Manipulators
             Debug.Log("watering can manipulator opened");
 
             wateringCan = GameObject.FindObjectOfType<WateringCan>(true);
+            CursorTracker.SetCursor(wateringCursor);
 
             IsActive = true;
         }

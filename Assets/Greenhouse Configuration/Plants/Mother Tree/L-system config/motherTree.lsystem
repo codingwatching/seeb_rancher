@@ -1,4 +1,4 @@
-#axiom i(0)/(-50)@(1)qr(0.3, 0, 1000, 1, 20, 0, 100000)t(50)R(0)bS(3)FFFF[pm(10)&(90)i(0)s(0)L(5)][+(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)][-(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)]
+#axiom i(0)/(-50)@(1)qr(0.3, 0, 1000, 1, 20, 0, 100000)t(50)R(0)bwFFFF[pm(10)&(90)i(0)s(0)L(5)][+(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)][-(35)f(0)r(.1, 0, 1000, 0, 20, 0, 10000)o(0)R(0)T(5)]
 #iterations 3000
 
 #symbols +-/\&^F$@!`
@@ -21,11 +21,13 @@
 #define autophagicVirilityProduction .4
 
 
+
 ## flags set based on the pollination state
 #runtime hasAnther 1
 #runtime isPollinated 0
 
-#symbols SWQB
+#symbols WQB
+
 
 #symbols ra
 #matches r
@@ -42,18 +44,23 @@
 #symbols n
 #include autophagy (Necrose->n)
 
-
 #define useGlucose water > glucose && glucose > 0.1
 #define useWater glucose >= water && water > 0.1
 
+#include ../../shared-resource-controllers.lsyslib (RootWaterDiffuser->h)
+#symbols h
+#matches h
+## w is the root
+#symbols w
+w -> [i(0)+(180)~F~F~F~F~F~F~Fh(0)]
 
-S(x) -> a(x * simSpeed)S(x)
+
 ## t is a tuber that releases glucose slowly
 #symbols t
 t(x) : x > 0 -> a(0, simSpeed)t(x - simSpeed)
 t(x) : x <= 0 ->
 
-#symbols TFK
+#symbols TK
 #matches TK
 r(a, water, c, glucose, d, virility, e) < T(x) : water >= .1 && glucose >= .1 && x >  0 -> ~@(0.93)f(0)T(x - 1)
 
@@ -110,7 +117,7 @@ r(a, water, c, glucose, d, virility, e) < k(amt) : amt < flowerCost && useWater 
 
 ## R is the resource visualizer
 #symbols R
-r(a, water, c, glucose, d, virility, e) < R(x) -> R(virility)
+## r(a, water, c, glucose, d, virility, e) < R(x) -> R(virility)
 										  R(x) -> 
 
 ## ~ is a random kink

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: deecadc5706441648bb3de27486e06c5, type: 3}
-  m_Name: plumbooWater
+  m_Name: waterDiffuse
   m_EditorClassIdentifier: 
   volumetricInteractors:
-  - indicatorCharacter: 103
-    diffusionConstant: 0
-    diffusionDirection: 3
+  - indicatorCharacter: 104
+    diffusionConstant: 0.3
+    diffusionDirection: 1
     resourceLayer: {fileID: 11400000, guid: 3c759f00a41e5ac429a309b9a3c06c32, type: 2}

@@ -25,7 +25,6 @@
 #define defaultMaxGlucose 20
 
 
-
 ## glucose is used exlusively for new growth
 ## water is used by leaves to produce glucose with sunlight
 ## water is also used by organs (including leaves) to stay alive as maintenance
@@ -37,7 +36,6 @@
 
 ## floating variable which adjusts the simulation speed
 #runtime simSpeed 1
-
 
 
 ## variables controlled by genes
@@ -87,29 +85,20 @@ S(x) : x == shootHeight -> dr(0.1, 0, defaultMaxWater, 0, defaultMaxGlucose)
 
 ## R is the root
 #symbols R
-R -> [i(0)+(180)~F~F~F~F~F~F~Fb(0)h(0)]
-
-## b is the water producing root
-#symbols b
-b(x) -> a(x * simSpeed)b(x)
+R -> [i(0)+(180)~F~F~F~F~F~F~Fh(0)]
 
 ## g is the debugging water-producing signal
 #symbols g
 g(x) -> 
 
-#define waterDiffusionInMultiplier 50
-#define diffuseInAmount ((rootWater * waterDiffusionInMultiplier - water)/2)
-## h is the water consuming symbol in the root which transfers water via commands to the resource nodes
+#include ../../shared-resource-controllers.lsyslib (RootWaterDiffuser->h)
 #symbols h
-r(a, water, c, glucose, d) < h(rootWater) : diffuseInAmount > 0 -> a(diffuseInAmount, 0)h(rootWater - diffuseInAmount / waterDiffusionInMultiplier)
 
 ## T is a terminal bud
 #symbols T
 #matches T
 #immature T
 T(progress, x) : x < 0 -> T(progress, x + 1)
-
-
 
 
 r(a, water, c, glucose, d) < T(progress, x) : x < primaryBranchInternodes && x >= 0 && progress <  1 && glucose > 0.1 && waterIsPlentiful -> a(0, -glucose/2)T(progress + glucose/2, x)

@@ -1,0 +1,16 @@
+
+#symbols ra
+#matches r
+#include diffusion (Node->r) (Amount->a)
+
+#define waterDiffusionInMultiplier 50
+#define diffuseInAmount ((rootWater * waterDiffusionInMultiplier - water)/2)
+## h is the water consuming symbol in the root which transfers water via commands to the resource nodes
+#symbols h
+#export RootWaterDiffuser h
+
+r(a, water, c, d, e)       < h(rootWater) : diffuseInAmount > 0 -> a(diffuseInAmount, 0)h(rootWater - diffuseInAmount / waterDiffusionInMultiplier)
+r(a, water, c, d, e, f, g) < h(rootWater) : diffuseInAmount > 0 -> a(diffuseInAmount, 0)h(rootWater - diffuseInAmount / waterDiffusionInMultiplier)
+
+## if no parameter, then make sure to add one
+h -> h(0)
