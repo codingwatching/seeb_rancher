@@ -12,8 +12,10 @@ namespace Gameplay
         public BooleanVariable isWaveActive;
         public FloatReference simulationSpeed;
 
-        public float waveTime = 32f;
+        public float waveLength = 32f;
+        public float timeBetweenWaves = 64f;
         private float timeRemainingTillPhaseCompletion = -1;
+        private float timeRemainingTillForcedWave = -1;
 
 
         public string UniqueSaveIdentifier => "AssualtWaveCoordinator";
@@ -30,8 +32,13 @@ namespace Gameplay
                     if (pair.Current == true && pair.Current != pair.Previous)
                     {
                         this.WaveTriggered();
+                    }else if (pair.Current == false && pair.Current != pair.Previous)
+                    {
+                        this.WaveEnded(); 
                     }
                 }).AddTo(this);
+
+            this.WaveEnded();
         }
 
         private void OnDestroy()
@@ -40,20 +47,31 @@ namespace Gameplay
 
         private void WaveTriggered()
         {
-            this.timeRemainingTillPhaseCompletion = waveTime;
+            this.timeRemainingTillPhaseCompletion = waveLength;
+            timeRemainingTillForcedWave = -1;
+        }
+        private void WaveEnded()
+        {
+            timeRemainingTillForcedWave = timeBetweenWaves;
+            timeRemainingTillPhaseCompletion = -1;
         }
 
         private void Update()
         {
-            if (timeRemainingTillPhaseCompletion <= -1)
+            if (timeRemainingTillPhaseCompletion > -1)
             {
-                return;
-            }
-            timeRemainingTillPhaseCompletion -= Time.deltaTime * simulationSpeed.CurrentValue;
-            if (timeRemainingTillPhaseCompletion <= 0)
+                timeRemainingTillPhaseCompletion -= Time.deltaTime * simulationSpeed.CurrentValue;
+                if (timeRemainingTillPhaseCompletion <= 0)
+                {
+                    isWaveActive.SetValue(false);
+                }
+            }else if(timeRemainingTillForcedWave > -1)
             {
-                timeRemainingTillPhaseCompletion = -1;
-                isWaveActive.SetValue(false);
+                timeRemainingTillForcedWave -= Time.deltaTime * simulationSpeed.CurrentValue;
+                if (timeRemainingTillForcedWave <= 0)
+                {
+                    isWaveActive.SetValue(true);
+                }
             }
         }
 
