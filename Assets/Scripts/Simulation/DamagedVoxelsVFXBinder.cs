@@ -117,12 +117,7 @@ namespace Simulation
 
                 var rainAmount = rainEffect.GetRainAmountArrayWritable();
                 rainEffect.GetDependencyNeededToRead().Complete();
-                float max = 0;
-                foreach (var rainDot in rainAmount)
-                {
-                    max = math.max(rainDot, max);
-                }
-                Debug.Log("max rain: " + max);
+
                 surfaceRainTexture.SetPixelData(rainAmount, 0);
                 surfaceRainTexture.Apply();
 

@@ -484,7 +484,7 @@ TextureImporter:
         height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 4, z: 7, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -730,13 +730,13 @@ TextureImporter:
       name: UI_Wood_Circle_Border
       rect:
         serializedVersion: 2
-        x: 192
-        y: 288
-        width: 31
-        height: 31
+        x: 193
+        y: 289
+        width: 30
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 12, y: 12, z: 11, w: 11}
+      border: {x: 11, y: 11, z: 11, w: 11}
       outline: []
       physicsShape: []
       tessellationDetail: 0

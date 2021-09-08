@@ -13,9 +13,12 @@ namespace Gameplay
         public FloatReference simulationSpeed;
 
         public float waveLength = 32f;
-        public float timeBetweenWaves = 64f;
-        private float timeRemainingTillPhaseCompletion = -1;
-        private float timeRemainingTillForcedWave = -1;
+        public float waveCycleTotalLength = (64f + 32f);
+
+        public FloatReference timeInsideWaveCycle;
+
+        private float WaveStartTimeInsideCycle => waveCycleTotalLength - waveLength;
+        private float RecoveryStartTimeInsideCycle => 0;
 
 
         public string UniqueSaveIdentifier => "AssualtWaveCoordinator";
@@ -47,47 +50,43 @@ namespace Gameplay
 
         private void WaveTriggered()
         {
-            this.timeRemainingTillPhaseCompletion = waveLength;
-            timeRemainingTillForcedWave = -1;
+            this.timeInsideWaveCycle.SetValue(WaveStartTimeInsideCycle);
         }
         private void WaveEnded()
         {
-            timeRemainingTillForcedWave = timeBetweenWaves;
-            timeRemainingTillPhaseCompletion = -1;
+            this.timeInsideWaveCycle.SetValue(RecoveryStartTimeInsideCycle);
         }
 
         private void Update()
         {
-            if (timeRemainingTillPhaseCompletion > -1)
+            var oldWaveActive = IsWaveActiveAtTime(timeInsideWaveCycle.CurrentValue);
+            var newValue = (timeInsideWaveCycle.CurrentValue + Time.deltaTime * simulationSpeed.CurrentValue) % waveCycleTotalLength;
+            timeInsideWaveCycle.SetValue(newValue);
+
+            var nextWaveActive = IsWaveActiveAtTime(newValue);
+            if(oldWaveActive ^ nextWaveActive)
             {
-                timeRemainingTillPhaseCompletion -= Time.deltaTime * simulationSpeed.CurrentValue;
-                if (timeRemainingTillPhaseCompletion <= 0)
-                {
-                    isWaveActive.SetValue(false);
-                }
-            }else if(timeRemainingTillForcedWave > -1)
-            {
-                timeRemainingTillForcedWave -= Time.deltaTime * simulationSpeed.CurrentValue;
-                if (timeRemainingTillForcedWave <= 0)
-                {
-                    isWaveActive.SetValue(true);
-                }
+                isWaveActive.SetValue(nextWaveActive);
             }
         }
+        
+        private bool IsWaveActiveAtTime(float currentTimeInWave)
+        {
+            var standardTime = currentTimeInWave % waveCycleTotalLength;
+            return standardTime >= WaveStartTimeInsideCycle;
+        }
+
 
         #region Saving
         [System.Serializable]
         class LevelStateSaved
         {
-            float timeTillWaveOver;
             public LevelStateSaved(AssualtWaveCoordinator source)
             {
-                timeTillWaveOver = source.timeRemainingTillPhaseCompletion;
             }
 
             public void Apply(AssualtWaveCoordinator target)
             {
-                target.timeRemainingTillPhaseCompletion = timeTillWaveOver;
             }
         }
 
