@@ -56,14 +56,19 @@ namespace Simulation.Plants.PlantTypes
             return plantController;
         }
 
+        public void ConfigureLSystemPrefab(LSystemBehavior lSystemContainer)
+        {
+            var turtler = lSystemContainer.GetComponent<TurtleInterpreterBehavior>();
+            turtler.operationSets.AddRange(uniqueTutleOperations);
+        }
+
         public override void ConfigureLSystemWithSeedling(
             LSystemBehavior lSystemContainer,
             CompiledGeneticDrivers geneticDrivers,
             PollinationState pollination,
             bool sproutSeed)
         {
-            var turtler = lSystemContainer.GetComponent<TurtleInterpreterBehavior>();
-            turtler.operationSets.AddRange(uniqueTutleOperations);
+            ConfigureLSystemPrefab(lSystemContainer);
 
             // the reset will draw the global parameters from the planted L -system via ILSystemCompileTimeParameterGenerator
             lSystemContainer.SetSystem(lSystem);

@@ -8,6 +8,9 @@ namespace Environment
         public PerlinSampler sampler;
         public Vector2 sampleOffsetFromTransformCenter = Vector2.zero;
         public float yOffset = 0f;
+        public bool isMobile = false;
+
+
         private void Awake()
         {
             RepositionSelf();
@@ -22,7 +25,22 @@ namespace Environment
             RepositionSelf();
         }
 
-        private void RepositionSelf()
+        private Vector3 lastPosition;
+        private void Update()
+        {
+            if (!isMobile)
+            {
+                return;
+            }
+            if(lastPosition == transform.position)
+            {
+                return;
+            }
+            RepositionSelf();
+            lastPosition = transform.position;
+        }
+
+        public void RepositionSelf()
         {
             var position = transform.position;
             var samplePoint = transform.TransformPoint(sampleOffsetFromTransformCenter.x, 0, sampleOffsetFromTransformCenter.y);

@@ -7,6 +7,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using Dman.SceneSaveSystem;
 
 namespace Simulation.DOTS.PlantWeapons.Bomb
 {
@@ -22,11 +23,26 @@ namespace Simulation.DOTS.PlantWeapons.Bomb
         protected override void OnCreate()
         {
             base.OnCreate();
-            surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
-            durabilityWorld = GameObject.FindObjectOfType<OrganVolumetricWorld>();
+            SaveSystemHooks.Instance.PostLoad += GrabGameObjectSingletons;
+            GrabGameObjectSingletons();
+
             commandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
 
             surfaceTargets = GetEntityQuery(typeof(HurtOnVoxelMatch), typeof(Translation), typeof(HealthComponent), typeof(TreatVoxelsAsSurface));
+
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            SaveSystemHooks.Instance.PostLoad -= GrabGameObjectSingletons;
+        }
+
+
+        private void GrabGameObjectSingletons()
+        {
+            surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
+            durabilityWorld = GameObject.FindObjectOfType<OrganVolumetricWorld>();
         }
 
         // TODO: if this system is used more heavily (many targets, many attackers), would be faster to sort into voxel grid probably

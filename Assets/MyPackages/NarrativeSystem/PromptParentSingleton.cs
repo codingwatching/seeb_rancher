@@ -9,7 +9,6 @@ namespace Dman.NarrativeSystem
     public class PromptParentSingleton : MonoBehaviour, ISaveableData
     {
         public GameNarrative narrative;
-        public IntVariable phaseVariable;
         public EventGroup conversationCheckTrigger;
 
         public static PromptParentSingleton Instance;
@@ -18,17 +17,6 @@ namespace Dman.NarrativeSystem
         {
             conversationCheckTrigger.OnEvent += ConversationCheckTriggered;
             narrative.Init();
-            phaseVariable.Value
-                .TakeUntilDestroy(this)
-                .Pairwise()
-                .Subscribe(pair =>
-                {
-                    if (pair.Current - pair.Previous != 1)
-                    {
-                        return;
-                    }
-                    conversationCheckTrigger.TriggerEvent();
-                }).AddTo(this);
             Instance = this;
         }
         private void OnDestroy()

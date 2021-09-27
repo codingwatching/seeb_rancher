@@ -22,7 +22,20 @@ MonoBehaviour:
       m_Calls: []
   onCompleted:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: f7c40f2b42f5e14498c291612d6eb28c, type: 2}
+        m_TargetAssemblyTypeName: Dman.ReactiveVariables.GenericVariable`1[[System.Single,
+          mscorlib
+        m_MethodName: SetValue
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   plantType: {fileID: 11400000, guid: 0cd383bd8cd827141a9f20b6f3162986, type: 2}
   seedNum: 3
-  seedBucketDescription: BUSH
+  seedBucketDescription: big bush

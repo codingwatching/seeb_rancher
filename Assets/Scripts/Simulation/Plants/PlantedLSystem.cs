@@ -359,6 +359,7 @@ namespace Simulation.Plants
                 var plantTypeRegistry = RegistryRegistry.GetObjectRegistry<BasePlantType>();
                 target.plantType = (LSystemPlantType)(plantTypeId == -1 ? null : plantTypeRegistry.GetUniqueObjectFromID(plantTypeId));
                 target.pollinationState = pollination;
+                target.plantType.ConfigureLSystemPrefab(target.lSystemManager);
             }
         }
 

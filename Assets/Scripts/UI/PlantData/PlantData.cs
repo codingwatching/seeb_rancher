@@ -12,7 +12,6 @@ namespace UI.PlantData
 {
     public class PlantData : MonoBehaviour
     {
-        public IntReference levelPhase;
         public GameObjectVariable selectedPlant;
         public ScriptableObjectVariable manipulatorVariable;
         public PollinatePlantManipulator pollinator;
@@ -46,14 +45,6 @@ namespace UI.PlantData
                     {
                         RebuildPlantDataViewUI(plantContainer);
                     }
-                }).AddTo(this);
-
-            levelPhase.ValueChanges
-                .TakeUntilDisable(this)
-                .Subscribe(pair =>
-                {
-                    // deselect on phase change
-                    selectedPlant.SetValue(null);
                 }).AddTo(this);
         }
 
