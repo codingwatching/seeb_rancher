@@ -1,4 +1,5 @@
-﻿using Dman.LSystem.SystemRuntime.NativeCollections.NativeVolumetricSpace;
+﻿using Dman.LSystem;
+using Dman.LSystem.SystemRuntime.NativeCollections.NativeVolumetricSpace;
 using Dman.LSystem.SystemRuntime.VolumetricData;
 using Dman.LSystem.SystemRuntime.VolumetricData.Layers;
 using Dman.LSystem.SystemRuntime.VolumetricData.NativeVoxels;
@@ -49,7 +50,7 @@ namespace Simulation.VoxelLayers
             diffusionWeightsByVoxelIndex.Dispose();
         }
 
-        public override bool ApplyEffectToLayer(DoubleBuffered<float> layerData, VolumetricWorldVoxelLayout voxelLayout, float deltaTime, ref JobHandle dependecy)
+        public override bool ApplyEffectToLayer(DoubleBuffered<float> layerData, VoxelWorldVolumetricLayerData readonlyLayerData, float deltaTime, ref JobHandleWrapper dependecy)
         {
             if (diffusionWeightComputeJob.HasValue)
             {
@@ -58,7 +59,7 @@ namespace Simulation.VoxelLayers
             }
 
             VoxelAdjacencyByVoxelConstantDiffuser.ComputeDiffusion(
-                voxelLayout,
+                readonlyLayerData.VoxelLayout,
                 layerData,
                 diffusionWeightsByVoxelIndex,
                 0.01f,

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\ForceHighlightSeedSlot.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\CreateSeebsPrompt.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
@@ -83,14 +80,11 @@
     <None Include="Assets\External\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\External\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\External\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\External\BOXOPHOBIC\Polyverse Skies\Core\Shaders\Simple.shader" />
     <None Include="Assets\External\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\External\BOXOPHOBIC\Polyverse Skies\Generator\Shaders\Rendering Clouds.shader" />
     <None Include="Assets\External\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\External\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\External\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\External\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\External\BOXOPHOBIC\Polyverse Skies\Core\Shaders\Standard.shader" />
     <None Include="Assets\External\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -962,10 +956,6 @@
       <Project>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</Project>
       <Name>Narrative</Name>
     </ProjectReference>
-    <ProjectReference Include="Boxophobic.PolyverseSkies.Scripts.csproj">
-      <Project>{5E7C3AD1-3AE2-6B3F-824F-18E8CD5517B3}</Project>
-      <Name>Boxophobic.PolyverseSkies.Scripts</Name>
-    </ProjectReference>
     <ProjectReference Include="ReactiveVariablesEditor.csproj">
       <Project>{D3C344F2-4CAB-9A39-7532-349426063E50}</Project>
       <Name>ReactiveVariablesEditor</Name>
@@ -978,25 +968,9 @@
       <Project>{F4433834-85A1-FB7C-72C6-FBB4329017A7}</Project>
       <Name>DefaultEditorScripts</Name>
     </ProjectReference>
-    <ProjectReference Include="Boxophobic.PolyverseSkies.Runtime.csproj">
-      <Project>{E4911C40-4FB2-D2BC-584E-2A7CC5EFBFEB}</Project>
-      <Name>Boxophobic.PolyverseSkies.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.Utils.Editor.csproj">
-      <Project>{570204B3-3619-D382-3F19-F9733D7F0718}</Project>
-      <Name>Boxophobic.Utils.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Interfaces.csproj">
       <Project>{B8DA60C1-E8E9-30EA-2FAD-1F14130622C2}</Project>
       <Name>Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
-      <Project>{5FADB50E-40B4-6EE9-457D-6DB8B04208F3}</Project>
-      <Name>Boxophobic.Utils.Scripts</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.PolyverseSkies.Editor.csproj">
-      <Project>{D10ABD44-E58F-D54A-49EC-336B68228428}</Project>
-      <Name>Boxophobic.PolyverseSkies.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Simulation.csproj">
       <Project>{E72381E0-56A9-8DED-43FF-076B18583E9F}</Project>

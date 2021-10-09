@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d9b60db9ff5dd43b64071d607bb521, type: 3}
+  m_Name: WaterResourceLayer
+  m_EditorClassIdentifier: 
+  voxelLayerId: 1
+  description: a layer of water
+  effects:
+  - {fileID: 11400000, guid: b3d1cfc1775ceb74aa52c8f29bc06ceb, type: 2}
+  - {fileID: 11400000, guid: 2eac58a3f4b18654992e1814caa90171, type: 2}
+  - {fileID: 11400000, guid: b04ea08d47bc6694d84c2918d2c86980, type: 2}

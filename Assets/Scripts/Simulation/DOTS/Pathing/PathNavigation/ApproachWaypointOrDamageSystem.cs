@@ -14,14 +14,21 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
     {
         private SurfaceDefinitionSingleton surfaceDefinition;
         private OrganVolumetricWorld durabilityWorld;
-        private OrganDamageWorld damageWorld;
+
+        private CommandBufferModifierHandle universalLayerWriter;
 
         protected override void OnCreate()
         {
             base.OnCreate();
             surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
             durabilityWorld = GameObject.FindObjectOfType<OrganVolumetricWorld>();
-            damageWorld = GameObject.FindObjectOfType<OrganDamageWorld>();
+
+            universalLayerWriter = durabilityWorld.GetCommandBufferWritableHandle();
+        }
+
+        protected override void OnDestroy()
+        {
+            durabilityWorld.DisposeWritableHandle(universalLayerWriter);
         }
 
         protected override void OnUpdate()
@@ -32,7 +39,9 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
             var patherHeight = surfaceDefinition.patherHeight;
             var layout = durabilityWorld.VoxelLayout;
 
-            var damageData = damageWorld.GetDamageValuesReadSafe();
+            var damageLayerId = durabilityWorld.damageLayer.voxelLayerId;
+
+            var nativeWriter = universalLayerWriter.GetNextNativeWritableHandle(Matrix4x4.identity);
 
             Entities
                 .ForEach((
@@ -73,14 +82,13 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
                             var voxel = new Vector3Int(nextTile.x, y, nextTile.y);
                             var voxelIndex = layout.GetVoxelIndexFromCoordinates(voxel);
                             var durability = voxelLayers[voxelIndex, 0];
-
-                            damageData[voxelIndex.Value] += durability * damagePerDurability;
+                            nativeWriter.AppendAmountChangeToOtherLayer(voxelIndex, durability * damagePerDurability, damageLayerId);
                         }
                         health.currentHealth -= damageInfo.selfDamageDoneByAttacking * deltaTime;
                     }
                 }).Schedule();
 
-            damageWorld.RegisterDamageValuesWriter(this.Dependency);
+            universalLayerWriter.RegisterWriteDependency(this.Dependency);
             durabilityWorld.NativeVolumeData.RegisterReadingDependency(this.Dependency);
         }
     }

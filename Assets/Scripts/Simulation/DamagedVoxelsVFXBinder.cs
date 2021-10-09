@@ -13,7 +13,6 @@ namespace Simulation
 {
     public class DamagedVoxelsVFXBinder : MonoBehaviour
     {
-        public OrganDamageWorld damageWorld;
         public OrganVolumetricWorld durabilityWorld;
 
         public VolumetricResourceLayer wetnessLayer;
@@ -48,7 +47,6 @@ namespace Simulation
         private void Awake()
         {
             SetupVoxelTexture();
-            damageWorld.onDamageDataUpdated += DamageDataChanged;
             durabilityWorld.volumeWorldChanged += DamageDataChanged;
         }
 
@@ -78,9 +76,19 @@ namespace Simulation
             if (damageDataHasUpdate)
             {
                 damageDataHasUpdate = false;
-                var damageData = damageWorld.GetDamageValuesReadSafe();
+                
                 var layerData = durabilityWorld.NativeVolumeData.openReadData;
                 var voxelLayout = durabilityWorld.VoxelLayout;
+
+
+                var damageData = new NativeArray<float>(voxelLayout.totalVoxels, Allocator.TempJob);
+                var damageCopyJob = new CopyVoxelToWorkingDataJob
+                {
+                    layerData = layerData,
+                    layerId = durabilityWorld.damageLayer.voxelLayerId,
+                    targetData = damageData
+                };
+                var damageDep = damageCopyJob.Schedule(voxelLayout.totalVoxels, 1000);
 
                 var durabilityData = new NativeArray<float>(voxelLayout.totalVoxels, Allocator.TempJob);
                 var durabilityCopyJob = new CopyVoxelToWorkingDataJob
@@ -100,9 +108,10 @@ namespace Simulation
                 };
                 var wetnessDep = wetnessCopyJob.Schedule(voxelLayout.totalVoxels, 1000);
 
-
+                damageDep.Complete();
                 damageTexture.SetPixelData<float>(damageData, 0);
                 damageTexture.Apply();
+                damageData.Dispose();
 
                 // TODO: make this async?
                 durabilityDep.Complete();
@@ -126,7 +135,6 @@ namespace Simulation
 
         private void OnDestroy()
         {
-            damageWorld.onDamageDataUpdated -= DamageDataChanged;
             durabilityWorld.volumeWorldChanged -= DamageDataChanged;
         }
 
@@ -138,7 +146,7 @@ namespace Simulation
 
         private void SetupVoxelTexture()
         {
-            var voxels = damageWorld.volumeWorld.VoxelLayout;
+            var voxels = durabilityWorld.VoxelLayout;
             var textureSize = voxels.worldResolution;
 
             if (damageTexture != null)

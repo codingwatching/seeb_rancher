@@ -1,4 +1,5 @@
-﻿using Dman.LSystem.SystemRuntime.NativeCollections.NativeVolumetricSpace;
+﻿using Dman.LSystem;
+using Dman.LSystem.SystemRuntime.NativeCollections.NativeVolumetricSpace;
 using Dman.LSystem.SystemRuntime.VolumetricData;
 using Dman.LSystem.SystemRuntime.VolumetricData.Layers;
 using Dman.LSystem.SystemRuntime.VolumetricData.NativeVoxels;
@@ -57,7 +58,7 @@ namespace Simulation.VoxelLayers
             dispersalFactorByVoxelIndex.Dispose();
         }
 
-        public override bool ApplyEffectToLayer(DoubleBuffered<float> layerData, VolumetricWorldVoxelLayout voxelLayout, float deltaTime, ref JobHandle dependecy)
+        public override bool ApplyEffectToLayer(DoubleBuffered<float> layerData, VoxelWorldVolumetricLayerData readonlyLayerData, float deltaTime, ref JobHandleWrapper dependecy)
         {
             if (dispersalWeightComputeJob.HasValue)
             {
@@ -70,7 +71,7 @@ namespace Simulation.VoxelLayers
             return true;
         }
 
-        protected void Disperse(DoubleBuffered<float> layerData, float deltaTime, ref JobHandle dependency)
+        protected void Disperse(DoubleBuffered<float> layerData, float deltaTime, ref JobHandleWrapper dependency)
         {
             var dispersal = new DisperseByFactor
             {
