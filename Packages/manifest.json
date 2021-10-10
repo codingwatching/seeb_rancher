@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.darrentsung.dtcompiletimetracker": "https://github.com/DarrenTsung/DTCompileTimeTracker.git",
     "com.dman.genetics": "0.1.7",
     "com.dman.l-system": "file:../../Plant Creator/Packages/com.dman.l-system",
     "com.dman.reactive-variables": "file:../../UtilityPackages/Assets/UtilityScripts/com.dman.reactive-variables",
