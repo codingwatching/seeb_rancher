@@ -1,5 +1,10 @@
 ﻿using ProceduralToolkit;
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Environment
 {
@@ -8,6 +13,9 @@ namespace Environment
     public class PerlinMesh : MonoBehaviour
     {
         public PerlinSampler sampler;
+        /// <summary>
+        /// the total number of samples in each dimension to take across this tile
+        /// </summary>
         public Vector2Int samplesPerTile = 5 * Vector2Int.one;
         public Vector2 size = Vector2.one;
 
@@ -18,7 +26,7 @@ namespace Environment
 
         private void Start()
         {
-            //RegenMesh();
+            RegenMesh();
         }
         private void OnDestroy()
         {
@@ -26,49 +34,78 @@ namespace Environment
         }
         private void OnValidate()
         {
-            //RegenMesh();
+            RegenMesh();
+        }
+
+        [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
+        struct MeshVertexLayout
+        {
+            public float3 pos;
+            public float3 normal;
+            public MeshVertexLayout(float3 pos)
+            {
+                this.pos = pos;
+                this.normal = default;
+            }
+        }
+        private static VertexAttributeDescriptor[] GetVertexLayout()
+        {
+            return new[]{
+                new VertexAttributeDescriptor(VertexAttribute.Position, VertexAttributeFormat.Float32),
+                new VertexAttributeDescriptor(VertexAttribute.Normal, VertexAttributeFormat.Float32),
+                };
         }
 
         private void RegenMesh()
         {
-            var randSampler = new System.Random(Random.Range(1, int.MaxValue));
-            var quadWidth = size.x / samplesPerTile.x;
-            var quadHeight = size.y / samplesPerTile.y;
-            var builder = new MeshDraft();
-            for (float x = 0; x < samplesPerTile.x; x++)
+            using var vertexes = new NativeArray<MeshVertexLayout>(samplesPerTile.x * samplesPerTile.y * BuildMeshData.VertexesPerSample, Allocator.TempJob);
+            using var indexes = new NativeArray<int>(samplesPerTile.x * samplesPerTile.y * BuildMeshData.IndexesPerSample, Allocator.TempJob);
+            using var nativeSampler = sampler.AsNativeCompatible(Allocator.TempJob);
+
+            var nativeRandomSampler = new Unity.Mathematics.Random((uint)UnityEngine.Random.Range(1, int.MaxValue));
+
+            var meshbuildJob = new BuildMeshData
             {
-                var quadX = x * quadWidth;
-                for (float y = 0; y < samplesPerTile.y; y++)
-                {
-                    var quadY = y * quadHeight;
-                    var x0y0 = VertexInPlane(quadX, quadY);
-                    var x1y0 = VertexInPlane(quadX + quadWidth, quadY);
-                    var x0y1 = VertexInPlane(quadX, quadY + quadHeight);
-                    var x1y1 = VertexInPlane(quadX + quadWidth, quadY + quadHeight);
-                    var center = VertexInPlane(quadX + quadWidth / 2, quadY + quadHeight / 2);
-                    if (randSampler.NextDouble() > 0.5f)
-                    {
-                        builder.AddTriangle(x0y0, x0y1, x1y1, true);
-                        builder.AddTriangle(x1y1, x1y0, x0y0, true);
-                    }
-                    else
-                    {
-                        builder.AddTriangle(x0y1, x1y1, x1y0, true);
-                        builder.AddTriangle(x1y0, x0y0, x0y1, true);
-                    }
-                }
-            }
-            builder = builder.Paint(new Color(0, 0, 0, 0));
-            var newMesh = builder.ToMesh(true, true);
-            newMesh.RecalculateNormals();
+                vertexes = vertexes,
+                indexes = indexes,
+                nativeSampler = nativeSampler,
+
+                localTransform = transform.localToWorldMatrix,
+                tileResolution = samplesPerTile,
+                quadSize = new Vector2(size.x / samplesPerTile.x, size.y / samplesPerTile.y),
+                randomSampler = nativeRandomSampler,
+
+            };
+
+            var dep = meshbuildJob.Schedule(samplesPerTile.x * samplesPerTile.y, 1000);
+            dep.Complete();
+
             var meshfilter = GetComponent<MeshFilter>();
-            meshfilter.mesh = newMesh;
+
+            var mesh = meshfilter.sharedMesh;
+            mesh.Clear();
+            mesh.SetVertexBufferParams(vertexes.Length, GetVertexLayout());
+            mesh.SetVertexBufferData(vertexes, 0, 0, vertexes.Length, 0, MeshUpdateFlags.DontResetBoneBounds | MeshUpdateFlags.DontValidateIndices);
+
+            mesh.SetIndexBufferParams(indexes.Length, IndexFormat.UInt32);
+            mesh.SetIndexBufferData(indexes, 0, 0, indexes.Length, MeshUpdateFlags.DontResetBoneBounds | MeshUpdateFlags.DontValidateIndices);
+
+            mesh.subMeshCount = 1;
+            mesh.SetSubMesh(0, new SubMeshDescriptor
+            {
+                baseVertex = 0,
+                topology = MeshTopology.Triangles,
+                indexCount = indexes.Length,
+                indexStart = 0
+            });
+
+            mesh.RecalculateNormals();
 
 
             var meshCollider = GetComponent<MeshCollider>();
             if (meshCollider != null)
             {
-                meshCollider.sharedMesh = newMesh;
+                meshCollider.sharedMesh = mesh;
             }
         }
 
@@ -76,6 +113,82 @@ namespace Environment
         {
             var samplePoint = transform.TransformPoint(x, 0, y);
             return new Vector3(x, sampler.SampleNoise(samplePoint.x, samplePoint.z), y);
+        }
+
+        [BurstCompile]
+        struct BuildMeshData : IJobParallelFor
+        {
+            [NativeDisableParallelForRestriction]
+            public NativeArray<MeshVertexLayout> vertexes;
+            [NativeDisableParallelForRestriction]
+            public NativeArray<int> indexes;
+            [ReadOnly]
+            public PerlinSamplerNativeCompatable nativeSampler;
+
+            public Matrix4x4 localTransform;
+            public Vector2Int tileResolution;
+            public Vector2 quadSize;
+            public Unity.Mathematics.Random randomSampler;
+
+            public static readonly int VertexesPerSample = 6;
+            public static readonly int IndexesPerSample = 6;
+
+            public void Execute(int index)
+            {
+                var sampleIndex = index;
+                var x = sampleIndex % tileResolution.x;
+                var y = sampleIndex / tileResolution.x;
+                var quadX = x * quadSize.x;
+                var quadY = y * quadSize.y;
+                var vertexOrigin = sampleIndex * VertexesPerSample;
+
+
+                var x0y0 = VertexInPlane(quadX, quadY);
+                var x1y0 = VertexInPlane(quadX + quadSize.x, quadY);
+                var x0y1 = VertexInPlane(quadX, quadY + quadSize.y);
+                var x1y1 = VertexInPlane(quadX + quadSize.x, quadY + quadSize.y);
+
+                var indexOrigin = sampleIndex * IndexesPerSample;
+                if (randomSampler.NextBool())
+                {
+                    vertexes[vertexOrigin + 0] = new MeshVertexLayout(x0y0);
+                    indexes[indexOrigin + 0] = vertexOrigin + 0;
+                    vertexes[vertexOrigin + 1] = new MeshVertexLayout(x0y1);
+                    indexes[indexOrigin + 1] = vertexOrigin + 1;
+                    vertexes[vertexOrigin + 2] = new MeshVertexLayout(x1y1);
+                    indexes[indexOrigin + 2] = vertexOrigin + 2;
+
+                    vertexes[vertexOrigin + 3] = new MeshVertexLayout(x1y1);
+                    indexes[indexOrigin + 3] = vertexOrigin + 3;
+                    vertexes[vertexOrigin + 4] = new MeshVertexLayout(x1y0);
+                    indexes[indexOrigin + 4] = vertexOrigin + 4;
+                    vertexes[vertexOrigin + 5] = new MeshVertexLayout(x0y0);
+                    indexes[indexOrigin + 5] = vertexOrigin + 5;
+                }
+                else
+                {
+                    vertexes[vertexOrigin + 0] = new MeshVertexLayout(x0y1);
+                    indexes[indexOrigin + 0] = vertexOrigin + 0;
+                    vertexes[vertexOrigin + 1] = new MeshVertexLayout(x1y1);
+                    indexes[indexOrigin + 1] = vertexOrigin + 1;
+                    vertexes[vertexOrigin + 2] = new MeshVertexLayout(x1y0);
+                    indexes[indexOrigin + 2] = vertexOrigin + 2;
+
+                    vertexes[vertexOrigin + 3] = new MeshVertexLayout(x1y0);
+                    indexes[indexOrigin + 3] = vertexOrigin + 3;
+                    vertexes[vertexOrigin + 4] = new MeshVertexLayout(x0y0);
+                    indexes[indexOrigin + 4] = vertexOrigin + 4;
+                    vertexes[vertexOrigin + 5] = new MeshVertexLayout(x0y1);
+                    indexes[indexOrigin + 5] = vertexOrigin + 5;
+                }
+            }
+
+            private Vector3 VertexInPlane(float x, float y)
+            {
+                var samplePoint = localTransform.MultiplyPoint(new Vector3(x, 0, y));
+                return new Vector3(x, nativeSampler.SampleNoise(new Vector2(samplePoint.x, samplePoint.z)), y);
+            }
+
         }
     }
 }
