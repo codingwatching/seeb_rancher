@@ -1,4 +1,5 @@
 ﻿using Dman.LSystem.SystemRuntime.VolumetricData;
+using Dman.SceneSaveSystem;
 using Simulation.DOTS.PlantWeapons;
 using Simulation.DOTS.PlantWeapons.Health;
 using Unity.Entities;
@@ -20,10 +21,23 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
         protected override void OnCreate()
         {
             base.OnCreate();
-            surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
-            durabilityWorld = GameObject.FindObjectOfType<OrganVolumetricWorld>();
+            RefreshGameObjectReferences();
+            SaveSystemHooks.Instance.PostLoad += RefreshGameObjectReferences;
 
             RefreshVolumetricWriters();
+        }
+
+        private void RefreshGameObjectReferences()
+        {
+            surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
+            durabilityWorld = GameObject.FindObjectOfType<OrganVolumetricWorld>();
+        }
+        private void RefreshVolumetricWriters()
+        {
+            if (this.universalLayerWriter?.IsDisposed ?? true)
+            {
+                universalLayerWriter = durabilityWorld.GetCommandBufferWritableHandle();
+            }
         }
 
         protected override void OnDestroy()
@@ -91,13 +105,6 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
 
             universalLayerWriter.RegisterWriteDependency(this.Dependency);
             durabilityWorld.NativeVolumeData.RegisterReadingDependency(this.Dependency);
-        }
-        private void RefreshVolumetricWriters()
-        {
-            if (this.universalLayerWriter?.IsDisposed ?? true)
-            {
-                universalLayerWriter = durabilityWorld.GetCommandBufferWritableHandle();
-            }
         }
     }
 }

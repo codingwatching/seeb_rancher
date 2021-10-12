@@ -1,4 +1,5 @@
 ﻿using Dman.LSystem.SystemRuntime.VolumetricData;
+using Dman.SceneSaveSystem;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -19,6 +20,13 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
             base.OnCreate();
             commandBufferSystem = World.GetOrCreateSystem<BeginInitializationEntityCommandBufferSystem>();
             random = new Unity.Mathematics.Random(987614298);
+
+            RefreshGameObjectReferences();
+            SaveSystemHooks.Instance.PostLoad += RefreshGameObjectReferences;
+        }
+
+        private void RefreshGameObjectReferences()
+        {
             pathingWorld = GameObject.FindObjectOfType<PlantSurfacePathingWorld>();
         }
 
