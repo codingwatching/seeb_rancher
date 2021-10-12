@@ -723,6 +723,9 @@
     <Reference Include="Unity.Collections">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="ReactiveVariablesEditor">
+      <HintPath>Library\ScriptAssemblies\ReactiveVariablesEditor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Animation.Graph">
       <HintPath>Library\ScriptAssemblies\Unity.Animation.Graph.dll</HintPath>
     </Reference>
@@ -852,6 +855,9 @@
     <Reference Include="Unity.Animation.DefaultGraphPipeline">
       <HintPath>Library\ScriptAssemblies\Unity.Animation.DefaultGraphPipeline.dll</HintPath>
     </Reference>
+    <Reference Include="ReactiveVariables">
+      <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Scenes.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Scenes.Editor.dll</HintPath>
     </Reference>
@@ -909,9 +915,6 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="CompileTimeTracker">
-      <HintPath>Library\ScriptAssemblies\CompileTimeTracker.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
@@ -944,10 +947,6 @@
       <Project>{CA7ECD84-8421-B30A-44D1-31604C0CAC96}</Project>
       <Name>Narrative</Name>
     </ProjectReference>
-    <ProjectReference Include="ReactiveVariablesEditor.csproj">
-      <Project>{D3C344F2-4CAB-9A39-7532-349426063E50}</Project>
-      <Name>ReactiveVariablesEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="Tiling.csproj">
       <Project>{F7D1C449-51A9-B05A-E424-F38544E9D95A}</Project>
       <Name>Tiling</Name>
@@ -963,10 +962,6 @@
     <ProjectReference Include="Simulation.csproj">
       <Project>{E72381E0-56A9-8DED-43FF-076B18583E9F}</Project>
       <Name>Simulation</Name>
-    </ProjectReference>
-    <ProjectReference Include="ReactiveVariables.csproj">
-      <Project>{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}</Project>
-      <Name>ReactiveVariables</Name>
     </ProjectReference>
     <ProjectReference Include="Gameplay.csproj">
       <Project>{1D6ABFC0-A725-6116-09D8-0BA0900A989C}</Project>

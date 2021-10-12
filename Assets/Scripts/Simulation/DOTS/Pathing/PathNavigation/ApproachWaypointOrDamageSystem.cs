@@ -23,7 +23,7 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
             surfaceDefinition = GameObject.FindObjectOfType<SurfaceDefinitionSingleton>();
             durabilityWorld = GameObject.FindObjectOfType<OrganVolumetricWorld>();
 
-            universalLayerWriter = durabilityWorld.GetCommandBufferWritableHandle();
+            RefreshVolumetricWriters();
         }
 
         protected override void OnDestroy()
@@ -41,6 +41,7 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
 
             var damageLayerId = durabilityWorld.damageLayer.voxelLayerId;
 
+            RefreshVolumetricWriters();
             var nativeWriter = universalLayerWriter.GetNextNativeWritableHandle(Matrix4x4.identity);
 
             Entities
@@ -90,6 +91,13 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
 
             universalLayerWriter.RegisterWriteDependency(this.Dependency);
             durabilityWorld.NativeVolumeData.RegisterReadingDependency(this.Dependency);
+        }
+        private void RefreshVolumetricWriters()
+        {
+            if (this.universalLayerWriter?.IsDisposed ?? true)
+            {
+                universalLayerWriter = durabilityWorld.GetCommandBufferWritableHandle();
+            }
         }
     }
 }

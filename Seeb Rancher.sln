@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Environment", "Environment.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.dman.LSystem", "com.dman.LSystem.csproj", "{DD72B859-1013-9260-F42D-99C160940558}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveVariables", "ReactiveVariables.csproj", "{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameplay", "Gameplay.csproj", "{1D6ABFC0-A725-6116-09D8-0BA0900A989C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narrative", "Narrative.csproj", "{CA7ECD84-8421-B30A-44D1-31604C0CAC96}"
@@ -28,8 +26,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{C2E646EA-6E33-FDB6-66A5-E5B6EF2C7783}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.dman.l-system.editor", "com.dman.l-system.editor.csproj", "{64660CD5-FA0A-67A9-375B-9B84960E0AC8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveVariablesEditor", "ReactiveVariablesEditor.csproj", "{D3C344F2-4CAB-9A39-7532-349426063E50}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultEditorScripts", "DefaultEditorScripts.csproj", "{F4433834-85A1-FB7C-72C6-FBB4329017A7}"
 EndProject
@@ -59,10 +55,6 @@ Global
 		{DD72B859-1013-9260-F42D-99C160940558}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD72B859-1013-9260-F42D-99C160940558}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD72B859-1013-9260-F42D-99C160940558}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5492EAB1-5AB5-B4B4-86EA-71F2D14EB72F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D6ABFC0-A725-6116-09D8-0BA0900A989C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D6ABFC0-A725-6116-09D8-0BA0900A989C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D6ABFC0-A725-6116-09D8-0BA0900A989C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,10 +91,6 @@ Global
 		{64660CD5-FA0A-67A9-375B-9B84960E0AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64660CD5-FA0A-67A9-375B-9B84960E0AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64660CD5-FA0A-67A9-375B-9B84960E0AC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3C344F2-4CAB-9A39-7532-349426063E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3C344F2-4CAB-9A39-7532-349426063E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3C344F2-4CAB-9A39-7532-349426063E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3C344F2-4CAB-9A39-7532-349426063E50}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4433834-85A1-FB7C-72C6-FBB4329017A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
