@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 7914769505186943597}
   - component: {fileID: 4883893034910014838}
   - component: {fileID: 4867186539519727782}
+  - component: {fileID: 4569286808348440866}
   - component: {fileID: 3740131691403824582}
   m_Layer: 0
   m_Name: dotty enemy
@@ -221,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  destroyWhenNoHealth: 1
 --- !u!114 &1687225805103561437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +484,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarMesh: {fileID: 1189389630518894489}
+--- !u!114 &4569286808348440866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513389675405803869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4748b799d32bf4d8b71b0bc561a007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3740131691403824582
 MonoBehaviour:
   m_ObjectHideFlags: 0

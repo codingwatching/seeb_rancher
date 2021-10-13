@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\MapManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayControllers\BackdropUIGameObject.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\DragSeedsManipulator.cs" />
@@ -100,6 +97,8 @@
     <Compile Include="Assets\Scripts\UI\SeedInventory\SeedInventoryDropSlot.cs" />
     <Compile Include="Assets\Scripts\UI\Manipulators\Scripts\WateringCanManipulator.cs" />
     <Compile Include="Assets\Scripts\UI\SeedInventory\Summaries\SeedSetSummaryPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\TooltipController.cs" />
+    <Compile Include="Assets\Scripts\UI\DisplayControllers\Tooltip.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\UI\UI.asmdef" />
