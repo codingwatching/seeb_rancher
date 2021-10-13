@@ -8,8 +8,5 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
     {
         public float patherHeight = 1.5f;
         public PerlinSampler terrainHeights;
-
-        public FloatReference gameSpeed;
-
     }
 }

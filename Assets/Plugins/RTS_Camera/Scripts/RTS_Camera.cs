@@ -239,7 +239,7 @@ namespace RTS_Cam
                 Vector3 desiredMove = new Vector3(KeyboardInput.x, 0, KeyboardInput.y);
 
                 desiredMove *= keyboardMovementSpeed;
-                desiredMove *= Time.deltaTime;
+                desiredMove *= Time.unscaledDeltaTime;
                 desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
                 desiredMove = m_Transform.InverseTransformDirection(desiredMove);
 
@@ -259,7 +259,7 @@ namespace RTS_Cam
                 desiredMove.z = upRect.Contains(MouseInput) ? 1 : downRect.Contains(MouseInput) ? -1 : 0;
 
                 desiredMove *= screenEdgeMovementSpeed;
-                desiredMove *= Time.deltaTime;
+                desiredMove *= Time.unscaledDeltaTime;
                 desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
                 desiredMove = m_Transform.InverseTransformDirection(desiredMove);
 
@@ -271,7 +271,7 @@ namespace RTS_Cam
                 Vector3 desiredMove = new Vector3(-MouseAxis.x, 0, -MouseAxis.y);
 
                 desiredMove *= panningSpeed;
-                desiredMove *= Time.deltaTime;
+                desiredMove *= Time.unscaledDeltaTime;
                 desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
                 desiredMove = m_Transform.InverseTransformDirection(desiredMove);
 
@@ -286,9 +286,9 @@ namespace RTS_Cam
         {
             float distanceToGround = DistanceToGround();
             if (useScrollwheelZooming)
-                zoomPos += ScrollWheel * Time.deltaTime * scrollWheelZoomingSensitivity;
+                zoomPos += ScrollWheel * Time.unscaledDeltaTime * scrollWheelZoomingSensitivity;
             if (useKeyboardZooming)
-                zoomPos += ZoomDirection * Time.deltaTime * keyboardZoomingSensitivity;
+                zoomPos += ZoomDirection * Time.unscaledDeltaTime * keyboardZoomingSensitivity;
 
             zoomPos = Mathf.Clamp01(zoomPos);
 
@@ -299,12 +299,12 @@ namespace RTS_Cam
                 difference = targetHeight - distanceToGround;
 
             m_Transform.position = Vector3.Lerp(m_Transform.position,
-                new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z), Time.deltaTime * heightDampening);
+                new Vector3(m_Transform.position.x, targetHeight + difference, m_Transform.position.z), Time.unscaledDeltaTime * heightDampening);
 
 
             var targetAngle = angleByRelativeHeight.Evaluate(zoomPos);
             var currentRotation = m_Transform.eulerAngles;
-            currentRotation.x = Mathf.LerpAngle(currentRotation.x, targetAngle, Time.deltaTime * heightDampening);
+            currentRotation.x = Mathf.LerpAngle(currentRotation.x, targetAngle, Time.unscaledDeltaTime * heightDampening);
             m_Transform.eulerAngles = currentRotation;
         }
 
@@ -315,10 +315,10 @@ namespace RTS_Cam
         {
             var netRotationInput = 0f;
             if (useKeyboardRotation)
-                netRotationInput += RotationKeyDirection * Time.deltaTime * rotationSpeed;
+                netRotationInput += RotationKeyDirection * Time.unscaledDeltaTime * rotationSpeed;
 
             if (useMouseRotation && Input.GetKey(mouseRotationKey))
-                netRotationInput += -MouseAxis.x * Time.deltaTime * mouseRotationSpeed;
+                netRotationInput += -MouseAxis.x * Time.unscaledDeltaTime * mouseRotationSpeed;
 
             if (Mathf.Abs(netRotationInput) < 1e-5)
             {
@@ -342,7 +342,7 @@ namespace RTS_Cam
         private void FollowTarget()
         {
             Vector3 targetPos = new Vector3(targetFollow.position.x, m_Transform.position.y, targetFollow.position.z) + targetOffset;
-            m_Transform.position = Vector3.MoveTowards(m_Transform.position, targetPos, Time.deltaTime * followingSpeed);
+            m_Transform.position = Vector3.MoveTowards(m_Transform.position, targetPos, Time.unscaledDeltaTime * followingSpeed);
         }
 
         /// <summary>

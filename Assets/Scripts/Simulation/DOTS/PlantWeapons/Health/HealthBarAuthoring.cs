@@ -44,7 +44,6 @@ namespace Simulation.DOTS.PlantWeapons.Health
 
         protected override void OnUpdate()
         {
-            var deltaTime = Time.DeltaTime;
             var ecb = commandBufferSystem.CreateCommandBuffer().AsParallelWriter();
             Entities
                 .ForEach((

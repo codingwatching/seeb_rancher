@@ -47,8 +47,7 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
 
         protected override void OnUpdate()
         {
-            var simSpeed = surfaceDefinition.gameSpeed.CurrentValue;
-            var deltaTime = simSpeed * Time.DeltaTime;
+            var deltaTime = Time.DeltaTime;
             var voxelLayers = durabilityWorld.NativeVolumeData.openReadData.AsReadOnly();
             var patherHeight = surfaceDefinition.patherHeight;
             var layout = durabilityWorld.VoxelLayout;
@@ -85,7 +84,7 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
                     {
                         Vector3 diff = target.target - position.Value;
                         var normalized = diff.normalized;
-                        velocity.velocity = diff.normalized * follower.movementSpeed * simSpeed;
+                        velocity.velocity = diff.normalized * follower.movementSpeed;
                     }
                     else
                     {

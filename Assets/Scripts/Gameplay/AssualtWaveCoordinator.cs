@@ -10,7 +10,6 @@ namespace Gameplay
         public static AssualtWaveCoordinator instance;
 
         public BooleanVariable isWaveActive;
-        public FloatReference simulationSpeed;
 
         public float waveLength = 32f;
         public float waveCycleTotalLength = (64f + 32f);
@@ -60,7 +59,7 @@ namespace Gameplay
         private void Update()
         {
             var isWaveCurrentlyActive = isWaveActive.CurrentValue;
-            var newValue = (timeInsideWaveCycle.CurrentValue + Time.deltaTime * simulationSpeed.CurrentValue) % waveCycleTotalLength;
+            var newValue = (timeInsideWaveCycle.CurrentValue + Time.deltaTime) % waveCycleTotalLength;
             timeInsideWaveCycle.SetValue(newValue);
 
             var nextWaveActive = IsWaveActiveAtTime(newValue);

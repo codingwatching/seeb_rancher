@@ -74,8 +74,7 @@ namespace Simulation.DOTS.PlantWeapons.Bomb
         protected override void OnUpdate()
         {
             var ecb = commandBufferSystem.CreateCommandBuffer();
-            var simSpeed = surfaceDefinition.gameSpeed.CurrentValue;
-            var deltaTime = Time.DeltaTime * simSpeed;
+            var deltaTime = Time.DeltaTime;
             var totalTime = Time.ElapsedTime;
             Entities
                 .ForEach((

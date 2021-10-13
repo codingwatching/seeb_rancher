@@ -8,7 +8,7 @@ namespace UI.PlantData
 
         private void Update()
         {
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up, rotationSpeed * Time.unscaledDeltaTime);
         }
     }
 }

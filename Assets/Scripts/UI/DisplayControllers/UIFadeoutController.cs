@@ -31,7 +31,7 @@ namespace UI.DisplayControllers
         {
             var animator = fadingGameObject.GetComponent<Animator>();
             fadingGameObject.SetActive(true);
-            lastAnimatorTrigger = Time.time;
+            lastAnimatorTrigger = Time.unscaledTime;
             animator.SetTrigger(fadeoutTrigger);
         }
 
@@ -41,7 +41,7 @@ namespace UI.DisplayControllers
             {
                 return;
             }
-            var timeSinceTrigger = Time.time - lastAnimatorTrigger;
+            var timeSinceTrigger = Time.unscaledTime - lastAnimatorTrigger;
             if (timeSinceTrigger >= totalFadeoutAnimationLength)
             {
                 reachedHalfway = false;

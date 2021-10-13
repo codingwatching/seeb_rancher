@@ -71,7 +71,6 @@ namespace Simulation.Plants
 
         public event Action OnHarvested;
 
-        public FloatReference simulationSpeed;
         public BooleanReference phaseSimulationActive;
         private StochasticTimerFrequencyVaried updateStepTiming;
         private StochasticTimerFrequencyVaried pollinationSpreadTiming;
@@ -117,7 +116,7 @@ namespace Simulation.Plants
 
         private void StepSystemDuringPhaseChange()
         {
-            if (!updateStepTiming.Tick())
+            if (!updateStepTiming.Tick(1 / Time.timeScale)) // make sure that the tick speed is time-scale invariant
             {
                 return;
             }
@@ -156,9 +155,9 @@ namespace Simulation.Plants
         public void StepOnce()
         {
             var steppingHandle = this.lSystemManager.steppingHandle;
-            steppingHandle.runtimeParameters.SetParameter(plantType.simulationSpeedRuntimeVariable, simulationSpeed.CurrentValue);
+            steppingHandle.runtimeParameters.SetParameter(plantType.simulationSpeedRuntimeVariable, Time.timeScale);
             var stepper = steppingHandle.Stepper();
-            stepper.customSymbols.diffusionConstantRuntimeGlobalMultiplier = simulationSpeed.CurrentValue;
+            stepper.customSymbols.diffusionConstantRuntimeGlobalMultiplier = Time.timeScale;
             this.lSystemManager.StepSystem();
         }
 

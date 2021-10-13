@@ -23,7 +23,6 @@ namespace Simulation.DOTS.PlantWeapons.SmokeTrail
         protected override void OnUpdate()
         {
             var ecb = commandBufferSystem.CreateCommandBuffer().AsParallelWriter();
-            var deltaTime = Time.DeltaTime;
             var totalTime = Time.ElapsedTime;
             Entities
                 .WithNone<SeekEnemyComponent>()

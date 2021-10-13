@@ -12,10 +12,10 @@ namespace Gameplay
         public StochasticTimerFrequencyVaried spawnRate;
         public AnimationCurve spawnRateAccelerationByWave;
 
-        public GameObject TrySpawn(int wave, float simSpeed)
+        public GameObject TrySpawn(int wave)
         {
             var spawnSpeed = spawnRateAccelerationByWave.Evaluate(wave);
-            if (spawnSpeed > 0 && spawnRate.Tick(spawnSpeed * simSpeed))
+            if (spawnSpeed > 0 && spawnRate.Tick(spawnSpeed))
             {
                 return GameObject.Instantiate(spawned);
             }
@@ -27,7 +27,6 @@ namespace Gameplay
     public class AssaultWaveSpawner : MonoBehaviour
     {
         public BooleanVariable isWaveActive;
-        public FloatVariable gameSpeed;
         public IntReference currentWave;
 
         public Vector3 spawnSize;
@@ -50,7 +49,7 @@ namespace Gameplay
             }
             foreach (var spawnable in spawnables)
             {
-                var spawned = spawnable.TrySpawn(currentWave.CurrentValue, gameSpeed.CurrentValue);
+                var spawned = spawnable.TrySpawn(currentWave.CurrentValue);
                 if (spawned != null)
                 {
                     spawned.transform.position = GetRandomSpawnPosition();

@@ -17,6 +17,8 @@ namespace Environment
         [Range(0, 1 - float.Epsilon)]
         public float frequencyVariance = 0.1f;
 
+        public bool timescaleIndependent = false;
+
         private float lastTriggerTime;
         private float currentDelayTillNextTrigger;
 
