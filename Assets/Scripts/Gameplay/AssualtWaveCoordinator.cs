@@ -59,12 +59,12 @@ namespace Gameplay
 
         private void Update()
         {
-            var oldWaveActive = IsWaveActiveAtTime(timeInsideWaveCycle.CurrentValue);
+            var isWaveCurrentlyActive = isWaveActive.CurrentValue;
             var newValue = (timeInsideWaveCycle.CurrentValue + Time.deltaTime * simulationSpeed.CurrentValue) % waveCycleTotalLength;
             timeInsideWaveCycle.SetValue(newValue);
 
             var nextWaveActive = IsWaveActiveAtTime(newValue);
-            if(oldWaveActive ^ nextWaveActive)
+            if(isWaveCurrentlyActive ^ nextWaveActive)
             {
                 isWaveActive.SetValue(nextWaveActive);
             }

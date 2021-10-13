@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\IsSavePossibleController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\BlockSaveFlagComponent.cs" />
     <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\SavePossibleCheckSystem.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\ECSCleanupController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Gameplay\Gameplay.asmdef" />
