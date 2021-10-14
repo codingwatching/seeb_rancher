@@ -1,4 +1,5 @@
 using Dman.LSystem.SystemRuntime.Turtle;
+using System.Collections;
 using UnityEngine;
 
 namespace UI
@@ -13,7 +14,7 @@ namespace UI
         public uint HoveredId { get; private set; }
 
 
-        private RenderTexture idTexture;
+        public RenderTexture idTexture;
         private Texture2D idTextureTempSpace;
 
         private void Awake()
@@ -21,6 +22,17 @@ namespace UI
             instance = this;
 
             this.SetupIdTexture();
+
+
+            idTexture.Release();
+            idTexture.antiAliasing = 1;
+            idTexture.filterMode = FilterMode.Point;
+            idTexture.autoGenerateMips = false;
+            idTexture.depth = 24;
+            idTexture.graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_UNorm;
+            idTexture.format = RenderTextureFormat.ARGB32;
+            idTexture.useMipMap = false;
+            idTexture.Create();
 
             idTextureTempSpace = new Texture2D(1, 1)
             {
@@ -42,6 +54,7 @@ namespace UI
             if (idTexture.width != mainCamera.pixelWidth || idTexture.height != mainCamera.pixelHeight)
             {
                 Debug.Log("Detected screen resultion change");
+                Debug.Log($"resolutions: ({mainCamera.pixelWidth}, {mainCamera.pixelHeight}) ; ({idCamera.pixelWidth}, {idCamera.pixelHeight})");
                 SetupIdTexture();
             }
             var mousePosition = new Vector2Int((int)Input.mousePosition.x, (int)Input.mousePosition.y);
@@ -54,20 +67,25 @@ namespace UI
 
         private void SetupIdTexture()
         {
-            if (idTexture != null)
+            if (idTexture == null)
+            {
+                idTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 24, RenderTextureFormat.ARGB32, 0)
+                {
+                    antiAliasing = 1,
+                    filterMode = FilterMode.Point,
+                    autoGenerateMips = false,
+                    depth = 24,
+                    graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_UNorm
+                };
+            }
+            else
             {
                 idTexture.Release();
-                idTexture = null;
+                idTexture.width = mainCamera.pixelWidth;
+                idTexture.height = mainCamera.pixelHeight;
             }
-            idTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 24, RenderTextureFormat.ARGB32, 0)
-            {
-                antiAliasing = 1,
-                filterMode = FilterMode.Point,
-                autoGenerateMips = false,
-                depth = 24,
-                graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_UNorm
-            };
             idTexture.Create();
+            idCamera.targetTexture = null; // have to reset, to make sure it adjusts for aspect ratio
             idCamera.targetTexture = idTexture;
         }
 

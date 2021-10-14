@@ -119,6 +119,9 @@ TextureImporter:
   - first:
       213: 1681267499249457814
     second: UI_Wood_Filled_Panel_Small
+  - first:
+      213: -6190650881601586658
+    second: UI_Wood_Circle_Border_Transparent
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1058,6 +1061,27 @@ TextureImporter:
       bones: []
       spriteID: 69a5c2102ef055710800000000000000
       internalID: 1681267499249457814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Wood_Circle_Border_Transparent
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 289
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1abda992d3661aa0800000000000000
+      internalID: -6190650881601586658
       vertices: []
       indices: 
       edges: []
