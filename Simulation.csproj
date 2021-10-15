@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Simulation\DOTS\PlantWeapons\ApplyVelocitySystem.cs" />
     <Compile Include="Assets\Scripts\Simulation\DOTS\PlantWeapons\LifetimeComponent.cs" />
     <Compile Include="Assets\Scripts\Simulation\Plants\PlantTypes\LSystemPlantType.cs" />
+    <Compile Include="Assets\Scripts\Simulation\TimeOfDaySaver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Simulation\Simulation.asmdef" />
