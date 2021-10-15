@@ -238,6 +238,7 @@ namespace RTS_Cam
             {
                 Vector3 desiredMove = new Vector3(KeyboardInput.x, 0, KeyboardInput.y);
 
+
                 desiredMove *= keyboardMovementSpeed;
                 desiredMove *= Time.unscaledDeltaTime;
                 desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
