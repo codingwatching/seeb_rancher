@@ -67,11 +67,6 @@ namespace UI.Markets
 
         public string UniqueSaveIdentifier => "SeebBin";
 
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
-
         public object GetSaveObject()
         {
             return new SeebBinContainerSaveObject(this);

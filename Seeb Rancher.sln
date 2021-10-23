@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulation", "Simulation.csproj", "{E72381E0-56A9-8DED-43FF-076B18583E9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SceneSaveSystem", "SceneSaveSystem.csproj", "{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI.csproj", "{69626DAD-A904-807A-17B9-86085DFFE5F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Environment", "Environment.csproj", "{9877AD0A-C978-449C-C62E-F870F0B89B68}"
@@ -43,6 +45,10 @@ Global
 		{E72381E0-56A9-8DED-43FF-076B18583E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E72381E0-56A9-8DED-43FF-076B18583E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E72381E0-56A9-8DED-43FF-076B18583E9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69626DAD-A904-807A-17B9-86085DFFE5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69626DAD-A904-807A-17B9-86085DFFE5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69626DAD-A904-807A-17B9-86085DFFE5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU

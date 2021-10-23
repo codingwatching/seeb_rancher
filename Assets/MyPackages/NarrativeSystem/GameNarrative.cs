@@ -85,11 +85,6 @@ namespace Dman.NarrativeSystem
             }
         }
 
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
-
         public object GetSaveObject()
         {
             return new SavedNarrative(this);

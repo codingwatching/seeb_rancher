@@ -49,10 +49,5 @@ namespace Dman.NarrativeSystem
         {
             ((ISaveableData)narrative).SetupFromSaveObject(save);
         }
-
-        public ISaveableData[] GetDependencies()
-        {
-            return ((ISaveableData)narrative).GetDependencies();
-        }
     }
 }

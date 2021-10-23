@@ -92,11 +92,6 @@ namespace UI.Markets.ChildCycler
                 UpdateText();
             }
         }
-
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
         #endregion
     }
 

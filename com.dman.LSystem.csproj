@@ -849,9 +849,6 @@
     <Reference Include="ProceduralToolkit">
       <HintPath>Library\ScriptAssemblies\ProceduralToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="SceneSaveSystem">
-      <HintPath>Library\ScriptAssemblies\SceneSaveSystem.dll</HintPath>
-    </Reference>
     <Reference Include="ObjectSets">
       <HintPath>Library\ScriptAssemblies\ObjectSets.dll</HintPath>
     </Reference>
@@ -875,6 +872,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SceneSaveSystem.csproj">
+      <Project>{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}</Project>
+      <Name>SceneSaveSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -99,10 +99,6 @@ namespace Gameplay
             (save as LevelStateSaved).Apply(this);
         }
 
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
         #endregion
     }
 }

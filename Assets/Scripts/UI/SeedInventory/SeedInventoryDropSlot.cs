@@ -190,11 +190,6 @@ namespace UI.SeedInventory
         #region save data
         public string UniqueSaveIdentifier => "SeedSlot";
 
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
-
         public object GetSaveObject()
         {
             return dataModel;

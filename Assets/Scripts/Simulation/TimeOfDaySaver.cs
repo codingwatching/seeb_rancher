@@ -32,9 +32,5 @@ namespace Simulation
             var time = (float)save;
             animator.Play(SunlightStateName, 0, time);
         }
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
     }
 }

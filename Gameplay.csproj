@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,17 +53,20 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Gameplay\WateringCan.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\ECSCleanupController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\AssaultWaveSpawner.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\BlockSaveFlagComponent.cs" />
     <Compile Include="Assets\Scripts\Gameplay\DOTSDataBinders\HealthToFloatVariableBinder.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\SavePossibleCheckSystem.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Selection Spotlight\OutlineIndividual.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\IsSavePossibleController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Selection Spotlight\SelectionSpotlighter.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlantableDirt.cs" />
     <Compile Include="Assets\Scripts\Gameplay\AssualtWaveCoordinator.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\IsSavePossibleController.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\BlockSaveFlagComponent.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\SavePossibleCheckSystem.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\SaveBlocking\ECSCleanupController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Gameplay\Gameplay.asmdef" />
@@ -732,9 +735,6 @@
     <Reference Include="ReactiveVariables">
       <HintPath>Library\ScriptAssemblies\ReactiveVariables.dll</HintPath>
     </Reference>
-    <Reference Include="SceneSaveSystem">
-      <HintPath>Library\ScriptAssemblies\SceneSaveSystem.dll</HintPath>
-    </Reference>
     <Reference Include="Utilities">
       <HintPath>Library\ScriptAssemblies\Utilities.dll</HintPath>
     </Reference>
@@ -749,6 +749,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SceneSaveSystem.csproj">
+      <Project>{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}</Project>
+      <Name>SceneSaveSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="Simulation.csproj">
       <Project>{E72381E0-56A9-8DED-43FF-076B18583E9F}</Project>
       <Name>Simulation</Name>

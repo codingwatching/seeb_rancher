@@ -69,9 +69,17 @@
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SerializationManager.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefabType.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefabRegistry.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\ISaveDataPiece.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveTreeContext.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SceneSaveScopeIdentifier.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\GlobalSaveScope.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveScopeData.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\PrefabSaveScope.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\GlobalSaveFlag.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\ISaveScopeIdentifier.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SceneSaveSystem.asmdef" />
+    <None Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\com.dman.scene-save-system.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

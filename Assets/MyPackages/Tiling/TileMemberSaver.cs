@@ -8,11 +8,6 @@ namespace Dman.Tiling
     {
         public string UniqueSaveIdentifier => "GreenhouseMember";
 
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
-
         public object GetSaveObject()
         {
             var member = GetComponent<TileMember>();

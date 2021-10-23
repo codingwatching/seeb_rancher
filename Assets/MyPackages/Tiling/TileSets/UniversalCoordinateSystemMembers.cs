@@ -117,10 +117,5 @@ namespace Dman.Tiling.TileSets
                 OverwriteTileTypes(saveObject);
             }
         }
-
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
     }
 }

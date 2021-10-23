@@ -375,12 +375,6 @@ namespace Simulation.Plants
                 saveObj.Apply(this);
             }
         }
-
-        public ISaveableData[] GetDependencies()
-        {
-            return new ISaveableData[0];
-        }
-
         #endregion
     }
 }
