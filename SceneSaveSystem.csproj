@@ -58,25 +58,25 @@
   <ItemGroup>
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SharedSaveables\TransformSaver.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefab.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\GlobalSaveFlag.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SaveContext.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SaveSystemHooks.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveTreeContext.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefabParent.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\ISaveDataPiece.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\ISaveScopeIdentifier.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SavedPrefab.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\PrefabSaveScope.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\MasterSaveObject.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveData.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveScopeData.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\ISaveableData.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\GlobalSaveScope.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\WorldSaveManager.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SerializationManager.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SceneSaveScopeIdentifier.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefabType.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefabRegistry.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\ISaveDataPiece.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveTreeContext.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SceneSaveScopeIdentifier.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\GlobalSaveScope.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveScopeData.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\PrefabSaveScope.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\GlobalSaveFlag.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\ISaveScopeIdentifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\com.dman.scene-save-system.asmdef" />

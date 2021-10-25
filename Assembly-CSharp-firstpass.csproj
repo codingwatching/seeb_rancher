@@ -965,6 +965,10 @@
       <Project>{B8DA60C1-E8E9-30EA-2FAD-1F14130622C2}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="SceneSaveSystem.csproj">
+      <Project>{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}</Project>
+      <Name>SceneSaveSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="Simulation.csproj">
       <Project>{E72381E0-56A9-8DED-43FF-076B18583E9F}</Project>
       <Name>Simulation</Name>
@@ -980,10 +984,6 @@
     <ProjectReference Include="com.dman.LSystem.csproj">
       <Project>{DD72B859-1013-9260-F42D-99C160940558}</Project>
       <Name>com.dman.LSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="SceneSaveSystem.csproj">
-      <Project>{96EDBABA-BB66-72A5-B5C1-A6C2C57EE3BA}</Project>
-      <Name>SceneSaveSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
