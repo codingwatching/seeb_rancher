@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,29 +53,26 @@
     <UnityVersion>2020.3.15f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SharedSaveables\TransformSaver.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefab.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\GlobalSaveFlag.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SaveContext.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SaveSystemHooks.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveTreeContext.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SaveFormatException.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefabParent.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\ISaveDataPiece.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\ISaveScopeIdentifier.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SavedPrefab.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\PrefabSaveScope.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\MasterSaveObject.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\Identifiers\GlobalSaveScope.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\Identifiers\PrefabSaveScopeIdentifier.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveData.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SaveScopeData.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\ISaveableData.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\GlobalSaveScope.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SwitchScene.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\WorldSaveManager.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\SerializationManager.cs" />
-    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\SceneSaveScopeIdentifier.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefabType.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\Identifiers\SceneSaveScopeIdentifier.cs" />
+    <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Objects\Identifiers\ISaveScopeIdentifier.cs" />
     <Compile Include="C:\source\Game-Dev\UtilityPackages\Assets\UtilityScripts\com.dman.scene-save-system\Runtime\Components\SaveablePrefabRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
