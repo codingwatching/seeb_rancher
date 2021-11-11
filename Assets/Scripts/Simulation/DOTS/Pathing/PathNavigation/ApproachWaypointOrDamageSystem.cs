@@ -36,7 +36,7 @@ namespace Simulation.DOTS.Pathing.PathNavigaton
         {
             if (this.universalLayerWriter?.IsDisposed ?? true)
             {
-                universalLayerWriter = durabilityWorld.GetCommandBufferWritableHandle();
+                universalLayerWriter = durabilityWorld?.GetCommandBufferWritableHandle();
             }
         }
 

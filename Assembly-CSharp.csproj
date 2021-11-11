@@ -61,6 +61,7 @@
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\SelectFloweringPlantPrompt.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\MatureHarvestablePlantExistsTrigger.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\SceneIsOpenTrigger.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Triggers\PollinatingPlantExistsTrigger.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\HarvestMaturePlantPrompt.cs" />
     <Compile Include="Assets\Narrative assets\SystemExtensions\Prompts\WaitForManipulatorChangePrompt.cs" />

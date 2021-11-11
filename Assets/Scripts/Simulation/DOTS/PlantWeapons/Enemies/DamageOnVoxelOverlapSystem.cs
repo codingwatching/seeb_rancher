@@ -51,6 +51,7 @@ namespace Simulation.DOTS.PlantWeapons.Bomb
             var targetSurfaceEntities = surfaceTargets.ToEntityArray(Allocator.TempJob);
 
             var ecb = commandBufferSystem.CreateCommandBuffer();
+            // TODO: this is null pointer?
             var voxelLayout = durabilityWorld.VoxelLayout;
             var terrainSampler = surfaceDefinition.terrainHeights.AsNativeCompatible();
             if (targetSurfaceEntities.Length > 0)

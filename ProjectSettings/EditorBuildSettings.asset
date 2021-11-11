@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 7252dceb89b81da4799a4cc04cc1524c
+  - enabled: 1
     path: Assets/Scenes/The BattleZone.unity
     guid: 7515cc8f4f7c76b46a5c71340b74f0e5
   - enabled: 1
     path: Assets/Scenes/The Greenhouse.unity
     guid: 023ebc81c51951f41b81e5b9a9154731
-  - enabled: 0
-    path: Assets/Scenes/Main Menu.unity
-    guid: 7252dceb89b81da4799a4cc04cc1524c
   - enabled: 0
     path: Assets/Scenes/contract evaluator.unity
     guid: 9cd7285e6b32c8f4ebc7e2c8f78f8c32

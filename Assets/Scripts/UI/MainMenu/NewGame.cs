@@ -8,8 +8,9 @@ namespace UI.MainMenu
 {
     public class NewGame : MonoBehaviour
     {
-        public IntVariable phaseVariable;
+        public IntVariable waveVariable;
         public SceneReference targetScene;
+
 
         public void LoadNewGame()
         {
@@ -18,13 +19,15 @@ namespace UI.MainMenu
         }
         private IEnumerator NewGameRoutine()
         {
-            phaseVariable.SetValue(-1);
+            //waveVariable.SetValue(-1);
+
             DontDestroyOnLoad(gameObject);
             var sceneIndex = SceneUtility.GetBuildIndexByScenePath(targetScene.scenePath);
             var loadingScene = SceneManager.LoadScene(sceneIndex, new LoadSceneParameters(LoadSceneMode.Single));
             yield return new WaitUntil(() => loadingScene.isLoaded);
             yield return new WaitForEndOfFrame();
-            phaseVariable.SetValue(0);
+
+            //waveVariable.SetValue(0);
             Destroy(gameObject);
         }
     }
